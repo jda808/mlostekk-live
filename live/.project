@@ -19,4 +19,10 @@
 			</matcher>
 		</filter>
 	</filteredResources>
+	<variableList>
+		<variable>
+			<name>ABLETON_DIR</name>
+			<value>file:/E:/Ableton/Live%208.2.6</value>
+		</variable>
+	</variableList>
 </projectDescription>

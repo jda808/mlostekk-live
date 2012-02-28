@@ -10,5 +10,6 @@
 <path>/live/midiRemoteScripts/liveOSC_local_routedWithPD</path>
 <path>/live/midiRemoteScripts/liveAPI_makeDoc/_Support</path>
 <path>/live/midiRemoteScripts/liveAPI_makeDoc</path>
+<path>/live/accessories/logServer</path>
 </pydev_pathproperty>
 </pydev_project>

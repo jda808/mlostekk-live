@@ -25,23 +25,6 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1330423111312</id>
-			<name>userRemoteScripts</name>
-			<type>9</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-true-false-live*</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1330423111312</id>
-			<name>userRemoteScripts</name>
-			<type>13</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-			</matcher>
-		</filter>
-		<filter>
 			<id>1330408820875</id>
 			<name>accessories/liveDebugProject/Ableton Project Info</name>
 			<type>6</type>

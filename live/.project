@@ -24,5 +24,14 @@
 				<arguments>1.0-name-matches-true-false-live*</arguments>
 			</matcher>
 		</filter>
+		<filter>
+			<id>1330429127296</id>
+			<name>userRemoteScripts</name>
+			<type>13</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-true-false-live*</arguments>
+			</matcher>
+		</filter>
 	</filteredResources>
 </projectDescription>

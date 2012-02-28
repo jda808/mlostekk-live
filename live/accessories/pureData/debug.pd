@@ -1,0 +1,82 @@
+#N canvas 1418 8 487 999 12;
+#X msg -61 -368 disconnect;
+#X obj -163 -347 packOSC;
+#X obj -163 -298 udpsend;
+#X obj -163 -257 tgl 30 0 empty empty 1=connected 20 8 0 20 -33289
+-257985 -1 0 1;
+#X obj -34 -145 unpackOSC;
+#X msg -148 -446 send /remix/set_peer localhost 9001;
+#X obj -29 232 unpackOSC;
+#X msg -60 -296 connect 192.168.178.19 8000;
+#X msg -60 -319 connect localhost 9000;
+#X obj -131 -172 udpreceive 9001;
+#X msg -129 -422 send /remix/set_peer '192.168.178.19' 8000;
+#X obj -93 92 udpsend;
+#X msg -43 33 connect 192.168.178.19 8000;
+#X text -48 -71 print on console;
+#X msg -41 61 disconnect;
+#X msg -103 -396 send /live/volume 0 0;
+#X text -37 306 print on console;
+#X obj -88 462 udpsend;
+#X msg -28 427 disconnect;
+#X msg -29 400 connect localhost 9000;
+#X obj -120 195 udpreceive 8000;
+#X text -125 115 LIVE ---> IPAD;
+#X obj -96 -139 tgl 25 1 empty empty empty 17 7 0 10 -257985 -33289
+-1 0 1;
+#X obj -55 -109 gate;
+#X text -115 487 IPAD ---> LIVE;
+#X obj -177 -216 hsl 440 15 0 127 0 0 empty empty empty -2 8 0 12 -99865
+-99865 -99865 0 1;
+#X obj -177 151 hsl 440 15 0 127 0 0 empty empty empty -2 8 0 12 -99865
+-99865 -99865 0 1;
+#X obj -156 112 tgl 25 0 empty empty empty 17 7 0 10 -1 -4034 -4034
+0 1;
+#X obj -156 43 gate;
+#X obj -92 237 tgl 25 1 empty empty empty 17 7 0 10 -257985 -33289
+-1 0 1;
+#X obj -51 267 gate;
+#X obj -145 482 tgl 25 0 empty empty empty 17 7 0 10 -1 -4034 -4034
+0 1;
+#X obj -145 411 gate;
+#X text -59 -350 comment;
+#X text -63 -313 comment;
+#X text -33 381 connect to LIVE to forward from IPAD;
+#X text -44 12 connect to IPAD to forward from LIVE;
+#X text -160 166 from IPAD -----> to LIVE (liveOSC);
+#X text -166 -201 from LIVE (liveOSC) -----> to IPAD;
+#X obj -55 -49 print fromLIVE (9001);
+#X obj -96 -25 print LOG: fromLIVE (9001);
+#X obj -51 327 print to__LIVE (8000);
+#X obj -92 353 print LOG: to__LIVE (8000);
+#X connect 0 0 2 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 4 0 23 1;
+#X connect 5 0 1 0;
+#X connect 6 0 30 1;
+#X connect 7 0 2 0;
+#X connect 8 0 2 0;
+#X connect 9 0 4 0;
+#X connect 9 0 28 1;
+#X connect 10 0 1 0;
+#X connect 11 0 27 0;
+#X connect 12 0 11 0;
+#X connect 14 0 11 0;
+#X connect 15 0 1 0;
+#X connect 17 0 31 0;
+#X connect 18 0 17 0;
+#X connect 19 0 17 0;
+#X connect 20 0 6 0;
+#X connect 20 0 32 1;
+#X connect 22 0 23 0;
+#X connect 22 0 40 0;
+#X connect 23 0 39 0;
+#X connect 27 0 28 0;
+#X connect 28 0 11 0;
+#X connect 29 0 30 0;
+#X connect 29 0 42 0;
+#X connect 30 0 41 0;
+#X connect 31 0 32 0;
+#X connect 32 0 17 0;
+#X coords 0 1998 2 1996 85 60 0;

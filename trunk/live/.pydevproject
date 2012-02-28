@@ -8,5 +8,7 @@
 <path>/live/midiRemoteScripts/liveLaunchpad</path>
 <path>/live/midiRemoteScripts/liveOSC</path>
 <path>/live/midiRemoteScripts/liveOSC_local_routedWithPD</path>
+<path>/live/midiRemoteScripts/liveAPI_makeDoc/_Support</path>
+<path>/live/midiRemoteScripts/liveAPI_makeDoc</path>
 </pydev_pathproperty>
 </pydev_project>

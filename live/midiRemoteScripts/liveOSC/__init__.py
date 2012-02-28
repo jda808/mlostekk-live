@@ -21,8 +21,8 @@
 
 #import sys
 #import Live
-    
-#path = "c:"
+import pydevd
+
 #errorLog = open(path + "/stderr.txt", "w")
 #errorLog.write("Starting Error Log\n")
 #sys.stderr = errorLog
@@ -33,4 +33,5 @@
 from LiveOSC import LiveOSC
 
 def create_instance(c_instance):
-    return LiveOSC(c_instance)
+	pydevd.settrace()
+	return LiveOSC(c_instance)

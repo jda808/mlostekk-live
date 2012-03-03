@@ -20,15 +20,17 @@ LiveControl Sequencer module by ST8 <http://monome.q3f.org>
 and the CS Step Sequencer Live API example by Cycling '74 <http://www.cycling74.com>
 """
 
-import Live
-from consts import *
-from _Framework.ControlSurfaceComponent import ControlSurfaceComponent
-from _Framework.ButtonElement import ButtonElement
-from _Framework.EncoderElement import EncoderElement
-from _Framework.SessionComponent import SessionComponent
-from _Framework.ButtonMatrixElement import ButtonMatrixElement
-from _liveLogger.Logger import log
+#import Live
+from _Framework.ControlSurfaceComponent import ControlSurfaceComponent #@UnresolvedImport
+from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
+#from _Framework.EncoderElement import EncoderElement
+#from _Framework.SessionComponent import SessionComponent
+from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImport
+
 import time
+
+from consts import * #@UnusedWildImport
+from _liveLogger.Logger import log #@UnresolvedImport
 
 #note marking for easier reading.
 MARK_C = True # marked as three block on the left of the grid

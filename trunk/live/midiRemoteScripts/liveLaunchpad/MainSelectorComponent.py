@@ -16,7 +16,7 @@ from consts import * #@UnusedWildImport
 from SpecialSessionComponent import SpecialSessionComponent 
 from SubSelectorComponent import * #@UnusedWildImport
 #from StepSequencerComponent import StepSequencerComponent
-#from _liveLogger.Logger import log #@UnresolvedImport
+#from _liveUtils.Logger import log #@UnresolvedImport
 #from SubSelectorComponent import SubSelectorComponent
 
 class MainSelectorComponent(ModeSelectorComponent):

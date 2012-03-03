@@ -30,7 +30,7 @@ from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImpor
 import time
 
 from consts import * #@UnusedWildImport
-from _liveLogger.Logger import log #@UnresolvedImport
+from _liveUtils.Logger import log #@UnresolvedImport
 
 #note marking for easier reading.
 MARK_C = True # marked as three block on the left of the grid

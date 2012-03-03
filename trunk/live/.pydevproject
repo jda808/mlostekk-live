@@ -10,7 +10,7 @@
 <path>/live/midiRemoteScripts/liveAPI_makeDoc/_Support</path>
 <path>/live/midiRemoteScripts/liveAPI_makeDoc</path>
 <path>/live/accessories/logServer</path>
-<path>/live/midiRemoteScripts/_liveLogger</path>
+<path>/live/midiRemoteScripts/_liveUtils</path>
 </pydev_pathproperty>
 <pydev_pathproperty name="org.python.pydev.PROJECT_EXTERNAL_SOURCE_PATH">
 <path>H:\Eclipse\plugins\com.python.pydev.debug_2.4.0.2012020116</path>

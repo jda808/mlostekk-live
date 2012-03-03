@@ -11,7 +11,7 @@ class DefChannelStripComponent(ChannelStripComponent):
     " Subclass of channel strip component offering defaultbuttons for the timeables "
 
     def __init__(self):
-        log("ChannelStripComponent::__init__")
+        #log("DefChannelStripComponent::__init__")
         ChannelStripComponent.__init__(self)
         self._default_volume_button = None
         self._default_panning_button = None

@@ -15,10 +15,12 @@ from _liveUtils.Logger import log #@UnresolvedImport
 
 SIDE_NOTES = (8, 24, 40, 56, 72, 88, 104, 120)
 DRUM_NOTES = (41, 42, 43, 44, 45, 46, 47, 57, 58, 59, 60, 61, 62, 63, 73, 74, 75, 76, 77, 78, 79, 89, 90, 91, 92, 93, 94, 95, 105, 106, 107)
+
 class Launchpad(ControlSurface):
     
     " Script for Novation's Launchpad Controller "
     def __init__(self, c_instance):
+        #some launchpad init stuff
         self._my_c_instance = c_instance
         log("Launchpad::__init__")
         ControlSurface.__init__(self, c_instance)
@@ -35,6 +37,8 @@ class Launchpad(ControlSurface):
         self._user_byte_write_button.add_value_listener(self._user_byte_value)
         self._wrote_user_byte = False
         self._challenge = (Live.Application.get_random_int(0, 400000000) & 2139062143)
+        
+        #setup button matrix
         matrix = ButtonMatrixElement()
         matrix.name = "Button_Matrix"
         for row in range(8):
@@ -43,9 +47,9 @@ class Launchpad(ControlSurface):
                 button = ConfigurableButtonElement(is_momentary, MIDI_NOTE_TYPE, 0, ((row * 16) + column))
                 button.name = (((str(column) + "_Clip_") + str(row)) + "_Button")
                 button_row.append(button)
-
             matrix.add_row(tuple(button_row))
 
+        #setup config buttons
         self._config_button = ButtonElement(is_momentary, MIDI_CC_TYPE, 0, 0)
         self._config_button.add_value_listener(self._config_value)
         top_buttons = [ ConfigurableButtonElement(is_momentary, MIDI_CC_TYPE, 0, (104 + index)) for index in range(8) ]
@@ -66,6 +70,8 @@ class Launchpad(ControlSurface):
         side_buttons[5].name = "Trk_On_Button"
         side_buttons[6].name = "Solo_Button"
         side_buttons[7].name = "Arm_Button"
+        
+        #setup main selector
         self._selector = MainSelectorComponent(matrix, tuple(top_buttons), tuple(side_buttons), self._config_button, self)
         self._selector.name = "Main_Modes"
         for control in self.controls:

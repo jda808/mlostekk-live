@@ -1,3 +1,4 @@
+#@PydevCodeAnalysisIgnore
 # Wrapper module for _socket, providing some additional facilities
 # implemented in Python.
 

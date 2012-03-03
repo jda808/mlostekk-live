@@ -2,14 +2,18 @@
 <?eclipse-pydev version="1.0"?>
 
 <pydev_project>
-<pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">Default</pydev_property>
+<pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">python</pydev_property>
 <pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python 2.5</pydev_property>
 <pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
 <path>/live/midiRemoteScripts/liveLaunchpad</path>
 <path>/live/midiRemoteScripts/liveOSC</path>
-<path>/live/midiRemoteScripts/liveOSC_local_routedWithPD</path>
 <path>/live/midiRemoteScripts/liveAPI_makeDoc/_Support</path>
 <path>/live/midiRemoteScripts/liveAPI_makeDoc</path>
 <path>/live/accessories/logServer</path>
+</pydev_pathproperty>
+<pydev_pathproperty name="org.python.pydev.PROJECT_EXTERNAL_SOURCE_PATH">
+<path>H:\Eclipse\plugins\com.python.pydev.debug_2.4.0.2012020116</path>
+<path>H:\Eclipse\plugins\org.python.pydev.debug_2.4.0.2012020116</path>
+<path>H:\Eclipse\plugins\org.python.pydev.debug_2.4.0.2012020116\pysrc</path>
 </pydev_pathproperty>
 </pydev_project>

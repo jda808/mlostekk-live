@@ -1,3 +1,4 @@
+#@PydevCodeAnalysisIgnore
 # -*- coding: iso-8859-1 -*-
 """Get useful information from live Python objects.
 

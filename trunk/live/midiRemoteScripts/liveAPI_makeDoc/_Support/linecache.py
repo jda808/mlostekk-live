@@ -1,3 +1,4 @@
+#@PydevCodeAnalysisIgnore
 """Cache lines from files.
 
 This is intended to read lines from modules imported -- hence if a filename

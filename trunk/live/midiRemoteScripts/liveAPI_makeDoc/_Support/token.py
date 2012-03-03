@@ -1,3 +1,4 @@
+#@PydevCodeAnalysisIgnore
 #! /usr/bin/env python
 
 """Token constants (from "token.h")."""

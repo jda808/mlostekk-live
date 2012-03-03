@@ -5,7 +5,7 @@ import Live #@UnresolvedImport
 from _Framework.ChannelStripComponent import ChannelStripComponent #@UnresolvedImport
 from ConfigurableButtonElement import ConfigurableButtonElement 
 
-from _liveLogger.Logger import log #@UnresolvedImport
+from _liveUtils.Logger import log #@UnresolvedImport
 
 class DefChannelStripComponent(ChannelStripComponent):
     " Subclass of channel strip component offering defaultbuttons for the timeables "

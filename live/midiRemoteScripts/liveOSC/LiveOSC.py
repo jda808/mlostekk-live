@@ -33,7 +33,7 @@ import RemixNet
 import OSC
 import LiveUtils
 import sys
-from _liveLogger.Logger import log #@UnresolvedImport
+from _liveUtils.Logger import log #@UnresolvedImport
 
 class LiveOSC:
     __module__ = __name__

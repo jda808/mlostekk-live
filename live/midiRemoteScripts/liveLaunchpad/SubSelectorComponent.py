@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # emacs-mode: -*- python-*-
 
-from _liveLogger.Logger import log #@UnresolvedImport
+from _liveUtils.Logger import log #@UnresolvedImport
 
 from _Framework.ModeSelectorComponent import ModeSelectorComponent #@UnresolvedImport
 from _Framework.ButtonElement import ButtonElement #@UnresolvedImport

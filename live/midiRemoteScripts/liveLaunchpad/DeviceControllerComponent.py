@@ -6,7 +6,7 @@ from _Framework.DeviceComponent import DeviceComponent #@UnresolvedImport
 from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
 #from _Framework.ControlSurfaceComponent import ControlSurfaceComponent #@UnresolvedImport
 from PreciseButtonSliderElement import PreciseButtonSliderElement
-from _liveLogger.Logger import log #@UnresolvedImport
+from _liveUtils.Logger import log #@UnresolvedImport
 
 # todo :
 # - XXX fix precise mode increments

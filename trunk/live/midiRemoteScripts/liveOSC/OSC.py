@@ -103,7 +103,7 @@ def abs_to_timestamp(abs):
     sec_frac = float(abs - sec_1970)
     picos = long(sec_frac * SECS_TO_PICOS)
 
-    total_picos = (abs + JAN_1970) * SECS_TO_PICOS
+    total_picos = (abs + JAN_1970) * SECS_TO_PICOS #@UnusedVariable
     return struct.pack('!LL', sec_1900, picos)
 
 class OSCBundle:

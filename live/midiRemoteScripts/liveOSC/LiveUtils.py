@@ -20,7 +20,7 @@
 # Rob King <rob@e-mu.org> or visit http://www.e-mu.org
 """
 
-import Live
+import Live #@UnresolvedImport
 
 def getSong():
     """Gets a the current Song instance"""
@@ -218,7 +218,7 @@ def getClips():
     If there is no clip in a clip slot, None is returned
 
     """
-    tracks = getTracks()
+    tracks = getTracks() #@UnusedVariable
     clips = []
     for track in getClipSlots():
         trackClips = []

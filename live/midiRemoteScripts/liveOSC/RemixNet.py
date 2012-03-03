@@ -61,9 +61,9 @@ Based on the original RemixNet.py written by Nathan Ramella (nar@remix.net)
     and then calling log() with a string argument.
 """
 import sys
-import errno
+#import errno
 import time
-import Live
+import Live #@UnresolvedImport
 from Logger import log
 
 # Import correct paths for os / version
@@ -206,7 +206,7 @@ class OSCEndpoint:
                     self.send('/remix/error', (str(sys.exc_info())))
 
         except Exception, e:
-            err, message = e
+            err, message = e #@UnusedVariable
             #if err != errno.EAGAIN:                                 # no data on socket
             #    log('error handling message, errno ' + str(errno) + ': ' + message)
 

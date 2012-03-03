@@ -27,13 +27,13 @@ __init__.py
 
 """
 
-import Live
+import Live #@UnresolvedImport
 import LiveOSCCallbacks
 import RemixNet
 import OSC
 import LiveUtils
 import sys
-from _liveLogger.Logger import log
+from _liveLogger.Logger import log #@UnresolvedImport
 
 class LiveOSC:
     __module__ = __name__

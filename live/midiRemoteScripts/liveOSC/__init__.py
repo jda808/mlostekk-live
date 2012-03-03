@@ -20,7 +20,7 @@
 """
 
 import sys
-import Live
+#import Live
 
 errorLog = open("C:/stderr.txt", "w")
 errorLog.write("Starting Error Log\n")

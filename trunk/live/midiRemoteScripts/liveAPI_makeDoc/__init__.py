@@ -1,3 +1,4 @@
+#@PydevCodeAnalysisIgnore
 # http://remotescripts.blogspot.com
 
 from LiveAPI_MakeDoc import APIMakeDoc

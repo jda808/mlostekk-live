@@ -58,9 +58,9 @@ class OSCMessage:
         self.message = ""
 
         if type(msg) in (str, int, float):
-           self.append(msg)
+            self.append(msg)
         elif type(msg) in (list, tuple):
-             for m in msg:
+            for m in msg:
                 if type(m) not in (str, int, float):
                     log("don't know how to encode message element " + str(m) + " " + str(type(m)))
                     return

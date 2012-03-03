@@ -21,7 +21,6 @@
 
 #import sys
 #import Live
-#import pydevd
 
 #errorLog = open(path + "/stderr.txt", "w")
 #errorLog.write("Starting Error Log\n")
@@ -33,5 +32,6 @@
 from LiveOSC import LiveOSC
 
 def create_instance(c_instance):
-	#pydevd.settrace()
-	return LiveOSC(c_instance)
+	##import pydevd; pydevd.settrace()
+	# set bool flag for debug mode (routed through the pureData patch
+	return LiveOSC(c_instance, True)

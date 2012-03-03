@@ -62,6 +62,7 @@ Based on the original RemixNet.py written by Nathan Ramella (nar@remix.net)
 """
 import sys
 import errno
+import time
 import Live
 from Logger import log
 
@@ -72,7 +73,7 @@ if sys.platform == "win32":
 
 else:
     if version > 7:
-       # 10.5
+        # 10.5
         try:
             file = open("/usr/lib/python2.5/string.pyc")
         except IOError:

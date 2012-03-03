@@ -1,3 +1,4 @@
+#@PydevCodeAnalysisIgnore
 """
 Functions to convert between Python values and C structs.
 Python strings are used to hold the data representing the C struct

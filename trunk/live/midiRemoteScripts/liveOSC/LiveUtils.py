@@ -76,11 +76,13 @@ def launchScene(scene):
 
 def getTracks():
     """Returns a list of tracks"""
-    return getSong().visible_tracks
+    return getSong().tracks
+    #return getSong().visible_tracks
 
 def getTrack(num):
     """Returns track number (num) (starting at 0)"""
-    return getSong().visible_tracks[num]
+    return getSong().tracks[num]
+    #return getSong().visible_tracks[num]
 
 def stopTrack(trackNumber):
     """Stops all clips in track number (trackNumber)"""
@@ -238,7 +240,8 @@ def getClip(track, clip):
     # painful code!
     #clips = getClips()
     #return clips[track][clip]
-    return getSong().visible_tracks[track].clip_slots[clip].clip
+    #return getSong().visible_tracks[track].clip_slots[clip].clip
+    return getSong().tracks[track].clip_slots[clip].clip
 
 def clipName(track, clip, name=None):
     """Gets/changes the name of clip number (clip) in track (track)

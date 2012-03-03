@@ -33,7 +33,7 @@ import RemixNet
 import OSC
 import LiveUtils
 import sys
-from Logger import log
+from _liveLogger.Logger import log
 
 class LiveOSC:
     __module__ = __name__
@@ -312,9 +312,8 @@ class LiveOSC:
             self.oscEndpoint.send("/live/scene", (selected_index))
     
     def add_tempo_listener(self):
-        self.rem_tempo_listener()
-    
-        print "add tempo listener"
+        self.rem_tempo_listener()    
+        log("add tempo listener")
         if self.song().tempo_has_listener(self.tempo_change) != 1:
             self.song().add_tempo_listener(self.tempo_change)
         

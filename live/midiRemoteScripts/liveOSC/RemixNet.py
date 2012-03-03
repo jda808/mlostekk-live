@@ -69,7 +69,7 @@ from Logger import log
 # Import correct paths for os / version
 version = Live.Application.get_application().get_major_version()
 if sys.platform == "win32":
-    import socket   
+    import socket   #@UnusedImport
 
 else:
     if version > 7:
@@ -78,10 +78,10 @@ else:
             file = open("/usr/lib/python2.5/string.pyc")
         except IOError:
             sys.path.append("/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5")
-            import socket_live8 as socket  
+            import socket_live8 as socket  #@UnusedImport @Reimport
         else:
             sys.path.append("/usr/lib/python2.5")
-            import socket
+            import socket #@Reimport
 
 import OSC 
         
@@ -207,8 +207,8 @@ class OSCEndpoint:
 
         except Exception, e:
             err, message = e
-            if err != errno.EAGAIN:                                 # no data on socket
-                log('error handling message, errno ' + str(errno) + ': ' + message)
+            #if err != errno.EAGAIN:                                 # no data on socket
+            #    log('error handling message, errno ' + str(errno) + ': ' + message)
 
     def shutdown(self):
         """

@@ -171,9 +171,8 @@ class LiveOSC:
         return ''
 
     def __handle_display_switch_ids(self, switch_id, value):
-	pass
-    
-    
+        pass
+
 ######################################################################
 # Useful Methods
 
@@ -202,7 +201,7 @@ class LiveOSC:
         tracks = self.song().visible_tracks
         
         for track in range(0, blocksize):
-            block.extend([str(tracks[trackOffset+track].name)])                            
+            block.extend([str(tracks[trackOffset + track].name)])                            
         self.oscEndpoint.send("/live/name/trackblock", block)        
 
 ######################################################################
@@ -297,7 +296,7 @@ class LiveOSC:
         if selected_index != self.scene:
             self.scene = selected_index
             self.oscEndpoint.send("/live/scene", (selected_index))
-	
+    
     def add_tempo_listener(self):
         self.rem_tempo_listener()
     
@@ -312,7 +311,7 @@ class LiveOSC:
     def tempo_change(self):
         tempo = LiveUtils.getTempo()
         self.oscEndpoint.send("/live/tempo", (tempo))
-	
+
     def add_transport_listener(self):
         if self.song().is_playing_has_listener(self.transport_change) != 1:
             self.song().add_is_playing_listener(self.transport_change)
@@ -329,15 +328,15 @@ class LiveOSC:
     
         if self.song().overdub_has_listener(self.overdub_change) != 1:
             self.song().add_overdub_listener(self.overdub_change)
-	    
+
     def rem_overdub_listener(self):
         if self.song().overdub_has_listener(self.overdub_change) == 1:
             self.song().remove_overdub_listener(self.overdub_change)
-	    
+
     def overdub_change(self):
         overdub = LiveUtils.getSong().overdub
         self.oscEndpoint.send("/live/overdub", (int(overdub) + 1))
-	
+
     def add_tracks_listener(self):
         self.rem_tracks_listener()
     
@@ -465,7 +464,7 @@ class LiveOSC:
                 if tr != None:
                     cb = self.masterlisten[type][tr]
                 
-                    test = eval("tr.mixer_device." + type+ ".value_has_listener(cb)")
+                    test = eval("tr.mixer_device." + type + ".value_has_listener(cb)")
                 
                     if test == 1:
                         eval("tr.mixer_device." + type + ".remove_value_listener(cb)")
@@ -482,7 +481,7 @@ class LiveOSC:
                                 tr.remove_arm_listener(cb)
                                 
                     else:
-                        test = eval("tr." + type+ "_has_listener(cb)")
+                        test = eval("tr." + type + "_has_listener(cb)")
                 
                         if test == 1:
                             eval("tr.remove_" + type + "_listener(cb)")
@@ -492,7 +491,7 @@ class LiveOSC:
                 if tr != None:
                     cb = self.mlisten[type][tr]
                 
-                    test = eval("tr.mixer_device." + type+ ".value_has_listener(cb)")
+                    test = eval("tr.mixer_device." + type + ".value_has_listener(cb)")
                 
                     if test == 1:
                         eval("tr.mixer_device." + type + ".remove_value_listener(cb)")
@@ -534,7 +533,7 @@ class LiveOSC:
                 if tr != None:
                     cb = self.rlisten[type][tr]
                 
-                    test = eval("tr." + type+ "_has_listener(cb)")
+                    test = eval("tr." + type + "_has_listener(cb)")
                 
                     if test == 1:
                         eval("tr.remove_" + type + "_listener(cb)")
@@ -544,7 +543,7 @@ class LiveOSC:
                 if tr != None:
                     cb = self.rlisten[type][tr]
                 
-                    test = eval("tr.mixer_device." + type+ ".value_has_listener(cb)")
+                    test = eval("tr.mixer_device." + type + ".value_has_listener(cb)")
                 
                     if test == 1:
                         eval("tr.mixer_device." + type + ".remove_value_listener(cb)")
@@ -682,7 +681,7 @@ class LiveOSC:
 
 
     # Track name listener
-    def add_trname_listener(self, tid, track, ret = 0):
+    def add_trname_listener(self, tid, track, ret=0):
         cb = lambda :self.trname_changestate(tid, track, ret)
 
         if ret == 1:
@@ -696,7 +695,7 @@ class LiveOSC:
         track.add_name_listener(cb)
         
     # Output Meter Listeners
-    def add_meter_listener(self, tid, track, r = 0):
+    def add_meter_listener(self, tid, track, r=0):
         cb = lambda :self.meter_changestate(tid, track, 0, r)
 
         if self.mlisten["oml"].has_key(track) != 1:
@@ -749,7 +748,7 @@ class LiveOSC:
             if slot.clip.is_triggered == 1:
                 playing = 3
             
-            length =  slot.clip.loop_end - slot.clip.loop_start
+            length = slot.clip.loop_end - slot.clip.loop_start
             
             self.oscEndpoint.send('/live/track/info', (tid, armed, cid, playing, length))
             self.oscEndpoint.send('/live/name/clip', (tid, cid, str(slot.clip.name), slot.clip.color))
@@ -789,7 +788,7 @@ class LiveOSC:
         
         
     # Mixer Callbacks
-    def mixerv_changestate(self, type, tid, track, r = 0):
+    def mixerv_changestate(self, type, tid, track, r=0):
         val = eval("track.mixer_device." + type + ".value")
         types = { "panning": "pan", "volume": "volume", "crossfader": "crossfader" }
         
@@ -800,7 +799,7 @@ class LiveOSC:
         else:
             self.oscEndpoint.send('/live/' + types[type], (tid, float(val)))        
         
-    def mixert_changestate(self, type, tid, track, r = 0):
+    def mixert_changestate(self, type, tid, track, r=0):
         val = eval("track." + type)
         
         if r == 1:
@@ -808,7 +807,7 @@ class LiveOSC:
         else:
             self.oscEndpoint.send('/live/' + type, (tid, int(val)))        
     
-    def send_changestate(self, tid, track, sid, send, r = 0):
+    def send_changestate(self, tid, track, sid, send, r=0):
         val = send.value
         
         if r == 1:
@@ -818,7 +817,7 @@ class LiveOSC:
 
 
     # Track name changestate
-    def trname_changestate(self, tid, track, r = 0):
+    def trname_changestate(self, tid, track, r=0):
         if r == 1:
             self.oscEndpoint.send('/live/name/return', (tid, str(track.name)))
         else:
@@ -826,7 +825,7 @@ class LiveOSC:
             self.trBlock(0, len(LiveUtils.getTracks()))
             
     # Meter Changestate
-    def meter_changestate(self, tid, track, lr, r = 0):
+    def meter_changestate(self, tid, track, lr, r=0):
         if r == 2:
             if self.check_md(2):
                 if lr == 0:
@@ -861,9 +860,9 @@ class LiveOSC:
     def add_device_listeners(self):
         self.rem_device_listeners()
     
-        self.do_add_device_listeners(self.song().tracks,0)
-        self.do_add_device_listeners(self.song().return_tracks,1)
-        self.do_add_device_listeners([self.song().master_track],2)
+        self.do_add_device_listeners(self.song().tracks, 0)
+        self.do_add_device_listeners(self.song().return_tracks, 1)
+        self.do_add_device_listeners([self.song().master_track], 2)
             
     def do_add_device_listeners(self, tracks, type):
         for i in range(len(tracks)):
@@ -946,6 +945,6 @@ class LiveOSC:
             self.oscEndpoint.send('/live/device/selected', (tid, did))        
         
     def tuple_idx(self, tuple, obj):
-        for i in xrange(0,len(tuple)):
+        for i in xrange(0, len(tuple)):
             if (tuple[i] == obj):
                 return i 

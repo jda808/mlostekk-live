@@ -5,14 +5,15 @@ from _Framework.MixerComponent import MixerComponent
 from DefChannelStripComponent import DefChannelStripComponent 
 from _Framework.ButtonElement import ButtonElement
 from _Framework.ControlSurfaceComponent import ControlSurfaceComponent
+from _liveLogger.Logger import log
 
 class QuickMixerComponent(MixerComponent):
 	__module__ = __name__
 	__doc__ = ' provide a one strip control on the current track (arm,solo,mute)+left/right nav '
 
-	def __init__(self,top_buttons,side_buttons,parent):
+	def __init__(self, top_buttons, side_buttons, parent):
 		self._parent = parent
-		self.log("QuickMixerComponent::__init__")
+		log("QuickMixerComponent::__init__")
 		self._clip_up_button = None
 		self._clip_down_button = None
 		self._overdub_button = None
@@ -22,8 +23,8 @@ class QuickMixerComponent(MixerComponent):
 		self._solo_button = None
 		self._arm_button = None
 		self._selected_track = self.song().view.selected_track
-		MixerComponent.__init__(self,8)
-		self._set_buttons(side_buttons[0],side_buttons[1],side_buttons[2],side_buttons[3],side_buttons[4],side_buttons[5],side_buttons[6],side_buttons[7])
+		MixerComponent.__init__(self, 8)
+		self._set_buttons(side_buttons[0], side_buttons[1], side_buttons[2], side_buttons[3], side_buttons[4], side_buttons[5], side_buttons[6], side_buttons[7])
 			
 
 	def disconnect(self):
@@ -64,15 +65,15 @@ class QuickMixerComponent(MixerComponent):
 
 
 
-	def _set_buttons(self,clip_up=None, clip_down=None, overdub=None, play = None, stop = None, mute=None, solo=None,arm=None):
-		assert isinstance(clip_up, (ButtonElement,type(None)))
-		assert isinstance(clip_down, (ButtonElement,type(None)))
-		assert isinstance(overdub, (ButtonElement,type(None)))
-		assert isinstance(play, (ButtonElement,type(None)))
-		assert isinstance(stop, (ButtonElement,type(None)))
-		assert isinstance(mute, (ButtonElement,type(None)))
-		assert isinstance(solo, (ButtonElement,type(None)))
-		assert isinstance(arm, (ButtonElement,type(None)))
+	def _set_buttons(self, clip_up=None, clip_down=None, overdub=None, play=None, stop=None, mute=None, solo=None, arm=None):
+		assert isinstance(clip_up, (ButtonElement, type(None)))
+		assert isinstance(clip_down, (ButtonElement, type(None)))
+		assert isinstance(overdub, (ButtonElement, type(None)))
+		assert isinstance(play, (ButtonElement, type(None)))
+		assert isinstance(stop, (ButtonElement, type(None)))
+		assert isinstance(mute, (ButtonElement, type(None)))
+		assert isinstance(solo, (ButtonElement, type(None)))
+		assert isinstance(arm, (ButtonElement, type(None)))
 		
 
 		if (self._clip_up_button != None):
@@ -157,7 +158,7 @@ class QuickMixerComponent(MixerComponent):
 		assert (value in range(128))
 		if self.is_enabled():
 			if ((value != 0) or (not self._overdub_button.is_momentary())):
-				self.song().overdub= not self.song().overdub
+				self.song().overdub = not self.song().overdub
 	
 	def _play_value(self, value):
 		assert (self._play_button != None)
@@ -214,56 +215,56 @@ class QuickMixerComponent(MixerComponent):
 	def update(self):
 		if self.is_enabled():
 			if self._clip_up_button != None:
-				self._clip_up_button.set_on_off_values(GREEN_FULL,LED_OFF)
+				self._clip_up_button.set_on_off_values(GREEN_FULL, LED_OFF)
 				if(True):
 					self._clip_up_button.turn_off()
 				else:
 					self._clip_up_button.turn_on()
 			
 			if self._clip_down_button != None:
-				self._clip_down_button.set_on_off_values(GREEN_FULL,LED_OFF)
+				self._clip_down_button.set_on_off_values(GREEN_FULL, LED_OFF)
 				if(True):
 					self._clip_down_button.turn_off()
 				else:
 					self._clip_down_button.turn_on()
 			
 			if self._overdub_button != None:
-				self._overdub_button.set_on_off_values(RED_FULL,RED_THIRD)
+				self._overdub_button.set_on_off_values(RED_FULL, RED_THIRD)
 				if(self.song().overdub):
 					self._overdub_button.turn_off()
 				else:
 					self._overdub_button.turn_on()
 			
 			if self._play_button != None:
-				self._play_button.set_on_off_values(RED_FULL,RED_THIRD)
+				self._play_button.set_on_off_values(RED_FULL, RED_THIRD)
 				if(False):
 					self._play_button.turn_off()
 				else:
 					self._play_button.turn_on()
 				
 			if self._stop_button != None:
-				self._stop_button.set_on_off_values(RED_FULL,RED_THIRD)
+				self._stop_button.set_on_off_values(RED_FULL, RED_THIRD)
 				if(False):
 					self._stop_button.turn_off()
 				else:
 					self._stop_button.turn_on()
 					
 			if self._mute_button != None:
-				self._mute_button.set_on_off_values(AMBER_FULL,AMBER_THIRD)
+				self._mute_button.set_on_off_values(AMBER_FULL, AMBER_THIRD)
 				if(self._selected_track.arm):
 					self._mute_button.turn_off()
 				else:
 					self._mute_button.turn_on()
 
 			if self._solo_button != None:
-				self._solo_button.set_on_off_values(RED_FULL,RED_THIRD)
+				self._solo_button.set_on_off_values(RED_FULL, RED_THIRD)
 				if(self._selected_track.solo):
 					self._solo_button.turn_on()
 				else:
 					self._solo_button.turn_off()
 
 			if self._arm_button != None:
-				self._arm_button.set_on_off_values(RED_FULL,RED_THIRD)
+				self._arm_button.set_on_off_values(RED_FULL, RED_THIRD)
 				if(self._selected_track.mute):
 					self._arm_button.turn_on()
 				else:

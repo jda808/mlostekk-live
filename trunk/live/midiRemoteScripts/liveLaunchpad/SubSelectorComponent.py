@@ -12,6 +12,8 @@ from _Framework.SessionZoomingComponent import SessionZoomingComponent
 from SpecialMixerComponent import SpecialMixerComponent 
 from ConfigurableButtonElement import ConfigurableButtonElement 
 from PreciseButtonSliderElement import * 
+from _liveLogger.Logger import log
+
 LED_OFF = 4
 RED_FULL = 7
 RED_HALF = 6
@@ -28,12 +30,13 @@ AMBER_BLINK = ((AMBER_FULL - 4) + 8)
 PAN_VALUE_MAP = (-1.0, -0.63492099999999996, -0.31746000000000002, 0.0, 0.0, 0.31746000000000002, 0.63492099999999996, 1.0)
 VOL_VALUE_MAP = (0.0, 0.14288200000000001, 0.30241400000000002, 0.40000000000000002, 0.55000000000000004, 0.69999999999999996, 0.84999999999999998, 1.0)
 SEND_VALUE_MAP = (0.0, 0.103536, 0.164219, 0.23843900000000001, 0.34366400000000003, 0.55000000000000004, 0.77494200000000002, 1.0)
+
 class SubSelectorComponent(ModeSelectorComponent):
 	" Class that handles different mixer modes "
 
 	def __init__(self, matrix, side_buttons, session, parent):
 		self._parent = parent
-		self.log("SubSelectorComponent::__init__")
+		log("SubSelectorComponent::__init__")
 		assert isinstance(matrix, ButtonMatrixElement)
 		assert ((matrix.width() == 8) and (matrix.height() == 8))
 		assert isinstance(side_buttons, tuple)
@@ -303,10 +306,6 @@ class SubSelectorComponent(ModeSelectorComponent):
 		self._session.set_stop_track_clip_buttons(None)
 		self._session.set_stop_all_clips_button(None)
 		self._mixer.set_global_buttons(None, None, None)
-
-
-	def log(self, message):
-		self._parent.log(message)
 
 # local variables:
 # tab-width: 4

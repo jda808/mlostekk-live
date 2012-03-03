@@ -19,7 +19,7 @@ AMBER_THIRD = ((RED_THIRD + GREEN_THIRD) - 4)
 AMBER_BLINK = ((AMBER_FULL - 4) + 8)
 
 def index_of(list, elt):
-	for i in range(0,len(list)):
+	for i in range(0, len(list)):
 		if (list[i] == elt):
 			return i
 	return(-1)

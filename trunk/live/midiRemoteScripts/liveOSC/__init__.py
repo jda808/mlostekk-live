@@ -19,19 +19,19 @@
 # Nathan Ramella <nar@remix.net> or visit http://www.liveapi.org
 """
 
-#import sys
-#import Live
+import sys
+import Live
 
-#errorLog = open(path + "/stderr.txt", "w")
-#errorLog.write("Starting Error Log\n")
-#sys.stderr = errorLog
-#stdoutLog = open(path + "/stdout.txt", "w")
-#stdoutLog.write("Starting Standard Out Log\n")
-#sys.stdout = stdoutLog
+errorLog = open("C:/stderr.txt", "w")
+errorLog.write("Starting Error Log\n")
+sys.stderr = errorLog
+stdoutLog = open("C:/stdout.txt", "w")
+stdoutLog.write("Starting Standard Out Log\n")
+sys.stdout = stdoutLog
 
 from LiveOSC import LiveOSC
 
 def create_instance(c_instance):
 	##import pydevd; pydevd.settrace()
 	# set bool flag for debug mode (routed through the pureData patch
-	return LiveOSC(c_instance, True)
+	return LiveOSC(c_instance, False)

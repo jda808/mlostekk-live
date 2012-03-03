@@ -3,13 +3,15 @@ import Live
 from _Framework.MixerComponent import MixerComponent 
 from DefChannelStripComponent import DefChannelStripComponent 
 from _Framework.ButtonElement import ButtonElement 
+from _liveLogger.Logger import log
+
 class SpecialMixerComponent(MixerComponent):
 	' Class encompassing several defaultable channel strips to form a mixer '
 	__module__ = __name__
 
-	def __init__(self, parent, num_tracks, num_returns = 0, with_eqs = False, with_filters = False):
+	def __init__(self, parent, num_tracks, num_returns=0, with_eqs=False, with_filters=False):
 		self._parent = parent
-		self.log("SpecialSessionComponent::__init__")
+		log("SpecialSessionComponent::__init__")
 		self.num_tracks = len(self._parent._parent._my_c_instance.song().visible_tracks)
 		MixerComponent.__init__(self, self.num_tracks, num_returns, with_eqs, with_filters)
 		self._unarm_all_button = None
@@ -87,6 +89,3 @@ class SpecialMixerComponent(MixerComponent):
 			for track in (self.song().tracks + self.song().return_tracks):
 				if track.mute:
 					track.mute = False
-
-	def log(self, message):
-		self._parent.log(message)

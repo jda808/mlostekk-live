@@ -1,12 +1,12 @@
-
 import Live 
 from _Framework.ButtonElement import * 
-class ConfigurableButtonElement(ButtonElement):
+
+class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 	' Special button class that can be configured with custom on- and off-values '
 	__module__ = __name__
 
 	def __init__(self, is_momentary, msg_type, channel, identifier):
-		ButtonElement.__init__(self, is_momentary, msg_type, channel, identifier)
+		ButtonElement.__init__(self, is_momentary, msg_type, channel, identifier) #@UndefinedVariable
 		self._on_value = 127
 		self._off_value = 4
 		self._is_enabled = True
@@ -43,16 +43,16 @@ class ConfigurableButtonElement(ButtonElement):
 		self.send_value(4)
 
 
-	def add_value_listener(self, callback, identify_sender = False):
+	def add_value_listener(self, callback, identify_sender=False):
 		if (not self._is_notifying):
-			ButtonElement.add_value_listener(self, callback, identify_sender)
+			ButtonElement.add_value_listener(self, callback, identify_sender) #@UndefinedVariable
 		else:
 			self._pending_listeners.append((callback, identify_sender))
 
 
 	def receive_value(self, value):
 		self._is_notifying = True
-		ButtonElement.receive_value(self, value)
+		ButtonElement.receive_value(self, value) #@UndefinedVariable
 		self._is_notifying = False
 		for listener in self._pending_listeners:
 			self.add_value_listener(listener[0], listener[1])
@@ -60,14 +60,14 @@ class ConfigurableButtonElement(ButtonElement):
 		self._pending_listeners = []
 
 
-	def send_value(self, value, force = False):
-		ButtonElement.send_value(self, value, (force or self._force_next_value))
+	def send_value(self, value, force=False):
+		ButtonElement.send_value(self, value, (force or self._force_next_value)) #@UndefinedVariable
 		self._force_next_value = False
 
 
 	def install_connections(self):
 		if self._is_enabled:
-			ButtonElement.install_connections(self)
+			ButtonElement.install_connections(self) #@UndefinedVariable
 		elif ((self._msg_channel != self._original_channel) or (self._msg_identifier != self._original_identifier)):
 			self._install_translation(self._msg_type, self._original_identifier, self._original_channel, self._msg_identifier, self._msg_channel)
 

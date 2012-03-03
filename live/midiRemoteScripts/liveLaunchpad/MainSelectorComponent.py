@@ -18,11 +18,13 @@ from SubSelectorComponent import * #@UnusedWildImport
 #from StepSequencerComponent import StepSequencerComponent
 #from _liveUtils.Logger import log #@UnresolvedImport
 #from SubSelectorComponent import SubSelectorComponent
+from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
 
 class MainSelectorComponent(ModeSelectorComponent):
     
     " Class that reassigns the button on the launchpad to different functions "
     def __init__(self, matrix, top_buttons, side_buttons, config_button, parent):
+        #self and parent setup
         self._parent = parent
         log("MainSelectorComponent::__init__")
         assert isinstance(matrix, ButtonMatrixElement)
@@ -33,22 +35,27 @@ class MainSelectorComponent(ModeSelectorComponent):
         assert (len(side_buttons) == 8)
         assert isinstance(config_button, ButtonElement)
         ModeSelectorComponent.__init__(self)
+        
+        #session part setup
         self._session = SpecialSessionComponent(matrix.width(), matrix.height(), self)
-#        self._zooming = SessionZoomingComponent(self._session)
+        #self._zooming = SessionZoomingComponent(self._session)
         self._session.name = "Session_Control"
-#        self._zooming.name = "Session_Overview"
+        #self._zooming.name = "Session_Overview"
         self._matrix = matrix
         self._side_buttons = side_buttons
         self._nav_buttons = top_buttons[:4]
         self._config_button = config_button
-#        self._zooming.set_empty_value(LED_OFF)
+        #self._zooming.set_empty_value(LED_OFF)
         self._all_buttons = []
         for button in (self._side_buttons + self._nav_buttons):
             self._all_buttons.append(button)
 
+        #setup mixer submodes
         self._sub_modes = SubSelectorComponent(matrix, side_buttons, self._session, self)
         self._sub_modes.name = "Mixer_Modes"
         self._sub_modes.set_update_callback(self._update_control_channels)
+        
+        #setup additional stuff
         self._stepseq = None#StepSequencerComponent(self, self._matrix,self._side_buttons,self._nav_buttons)
         self._quick_mix = None#QuickMixerComponent(self._nav_buttons,self._side_buttons,self)
         self._device_controller = None#DeviceControllerComponent(self._matrix, self._side_buttons, self._nav_buttons, self)
@@ -66,7 +73,7 @@ class MainSelectorComponent(ModeSelectorComponent):
         for button in self._modes_buttons:
             button.remove_value_listener(self._mode_value)
         self._session = None
-#        self._zooming = None
+        #self._zooming = None
         for button in self._all_buttons:
             button.set_on_off_values(127, LED_OFF)
         self._config_button.turn_off()
@@ -107,7 +114,7 @@ class MainSelectorComponent(ModeSelectorComponent):
 
 
     def set_mode(self, mode):
-        log("MainSelectorComponent::set_mode (" + str(mode) + ")")
+        #log("MainSelectorComponent::set_mode (" + str(mode) + ")")
         assert (mode in range(self.number_of_modes()))
         if ((self._mode_index != mode) or (mode == 3) or True):
             self._mode_index = mode
@@ -115,7 +122,7 @@ class MainSelectorComponent(ModeSelectorComponent):
 
 
     def _update_mode_buttons(self):
-        log("MainSelectorComponent::_update_mode_buttons")
+        #log("MainSelectorComponent::_update_mode_buttons")
         if self._mode_index == self._previous_mode_index:
             if self._mode_index == 1:
                 #user mode 1 and device controller
@@ -186,7 +193,7 @@ class MainSelectorComponent(ModeSelectorComponent):
             as_active = True
             as_enabled = True
             self._session.set_allow_update(False)
-#            self._zooming.set_allow_update(False)
+            #self._zooming.set_allow_update(False)
             self._config_button.send_value(40)
             self._config_button.send_value(1)
             
@@ -235,13 +242,13 @@ class MainSelectorComponent(ModeSelectorComponent):
             self._previous_mode_index = self._mode_index
 
             self._session.set_allow_update(True)
-#            self._zooming.set_allow_update(True)
+            #self._zooming.set_allow_update(True)
             self._update_control_channels()
 
 
     #Update the channels of the buttons in the user modes..
     def _update_control_channels(self):
-        log("MainSelectorComponent::_update_control_channels")
+        #log("MainSelectorComponent::_update_control_channels")
         new_channel = self.channel_for_current_mode()
         for button in self._all_buttons:
             button.set_channel(new_channel)
@@ -267,13 +274,17 @@ class MainSelectorComponent(ModeSelectorComponent):
                 scene.set_launch_button(scene_button)
             else:
                 scene.set_launch_button(None)
+                
+            idxArray = TrackFinder.getTrackIndexArray();
             for track_index in range(8):
                 if as_active:
                     button = self._matrix.get_button(track_index, scene_index)
                     button.set_on_off_values(127, LED_OFF)
-                    scene.clip_slot(self._session.idx[track_index]).set_launch_button(button)
+                    #scene.clip_slot(self._session.idx[track_index]).set_launch_button(button)
+                    scene.clip_slot(idxArray[track_index]).set_launch_button(button)
                 else:
-                    scene.clip_slot(self._session.idx[track_index]).set_launch_button(None)
+                    #scene.clip_slot(self._session.idx[track_index]).set_launch_button(None)
+                    scene.clip_slot(idxArray[track_index]).set_launch_button(None)
 
         #zoom --- disabled
 #        if as_active:
@@ -403,8 +414,10 @@ class MainSelectorComponent(ModeSelectorComponent):
             scene = self._session.scene(scene_index)
             scene.set_triggered_value(GREEN_BLINK)
             scene.name = ("Scene_" + str(scene_index))
+            idxArray = TrackFinder.getTrackIndexArray();
             for track_index in range(self._matrix.width()):
-                clip_slot = scene.clip_slot(self._session.idx[track_index])
+                #clip_slot = scene.clip_slot(self._session.idx[track_index])
+                clip_slot = scene.clip_slot(idxArray[track_index])
                 clip_slot.set_triggered_to_play_value(GREEN_BLINK)
                 clip_slot.set_triggered_to_record_value(RED_BLINK)
                 clip_slot.set_stopped_value(AMBER_FULL)

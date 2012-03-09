@@ -10,9 +10,9 @@ class SpecialMixerComponent(MixerComponent):
 	__module__ = __name__
 
 	def __init__(self, parent, num_tracks, num_returns=0, with_eqs=False, with_filters=False):
+		#log("SpecialMixerComponent::__init__")
 		self._parent = parent
-		log("SpecialSessionComponent::__init__")
-		self.num_tracks = len(self._parent._parent._my_c_instance.song().visible_tracks)
+		self.num_tracks = num_tracks
 		MixerComponent.__init__(self, self.num_tracks, num_returns, with_eqs, with_filters)
 		self._unarm_all_button = None
 		self._unsolo_all_button = None
@@ -58,6 +58,7 @@ class SpecialMixerComponent(MixerComponent):
 
 
 	def _create_strip(self):
+		#log("SpecialMixerComponent::_create_strip")
 		return DefChannelStripComponent()
 
 

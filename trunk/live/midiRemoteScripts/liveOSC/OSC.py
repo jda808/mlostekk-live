@@ -38,7 +38,7 @@ import math
 import string
 import time
 
-from Logger import log
+from _liveUtils.Logger import log
 
 def hexDump(bytes):
     """Useful utility; prints the string in hexadecimal"""

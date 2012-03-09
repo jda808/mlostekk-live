@@ -426,7 +426,7 @@ class LiveOSC:
                 c = tracks[track][clip]
                 if c.clip != None:
                     self.add_cliplistener(c.clip, track, clip)
-                    log("ClipLauncher: added clip listener tr: " + str(track) + " clip: " + str(clip));
+                    #log("ClipLauncher: added clip listener tr: " + str(track) + " clip: " + str(clip));
                 
                 self.add_slotlistener(c, track, clip)
         

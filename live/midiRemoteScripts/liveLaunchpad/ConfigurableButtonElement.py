@@ -1,5 +1,6 @@
 #import Live 
 from _Framework.ButtonElement import * 
+from _liveUtils.Logger import log #@UnresolvedImport
 
 class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 	' Special button class that can be configured with custom on- and off-values '
@@ -13,6 +14,7 @@ class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 		self._is_notifying = False
 		self._force_next_value = False
 		self._pending_listeners = []
+		self._identifierSave = identifier
 
 
 	def set_on_off_values(self, on_value, off_value):

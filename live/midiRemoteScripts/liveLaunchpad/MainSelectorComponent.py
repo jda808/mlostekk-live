@@ -15,7 +15,7 @@ from consts import * #@UnusedWildImport
 #from QuickMixerComponent import QuickMixerComponent
 from SpecialSessionComponent import SpecialSessionComponent 
 from SubSelectorComponent import * #@UnusedWildImport
-#from StepSequencerComponent import StepSequencerComponent
+from StepSequencerComponent import StepSequencerComponent
 #from _liveUtils.Logger import log #@UnresolvedImport
 #from SubSelectorComponent import SubSelectorComponent
 from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
@@ -37,7 +37,7 @@ class MainSelectorComponent(ModeSelectorComponent):
         ModeSelectorComponent.__init__(self)
         
         #session part setup
-        self._session = SpecialSessionComponent(matrix.width(), matrix.height(), self)
+        self._session = SpecialSessionComponent(matrix.height(), self)
         #self._zooming = SessionZoomingComponent(self._session)
         self._session.name = "Session_Control"
         #self._zooming.name = "Session_Overview"
@@ -56,7 +56,7 @@ class MainSelectorComponent(ModeSelectorComponent):
         self._sub_modes.set_update_callback(self._update_control_channels)
         
         #setup additional stuff
-        self._stepseq = None#StepSequencerComponent(self, self._matrix,self._side_buttons,self._nav_buttons)
+        self._stepseq = StepSequencerComponent(self, self._matrix,self._side_buttons,self._nav_buttons)
         self._quick_mix = None#QuickMixerComponent(self._nav_buttons,self._side_buttons,self)
         self._device_controller = None#DeviceControllerComponent(self._matrix, self._side_buttons, self._nav_buttons, self)
         self._init_session()
@@ -114,7 +114,7 @@ class MainSelectorComponent(ModeSelectorComponent):
 
 
     def set_mode(self, mode):
-        #log("MainSelectorComponent::set_mode (" + str(mode) + ")")
+        log("MainSelectorComponent::set_mode (" + str(mode) + ")")
         assert (mode in range(self.number_of_modes()))
         if ((self._mode_index != mode) or (mode == 3) or True):
             self._mode_index = mode
@@ -122,16 +122,17 @@ class MainSelectorComponent(ModeSelectorComponent):
 
 
     def _update_mode_buttons(self):
-        #log("MainSelectorComponent::_update_mode_buttons")
+        log("MainSelectorComponent::_update_mode_buttons")
         if self._mode_index == self._previous_mode_index:
             if self._mode_index == 1:
                 #user mode 1 and device controller
-                self._sub_mode_index[self._mode_index] = 0#(self._sub_mode_index[self._mode_index]+1)%2
+                self._sub_mode_index[self._mode_index] = (self._sub_mode_index[self._mode_index]+1)%2
             elif self._mode_index == 2:
                 #user mode 2  and step sequencer
-                self._sub_mode_index[self._mode_index] = (self._sub_mode_index[self._mode_index] + 1) % 3
+                self._sub_mode_index[self._mode_index] = (self._sub_mode_index[self._mode_index] + 1) % 2
             else:
                 self._sub_mode_index[self._mode_index] = 0
+                
         for index in range(4):
             if(self._sub_mode_index[index] == 0):
                 self._modes_buttons[index].set_on_off_values(AMBER_FULL, AMBER_THIRD)
@@ -171,12 +172,12 @@ class MainSelectorComponent(ModeSelectorComponent):
         assert (self._modes_buttons != None)
         if self.is_enabled():
             log("MainSelectorComponent::update")
-            #for index in range(len(self._modes_buttons)):
-            #    self._modes_buttons[index].set_force_next_value()
-            #    if (index == self._mode_index):
-            #        self._modes_buttons[index].turn_on()
-            #    else:
-            #        self._modes_buttons[index].turn_off()        
+            for index in range(len(self._modes_buttons)):
+                self._modes_buttons[index].set_force_next_value()
+                if (index == self._mode_index):
+                    self._modes_buttons[index].turn_on()
+                else:
+                    self._modes_buttons[index].turn_off()        
             self._update_mode_buttons()
             
             #update matrix and side buttons
@@ -244,19 +245,21 @@ class MainSelectorComponent(ModeSelectorComponent):
             self._session.set_allow_update(True)
             #self._zooming.set_allow_update(True)
             self._update_control_channels()
+            log("MainSelectorComponent::updateFinished (modeIndex: " + str(self._mode_index) + ", submodeIndex: " + str(self._sub_mode_index) + ")")
 
 
     #Update the channels of the buttons in the user modes..
     def _update_control_channels(self):
-        #log("MainSelectorComponent::_update_control_channels")
+        log("MainSelectorComponent::_update_control_channels")
         new_channel = self.channel_for_current_mode()
+        log("channel?! " + str(new_channel))
         for button in self._all_buttons:
             button.set_channel(new_channel)
             button.set_force_next_value()
 
 
     def _setup_session(self, as_active, as_enabled):
-        log("MainSelectorComponent::_setup_session")
+        log("MainSelectorComponent::_setup_session (active: " + str(as_active) + ", enabled: " + str(as_enabled) + ")")
         assert isinstance(as_active, type(False))
         #nav button color
         for button in self._nav_buttons:
@@ -310,7 +313,7 @@ class MainSelectorComponent(ModeSelectorComponent):
 
     def _setup_quick_mix(self, as_active):
         if self._quick_mix != None:
-            log("MainSelectorComponent::_setup_quick_mix")
+            log("MainSelectorComponent::_setup_quick_mix (active: " + str(as_active) + ")")
             if as_active:
                 for button in range(8):
                     self._side_buttons[button].set_enabled(True)
@@ -323,39 +326,39 @@ class MainSelectorComponent(ModeSelectorComponent):
 
     def _setup_step_sequencer(self, as_active, mode):
         if(self._stepseq != None):
-            log("MainSelectorComponent::_setup_step_sequencer")
+            #log("_setup_step_sequencer selfMode(" + str(self._stepseq._mode) + ")   vs   mode("+str(mode)+")    asActive("+str(as_active)+")   stepSeq("+str(self._stepseq._is_active)+")" )
             if(self._stepseq._is_active != as_active or self._stepseq._mode != mode):
+                #log("MainSelectorComponent::_setup_step_sequencer (active: " + str(as_active) + ", mode: " + str(mode) + ")")
                 if as_active: 
                     self._stepseq._mode = mode
                     self._stepseq._force_update = True
                     self._stepseq._is_active = True
                     self._stepseq.set_enabled(True)
-                    self._stepseq._on_notes_changed()
                     self._config_button.send_value(32)
                 else:
                     self._stepseq._mode = 1
                     self._stepseq._is_active = False
                     self._stepseq.set_enabled(False)
-
+        #self._config_button.send_value(32, force_send=True)
 
     def _setup_device_controller(self, as_active):
         return
-#        if self._device_controller!=None:
-#            log("MainSelectorComponent::_setup_device_controller")
-#            if as_active:
-#                #for button in range(8):
-#                #    self._side_buttons[button].set_enabled(True)
-#                 self._device_controller._is_active = True
-#                self._device_controller.set_enabled(True)
-#                self._device_controller.update()
-#                self._config_button.send_value(32)
-#             else:
-#                self._device_controller._is_active = False
-#                self._device_controller.set_enabled(False)
+        if self._device_controller!=None:
+            log("MainSelectorComponent::_setup_device_controller")
+            if as_active:
+                #for button in range(8):
+                #    self._side_buttons[button].set_enabled(True)
+                self._device_controller._is_active = True
+                self._device_controller.set_enabled(True)
+                self._device_controller.update()
+                self._config_button.send_value(32)
+            else:
+                self._device_controller._is_active = False
+                self._device_controller.set_enabled(False)
 
 
     def _setup_mixer(self, as_active):
-        log("MainSelectorComponent::_setup_mixer")
+        log("MainSelectorComponent::_setup_mixer (active: " + str(as_active) + ")")
         assert isinstance(as_active, type(False))
         self._sub_modes.set_enabled(as_active)
 

@@ -36,7 +36,7 @@ class TrackFinder():
     '''    reset 'em all    '''  
     @staticmethod
     def reset():
-        log("trackfinder::reset")
+        #log("trackfinder::reset")
         global index_KICK
         index_KICK = -1
         global index_BASE
@@ -61,7 +61,7 @@ class TrackFinder():
     '''    parse for idx in the song    '''
     @staticmethod
     def parseSongForTracks(song, useAllTracks = True):
-        log("trackfinder::parseSongForTracks")
+        #log("trackfinder::parseSongForTracks")
         # reset 'em all
         TrackFinder.reset()
         
@@ -80,10 +80,10 @@ class TrackFinder():
         #check which array to work with
         arrayToWorkWith = []
         if useAllTracks == False:
-            log("trackfinder::usingJustVISIBLE")
+            #log("trackfinder::usingJustVISIBLE")
             arrayToWorkWith = song.visible_tracks
         else:
-            log("trackfinder::usingALL")
+            #log("trackfinder::usingALL")
             arrayToWorkWith = song.tracks
         
         
@@ -108,14 +108,14 @@ class TrackFinder():
         
         #TOdO do some range checks here!!!!
         
-        log("NEW IDX:  " + str(index_KICK) + 
-            ", " + str(index_BASE) + 
-            ", " + str(index_SNR) + 
-            ", " + str(index_HATZ) + 
-            ", " + str(index_FX) + 
-            ", " + str(index_SYNTH) + 
-            ", " + str(index_LEAD) + 
-            ", " + str(index_TEX))
+        #log("NEW IDX:  " + str(index_KICK) + 
+        #    ", " + str(index_BASE) + 
+        #    ", " + str(index_SNR) + 
+        #    ", " + str(index_HATZ) + 
+        #    ", " + str(index_FX) + 
+        #    ", " + str(index_SYNTH) + 
+        #    ", " + str(index_LEAD) + 
+        #    ", " + str(index_TEX))
         
         # fill the idx array
         idx.append(index_KICK)

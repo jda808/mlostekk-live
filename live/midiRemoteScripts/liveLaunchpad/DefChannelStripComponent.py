@@ -51,6 +51,7 @@ class DefChannelStripComponent(ChannelStripComponent):
 
 
     def set_track(self, track):
+        #log("DefChannelStripComponent::set_track (name:" + str(track.name) + ")")
         assert ((track == None) or isinstance(track, Live.Track.Track))
         if (track != self._track):
             if (self._track != None):

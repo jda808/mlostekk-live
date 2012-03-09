@@ -20,18 +20,25 @@
 """
 
 import sys
+sys.path.append('C:/Python25/Lib')
+import os
 #import Live
 
-errorLog = open("C:/stderr.txt", "w")
+# create path
+outfilepath = (os.path.join(os.path.expanduser('~'), "python", "logs"))
+if(os.path.exists(outfilepath) == False):
+	os.mkdir(outfilepath)
+
+#set log files
+errorLog = open(os.path.join(outfilepath, "stderr.log"), "w")
 errorLog.write("Starting Error Log\n")
 sys.stderr = errorLog
-stdoutLog = open("C:/stdout.txt", "w")
+stdoutLog = open(os.path.join(outfilepath, "stdout.log"), "w")
 stdoutLog.write("Starting Standard Out Log\n")
 sys.stdout = stdoutLog
 
 from LiveOSC import LiveOSC
 
 def create_instance(c_instance):
-	##import pydevd; pydevd.settrace()
 	# set bool flag for debug mode (routed through the pureData patch
 	return LiveOSC(c_instance, False)

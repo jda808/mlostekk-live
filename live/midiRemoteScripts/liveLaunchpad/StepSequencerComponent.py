@@ -73,11 +73,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
         
         #used for disabling scene buttons
         self._last_button = -1
-        
-        # speed and position
-        self._tempo = 120
-        self._position = 0
-        
+                
         #grid positions
         self._grid_play_bank = 0
         self._grid_play_position = 0 
@@ -126,64 +122,64 @@ class StepSequencerComponent(ControlSurfaceComponent):
         self._side_buttons = []
         
         #quantization
-        self._quantization_index = 1
+        self._quantization_index = 2
         self._quantization = QUANTIZATION_MAP[self._quantization_index]
         
         #set buttons
         self.set_sidebar(side_buttons)
         self.set_quantization_buttons(nav_buttons[0], nav_buttons[1])
-        self.set_button_matrix(self._matrix)
-        self._register_timer_callback(self.update)        
+        self.set_button_matrix(self._matrix)  
+        
+        #song time listener
+        self.song().add_current_song_time_listener(self.current_song_time_changed)     
 
-            
+
+    """ song time callback """
+    def current_song_time_changed(self):
+        #log("current_song_time_changed: beatSongTime(" + str(self.song().get_current_beats_song_time()) + ")")
+        self.update()
+
+    """ set mode """
     def set_mode(self, mode):
         log("StepSequencerComponent::set_mode " + str(mode))
         self._mode = mode
 
+    """ disconnect """
     def disconnect(self):
+        log("StepSequencerComponent::disconnect")
+        if(self.song().current_song_time_has_listener(self.current_song_time_changed)):
+            self.song().remove_current_song_time_listener(self.current_song_time_changed)
         self._parent = None
         self._matrix = None
         self._buttons = None   
         self._nav_up_button = None
         self._nav_down_button = None
-        self._nav_left_button = None
-        self._nav_right_button = None
         self._quantization_buttonUp = None
         self._quantization_buttonDown = None
-        self.set_sidebar_buttons = None
+        
 
-    def update(self):        
+    """ main update """
+    def update(self):
         if self._is_active:
-            self.calculatePositions()
+            self.update_positions()
             self.sync_stopper()
             self.update_sidebar()
             self.update_matrix()
             self.update_quantization_buttons()
 
+    """ enabled state changed """
     def on_enabled_changed(self):
         self.update()
 
-    def on_selected_track_changed(self):
-        self.update()
-
-    def on_track_list_changed(self):
-        self.update()
-
-    def on_selected_scene_changed(self):
-        self.update()
-
-    def on_scene_list_changed(self):
-        self.update()
-
-    " MATRIX "
-    " step grid LEDs are updated here"
+    """ MATRIX """
+    """ step grid LEDs are updated here"""
     def update_matrix(self): 
         if self.is_enabled() and self._is_active:
             #clear back buffer
             for x in range(self._width):
                 for y in range(self._width):
                     self._grid_back_buffer[x][y] = 0       
-            self.paintSequenceRails()
+            self.paint_sequence_rails()
             
             grid_play_bank = self._grid_play_bank # 0.25 for 16th notes;  0.5 for 8th notes
             grid_play_position = self._grid_play_position #stepped position
@@ -195,8 +191,8 @@ class StepSequencerComponent(ControlSurfaceComponent):
             for row in self._clip_notes:
                 for note in row:
                     note_position = note[1] #position in beats; range is 0.x to 15.x for 4 measures in 4/4 time (equivalent to 1/4 notes)
-                    note_bank = int(note_position / self._quantization / self._width)#at 1/16th resolution in 4/4 time, each bank is 1/2 measure wide
-                    note_grid_x_position = int(note_position / self._quantization) % self._width#stepped postion at quantize resolution
+                    note_bank = int(note_position * self._quantization / self._width)#at 1/16th resolution in 4/4 time, each bank is 1/2 measure wide
+                    note_grid_x_position = int(note_position * self._quantization) % self._width#stepped postion at quantize resolution
                     note_key = note[0] #key: 0-127 MIDI note #
                     note_velocity = note[3]
                     note_grid_y_position = index_of(self._key_indexes, note_key) + (note_bank * self._width / 2)#get row index for this note.
@@ -225,8 +221,10 @@ class StepSequencerComponent(ControlSurfaceComponent):
                                 self._grid_back_buffer[note_grid_x_position][note_grid_y_position] = velocity_color         
             self.send_midi(False)
   
-    " send the midi stuff"
+  
+    """ send the midi stuff"""
     def send_midi(self, sendAlways = True):
+        log("StepSequencerComponent::send_midi")
         #send all on display
         for x in range(self._width):
             for y in range(self._height):
@@ -235,19 +233,21 @@ class StepSequencerComponent(ControlSurfaceComponent):
                     #log("x: "+ str(x) +"  y: " +str(y)+"  " + str(self._grid_buffer[x][y]))
                     self._matrix.send_value(x, y, self._grid_buffer[x][y])
                     
-    " paint the line where the sequencer is running "
-    def paintSequenceRails(self):
+                    
+    """ paint the line where the sequencer is running """
+    def paint_sequence_rails(self):
         for note_grid_x_position in range(0, self._width):
             self._grid_back_buffer[note_grid_x_position][SEQ_MARKER_Y_OFFSET] = SEQ_MARKER_RAIL
             self._grid_back_buffer[note_grid_x_position][self._height / 2 + SEQ_MARKER_Y_OFFSET] = SEQ_MARKER_RAIL
       
-    " matrix buttons listener "
+    """ matrix buttons listener """
     def matrix_value(self, value, x, y, is_momentary):
         if self.is_enabled() and self._is_active:
             if ((value != 0) or (not is_momentary)):
                 self.matrix_value_message([value, x, y, is_momentary])
                 
-    " matrix buttons listener "
+                
+    """ matrix buttons listener """
     def matrix_value_message(self, values): #value, x, y, is_momentary): 
         value = values[0]
         x = values[1]
@@ -263,7 +263,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
         if self.is_enabled() and self._is_active:
             if ((value != 0) or (not is_momentary)):
                 pitch = self._key_indexes[y]
-                time = (x + (self._bank_indexes[y] * self._width)) * self._quantization #convert position to time in beats
+                time = (x + (self._bank_indexes[y] * self._width)) / self._quantization #convert position to time in beats
                 velocity = 100
                 duration = self._quantization # 0.25 = 1/16th note; 0.5 = 1/8th note
                 #log("bankIndex:" + str(self._grid_play_bank) + " pitch:" + str(pitch) + "timeInBeats:" + str(time))
@@ -282,6 +282,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
                 self._clip_notes[y] = note_cache
         #log("final note cache" + str(self._clip_notes))
 
+
     """ set the button matrix """
     def set_button_matrix(self, buttons):
         assert isinstance(buttons, (ButtonMatrixElement, type(None)))
@@ -294,17 +295,18 @@ class StepSequencerComponent(ControlSurfaceComponent):
             self.update()
    
 #SIDEBAR
-    " SIDEBAR UPDATE "
+    """ SIDEBAR UPDATE """
     def update_sidebar(self):
         if self._is_active:
+            log("StepSequencerComponent::update_sidebar")
             for index in range(len(self._side_buttons)):
                 self._side_buttons[index].set_on_off_values(SIDEBAR_ON[index], SIDEBAR_OFF[index])
                 if self._sync_stopper[index] == True: 
-                    self._side_buttons[index].turn_on()
+                    self._side_buttons[index].turn_on(False)
                 else:
-                    self._side_buttons[index].turn_off();
+                    self._side_buttons[index].turn_off(False)
                            
-    " SIDEBARS FOR TIMING STOPS "
+    """ SIDEBARS FOR TIMING STOPS """
     def set_sidebar(self, buttons):
         for index in range(len(buttons)):
             assert (isinstance(buttons[index], (ButtonElement, type(None))))
@@ -314,7 +316,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
             #    self._side_buttons[index].remove_value_listener(self.handle_sidebar_button)
             self._side_buttons[index].add_value_listener(self.handle_sidebar_button, identify_sender=True)  
 
-    " SIDEBAR HANDLER"
+    """ SIDEBAR HANDLER"""
     def handle_sidebar_button(self, value, sender):
         #log("handling event")
         assert (value in range(128))
@@ -363,17 +365,18 @@ class StepSequencerComponent(ControlSurfaceComponent):
             
             
 # QUANTIZE
-    " UPDATE QUANT COLOR "
+    """ UPDATE QUANT COLOR """
     def update_quantization_buttons(self):
+        log("StepSequencerComponent::update_quantization_buttons")
         if self._is_active and self._mode == STEPSEQ_MODE_NORMAL:
             if (self._quantization_buttonUp != None):
                 self._quantization_buttonUp.set_on_off_values(QUANTIZATION_COLOR_MAP[self._quantization_index], LED_OFF)
-                self._quantization_buttonUp.turn_on()
+                self._quantization_buttonUp.turn_on(False)
             if (self._quantization_buttonDown != None):
                 self._quantization_buttonDown.set_on_off_values(QUANTIZATION_COLOR_MAP[self._quantization_index], LED_OFF)
-                self._quantization_buttonDown.turn_on()                    
+                self._quantization_buttonDown.turn_on(False)                    
         
-    " SET NEW QUANT "
+    """ SET NEW QUANT """
     def set_quantization_buttons(self, buttonUp, buttonDown):
         assert (isinstance(buttonUp, (ButtonElement, type(None))))
         assert (isinstance(buttonDown, (ButtonElement, type(None))))
@@ -392,7 +395,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
                 assert isinstance(buttonDown, ButtonElement)
                 self._quantization_buttonDown.add_value_listener(self.quantization_button_value, identify_sender=True)
 
-    " HANDLE QUANT PRESS "
+    """ HANDLE QUANT PRESS """
     def quantization_button_value(self, value, sender):
         assert (self._quantization_buttonUp != None)
         assert (self._quantization_buttonDown != None)
@@ -410,31 +413,21 @@ class StepSequencerComponent(ControlSurfaceComponent):
                 self.update()                
 
 #UTILS     
-    """Returns the current song tempo"""
-    def getTempo(self):
-        song = Live.Application.get_application().get_document()
-        return song.tempo
-
-    """Returns the current song time"""
-    def getTime(self):
-        song = Live.Application.get_application().get_document()
-        return song.current_song_time
-    
     """Calculates the position"""
-    def calculatePositions(self):
-        m_beatsPerSecond = self.getTempo() / 60 #play back position 
-        play_position = m_beatsPerSecond * self.getTime() / 2 #position in beats (1/4 notes in 4/4 time)
-        self._grid_play_bank = int(play_position / self._quantization / self._width) % 2 # 0.25 for 16th notes;  0.5 for 8th notes
-        self._grid_play_position = int(play_position / self._quantization) % self._width #stepped position
-        #log("..... calculated bankIndex(" + str(self._grid_play_bank) + "), gridIndex(" + str(self._grid_play_position) + ")") 
+    def update_positions(self):
+        beatTime = self.song().get_current_beats_song_time()
+        play_position = (beatTime.bars-1)*16 + (beatTime.beats-1)*4 + (beatTime.sub_division-1)
+        self._grid_play_bank = int(play_position * self._quantization / self._width) % 2 # 0.25 for 16th notes;  0.5 for 8th notes
+        self._grid_play_position = int(play_position * self._quantization) % self._width #stepped position
+        #log("play_position in beats: " + str(play_position) + "..... calculated bankIndex(" + str(self._grid_play_bank) + "), gridIndex(" + str(self._grid_play_position) + ")")
                         
-    " CHECKS IF WE HAVE DONE A WHOLE BANK THING "
+    """ CHECKS IF WE HAVE DONE A WHOLE BANK THING """
     def sync_stopper(self):
         if self._last_bank != self._grid_play_bank:
             self.trigger_sync_stop(self._last_bank)
             self._last_bank = self._grid_play_bank
                 
-    " ONE CYCLE DONE "
+    """ ONE CYCLE DONE """
     def trigger_sync_stop(self, bank_index):
         if bank_index == 0:            
             #log("triggerstop for bank 0 -- " + str(self._sync_stopper[:4]))

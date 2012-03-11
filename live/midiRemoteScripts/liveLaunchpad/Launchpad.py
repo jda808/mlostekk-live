@@ -78,7 +78,7 @@ class Launchpad(ControlSurface):
             if isinstance(control, ConfigurableButtonElement):
                 control.add_value_listener(self._button_value)
 
-        self._suppress_session_highlight = True
+        self._suppress_session_highlight = False
         self.set_suppress_rebuild_requests(False)
 
         log("LaunchPad85 Loaded !")
@@ -102,16 +102,18 @@ class Launchpad(ControlSurface):
         self._user_byte_write_button = None
 
 
+    """ Return the session component showing the ring in Live session """        
     def highlighting_session_component(self):
-        " Return the session component showing the ring in Live session "
         return self._selector.session_component()
 
 
+    """ REFRESH """
     def refresh_state(self):
         ControlSurface.refresh_state(self)
         self.schedule_message(5, self._update_hardware)
 
 
+    """ handle sysex """
     def handle_sysex(self, midi_bytes):
         if (len(midi_bytes) == 8):
             if (midi_bytes[1:5] == (0, 32, 41, 6)):
@@ -122,6 +124,7 @@ class Launchpad(ControlSurface):
                     self.set_enabled(True)
 
 
+    """ build the midi map """
     def build_midi_map(self, midi_map_handle):
         ControlSurface.build_midi_map(self, midi_map_handle)
         if (self._selector.mode_index == 1):
@@ -130,6 +133,8 @@ class Launchpad(ControlSurface):
             for note in DRUM_NOTES:
                 self._translate_message(MIDI_NOTE_TYPE, note, 0, note, new_channel)
 
+
+    """ send midi """
     def _send_midi(self, midi_bytes):
         sent_successfully = False
         if (not self._suppress_send_midi):
@@ -138,6 +143,7 @@ class Launchpad(ControlSurface):
         return sent_successfully
 
 
+    """ update hardware """
     def _update_hardware(self):
         self._suppress_send_midi = False
         self._wrote_user_byte = True
@@ -148,6 +154,7 @@ class Launchpad(ControlSurface):
         self._send_challenge()
 
 
+    """ send challange """
     def _send_challenge(self):
         for index in range(4):
             challenge_byte = ((self._challenge >> (8 * index)) & 127)
@@ -156,6 +163,7 @@ class Launchpad(ControlSurface):
              challenge_byte))
 
 
+    """ send user byte value """
     def _user_byte_value(self, value):
         assert (value in range(128))
         if (not self._wrote_user_byte):
@@ -174,14 +182,17 @@ class Launchpad(ControlSurface):
             self._wrote_user_byte = False
 
 
+    """ button value? """
     def _button_value(self, value):
         assert (value in range(128))
 
 
+    """ config value? """
     def _config_value(self, value):
         assert (value in range(128))
         
-        
+    
+    """ set the session highlight """
     def _set_session_highlight(self, track_offset, scene_offset, width, height, include_return_tracks):
         #log("Launchpad::_set_session_highlight (" + str(track_offset) + ", " + str(scene_offset) + ", " + str(width) + ", " + str(height) + ")")
         if (not self._suppress_session_highlight):

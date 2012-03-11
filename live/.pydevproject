@@ -12,7 +12,5 @@
 <path>/live/accessories/logServer</path>
 <path>/live/midiRemoteScripts/_liveUtils</path>
 </pydev_pathproperty>
-<pydev_pathproperty name="org.python.pydev.PROJECT_EXTERNAL_SOURCE_PATH">
-<path>E:\Eclipse\plugins\org.python.pydev.debug_2.4.0.2012020116\pysrc</path>
-</pydev_pathproperty>
+
 </pydev_project>

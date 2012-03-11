@@ -394,8 +394,8 @@ class StepSequencerComponent(ControlSurfaceComponent):
     def update_positions(self):
         beatTime = self.song().get_current_beats_song_time()
         play_position = (beatTime.bars-1)*16 + (beatTime.beats-1)*4 + (beatTime.sub_division-1)
-        self._grid_play_bank = int(play_position * self._quantization / self._width) % 2 # 0.25 for 16th notes;  0.5 for 8th notes
-        self._grid_play_position = int(play_position * self._quantization) % self._width #stepped position
+        self._grid_play_bank = int(play_position * self._quantization / self._width) % 2 
+        self._grid_play_position = int(play_position * self._quantization) % self._width 
         #log("play_position in beats: " + str(play_position) + "..... calculated bankIndex(" + str(self._grid_play_bank) + "), gridIndex(" + str(self._grid_play_position) + ")")
                         
     """ CHECKS IF WE HAVE DONE A WHOLE BANK THING """

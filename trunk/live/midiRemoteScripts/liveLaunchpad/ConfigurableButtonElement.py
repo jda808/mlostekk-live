@@ -1,6 +1,6 @@
 #import Live 
 from _Framework.ButtonElement import * 
-from _liveUtils.Logger import log #@UnresolvedImport
+from _liveUtils.Logger import log #@UnresolvedImport @UnusedImport
 
 class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
     ' Special button class that can be configured with custom on- and off-values '

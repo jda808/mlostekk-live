@@ -18,7 +18,7 @@ from SubSelectorComponent import * #@UnusedWildImport
 from StepSequencerComponent import StepSequencerComponent
 #from _liveUtils.Logger import log #@UnresolvedImport
 #from SubSelectorComponent import SubSelectorComponent
-from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
+#from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
 
 class MainSelectorComponent(ModeSelectorComponent):
     

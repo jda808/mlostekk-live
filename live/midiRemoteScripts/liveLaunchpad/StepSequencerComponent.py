@@ -20,19 +20,20 @@ LiveControl Sequencer module by ST8 <http://monome.q3f.org>
 and the CS Step Sequencer Live API example by Cycling '74 <http://www.cycling74.com>
 """
 
-import Live #@UnresolvedImport
+#import Live #@UnresolvedImport
 from _Framework.ControlSurfaceComponent import ControlSurfaceComponent #@UnresolvedImport
 from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
-from _Framework.ControlSurface import ControlSurface #@UnresolvedImport
+#from _Framework.ControlSurface import ControlSurface #@UnresolvedImport
 from _Framework.InputControlElement import * 
 #from _Framework.EncoderElement import EncoderElement
 #from _Framework.SessionComponent import SessionComponent
 from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImport
-from ConfigurableButtonElement import ConfigurableButtonElement 
+#from ConfigurableButtonElement import ConfigurableButtonElement 
 from consts import * #@UnusedWildImport
 from _liveUtils.Logger import log #@UnresolvedImport
+from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
 
-
+""" DO NOT USE THE SAME COLOR AS USED FOR RAIL FOR ANY OTHER ELEMENT """
 SEQ_MARKER_RAIL = RED_THIRD
 SEQ_MARKER = RED_FULL
 SEQ_MARKER_VISIBLE = True
@@ -76,7 +77,9 @@ class StepSequencerComponent(ControlSurfaceComponent):
                 
         #grid positions
         self._grid_play_bank = 0
+        self._grid_play_bank_prev = 0
         self._grid_play_position = 0 
+        self._grid_play_position_prev = 0
         
         #matrix
         self._matrix = matrix
@@ -92,23 +95,23 @@ class StepSequencerComponent(ControlSurfaceComponent):
         self._key_indexes = [36, 37, 38, 39, 36, 37, 38, 39]    
         
         # note architecture
-        self._row1 = []
-        self._row2 = []
-        self._row3 = []
-        self._row4 = []
-        self._row5 = []
-        self._row6 = []
-        self._row7 = []
-        self._row8 = []
-        self._clip_notes = []
-        self._clip_notes.append(self._row1)
-        self._clip_notes.append(self._row2)
-        self._clip_notes.append(self._row3)
-        self._clip_notes.append(self._row4)
-        self._clip_notes.append(self._row5)
-        self._clip_notes.append(self._row6)
-        self._clip_notes.append(self._row7)
-        self._clip_notes.append(self._row8)     
+        self._row1 = []#[0, 0, 0, 0, 0, 0, 0, 0]
+        self._row2 = []#[0, 0, 0, 0, 0, 0, 0, 0]
+        self._row3 = []#[0, 0, 0, 0, 0, 0, 0, 0]
+        self._row4 = []#[0, 0, 0, 0, 0, 0, 0, 0]
+        self._row5 = []#[0, 0, 0, 0, 0, 0, 0, 0]
+        self._row6 = []#[0, 0, 0, 0, 0, 0, 0, 0]
+        self._row7 = []#[0, 0, 0, 0, 0, 0, 0, 0]
+        self._row8 = []#[0, 0, 0, 0, 0, 0, 0, 0]
+        self._grid_events = []
+        self._grid_events.append(self._row1)
+        self._grid_events.append(self._row2)
+        self._grid_events.append(self._row3)
+        self._grid_events.append(self._row4)
+        self._grid_events.append(self._row5)
+        self._grid_events.append(self._row6)
+        self._grid_events.append(self._row7)
+        self._grid_events.append(self._row8)     
              
         #buttons
         self._buttons = None
@@ -132,8 +135,22 @@ class StepSequencerComponent(ControlSurfaceComponent):
         
         #song time listener
         self.song().add_current_song_time_listener(self.current_song_time_changed)     
+        
+        #this are the parameters to be set
+        self.parameters = [None, None, None, None]
+        self.assign_parameters()
+        
 
-
+    """ assign the parameters to be set """
+    def assign_parameters(self):
+        dev_index = TrackFinder.get_device_index()
+        assert(dev_index >= 0)
+        for index in range(len(self.parameters)):
+            param_index = TrackFinder.get_parameter_index(index)
+            assert(param_index >= 0)
+            self.parameters[index] = self.song().master_track.devices[dev_index].parameters[param_index]
+            log("StepSequencerComponent::assign_parameters (" + str(self.song().master_track.devices[dev_index].name) + ", "  + str(index) + ", " + str(self.parameters[index].name + ")"))
+            
     """ song time callback """
     def current_song_time_changed(self):
         #log("current_song_time_changed: beatSongTime(" + str(self.song().get_current_beats_song_time()) + ")")
@@ -157,15 +174,25 @@ class StepSequencerComponent(ControlSurfaceComponent):
         self._quantization_buttonUp = None
         self._quantization_buttonDown = None
         
-
     """ main update """
     def update(self):
         if self._is_active:
             self.update_positions()
             self.sync_stopper()
             self.update_sidebar()
+            self.handle_event()
             self.update_matrix()
             self.update_quantization_buttons()
+
+    """ handle event changes """
+    def handle_event(self):
+        if self._grid_play_position_prev != self._grid_play_position:
+            log("handling events at gridIndex: " + str(self._grid_play_position) + "  bankIndex: " + str(self._grid_play_bank))
+            #for eventIndex in range(len(self.parameters)):
+                
+            self._grid_play_position_prev = self._grid_play_position
+            self._grid_play_bank_prev = self._grid_play_bank
+
 
     """ enabled state changed """
     def on_enabled_changed(self):
@@ -180,15 +207,12 @@ class StepSequencerComponent(ControlSurfaceComponent):
                 for y in range(self._width):
                     self._grid_back_buffer[x][y] = 0       
             self.paint_sequence_rails()
-            
-            grid_play_bank = self._grid_play_bank # 0.25 for 16th notes;  0.5 for 8th notes
-            grid_play_position = self._grid_play_position #stepped position
-             
+                         
             # add play position     
             if(SEQ_MARKER_VISIBLE):
-                self._grid_back_buffer[grid_play_position][grid_play_bank * self._height / 2] = SEQ_MARKER
+                self._grid_back_buffer[self._grid_play_position][self._grid_play_bank * self._height / 2] = SEQ_MARKER
             #display clip notes
-            for row in self._clip_notes:
+            for row in self._grid_events:
                 for note in row:
                     note_position = note[1] #position in beats; range is 0.x to 15.x for 4 measures in 4/4 time (equivalent to 1/4 notes)
                     note_bank = int(note_position * self._quantization / self._width)#at 1/16th resolution in 4/4 time, each bank is 1/2 measure wide
@@ -219,20 +243,18 @@ class StepSequencerComponent(ControlSurfaceComponent):
                         else: 
                             if self._grid_back_buffer[note_grid_x_position][note_grid_y_position] != highlight_color:
                                 self._grid_back_buffer[note_grid_x_position][note_grid_y_position] = velocity_color         
-            self.send_midi(False)
+            self.update_launchpad_leds(False)
   
-  
-    """ send the midi stuff"""
-    def send_midi(self, sendAlways = True):
-        log("StepSequencerComponent::send_midi")
+    """ handle grid events, send the midi to the buttons on launchpad and set the parameter values """
+    def update_launchpad_leds(self, sendAlways = True):
+        #log("StepSequencerComponent::update_launchpad_leds")
         #send all on display
         for x in range(self._width):
             for y in range(self._height):
                 if(self._grid_back_buffer[x][y] != self._grid_buffer[x][y] or sendAlways):
-                    self._grid_buffer[x][y] = self._grid_back_buffer[x][y] 
-                    #log("x: "+ str(x) +"  y: " +str(y)+"  " + str(self._grid_buffer[x][y]))
+                    #log("x: "+ str(x) +",  y: " +str(y)+",  old: " + str(self._grid_buffer[x][y]) + ", new: " + str(self._grid_back_buffer[x][y]))
+                    self._grid_buffer[x][y] = self._grid_back_buffer[x][y]                    
                     self._matrix.send_value(x, y, self._grid_buffer[x][y])
-                    
                     
     """ paint the line where the sequencer is running """
     def paint_sequence_rails(self):
@@ -245,7 +267,6 @@ class StepSequencerComponent(ControlSurfaceComponent):
         if self.is_enabled() and self._is_active:
             if ((value != 0) or (not is_momentary)):
                 self.matrix_value_message([value, x, y, is_momentary])
-                
                 
     """ matrix buttons listener """
     def matrix_value_message(self, values): #value, x, y, is_momentary): 
@@ -267,10 +288,10 @@ class StepSequencerComponent(ControlSurfaceComponent):
                 velocity = 100
                 duration = self._quantization # 0.25 = 1/16th note; 0.5 = 1/8th note
                 #log("bankIndex:" + str(self._grid_play_bank) + " pitch:" + str(pitch) + "timeInBeats:" + str(time))
-                #log("note_cache:" + str(list(self._clip_notes)))
+                #log("note_cache:" + str(list(self._grid_events)))
                                                     
-                #note_cache = list(self._clip_notes)
-                note_cache = self._clip_notes[y]
+                #note_cache = list(self._grid_events)
+                note_cache = self._grid_events[y]
                 for note in note_cache:
                     if pitch == note[0] and abs(time - note[1]) < self._quantization:
                         note_cache.remove(note)
@@ -279,9 +300,10 @@ class StepSequencerComponent(ControlSurfaceComponent):
                 else:
                     note_cache.append([pitch, time, duration, velocity])
                     #log(str(x)+"."+str(y)+"."+str(value)+" "+ "appending 2")
-                self._clip_notes[y] = note_cache
-        #log("final note cache" + str(self._clip_notes))
-
+                self._grid_events[y] = note_cache
+        
+        for rowindex in range(len(self._grid_events)):
+            log("events:" + str(self._grid_events[rowindex]))
 
     """ set the button matrix """
     def set_button_matrix(self, buttons):
@@ -294,11 +316,12 @@ class StepSequencerComponent(ControlSurfaceComponent):
                 self._buttons.add_value_listener(self.matrix_value)
             self.update()
    
+
 #SIDEBAR
     """ SIDEBAR UPDATE """
     def update_sidebar(self):
         if self._is_active:
-            log("StepSequencerComponent::update_sidebar")
+            #log("StepSequencerComponent::update_sidebar")
             for index in range(len(self._side_buttons)):
                 self._side_buttons[index].set_on_off_values(SIDEBAR_ON[index], SIDEBAR_OFF[index])
                 if self._sync_stopper[index] == True: 
@@ -367,7 +390,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
 # QUANTIZE
     """ UPDATE QUANT COLOR """
     def update_quantization_buttons(self):
-        log("StepSequencerComponent::update_quantization_buttons")
+        #log("StepSequencerComponent::update_quantization_buttons")
         if self._is_active and self._mode == STEPSEQ_MODE_NORMAL:
             if (self._quantization_buttonUp != None):
                 self._quantization_buttonUp.set_on_off_values(QUANTIZATION_COLOR_MAP[self._quantization_index], LED_OFF)
@@ -412,6 +435,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
                 self.update_quantization_buttons()    
                 self.update()                
 
+
 #UTILS     
     """Calculates the position"""
     def update_positions(self):
@@ -433,12 +457,12 @@ class StepSequencerComponent(ControlSurfaceComponent):
             #log("triggerstop for bank 0 -- " + str(self._sync_stopper[:4]))
             for index in range(len(self._sync_stopper[:4])):
                 if self._sync_stopper[index] == True:
-                        self._clip_notes[index] = []
+                        self._grid_events[index] = []
                         self._sync_stopper[index] = False
         elif bank_index == 1:            
             #log("triggerstop for bank 1 -- " + str(self._sync_stopper[4:]))
             for index in range(4, len(self._sync_stopper)):
                 if self._sync_stopper[index] == True:
-                        self._clip_notes[index] = []
+                        self._grid_events[index] = []
                         self._sync_stopper[index] = False
         

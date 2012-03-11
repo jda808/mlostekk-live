@@ -71,7 +71,7 @@ class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 
     """ RECEIVE VALUE """
     def receive_value(self, value):
-        log("ButtonElement::receive_value  identifier :" + str(self.name) + ",      value :" + str(value))
+        #log("ButtonElement::receive_value  identifier :" + str(self.name) + ",      value :" + str(value))
         self._is_notifying = True
         ButtonElement.receive_value(self, value) #@UndefinedVariable
         self._is_notifying = False
@@ -82,7 +82,7 @@ class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 
     """ SEND THE VALUE """
     def send_value(self, value, force=False):
-        log("ButtonElement::send_value   identifier :" + str(self.name) + ",      value :" + str(value))   
+        #log("ButtonElement::send_value   identifier :" + str(self.name) + ",      value :" + str(value))   
         ButtonElement.send_value(self, value, (force or self._force_next_value)) #@UndefinedVariable
         self._force_next_value = False
 

@@ -20,15 +20,11 @@ LiveControl Sequencer module by ST8 <http://monome.q3f.org>
 and the CS Step Sequencer Live API example by Cycling '74 <http://www.cycling74.com>
 """
 
-#import Live #@UnresolvedImport
+
 from _Framework.ControlSurfaceComponent import ControlSurfaceComponent #@UnresolvedImport
 from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
-#from _Framework.ControlSurface import ControlSurface #@UnresolvedImport
 from _Framework.InputControlElement import * 
-#from _Framework.EncoderElement import EncoderElement
-#from _Framework.SessionComponent import SessionComponent
 from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImport
-#from ConfigurableButtonElement import ConfigurableButtonElement 
 from consts import * #@UnusedWildImport
 from _liveUtils.Logger import log #@UnresolvedImport
 from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
@@ -49,7 +45,6 @@ SIDEBAR_OFF = [RED_THIRD, GREEN_THIRD, AMBER_THIRD, GREEN_THIRD, RED_THIRD, GREE
 QUANTIZATION_MAP = [0.25, 0.5, 1]
 QUANTIZATION_COLOR_MAP = [GREEN_FULL, GREEN_HALF, GREEN_THIRD]
 
-STEPSEQ_MODE_NORMAL = 1
        
 class StepSequencerComponent(ControlSurfaceComponent):
     __module__ = __name__
@@ -60,9 +55,10 @@ class StepSequencerComponent(ControlSurfaceComponent):
         log("StepSequencerComponent::__init__")
         ControlSurfaceComponent.__init__(self)
         assert isinstance(side_buttons, tuple)
-                    
+        
+        # init stuff            
         self._is_active = False
-        self._mode = STEPSEQ_MODE_NORMAL
+        self._force_update = True
         
         # sync stuff
         self._last_bank = 0
@@ -214,18 +210,18 @@ class StepSequencerComponent(ControlSurfaceComponent):
                                 if self._grid_play_position == x and bank_index == self._grid_play_bank:
                                     self._grid_back_buffer[x][y] = SEQ_MARKER                            
              
-            self.update_launchpad_leds(False)
+            self.update_launchpad_leds()
   
     """ handle grid events, send the midi to the buttons on launchpad and set the parameter values """
-    def update_launchpad_leds(self, sendAlways = True):
+    def update_launchpad_leds(self):
         #log("StepSequencerComponent::update_launchpad_leds")
-        #send all on display
         for x in range(self._width):
             for y in range(self._height):
-                if(self._grid_back_buffer[x][y] != self._grid_buffer[x][y] or sendAlways):
+                if(self._grid_back_buffer[x][y] != self._grid_buffer[x][y] or self._force_update):
                     #log("x: "+ str(x) +",  y: " +str(y)+",  old: " + str(self._grid_buffer[x][y]) + ", new: " + str(self._grid_back_buffer[x][y]))
                     self._grid_buffer[x][y] = self._grid_back_buffer[x][y]                    
                     self._matrix.send_value(x, y, self._grid_buffer[x][y])
+        self._force_update = False
                     
     """ paint the line where the sequencer is running """
     def paint_sequence_rails(self):
@@ -344,7 +340,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
     """ UPDATE QUANT COLOR """
     def update_quantization_buttons(self):
         #log("StepSequencerComponent::update_quantization_buttons")
-        if self._is_active and self._mode == STEPSEQ_MODE_NORMAL:
+        if self._is_active:
             if (self._quantization_buttonUp != None):
                 self._quantization_buttonUp.set_on_off_values(QUANTIZATION_COLOR_MAP[self._quantization_index], LED_OFF)
                 self._quantization_buttonUp.turn_on(False)
@@ -381,7 +377,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
             modifier = 1
         elif(sender == self._quantization_buttonUp):
             modifier = -1            
-        if self.is_enabled() and self._is_active and self._mode == STEPSEQ_MODE_NORMAL:
+        if self.is_enabled() and self._is_active:
             if ((value is not 0) or (not sender.is_momentary())):
                 self._quantization_index = min(max(self._quantization_index + modifier, 0), len(QUANTIZATION_MAP)-1)
                 self._quantization = QUANTIZATION_MAP[self._quantization_index]

@@ -6,7 +6,7 @@ class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
     ' Special button class that can be configured with custom on- and off-values '
     __module__ = __name__
 
-    def __init__(self, is_momentary, msg_type, channel, identifier):
+    def __init__(self, is_momentary, msg_type, channel, identifier, dummy=False):
         ButtonElement.__init__(self, is_momentary, msg_type, channel, identifier) #@UndefinedVariable
         self._on_value = 127
         self._off_value = 4
@@ -14,6 +14,7 @@ class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
         self._is_notifying = False
         self._force_next_value = False
         self._pending_listeners = []
+        self._dummy = dummy
 
 
     """ SET ON OFF VALUES """
@@ -63,28 +64,37 @@ class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 
     """ ADD A LISTENER """
     def add_value_listener(self, callback, identify_sender=False):
-        if (not self._is_notifying):
-            ButtonElement.add_value_listener(self, callback, identify_sender) #@UndefinedVariable
-        else:
-            self._pending_listeners.append((callback, identify_sender))
+        if self._dummy != True:
+            if (not self._is_notifying):
+                ButtonElement.add_value_listener(self, callback, identify_sender) #@UndefinedVariable
+            else:
+                self._pending_listeners.append((callback, identify_sender))
+
+
+    """ REMOVE LISTENER """
+    def remove_value_listener(self, callback):
+        if self._dummy != True:
+            ButtonElement.remove_value_listener(self, callback) #@UndefinedVariable
 
 
     """ RECEIVE VALUE """
     def receive_value(self, value):
-        #log("ButtonElement::receive_value  identifier :" + str(self.name) + ",      value :" + str(value))
-        self._is_notifying = True
-        ButtonElement.receive_value(self, value) #@UndefinedVariable
-        self._is_notifying = False
-        for listener in self._pending_listeners:
-            self.add_value_listener(listener[0], listener[1])
-        self._pending_listeners = []
+        if self._dummy != True:
+            #log("ButtonElement::receive_value  identifier :" + str(self.name) + ",      value :" + str(value))
+            self._is_notifying = True
+            ButtonElement.receive_value(self, value) #@UndefinedVariable
+            self._is_notifying = False
+            for listener in self._pending_listeners:
+                self.add_value_listener(listener[0], listener[1])
+            self._pending_listeners = []
 
 
     """ SEND THE VALUE """
     def send_value(self, value, force=False):
-        #log("ButtonElement::send_value   identifier :" + str(self.name) + ",      value :" + str(value))   
-        ButtonElement.send_value(self, value, (force or self._force_next_value)) #@UndefinedVariable
-        self._force_next_value = False
+        if self._dummy != True:
+            #log("ButtonElement::send_value   identifier :" + str(self.name) + ",      value :" + str(value))   
+            ButtonElement.send_value(self, value, (force or self._force_next_value)) #@UndefinedVariable
+            self._force_next_value = False
 
 
     """ INSTALL CONNECTIONS """

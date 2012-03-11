@@ -83,6 +83,7 @@ class Launchpad(ControlSurface):
 
         log("LaunchPad85 Loaded !")
 
+       
     """ disconnect """
     def disconnect(self):
         log("Launchpad::disconnect")
@@ -130,7 +131,6 @@ class Launchpad(ControlSurface):
         ControlSurface.build_midi_map(self, midi_map_handle)
         if (self._selector.mode_index == 1):
             new_channel = self._selector.channel_for_current_mode()
-            log("welcher channel!?!?" + str(new_channel))
             for note in DRUM_NOTES:
                 self._translate_message(MIDI_NOTE_TYPE, note, 0, note, new_channel)
 
@@ -195,7 +195,7 @@ class Launchpad(ControlSurface):
     
     """ set the session highlight """
     def _set_session_highlight(self, track_offset, scene_offset, width, height, include_return_tracks):
-        #log("Launchpad::_set_session_highlight (" + str(track_offset) + ", " + str(scene_offset) + ", " + str(width) + ", " + str(height) + ")")
+        log("Launchpad::_set_session_highlight (" + str(track_offset) + ", " + str(scene_offset) + ", " + str(width) + ", " + str(height) + ")")
         if (not self._suppress_session_highlight):
             ControlSurface._set_session_highlight(self, track_offset, scene_offset, width, height, include_return_tracks)
 

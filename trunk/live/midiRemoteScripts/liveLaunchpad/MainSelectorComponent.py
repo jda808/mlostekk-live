@@ -67,7 +67,7 @@ class MainSelectorComponent(ModeSelectorComponent):
             self._sub_mode_index[index] = 0
         self.set_modes_buttons(top_buttons[4:])
 
-
+    """ DISCONNECT """
     def disconnect(self):
         log("MainSelectorComponent::disconnect")
         for button in self._modes_buttons:
@@ -84,12 +84,14 @@ class MainSelectorComponent(ModeSelectorComponent):
         ModeSelectorComponent.disconnect(self)
 
 
+    """ GET SESSiON """
     def session_component(self):
         return self._session
 
 
+    """ SET MODE BUTTONS """
     def set_modes_buttons(self, buttons):
-        log("MainSelectorComponent::set_modes (" + str(buttons) + ")")
+        #log("MainSelectorComponent::set_modes (" + str(buttons) + ")")
         assert ((buttons == None) or (isinstance(buttons, tuple) or (len(buttons) == self.number_of_modes())))
         identify_sender = True
         for button in self._modes_buttons:
@@ -105,24 +107,28 @@ class MainSelectorComponent(ModeSelectorComponent):
         self.set_mode(0)
 
 
+    """ GET NUMBER OF MODES """
     def number_of_modes(self):
         return 4
 
 
+    """ ENABLED STATE CHANGED """
     def on_enabled_changed(self):
         self.update()
 
 
+    """ SET CURRENT MODE """
     def set_mode(self, mode):
-        log("MainSelectorComponent::set_mode (" + str(mode) + ")")
+        #log("MainSelectorComponent::set_mode (" + str(mode) + ")")
         assert (mode in range(self.number_of_modes()))
         if ((self._mode_index != mode) or (mode == 3) or True):
             self._mode_index = mode
             self.update()
 
 
+    """ UPDATE THE MODE BUTTONS """
     def _update_mode_buttons(self):
-        log("MainSelectorComponent::_update_mode_buttons")
+        #log("MainSelectorComponent::_update_mode_buttons")
         if self._mode_index == self._previous_mode_index:
             if self._mode_index == 1:
                 #user mode 1 and device controller
@@ -146,6 +152,7 @@ class MainSelectorComponent(ModeSelectorComponent):
                 self._modes_buttons[index].turn_off()
 
 
+    """ GET CHANNEL FOR NEW MODE """
     def channel_for_current_mode(self):
         #trying to keep 
         if self._mode_index == 0:
@@ -168,10 +175,11 @@ class MainSelectorComponent(ModeSelectorComponent):
         return new_channel
 
 
+    """" MAIN UPDATE """
     def update(self):
         assert (self._modes_buttons != None)
         if self.is_enabled():
-            log("MainSelectorComponent::update")
+            #log("MainSelectorComponent::update")
             for index in range(len(self._modes_buttons)):
                 self._modes_buttons[index].set_force_next_value()
                 if (index == self._mode_index):
@@ -245,21 +253,22 @@ class MainSelectorComponent(ModeSelectorComponent):
             self._session.set_allow_update(True)
             #self._zooming.set_allow_update(True)
             self._update_control_channels()
-            log("MainSelectorComponent::updateFinished (modeIndex: " + str(self._mode_index) + ", submodeIndex: " + str(self._sub_mode_index) + ")")
+            #log("MainSelectorComponent::updateFinished (modeIndex: " + str(self._mode_index) + ", submodeIndex: " + str(self._sub_mode_index) + ")")
 
 
-    #Update the channels of the buttons in the user modes..
+    """ Update the channels of the buttons in the user modes """
     def _update_control_channels(self):
-        log("MainSelectorComponent::_update_control_channels")
+        #log("MainSelectorComponent::_update_control_channels")
         new_channel = self.channel_for_current_mode()
-        log("channel?! " + str(new_channel))
+        #log("channel?! " + str(new_channel))
         for button in self._all_buttons:
             button.set_channel(new_channel)
             button.set_force_next_value()
 
 
+    """ SETUP SESSION """
     def _setup_session(self, as_active, as_enabled):
-        log("MainSelectorComponent::_setup_session (active: " + str(as_active) + ", enabled: " + str(as_enabled) + ")")
+        #log("MainSelectorComponent::_setup_session (active: " + str(as_active) + ", enabled: " + str(as_enabled) + ")")
         assert isinstance(as_active, type(False))
         #nav button color
         for button in self._nav_buttons:
@@ -311,6 +320,7 @@ class MainSelectorComponent(ModeSelectorComponent):
             self._session.set_scene_bank_buttons(None, None)
 
 
+    """ SETUP QUICK MIX """
     def _setup_quick_mix(self, as_active):
         if self._quick_mix != None:
             log("MainSelectorComponent::_setup_quick_mix (active: " + str(as_active) + ")")
@@ -324,6 +334,7 @@ class MainSelectorComponent(ModeSelectorComponent):
                 self._quick_mix.set_enabled(False)
 
 
+    """ SETUP STEP SEQUENCER """
     def _setup_step_sequencer(self, as_active, mode):
         if(self._stepseq != None):
             #log("_setup_step_sequencer selfMode(" + str(self._stepseq._mode) + ")   vs   mode("+str(mode)+")    asActive("+str(as_active)+")   stepSeq("+str(self._stepseq._is_active)+")" )
@@ -339,12 +350,13 @@ class MainSelectorComponent(ModeSelectorComponent):
                     self._stepseq._mode = 1
                     self._stepseq._is_active = False
                     self._stepseq.set_enabled(False)
-        #self._config_button.send_value(32, force_send=True)
 
+
+    """ SETUP DEVICE CONTROLLER """
     def _setup_device_controller(self, as_active):
         return
         if self._device_controller!=None:
-            log("MainSelectorComponent::_setup_device_controller")
+            #log("MainSelectorComponent::_setup_device_controller")
             if as_active:
                 #for button in range(8):
                 #    self._side_buttons[button].set_enabled(True)
@@ -357,14 +369,16 @@ class MainSelectorComponent(ModeSelectorComponent):
                 self._device_controller.set_enabled(False)
 
 
+    """ SETUP MIXER """
     def _setup_mixer(self, as_active):
-        log("MainSelectorComponent::_setup_mixer (active: " + str(as_active) + ")")
+        #log("MainSelectorComponent::_setup_mixer (active: " + str(as_active) + ")")
         assert isinstance(as_active, type(False))
         self._sub_modes.set_enabled(as_active)
 
 
+    """ SETUP USER 1 """
     def _setup_user1(self, release_matrix=True, release_side_buttons=True, release_nav_buttons=True):
-        log("MainSelectorComponent::_setup_user1")
+        #log("MainSelectorComponent::_setup_user1")
         for scene_index in range(8):
             if(release_side_buttons):
                 scene_button = self._side_buttons[scene_index]
@@ -389,8 +403,9 @@ class MainSelectorComponent(ModeSelectorComponent):
         self._config_button.send_value(32, force_send=True)
 
 
+    """ SETUP USER 2 """
     def _setup_user2(self, release_buttons):
-        log("MainSelectorComponent::_setup_user2")
+        #log("MainSelectorComponent::_setup_user2")
         for scene_index in range(8):
             scene_button = self._side_buttons[scene_index]
             scene_button.set_on_off_values(127, LED_OFF)
@@ -410,8 +425,9 @@ class MainSelectorComponent(ModeSelectorComponent):
         self._config_button.send_value(32, force_send=True)
 
 
+    """ INIT SESSION """
     def _init_session(self):
-        log("MainSelectorComponent::_init_session")        
+        #log("MainSelectorComponent::_init_session")        
         self._session.set_stop_track_clip_value(AMBER_BLINK)
         for scene_index in range(self._matrix.height()):
             scene = self._session.scene(scene_index)

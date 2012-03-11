@@ -5,7 +5,7 @@ Created on 03.03.2012
 '''
 from _liveUtils.Logger import log #@UnresolvedImport
 
-#global track indices
+#global group indices
 index_KICK = -1
 index_BASE = -1
 index_SNR = -1
@@ -14,9 +14,9 @@ index_FX = -1
 index_SYNTH = -1
 index_LEAD = -1
 index_TEX = -1
-#array for all tracks indices
+#array for all group indices
 idx = []
-#array for all tracks
+#array for all groups
 trax = []
 
 '''
@@ -84,8 +84,7 @@ class TrackFinder():
             arrayToWorkWith = song.visible_tracks
         else:
             #log("trackfinder::usingALL")
-            arrayToWorkWith = song.tracks
-        
+            arrayToWorkWith = song.tracks        
         
         #find all global idx        
         for index in range(len(arrayToWorkWith)):

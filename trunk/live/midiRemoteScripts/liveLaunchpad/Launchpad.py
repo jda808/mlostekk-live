@@ -83,6 +83,7 @@ class Launchpad(ControlSurface):
 
         log("LaunchPad85 Loaded !")
 
+    """ disconnect """
     def disconnect(self):
         log("Launchpad::disconnect")
         self._suppress_send_midi = True

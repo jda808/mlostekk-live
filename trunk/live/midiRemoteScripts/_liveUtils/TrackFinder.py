@@ -3,7 +3,7 @@ Created on 03.03.2012
 
 @author: corvex
 '''
-from _liveUtils.Logger import log #@UnresolvedImport
+from _liveUtils.Logger import log #@UnresolvedImport @UnusedImport
 
 """ these parameters are for the global groups to find """
 #global group indices

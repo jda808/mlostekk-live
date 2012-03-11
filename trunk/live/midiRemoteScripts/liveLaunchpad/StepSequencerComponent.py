@@ -33,26 +33,21 @@ from consts import * #@UnusedWildImport
 from _liveUtils.Logger import log #@UnresolvedImport
 from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
 
-""" DO NOT USE THE SAME COLOR AS USED FOR RAIL FOR ANY OTHER ELEMENT """
 SEQ_MARKER_RAIL = RED_THIRD
-SEQ_MARKER = RED_FULL
+SEQ_MARKER_EVENT = RED_FULL
+SEQ_MARKER = RED_HALF
+
 SEQ_MARKER_VISIBLE = True
 SEQ_MARKER_Y_OFFSET = 0
 
 MARKER_COLORS_BLINKING = [AMBER_BLINK, GREEN_BLINK, AMBER_BLINK, GREEN_FULL, AMBER_BLINK, GREEN_BLINK, AMBER_BLINK, GREEN_BLINK]
-MARKER_COLORS = [AMBER_FULL, GREEN_FULL, AMBER_FULL, GREEN_FULL, AMBER_FULL, GREEN_FULL, AMBER_FULL, GREEN_FULL]
+MARKER_COLORS =          [AMBER_FULL, GREEN_FULL, AMBER_FULL, GREEN_FULL, AMBER_FULL, GREEN_FULL, AMBER_FULL, GREEN_FULL]
 SIDEBAR_ON = [RED_BLINK, GREEN_BLINK, AMBER_BLINK, GREEN_BLINK, RED_BLINK, GREEN_BLINK, AMBER_BLINK, GREEN_BLINK]
 SIDEBAR_OFF = [RED_THIRD, GREEN_THIRD, AMBER_THIRD, GREEN_THIRD, RED_THIRD, GREEN_THIRD, AMBER_THIRD, GREEN_THIRD]
  
 # quant map
 QUANTIZATION_MAP = [0.25, 0.5, 1]
 QUANTIZATION_COLOR_MAP = [GREEN_FULL, GREEN_HALF, GREEN_THIRD]
-
-#Velocity color map. this must remain of lengh 3.
-#VELOCITY_MAP = [70, 90, 110]
-#VELOCITY_COLOR_MAP = [AMBER_THIRD, AMBER_HALF, AMBER_FULL]
-#played notes color highlight map
-VELOCITY_COLOR_HIGHLIGHT_MAP = [RED_THIRD, RED_HALF, RED_FULL]
 
 STEPSEQ_MODE_NORMAL = 1
        
@@ -90,29 +85,9 @@ class StepSequencerComponent(ControlSurfaceComponent):
         self._grid_buffer = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]
         self._grid_back_buffer = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]
         
-        #notes
-        self._bank_indexes = [0, 0, 0, 0, 1, 1, 1, 1]
-        self._key_indexes = [36, 37, 38, 39, 36, 37, 38, 39]    
-        
-        # note architecture
-        self._row1 = []#[0, 0, 0, 0, 0, 0, 0, 0]
-        self._row2 = []#[0, 0, 0, 0, 0, 0, 0, 0]
-        self._row3 = []#[0, 0, 0, 0, 0, 0, 0, 0]
-        self._row4 = []#[0, 0, 0, 0, 0, 0, 0, 0]
-        self._row5 = []#[0, 0, 0, 0, 0, 0, 0, 0]
-        self._row6 = []#[0, 0, 0, 0, 0, 0, 0, 0]
-        self._row7 = []#[0, 0, 0, 0, 0, 0, 0, 0]
-        self._row8 = []#[0, 0, 0, 0, 0, 0, 0, 0]
-        self._grid_events = []
-        self._grid_events.append(self._row1)
-        self._grid_events.append(self._row2)
-        self._grid_events.append(self._row3)
-        self._grid_events.append(self._row4)
-        self._grid_events.append(self._row5)
-        self._grid_events.append(self._row6)
-        self._grid_events.append(self._row7)
-        self._grid_events.append(self._row8)     
-             
+        #event grid
+        self._event_grid = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]
+                         
         #buttons
         self._buttons = None
         self._nav_up_button = None
@@ -125,7 +100,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
         self._side_buttons = []
         
         #quantization
-        self._quantization_index = 2
+        self._quantization_index = 0
         self._quantization = QUANTIZATION_MAP[self._quantization_index]
         
         #set buttons
@@ -135,6 +110,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
         
         #song time listener
         self.song().add_current_song_time_listener(self.current_song_time_changed)     
+        self._register_timer_callback(self.on_timer)
         
         #this are the parameters to be set
         self.parameters = [None, None, None, None]
@@ -149,7 +125,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
             param_index = TrackFinder.get_parameter_index(index)
             assert(param_index >= 0)
             self.parameters[index] = self.song().master_track.devices[dev_index].parameters[param_index]
-            log("StepSequencerComponent::assign_parameters (" + str(self.song().master_track.devices[dev_index].name) + ", "  + str(index) + ", " + str(self.parameters[index].name + ")"))
+            #log("StepSequencerComponent::assign_parameters (" + str(self.song().master_track.devices[dev_index].name) + ", "  + str(index) + ", " + str(self.parameters[index].name + ")"))
             
     """ song time callback """
     def current_song_time_changed(self):
@@ -180,16 +156,25 @@ class StepSequencerComponent(ControlSurfaceComponent):
             self.update_positions()
             self.sync_stopper()
             self.update_sidebar()
-            self.handle_event()
             self.update_matrix()
             self.update_quantization_buttons()
 
+    """ registred timer callback """
+    def on_timer(self):
+        self.update()
+        self.handle_event()
+        
     """ handle event changes """
     def handle_event(self):
         if self._grid_play_position_prev != self._grid_play_position:
-            log("handling events at gridIndex: " + str(self._grid_play_position) + "  bankIndex: " + str(self._grid_play_bank))
-            #for eventIndex in range(len(self.parameters)):
-                
+            for y_index in range(self._height / 2):
+                last_event_y = self._grid_play_bank_prev*4 + y_index 
+                last_event = self._event_grid[self._grid_play_position_prev][last_event_y]
+                new_event_y = self._grid_play_bank*4 + y_index
+                new_event = self._event_grid[self._grid_play_position][new_event_y]
+                if new_event != last_event:
+                    #log("handling events at gridIndex: " + str(self._grid_play_position) + "  bankIndex: " + str(self._grid_play_bank) + " param: " + str(y_index))
+                    self.parameters[y_index].value = new_event * self.parameters[y_index].max
             self._grid_play_position_prev = self._grid_play_position
             self._grid_play_bank_prev = self._grid_play_bank
 
@@ -211,38 +196,24 @@ class StepSequencerComponent(ControlSurfaceComponent):
             # add play position     
             if(SEQ_MARKER_VISIBLE):
                 self._grid_back_buffer[self._grid_play_position][self._grid_play_bank * self._height / 2] = SEQ_MARKER
-            #display clip notes
-            for row in self._grid_events:
-                for note in row:
-                    note_position = note[1] #position in beats; range is 0.x to 15.x for 4 measures in 4/4 time (equivalent to 1/4 notes)
-                    note_bank = int(note_position * self._quantization / self._width)#at 1/16th resolution in 4/4 time, each bank is 1/2 measure wide
-                    note_grid_x_position = int(note_position * self._quantization) % self._width#stepped postion at quantize resolution
-                    note_key = note[0] #key: 0-127 MIDI note #
-                    note_velocity = note[3]
-                    note_grid_y_position = index_of(self._key_indexes, note_key) + (note_bank * self._width / 2)#get row index for this note.
-                    #skip if its out of scope
-                    if note_grid_x_position > self._width or note_grid_y_position > self._height or note_bank > max(self._bank_indexes):
-                        continue
-                    #display note
-                    if note_grid_y_position != -1:
-                        #log("update x:" + str(note_grid_x_position) + 
-                        #    "   y:" + str(note_grid_y_position) + 
-                        #    "   quant:" + str(self._quantization) +
-                        #    "   bank:" + str(note_bank))
-                        
-                        #compute colors
-                        highlight_color = SEQ_MARKER
-                        velocity_color = MARKER_COLORS[note_grid_y_position]
-                        blinking_color = MARKER_COLORS_BLINKING[note_grid_y_position]
-                        
-                        #highlight playing notes in red. even if they are from other banks.        
-                        if self._grid_play_position == note_grid_x_position and note_bank == self._grid_play_bank:
-                            self._grid_back_buffer[note_grid_x_position][note_grid_y_position] = highlight_color
-                        elif self._sync_stopper[note_grid_y_position] == True:
-                            self._grid_back_buffer[note_grid_x_position][note_grid_y_position] = blinking_color
-                        else: 
-                            if self._grid_back_buffer[note_grid_x_position][note_grid_y_position] != highlight_color:
-                                self._grid_back_buffer[note_grid_x_position][note_grid_y_position] = velocity_color         
+                            
+            #display events
+            for bank_index in range(2):
+                for y_index in range(4):
+                    y = bank_index*4 + y_index
+                    y_color = MARKER_COLORS[y_index]
+                    for x in range(8):
+                        event = self._event_grid[x][y]                        
+                        if event:
+                            if self._grid_play_position == x and bank_index == self._grid_play_bank:
+                                self._grid_back_buffer[x][y] = SEQ_MARKER_EVENT
+                            else:
+                                self._grid_back_buffer[x][y] = y_color
+                        else:
+                            if y_index == 0:
+                                if self._grid_play_position == x and bank_index == self._grid_play_bank:
+                                    self._grid_back_buffer[x][y] = SEQ_MARKER                            
+             
             self.update_launchpad_leds(False)
   
     """ handle grid events, send the midi to the buttons on launchpad and set the parameter values """
@@ -266,44 +237,26 @@ class StepSequencerComponent(ControlSurfaceComponent):
     def matrix_value(self, value, x, y, is_momentary):
         if self.is_enabled() and self._is_active:
             if ((value != 0) or (not is_momentary)):
-                self.matrix_value_message([value, x, y, is_momentary])
+                self.matrix_value_message(x, y)
                 
     """ matrix buttons listener """
-    def matrix_value_message(self, values): #value, x, y, is_momentary): 
-        value = values[0]
-        x = values[1]
-        y = values[2]
-        is_momentary = values[3]
-        #log(str(x)+"."+str(y)+"."+str(value)+" "+ "processing")
+    def matrix_value_message(self, x, y): 
+        #log(str(x)+"."+str(y)+"   "+ "processing")
         assert (self._buttons != None)
-        assert (value in range(128))
         assert (x in range(self._buttons.width()))
         assert (y in range(self._buttons.height()))
-        assert isinstance(is_momentary, type(False))
-        """(pitch, time, duration, x, y)    e.g.: (46, 0.25, 0.25)"""
-        if self.is_enabled() and self._is_active:
-            if ((value != 0) or (not is_momentary)):
-                pitch = self._key_indexes[y]
-                time = (x + (self._bank_indexes[y] * self._width)) / self._quantization #convert position to time in beats
-                velocity = 100
-                duration = self._quantization # 0.25 = 1/16th note; 0.5 = 1/8th note
-                #log("bankIndex:" + str(self._grid_play_bank) + " pitch:" + str(pitch) + "timeInBeats:" + str(time))
-                #log("note_cache:" + str(list(self._grid_events)))
-                                                    
-                #note_cache = list(self._grid_events)
-                note_cache = self._grid_events[y]
-                for note in note_cache:
-                    if pitch == note[0] and abs(time - note[1]) < self._quantization:
-                        note_cache.remove(note)
-                        #log(str(x)+"."+str(y)+"."+str(value)+" "+ "removing note")
-                        break
-                else:
-                    note_cache.append([pitch, time, duration, velocity])
-                    #log(str(x)+"."+str(y)+"."+str(value)+" "+ "appending 2")
-                self._grid_events[y] = note_cache
         
-        for rowindex in range(len(self._grid_events)):
-            log("events:" + str(self._grid_events[rowindex]))
+        # simple grid for on and off
+        if self._event_grid[x][y] == 0:
+            self._event_grid[x][y] = 1
+        else:
+            self._event_grid[x][y] = 0
+        
+        #for y_index in range(8):
+        #    string = "event_grid: "
+        #    for x_index in range(8):
+        #        string = string + str(self._event_grid[x_index][y_index]) + "   "
+        #    log(string)
 
     """ set the button matrix """
     def set_button_matrix(self, buttons):
@@ -351,12 +304,12 @@ class StepSequencerComponent(ControlSurfaceComponent):
         if senderIDX == 0:
             for index in range(0,4):
                 self._sync_stopper[index] = True
-                self._side_buttons[index].turn_on()
+                self._side_buttons[index].turn_on(False)
                 self._last_button = -1
         elif senderIDX == 4:
             for index in range(4,8):
                 self._sync_stopper[index] = True
-                self._side_buttons[index].turn_on()
+                self._side_buttons[index].turn_on(False)
                 self._last_button = -1
         # single switches
         else:       
@@ -364,23 +317,23 @@ class StepSequencerComponent(ControlSurfaceComponent):
             #log(" -- value: " + str(value) + " -- stopper: " + str(self._sync_stopper[senderIDX]) + " -- lastSenderID: " + str(self._last_button))     
             if self._sync_stopper[senderIDX] == False and value == 0 and self._last_button == senderIDX:
                 self._sync_stopper[senderIDX] = False
-                self._side_buttons[senderIDX].turn_off()
+                self._side_buttons[senderIDX].turn_off(False)
                 self._last_button = senderIDX  
             elif self._sync_stopper[senderIDX] == False and value == 1:
                 self._sync_stopper[senderIDX] = True
-                self._side_buttons[senderIDX].turn_on()
+                self._side_buttons[senderIDX].turn_on(False)
                 self._last_button = senderIDX
             elif self._sync_stopper[senderIDX] == True and value == 1:                
                 self._sync_stopper[senderIDX] = False
-                self._side_buttons[senderIDX].turn_off()
+                self._side_buttons[senderIDX].turn_off(False)
                 self._last_button = senderIDX
             elif self._sync_stopper[senderIDX] == True and value == 0:
                 self._sync_stopper[senderIDX] = True
-                self._side_buttons[senderIDX].turn_on()
+                self._side_buttons[senderIDX].turn_on(False)
                 self._last_button = -1
             elif self._sync_stopper[senderIDX] == False and value == 0:
                 self._sync_stopper[senderIDX] = True
-                self._side_buttons[senderIDX].turn_on()
+                self._side_buttons[senderIDX].turn_on(False)
                 self._last_button = senderIDX
             else:
                 log("SELTSAME!!!!")      
@@ -453,16 +406,9 @@ class StepSequencerComponent(ControlSurfaceComponent):
                 
     """ ONE CYCLE DONE """
     def trigger_sync_stop(self, bank_index):
-        if bank_index == 0:            
-            #log("triggerstop for bank 0 -- " + str(self._sync_stopper[:4]))
-            for index in range(len(self._sync_stopper[:4])):
-                if self._sync_stopper[index] == True:
-                        self._grid_events[index] = []
-                        self._sync_stopper[index] = False
-        elif bank_index == 1:            
-            #log("triggerstop for bank 1 -- " + str(self._sync_stopper[4:]))
-            for index in range(4, len(self._sync_stopper)):
-                if self._sync_stopper[index] == True:
-                        self._grid_events[index] = []
-                        self._sync_stopper[index] = False
-        
+        for y_index in range(self._height / 2):
+            y = bank_index*4 + y_index
+            if self._sync_stopper[y] == True:
+                for x in range(self._width):
+                    self._event_grid[x][y] = 0
+                self._sync_stopper[y] = False

@@ -118,7 +118,7 @@ class TrackFinder():
         
         #TOdO do some range checks here!!!!
         
-        #log("NEW IDX:  " + str(group_index_KICK) + ", " + str(group_index_BASE) + ", " + str(group_index_SNR) + ", " + str(group_index_HATZ) + ", " + str(group_index_FX) + ", " + str(group_index_SYNTH) + ", " + str(group_index_LEAD) + ", " + str(group_index_TEX))
+        log("NEW IDX:  " + str(group_index_KICK) + ", " + str(group_index_BASE) + ", " + str(group_index_SNR) + ", " + str(group_index_HATZ) + ", " + str(group_index_FX) + ", " + str(group_index_SYNTH) + ", " + str(group_index_LEAD) + ", " + str(group_index_TEX))
         
         # fill the idx array
         group_idx.append(group_index_KICK)

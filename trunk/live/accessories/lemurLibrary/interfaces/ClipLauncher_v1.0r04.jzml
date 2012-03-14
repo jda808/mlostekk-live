@@ -1,0 +1,279 @@
+<JZML>
+<PROJECT version="2020" osc_target="-1" midi_target="-1" kbmouse_target="-1"/>
+<WINDOW class="JAZZINTERFACE" text="ClipLauncher" x="0" y="0" width="800" height="600" state="1" group="0" font="tahoma,11,0" >
+<WINDOW class="Container" text="NavigationTracks" x="0" y="390" width="721" height="70" id="165" state="5" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="12359" label="1" tabbar="1" meta="0">
+<WINDOW class="Fader" text="NumViewTracks" x="419" y="2" width="284" height="50" id="82" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="5394815" cursor="0" grid="1" grid_steps="8" label="0" physic="1" precision="0" unit="" value="0" zoom="1.000000">
+<PARAM name="x=" value="0.428571" send="17" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/NumViewTracks/x" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<PARAM name="z=" value="0.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/NumViewTracks/z" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=x" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/NumViewTracks/value" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="attraction=1" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/NumViewTracks/attraction" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="friction=0.9" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/NumViewTracks/friction" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="speed=1" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/NumViewTracks/speed" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<SCRIPT name="action2()" script="if ((x*7+1) > max_tracks) {
+	(x = (max_tracks - 1) / 7);
+	view_tracks = max_tracks;
+	}
+
+refresh();
+
+setattribute(ClipMatrix, 'column', view_tracks);
+setattribute(ClipStops, 'column', view_tracks);
+setattribute(TrackMatrix, 'column', view_tracks);" trigger_script="z" trigger_type="0" trigger="3" osc_message="/NavigationTracks/NumViewTracks/action2" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+<SCRIPT name="action()" script="view_tracks = 1 + round(x*7);
+if (view_tracks+track_offset > max_tracks) TrackOffset.x = (max_tracks - view_tracks) / 7;" trigger_script="x" trigger_type="0" trigger="1" osc_message="/NavigationTracks/NumViewTracks/action" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+</WINDOW>
+<WINDOW class="Fader" text="TrackOffset" x="48" y="2" width="323" height="50" id="83" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="12359" cursor="0" grid="0" grid_steps="8" label="0" physic="0" precision="3" unit="" value="0" zoom="1.000000">
+<PARAM name="x=" value="0.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/TrackOffset/x" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<PARAM name="z=" value="0.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/TrackOffset/z" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=x*7" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/TrackOffset/value" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="attraction=1" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/TrackOffset/attraction" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="friction=0.9" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/TrackOffset/friction" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="speed=1" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/TrackOffset/speed" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<SCRIPT name="action()" script="if (step == 0) track_offset = round(x*(max_tracks-view_tracks));" trigger_script="x" trigger_type="0" trigger="1" osc_message="/NavigationTracks/TrackOffset/action" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+<SCRIPT name="action_down()" script="refresh();
+" trigger_script="z" trigger_type="0" trigger="3" osc_message="/NavigationTracks/TrackOffset/action_down" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+</WINDOW>
+<WINDOW class="CustomButton" text="NavLeftOne" x="0" y="2" width="48" height="50" id="163" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" behavior="1" bitmap="5,5" capture="1" color="12359,8355711" label_off="" label_on="" outline="1">
+<PARAM name="x=" value="0.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/NavLeftOne/x" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="light=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/NavLeftOne/light" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<SCRIPT name="action_up()" script="step = 1;
+
+track_offset = round(clamp(track_offset - 1, 0, max_tracks - view_tracks));
+TrackOffset.x = track_offset / (max_tracks - view_tracks);" trigger_script="x" trigger_type="0" trigger="2" osc_message="/NavigationTracks/NavLeftOne/action_up" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+<SCRIPT name="action_down()" script="refresh();
+
+step = 0;" trigger_script="x" trigger_type="0" trigger="3" osc_message="/NavigationTracks/NavLeftOne/action_down" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+</WINDOW>
+<WINDOW class="CustomButton" text="NavRightOne" x="371" y="2" width="48" height="50" id="164" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" behavior="1" bitmap="6,6" capture="1" color="12359,8355711" label_off="" label_on="" outline="1">
+<PARAM name="x=" value="0.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/NavRightOne/x" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="light=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/NavRightOne/light" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<SCRIPT name="action_up()" script="step = 1;
+
+if ((track_offset + 1) > (max_tracks - view_tracks)) track_offset = 0;
+else track_offset = round(clamp(track_offset + 1, 0, max_tracks - view_tracks));
+TrackOffset.x = track_offset / (max_tracks - view_tracks);
+" trigger_script="x" trigger_type="0" trigger="2" osc_message="/NavigationTracks/NavRightOne/action_up" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+<SCRIPT name="action_down()" script="refresh();
+
+step = 0;" trigger_script="x" trigger_type="0" trigger="3" osc_message="/NavigationTracks/NavRightOne/action_down" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+</WINDOW>
+<VARIABLE name="step=0" send="1" osc_target="-2" osc_trigger="1" osc_message="/NavigationTracks/step" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+</WINDOW>
+<WINDOW class="Container" text="NavigationScenes" x="744" y="27" width="64" height="433" id="161" state="5" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="12359" label="1" tabbar="1" meta="0">
+<WINDOW class="Fader" text="SceneBrowser" x="1" y="100" width="48" height="200" id="18" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="12359" cursor="0" grid="0" grid_steps="5" label="0" physic="0" precision="3" unit="" value="0" zoom="1.000000">
+<PARAM name="x=" value="1.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/NavigationScenes/SceneBrowser/x" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<PARAM name="z=" value="0.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/NavigationScenes/SceneBrowser/z" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=x" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationScenes/SceneBrowser/value" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="attraction=1" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationScenes/SceneBrowser/attraction" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="friction=0.9" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationScenes/SceneBrowser/friction" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="speed=1" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationScenes/SceneBrowser/speed" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<SCRIPT name="action()" script="oscout(0, '/live/scenes', 'query');
+" trigger_script="z" trigger_type="0" trigger="2" osc_message="/NavigationScenes/SceneBrowser/action" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+<SCRIPT name="action2()" script="update();" trigger_script="z" trigger_type="0" trigger="3" osc_message="/NavigationScenes/SceneBrowser/action2" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+<SCRIPT name="update()" script="scene_offset = (max_scenes-view_scenes) - floor(x*(max_scenes - view_scenes));
+oscout(0, '/live/name/clipblock', {track_offset,scene_offset,view_tracks,view_scenes});
+oscout(0, '/live/name/clipcolorblock', {track_offset,scene_offset,view_tracks,view_scenes});
+oscout(0, '/live/name/sceneblock', {scene_offset,view_scenes});" trigger_script="" trigger_type="4" trigger="1" osc_message="/NavigationScenes/SceneBrowser/update" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
+</WINDOW>
+<WINDOW class="CustomButton" text="NavUpOne" x="0" y="50" width="48" height="50" id="67" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" behavior="1" bitmap="7,7" capture="1" color="12359,8355711" label_off="" label_on="" outline="1">
+<PARAM name="x=" value="0.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/NavigationScenes/NavUpOne/x" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="light=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationScenes/NavUpOne/light" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<SCRIPT name="action()" script="oscout(0, '/live/scenes', 'query');" trigger_script="x" trigger_type="0" trigger="2" osc_message="/NavigationScenes/NavUpOne/action" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+<SCRIPT name="action2()" script="scene_offset = scene_offset - 1;
+scene_offset = round(clamp(scene_offset, 0, max_scenes-view_scenes));
+SceneBrowser.x = 1 - (scene_offset / (max_scenes-view_scenes));
+SceneBrowser.update();" trigger_script="x" trigger_type="0" trigger="3" osc_message="/NavigationScenes/NavUpOne/action2" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+</WINDOW>
+<WINDOW class="CustomButton" text="NavDownOne" x="0" y="300" width="48" height="50" id="69" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" behavior="1" bitmap="8,8" capture="1" color="12359,8355711" label_off="" label_on="" outline="1">
+<PARAM name="x=" value="0.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/NavigationScenes/NavDownOne/x" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="light=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationScenes/NavDownOne/light" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<SCRIPT name="action()" script="oscout(0, '/live/scenes', 'query');" trigger_script="x" trigger_type="0" trigger="2" osc_message="/NavigationScenes/NavDownOne/action" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+<SCRIPT name="action2()" script="scene_offset = scene_offset + 1;
+if (scene_offset >= (max_scenes - view_scenes - 1)) scene_offset = 0;
+scene_offset = round(clamp(scene_offset, 0, max_scenes - view_scenes));
+SceneBrowser.x = 1 - (scene_offset / (max_scenes - view_scenes));
+SceneBrowser.update();" trigger_script="x" trigger_type="0" trigger="3" osc_message="/NavigationScenes/NavDownOne/action2" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+</WINDOW>
+<WINDOW class="CustomButton" text="NavDownFive" x="0" y="350" width="48" height="50" id="70" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" behavior="1" bitmap="8,8" capture="1" color="5394815,8355711" label_off="" label_on="" outline="1">
+<PARAM name="x=" value="0.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/NavigationScenes/NavDownFive/x" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="light=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationScenes/NavDownFive/light" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<SCRIPT name="action()" script="oscout(0, '/live/scenes', 'query');" trigger_script="x" trigger_type="0" trigger="2" osc_message="/NavigationScenes/NavDownFive/action" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+<SCRIPT name="action2()" script="scene_offset = scene_offset + view_scenes;
+if (scene_offset >= (max_scenes - view_scenes - 1)) scene_offset = 0;
+scene_offset = round(clamp(scene_offset, 0, max_scenes - view_scenes));
+SceneBrowser.x = 1 - (scene_offset / (max_scenes-view_scenes));
+SceneBrowser.update();" trigger_script="x" trigger_type="0" trigger="3" osc_message="/NavigationScenes/NavDownFive/action2" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+</WINDOW>
+<WINDOW class="CustomButton" text="NavUpFive" x="0" y="0" width="48" height="50" id="71" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" behavior="1" bitmap="7,7" capture="1" color="5394815,8355711" label_off="" label_on="" outline="1">
+<PARAM name="x=" value="0.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/NavigationScenes/NavUpFive/x" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="light=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/NavigationScenes/NavUpFive/light" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<SCRIPT name="action()" script="oscout(0, '/live/scenes', 'query');" trigger_script="x" trigger_type="0" trigger="2" osc_message="/NavigationScenes/NavUpFive/action" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+<SCRIPT name="action2()" script="scene_offset = scene_offset - view_scenes;
+scene_offset = round(clamp(scene_offset, 0, max_scenes - view_scenes));
+SceneBrowser.x = 1 - (scene_offset / (max_scenes - view_scenes));
+SceneBrowser.update();" trigger_script="x" trigger_type="0" trigger="3" osc_message="/NavigationScenes/NavUpFive/action2" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+</WINDOW>
+</WINDOW>
+<WINDOW class="Pads" text="SceneMatrix" x="696" y="110" width="48" height="200" id="72" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="12359,5394815" column="1" label="0" multicolor="0" multilabel="1" row="5">
+<PARAM name="x=" value="0.000000,0.000000,0.000000,0.000000,0.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/SceneMatrix/x" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="attack=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/SceneMatrix/attack" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="decay=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/SceneMatrix/decay" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="sustain=1" send="0" osc_target="-2" osc_trigger="1" osc_message="/SceneMatrix/sustain" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="release=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/SceneMatrix/release" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="hold=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/SceneMatrix/hold" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="light=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/SceneMatrix/light" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<SCRIPT name="action()" script="oscout(0, '/live/play/scene', firstof(x) + scene_offset);" trigger_script="x" trigger_type="0" trigger="2" osc_message="/SceneMatrix/action" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+</WINDOW>
+<WINDOW class="Pads" text="TrackMatrix" x="0" y="57" width="690" height="38" id="73" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="12359,5394815" column="4" label="0" multicolor="0" multilabel="1" row="1">
+<PARAM name="x=" value="0.000000,0.000000,0.000000,0.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/TrackMatrix/x" midi_target="-1" midi_trigger="1" midi_message="0xB0,0xB0,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="attack=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/TrackMatrix/attack" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="decay=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/TrackMatrix/decay" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="sustain=1" send="0" osc_target="-2" osc_trigger="1" osc_message="/TrackMatrix/sustain" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="release=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/TrackMatrix/release" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="hold=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/TrackMatrix/hold" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="light=subarray(replace(stretch(0, max_tracks), 0.5, current_track), track_offset, view_tracks)" send="0" osc_target="-2" osc_trigger="1" osc_message="/TrackMatrix/light" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<SCRIPT name="action_up()" script="current_track = firstof(x)+track_offset;
+oscout(0, '/live/track/view', current_track);
+" trigger_script="sumof(x)" trigger_type="0" trigger="2" osc_message="/TrackMatrix/action_up" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+</WINDOW>
+<WINDOW class="Pads" text="ClipMatrix" x="0" y="110" width="690" height="200" id="21" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="12359,5394815" column="4" label="0" multicolor="1" multilabel="1" row="5">
+<PARAM name="x=" value="0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/ClipMatrix/x" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="attack=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/ClipMatrix/attack" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="decay=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/ClipMatrix/decay" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="sustain=1" send="0" osc_target="-2" osc_trigger="1" osc_message="/ClipMatrix/sustain" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="release=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/ClipMatrix/release" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="hold=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/ClipMatrix/hold" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="light=clipmatrix_status" send="0" osc_target="-2" osc_trigger="1" osc_message="/ClipMatrix/light" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="last_trig=" value="0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000" send="1" osc_target="-2" osc_trigger="1" osc_message="/ClipMatrix/last_trig" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="-1,-1,-1" kbmouse_scale="0,1,0,1"/>
+<SCRIPT name="action_up()" script="decl i, changes, clipX, clipY;
+
+changes = nonnull(x - last_trig);
+
+for(i=0;i<sizeof(changes);i++)
+	{
+	if (x[changes[i]] == 1){
+		clipX = (changes[i] % view_tracks) + track_offset;
+		clipY = floor(changes[i] / view_tracks) + scene_offset;
+		oscout(0, '/live/play/clipslot', {clipX, clipY});
+		oscout(0, '/live/clip/view', {clipX, clipY});
+		}
+	}
+
+last_trig = x;
+" trigger_script="sumof(x)" trigger_type="0" trigger="1" osc_message="/ClipMatrix/action_up" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+</WINDOW>
+<WINDOW class="Pads" text="ClipStops" x="0" y="324" width="690" height="38" id="63" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="8388608,8355711" column="4" label="0" multicolor="0" multilabel="1" row="1">
+<PARAM name="x=" value="0.000000,0.000000,0.000000,0.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/ClipStops/x" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="attack=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/ClipStops/attack" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="decay=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/ClipStops/decay" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="sustain=1" send="0" osc_target="-2" osc_trigger="1" osc_message="/ClipStops/sustain" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="release=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/ClipStops/release" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="hold=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/ClipStops/hold" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="light=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/ClipStops/light" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="stopnames=stretch('STOP', view_tracks)" send="1" osc_target="-2" osc_trigger="1" osc_message="/ClipStops/stopnames" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<SCRIPT name="action()" script="oscout(0, '/live/stop/track', {firstof(x)+track_offset});" trigger_script="x" trigger_type="0" trigger="2" osc_message="/ClipStops/action" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+</WINDOW>
+<WINDOW class="Pads" text="Refresh" x="696" y="42" width="48" height="53" id="166" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="12359,5394815" column="1" label="1" multicolor="0" multilabel="0" row="1">
+<PARAM name="x=" value="0.000000" send="17" osc_target="-2" osc_trigger="1" osc_message="/Refresh/x" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="attack=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/Refresh/attack" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="decay=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/Refresh/decay" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="sustain=1" send="0" osc_target="-2" osc_trigger="1" osc_message="/Refresh/sustain" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="release=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/Refresh/release" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="hold=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/Refresh/hold" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="light=0" send="0" osc_target="-2" osc_trigger="1" osc_message="/Refresh/light" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<SCRIPT name="action()" script="refresh();" trigger_script="x" trigger_type="0" trigger="2" osc_message="/Refresh/action" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+</WINDOW>
+</WINDOW>
+<VARIABLE name="clipnames=" value="'k 3','581491_Vangel_Original Mix','581491_Vangel_Original Mix','581491_Vangel_Original Mix','','02-paolo_mojo_and_jim_rivers-ron_hardy_said__eric_prydz_remix','','02-paolo_mojo_and_jim_rivers-ron_hardy_said__eric_prydz_remix','02-paolo_mojo_and_jim_rivers-ron_hardy_said__eric_prydz_remix','02-paolo_mojo_and_jim_rivers-ron_hardy_said__eric_prydz_remix','Disco Volante - Drumloop','Disco Volante - Drumloop','Disco Volante - Drumloop','','Disco Volante - Drumloop','839374_BX 3_Original Mix','839374_BX 3_Original Mix','839374_BX 3_Original Mix','839374_BX 3_Original Mix','839374_BX 3_Original Mix','Lamur Henry Saiz Remix','Lamur Henry Saiz Remix','','Lamur Henry Saiz Remix','Lamur Henry Saiz Remix'" send="1" osc_target="-2" osc_trigger="1" osc_message="/clipnames" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="scene_offset=0" send="1" osc_target="-2" osc_trigger="1" osc_message="/scene_offset" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="-1,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="clipmatrix_status=-0.02" send="1" osc_target="-2" osc_trigger="1" osc_message="/clipmatrix_status" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="-1,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="scenenames=stretch(0, 5)" send="1" osc_target="-2" osc_trigger="1" osc_message="/scenenames" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="20041,20292,15959" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="tracknames=" value="'Track 1','Track 2','Track 3','Track 4','TRack 5'" send="1" osc_target="-2" osc_trigger="1" osc_message="/tracknames" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="track_offset=0" send="1" osc_target="-2" osc_trigger="1" osc_message="/track_offset" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="max_tracks=8" send="1" osc_target="-2" osc_trigger="1" osc_message="/max_tracks" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="current_track=0" send="1" osc_target="-2" osc_trigger="1" osc_message="/current_track" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="view_tracks=4" send="1" osc_target="-2" osc_trigger="1" osc_message="/view_tracks" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="R1={0.9294, 0.7412, 0.6902, 0.5216, 0.3255, 0.0392, 0, 0.0118, 0.1843, 0.3843, 0.4824, 0.2353, 1, 0.7490, 0.6510, 0.4784, 0.2392, 0, 0.0627, 0.3294, 0.5333, 0.6392, 0.7176, 0.5882, 0.9647, 0.7490, 0.5294, 0.1020, 0.1451, 0.3608}" send="1" osc_target="-2" osc_trigger="1" osc_message="/R1" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="-1,-1,-1" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="R2={0.0980, 0.5451, 0.5725, 0.7215, 0.8470, 1, 1, 1, 0.8901, 0.8588, 0.7450, 0.5372, 0.5333, 0.6078, 0.5215, 0.7725, 0.9450, 1, 1, 1, 0.8235, 0.7294, 0.6627, 0.8313, 0.8039, 0.7254, 0.8039, 0.8156, 0.8745, 1}" send="1" osc_target="-2" osc_trigger="1" osc_message="/R2" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="-24143,-15917,-24143" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="G1={0.2627, 0.3804, 0.5451, 0.5882, 0.6235, 0.6118, 0.4784, 0.0118, 0.3216, 0.2941, 0.4824, 0.2353, 0.0196, 0.7294, 0.7451, 0.7765, 0.7647, 0.7490, 0.6431, 0.5020, 0.4235, 0.2941, 0.2392, 0.3412, 0.4235, 0.9843, 1, 1}" send="1" osc_target="-2" osc_trigger="1" osc_message="/G1" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="-205,12595,-205" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="G2={1, 1, 0.9137, 0.7725, 0.6549, 0.5529, 0.4235, 0.2235, 0.6471, 0.9412, 0.9569, 0.7647, 0.6157, 0.7059, 0.7608, 0.7020, 0.6471, 0.5412, 0.2510, 0.5804, 0.6392, 0.9333, 0.8941, 0.8157, 0.6627, 0.9922, 0.9451, 0.7569, 0.7333, 0.8157, 0.9020, 1}" send="1" osc_target="-2" osc_trigger="1" osc_message="/G2" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="B1={0.1451, 0, 0, 0.1216, 0.1922, 0.5569, 0.7412, 1, 0.6353, 0.6784, 0.4824, 0.2353, 0.0196, 0.4118, 0, 0.2039, 0, 0.6863, 0.9333, 0.8941, 0.8941, 0.6784, 0.4118, 0.2078, 0.0118, 0, 0.4039, 0.1843, 0.6588, 0.9098}" send="1" osc_target="-2" osc_trigger="1" osc_message="/B1" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="B2={1, 1, 1, 1, 0.8941, 0.8314, 0.1608, 0.2039, 0.0118, 0, 0.3882, 0.4902, 0.7294, 0.7686, 0.7608, 0.4824, 0.5020, 0.6510, 0.4549, 0.6235, 0.5961, 0.4549, 0.6627, 0.8824, 0.9725, 0.8902, 0.8941, 0.8157, 0.8980, 1}" send="1" osc_target="-2" osc_trigger="1" osc_message="/B2" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="R={R1, R2}" send="1" osc_target="-2" osc_trigger="1" osc_message="/R" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="G={G1, G2}" send="1" osc_target="-2" osc_trigger="1" osc_message="/G" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="-205,12595,-205" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="B={B1, B2}" send="1" osc_target="-2" osc_trigger="1" osc_message="/B" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="clip_colors=" value="0.000000" send="1" osc_target="-2" osc_trigger="1" osc_message="/clip_colors" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="view_scenes=5" send="1" osc_target="-2" osc_trigger="1" osc_message="/view_scenes" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="max_scenes=" value="0.000000" send="1" osc_target="-2" osc_trigger="1" osc_message="/max_scenes" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="clipgridsize=view_tracks*view_scenes" send="1" osc_target="-2" osc_trigger="1" osc_message="/clipgridsize" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="triggered=stretch(-1, 256)" send="1" osc_target="-2" osc_trigger="1" osc_message="/triggered" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="-205,12595,-205" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="playing=stretch(-1, 256)" send="1" osc_target="-2" osc_trigger="1" osc_message="/playing" midi_target="-2" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-2" kbmouse_trigger="1" kbmouse_message="-1,0,0" kbmouse_scale="0,1,0,1"/>
+<SCRIPT name="get_clipnames(OSC_ARGS)" script="clipnames = OSC_ARGS;
+setattribute(ClipMatrix, 'labels', clipnames);
+status_display();" trigger_script="" trigger_type="2" trigger="1" osc_message="/live/name/clipblock" midi_message="0x90,0x90,0,0" midi_target="-2" flag="9"/>
+<SCRIPT name="get_scenetotal(OSC_ARGS)" script="max_scenes = OSC_ARGS[0];
+" trigger_script="" trigger_type="2" trigger="1" osc_message="/live/scenes" midi_message="0x90,0x90,0,0" midi_target="-2" flag="9"/>
+<SCRIPT name="get_clipstatus(OSC_ARGS)" script="// Id a triggered clip by putting the clip slot in the 'triggered' vector
+if (OSC_ARGS[2] == 3)
+	{
+	triggered[OSC_ARGS[0]] = OSC_ARGS[1];
+	}
+
+// Id a playing clip by putting the clip slot in the 'playing' vector
+else if (OSC_ARGS[2] == 2)
+	{
+	triggered[OSC_ARGS[0]] = -1;
+	playing[OSC_ARGS[0]] = OSC_ARGS[1];
+	}
+
+// Id a stopped clip by setting -1 in both vectors
+else if (OSC_ARGS[2] == 1)
+	{
+	triggered[OSC_ARGS[0]] = -1;
+	playing[OSC_ARGS[0]] = -1;
+	}
+
+status_display();" trigger_script="" trigger_type="2" trigger="1" osc_message="/live/clip/info" midi_message="0x90,0x90,0,0" midi_target="-2" flag="9"/>
+<SCRIPT name="status_display()" script="// is anything in the currently displayed grid actually playing? if yes, light it up.
+
+clipmatrix_status = stretch(-0.1,256);
+decl i,matrix_pos,display_slot;
+
+for(i=0;i<view_tracks;i++){
+	if (triggered[track_offset+i] > -1){
+		display_slot =  triggered[track_offset + i] - scene_offset;
+		if ((display_slot < view_scenes) && (display_slot >= 0)){
+			matrix_pos = (display_slot * view_tracks) + i;
+			clipmatrix_status[matrix_pos] = 0.25;
+			}
+		}
+
+	if (playing[track_offset+i] > -1){
+		display_slot = playing[track_offset+i] - scene_offset;
+		if ((display_slot < view_scenes) && (display_slot >= 0)){
+			matrix_pos = (display_slot * view_tracks) + i;
+			clipmatrix_status[matrix_pos] = 0.8;
+			}
+		}
+	}" trigger_script="" trigger_type="4" trigger="1" osc_message="/status_display" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+<SCRIPT name="get_scenename(OSC_ARGS)" script="scenenames = OSC_ARGS;
+setattribute(SceneMatrix, 'labels', scenenames);" trigger_script="" trigger_type="2" trigger="1" osc_message="/live/name/sceneblock" midi_message="0x90,0x90,0,0" midi_target="-2" flag="9"/>
+<SCRIPT name="get_tracknames(OSC_ARGS)" script="tracknames = OSC_ARGS;
+setattribute(TrackMatrix, 'labels', tracknames);" trigger_script="" trigger_type="2" trigger="1" osc_message="/live/name/trackblock" midi_message="0x90,0x90,0,0" midi_target="-2" flag="9"/>
+<SCRIPT name="refresh()" script="oscout(0, '/live/tracks', 'query');
+oscout(0, '/live/name/clipblock', {track_offset,scene_offset,view_tracks,view_scenes});
+oscout(0, '/live/name/clipcolorblock', {track_offset,scene_offset,view_tracks,view_scenes});
+oscout(0, '/live/name/trackblock', {track_offset,view_tracks});" trigger_script="" trigger_type="4" trigger="1" osc_message="/refresh" midi_message="0x90,0x90,0,0" midi_target="-2" flag="1"/>
+<SCRIPT name="get_tracktotal(OSC_ARGS)" script="max_tracks = OSC_ARGS;" trigger_script="" trigger_type="2" trigger="1" osc_message="/live/tracks" midi_message="0x90,0x90,0,0" midi_target="-2" flag="9"/>
+<SCRIPT name="get_clipcolors(OSC_ARGS)" script="decl i, j, k;
+k = OSC_ARGS;
+j = sizeof(OSC_ARGS);
+for (i=0;i<j;i++){
+	clip_colors[i] = k[i];
+	}
+for (i=0;i<clipgridsize;i++){
+	if (clip_colors[i] == 0) clip_colors[i] = RGB(0.2,0.2,0.2);
+	}
+
+setattribute(ClipMatrix, 'colors', clip_colors);" trigger_script="" trigger_type="2" trigger="1" osc_message="/live/name/clipcolorblock" midi_message="0x90,0x90,0,0" midi_target="-2" flag="9"/>
+</JZML>

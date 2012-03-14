@@ -21,10 +21,14 @@
 This file contains all the current Live OSC callbacks. 
 
 """
-import Live #@UnresolvedImport
+import Live #@UnresolvedImport @UnusedImport
 #import RemixNet
 import OSC
 import LiveUtils
+from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
+from _liveUtils.Logger import log #@UnresolvedImport
+from LiveUtils import * #@UnusedWildImport
+
 #import sys
 
 #from Logger import log 
@@ -129,9 +133,71 @@ class LiveOSCCallbacks:
         self.callbackManager.add("/live/return/crossfader", self.trackxfaderCB)
 
         self.callbackManager.add("/live/quantization", self.quantizationCB)
-
         self.callbackManager.add("/live/selection", self.selectionCB)
 
+        """ my callbacks for massive """
+        #TrackFinder.find_massive_synths(getTracks())
+        #self.callbackManager.add("/MASSIVE/SETUP", self.massiveSetup)
+        
+        #append all callbacks
+        #self.MASSIVE = [str("BASE"), str("SYNTH")]
+        #self.XY = [str("XY_1"), str("XY_2"), str("XY_3"), str("XY_4")]
+        #for param_index in range(len(self.XY)):
+        #    self.callbackManager.add("/" + self.MASSIVE[0] + "/" + self.XY[param_index] + "/CONTROLLER/x", self.massiveBaseIncoming)
+        #    self.callbackManager.add("/" + self.MASSIVE[0] + "/" + self.XY[param_index] + "/CONTROLLER/y", self.massiveBaseIncoming)
+        #    self.callbackManager.add("/" + self.MASSIVE[1] + "/" + self.XY[param_index] + "/CONTROLLER/x", self.massiveSynthIncoming)
+        #    self.callbackManager.add("/" + self.MASSIVE[1] + "/" + self.XY[param_index] + "/CONTROLLER/y", self.massiveSynthIncoming)
+    
+    
+    """ handle incoming massive OSC stuff 
+    def massiveBaseIncoming(self, msg, source):
+        #log("massive base incoming:" + str(msg))
+        params = TrackFinder.get_massive_BASE_parameters()
+        params[msg[0]].value = msg[2]"""
+        
+    """ handle incoming massive OSC stuff 
+    def massiveSynthIncoming(self, msg, source):
+        #log("massive synth incoming:" + str(msg))
+        params[msg[0]].value = msg[2]"""
+    
+    
+    """ setup my mapping class 
+    def massiveSetup(self, msg, source):
+        #log("-------massiveSetup: " + str(msg))    
+        ''' all parameters '''
+        oscCommand = msg[0]
+        trackName = msg[2]
+        trackIndex = msg[3]
+        xParamName = msg[4]
+        xParamIndex = msg[5]
+        yParamName = msg[6]
+        yParamIndex = msg[7]
+        oscCommandBase = msg[8]
+        oscCommandSub = msg[9]
+        ''' build final osc string '''
+        stringX = "/" + oscCommandBase + "/" + oscCommandSub + "/CONTROLLER/x"
+        stringY = "/" + oscCommandBase + "/" + oscCommandSub + "/CONTROLLER/y"
+        parameterX = getTracks()[trackIndex].devices[0].parameters[xParamIndex]
+        parameterY = getTracks()[trackIndex].devices[0].parameters[yParamIndex]
+           
+        #some assertions
+        if msg[2] == str("MASSIVE_SYNTH"):
+            assert(trackIndex == TrackFinder.get_massive_SYNTH_index())
+            param = TrackFinder.get_massive_SYNTH_parameters()
+            param[stringX] = parameterX
+            param[stringY] = parameterY
+            TrackFinder.set_massive_SYNTH_parameters(param)
+            #log("-- paramsSYNTH: " + str(TrackFinder.get_massive_SYNTH_parameters()))
+            
+        elif msg[2] == str("MASSIVE_BASE"):
+            assert(trackIndex == TrackFinder.get_massive_BASE_index())
+            param = TrackFinder.get_massive_BASE_parameters()
+            param[stringX] = parameterX
+            param[stringY] = parameterY
+            TrackFinder.set_massive_BASE_parameters(param)
+            #log("-- paramsBASE: " + str(TrackFinder.get_massive_BASE_parameters()))"""
+        
+        
     def sigCB(self, msg, source):
         """ Called when a /live/clip/signature message is recieved
         """
@@ -153,8 +219,6 @@ class LiveOSCCallbacks:
         """
         track = msg[2]
         clip = msg[3]
-        
-        
         if len(msg) == 4:
             state = LiveUtils.getSong().tracks[track].clip_slots[clip].clip.warping
             #state = LiveUtils.getSong().visible_tracks[track].clip_slots[clip].clip.warping
@@ -1046,11 +1110,8 @@ class LiveOSCCallbacks:
             else: 
                 #p = LiveUtils.getSong().visible_tracks[track].devices[device].parameters[param]
                 p = LiveUtils.getSong().tracks[track].devices[device].parameters[param]
-        
             self.oscEndpoint.send(ty == 1 and "/live/return/device/param" or "/live/device/param", (track, device, param, p.value, str(p.name)))
-            # same osc command like polling
-            #self.oscEndpoint.send(ty == 1 and "/live/return/device/param" or "/live/device", (track, device, param, p.value))
-    
+
     
         elif len(msg) == 6:
             device = msg[3]
@@ -1062,6 +1123,7 @@ class LiveOSCCallbacks:
             else:
                 #LiveUtils.getSong().visible_tracks[track].devices[device].parameters[param].value = value
                 LiveUtils.getSong().tracks[track].devices[device].parameters[param].value = value
+
 
     def devicerangeCB(self, msg, source):
         ty = msg[0] == '/live/return/device/range' and 1 or 0

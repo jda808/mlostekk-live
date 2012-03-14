@@ -60,10 +60,4 @@
 			</matcher>
 		</filter>
 	</filteredResources>
-	<variableList>
-		<variable>
-			<name>USER_PATH</name>
-			<value>file:/L:/Dokumente%20und%20Einstellungen/corvex</value>
-		</variable>
-	</variableList>
 </projectDescription>

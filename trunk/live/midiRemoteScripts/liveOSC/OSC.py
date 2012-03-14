@@ -38,7 +38,7 @@ import math
 import string
 import time
 
-from _liveUtils.Logger import log
+from _liveUtils.Logger import log #@UnresolvedImport
 
 def hexDump(bytes):
     """Useful utility; prints the string in hexadecimal"""
@@ -62,11 +62,11 @@ class OSCMessage:
         elif type(msg) in (list, tuple):
             for m in msg:
                 if type(m) not in (str, int, float):
-                    log("don't know how to encode message element " + str(m) + " " + str(type(m)))
+                    #log("don't know how to encode message element " + str(m) + " " + str(type(m)))
                     return
                 self.append(m)
         else:
-            log("don't know how to encode message " + str(m) + " " + str(type(m)))
+            #log("don't know how to encode message " + str(m) + " " + str(type(m)))
             return
 
     def append(self, argument, typehint=None):
@@ -276,6 +276,7 @@ class CallbackManager:
     def dispatch(self, message, source):
         """Sends decoded OSC data to an appropriate calback"""
         address = message[0]
+        #log("message: " + str(message))
         self.callbacks[address](message, source)
 
     def add(self, address, callback):

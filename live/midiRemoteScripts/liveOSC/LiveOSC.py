@@ -34,10 +34,15 @@ import OSC
 import LiveUtils
 import sys
 from _liveUtils.Logger import log #@UnresolvedImport
+from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
+
 
 class LiveOSC:
     __module__ = __name__
     __doc__ = "Main class that establishes the LiveOSC Component" #@ReservedAssignment
+
+    # ClipPosition, MasterMeter, ReturnMeter, TrackMeter, Clip Pos on Scrub
+    SETTINGS_FAKE =  [0, 0, 1, 0, 1, 0]
     
     prlisten = {}
     plisten = {}
@@ -71,7 +76,7 @@ class LiveOSC:
         
         self.oscEndpoint.send('/remix/oscserver/startup', 1)
         
-        log("LiveOSC initialized")
+        #log("LiveOSC initialized")
         
         # Visible tracks listener
         #if self.song().visible_tracks_has_listener(self.refresh_state) != 1:
@@ -313,7 +318,6 @@ class LiveOSC:
     
     def add_tempo_listener(self):
         self.rem_tempo_listener()    
-        log("add tempo listener")
         if self.song().tempo_has_listener(self.tempo_change) != 1:
             self.song().add_tempo_listener(self.tempo_change)
         
@@ -785,7 +789,7 @@ class LiveOSC:
         #log("Slot changed" + str(self.clips[tid][cid]))
     
     def clip_changestate(self, clip, x, y):
-        log("Listener: x: " + str(x) + " y: " + str(y));
+        #log("Listener: x: " + str(x) + " y: " + str(y));
 
         playing = 1
         
@@ -860,15 +864,16 @@ class LiveOSC:
                     self.oscEndpoint.send('/live/track/meter', (tid, 1, float(track.output_meter_right)))
     
     def check_md(self, param):
-        devices = self.song().master_track.devices
-        
-        if len(devices) > 0:
-            if devices[0].parameters[param].value > 0:
-                return 1
-            else:
-                return 0
-        else:
-            return 0
+        return self.SETTINGS_FAKE[param]
+        #devices = self.song().master_track.devices
+        #
+        #if len(devices) > 0:
+        #    if devices[0].parameters[param].value > 0:
+        #        return 1
+        #    else:
+        #        return 0
+        #else:
+        #    return 0
     
     # Device Listeners
     def add_device_listeners(self):
@@ -938,11 +943,18 @@ class LiveOSC:
             self.oscEndpoint.send('/live/master/device/param', (did, pid, param.value, str(param.name)))
         elif type == 1:
             self.oscEndpoint.send('/live/return/device/param', (tid, did, pid, param.value, str(param.name)))
-        else:
-            self.oscEndpoint.send('/live/device/param', (tid, did, pid, param.value, str(param.name)))
-            # same like setting
-            #self.oscEndpoint.send('/live/device', (tid, did, pid, param.value))
-
+        #else:
+            #if tid == TrackFinder.get_massive_BASE_index():
+            #    for oscCommand, para in TrackFinder.get_massive_BASE_parameters().items():
+            #        if para == param:
+            #            self.oscEndpoint.send(oscCommand, param.value)
+            #elif tid == TrackFinder.get_massive_SYNTH_index():
+            #    for oscCommand, para in TrackFinder.get_massive_SYNTH_parameters().items():
+            #        if para == param:
+            #            self.oscEndpoint.send(oscCommand, param.value)
+            #else:
+            #    self.oscEndpoint.send('/live/device/param', (tid, did, pid, param.value, str(param.name)))
+                
     def add_devicelistener(self, track, tid, type):
         cb = lambda :self.device_changestate(track, tid, type)
         

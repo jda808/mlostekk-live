@@ -64,7 +64,7 @@ import sys
 #import errno
 import time
 import Live #@UnresolvedImport
-from _liveUtils.Logger import log
+from _liveUtils.Logger import log #@UnresolvedImport
 
 # Import correct paths for os / version
 version = Live.Application.get_application().get_major_version()

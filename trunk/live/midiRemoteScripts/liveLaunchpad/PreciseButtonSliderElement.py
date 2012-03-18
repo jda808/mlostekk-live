@@ -1,6 +1,7 @@
 from consts import * #@UnusedWildImport
 from _Framework.ButtonSliderElement import ButtonSliderElement #@UnresolvedImport
 from _Framework.InputControlElement import * 
+from _liveUtils.Logger import log #@UnresolvedImport
 #from ConfigurableButtonElement import ConfigurableButtonElement 
 
 SLIDER_MODE_SINGLE = 0
@@ -13,6 +14,7 @@ class PreciseButtonSliderElement(ButtonSliderElement):
     
     """ INIT """
     def __init__(self, buttons):
+        #log(True, __name__)
         ButtonSliderElement.__init__(self, buttons)
         num_buttons = len(buttons)
         self._disabled = False
@@ -20,7 +22,7 @@ class PreciseButtonSliderElement(ButtonSliderElement):
         self._value_map = tuple([ float((index / num_buttons)) for index in range(num_buttons) ])
         self._parent = None
         self._precision_mode = False
-
+        #log(False, __name__)
 
     """ SET PARENT """
     def set_parent(self, parent):

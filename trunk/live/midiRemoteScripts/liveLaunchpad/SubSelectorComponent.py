@@ -1,8 +1,3 @@
-#! /usr/bin/env python
-# emacs-mode: -*- python-*-
-
-from _liveUtils.Logger import log #@UnresolvedImport
-
 from _Framework.ModeSelectorComponent import ModeSelectorComponent #@UnresolvedImport
 from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
 from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImport
@@ -12,7 +7,7 @@ from SpecialMixerComponent import SpecialMixerComponent
 from ConfigurableButtonElement import ConfigurableButtonElement #@UnusedImport
 from PreciseButtonSliderElement import * #@UnusedWildImport
 from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
-
+from _liveUtils.Logger import log #@UnresolvedImport @Reimport
 
 PAN_VALUE_MAP = (-1.0, -0.63492099999999996, -0.31746000000000002, 0.0, 0.0, 0.31746000000000002, 0.63492099999999996, 1.0)
 VOL_VALUE_MAP = (0.0, 0.14288200000000001, 0.30241400000000002, 0.40000000000000002, 0.55000000000000004, 0.69999999999999996, 0.84999999999999998, 1.0)
@@ -22,7 +17,7 @@ class SubSelectorComponent(ModeSelectorComponent):
     " Class that handles different mixer modes "
 
     def __init__(self, matrix, side_buttons, session, parent):
-        log("SubSelectorComponent::__init__")
+        log(True, __name__)
         self._parent = parent
         assert isinstance(matrix, ButtonMatrixElement)
         assert ((matrix.width() == 8) and (matrix.height() == 8))
@@ -31,7 +26,6 @@ class SubSelectorComponent(ModeSelectorComponent):
         assert isinstance(session, SessionComponent)
         ModeSelectorComponent.__init__(self)
         self._session = session
-        #self._mixer = SpecialMixerComponent(self._parent, matrix.width())
         self._numTracks = len(self._parent._parent._my_c_instance.song().visible_tracks)
         self._mixer = SpecialMixerComponent(self._parent, self._numTracks)
         self._matrix = matrix
@@ -49,7 +43,7 @@ class SubSelectorComponent(ModeSelectorComponent):
         self._update_callback = None
         #self._session.set_mixer(self._mixer)
         self.set_modes_buttons(side_buttons[:4])
-
+        log(False, __name__)
 
     """ disconnect """
     def disconnect(self):

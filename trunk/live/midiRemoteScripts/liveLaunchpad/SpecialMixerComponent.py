@@ -1,22 +1,20 @@
-
-#import Live 
 from _Framework.MixerComponent import MixerComponent #@UnresolvedImport
 from DefChannelStripComponent import DefChannelStripComponent 
 from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
 from _liveUtils.Logger import log #@UnresolvedImport @UnusedImport
-#from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
 
+' Class encompassing several defaultable channel strips to form a mixer '
 class SpecialMixerComponent(MixerComponent):
-    ' Class encompassing several defaultable channel strips to form a mixer '
     __module__ = __name__
 
     def __init__(self, parent, num_tracks, num_returns=0, with_eqs=False, with_filters=False):
-        #log("SpecialMixerComponent::__init__")
+        log(True, __name__)
         self._parent = parent
         self.num_tracks = num_tracks
         MixerComponent.__init__(self, num_tracks, num_returns, with_eqs, with_filters)
         self._unsolo_all_button = None
         self._unmute_all_button = None
+        log(False, __name__)
         
         
     """ DISCONNECT """

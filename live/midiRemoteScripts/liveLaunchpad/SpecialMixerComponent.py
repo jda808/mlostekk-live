@@ -10,7 +10,6 @@ class SpecialMixerComponent(MixerComponent):
     def __init__(self, parent, num_tracks, num_returns=0, with_eqs=False, with_filters=False):
         log(True, __name__)
         self._parent = parent
-        self.num_tracks = num_tracks
         MixerComponent.__init__(self, num_tracks, num_returns, with_eqs, with_filters)
         self._unsolo_all_button = None
         self._unmute_all_button = None
@@ -19,6 +18,7 @@ class SpecialMixerComponent(MixerComponent):
         
     """ DISCONNECT """
     def disconnect(self):
+        log(__name__, "disconnect")
         if (self._unsolo_all_button != None):
             self._unsolo_all_button.remove_value_listener(self._unsolo_all_value)
             self._unsolo_all_button = None
@@ -29,7 +29,8 @@ class SpecialMixerComponent(MixerComponent):
 
 
     """ SET GLOBAL BUTTONS """
-    def set_global_buttons(self, unsolo_all, unmute_all):
+    def set_global_buttons(self, unmute_all, unsolo_all):
+        log(__name__, "set_global_buttons")
         assert isinstance(unsolo_all, (ButtonElement, type(None)))
         assert isinstance(unmute_all, (ButtonElement, type(None)))
         if (self._unsolo_all_button != None):
@@ -48,12 +49,13 @@ class SpecialMixerComponent(MixerComponent):
 
     """ CREATE STRIP """
     def _create_strip(self):
-        #log("SpecialMixerComponent::_create_strip")
+        #log(__name__, "_create_strip")
         return DefChannelStripComponent()
 
 
     """ UNSOLO ALL """
     def _unsolo_all_value(self, value):
+        log(__name__, "_unsolo_all_value")
         assert self.is_enabled()
         assert (self._unsolo_all_button != None)
         assert (value in range(128))
@@ -65,6 +67,7 @@ class SpecialMixerComponent(MixerComponent):
 
     """ UNMUTE ALL """
     def _unmute_all_value(self, value):
+        log(__name__, "_unmute_all_value")
         assert self.is_enabled()
         assert (self._unmute_all_button != None)
         assert (value in range(128))

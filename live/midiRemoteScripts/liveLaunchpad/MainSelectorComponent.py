@@ -1,10 +1,7 @@
-#! /usr/bin/env python
-# emacs-mode: -*- python-*-
-
 from consts import * #@UnusedWildImport
-from _Framework.ModeSelectorComponent import ModeSelectorComponent #@UnresolvedImport
-from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
-from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImport
+from _Framework.ModeSelectorComponent import ModeSelectorComponent #@UnresolvedImport @UnusedImport
+from _Framework.ButtonElement import ButtonElement #@UnresolvedImport @UnusedImport
+from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImport @UnusedImport
 #from _Framework.ButtonSliderElement import ButtonSliderElement 
 #from _Framework.ClipSlotComponent import ClipSlotComponent 
 #from _Framework.ChannelStripComponent import ChannelStripComponent 
@@ -14,17 +11,17 @@ from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImpor
 from SpecialSessionComponent import SpecialSessionComponent 
 from SubSelectorComponent import * #@UnusedWildImport
 from StepSequencerComponent import StepSequencerComponent
-from _liveUtils.Logger import log #@UnresolvedImport
-from SubSelectorComponent import SubSelectorComponent #@UnresolvedImport
-from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
+from _liveUtils.Logger import log #@UnresolvedImport @Reimport
+from SubSelectorComponent import SubSelectorComponent #@UnresolvedImport @Reimport
+from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport @Reimport
 
+" Class that reassigns the button on the launchpad to different functions "
 class MainSelectorComponent(ModeSelectorComponent):
-    
-    " Class that reassigns the button on the launchpad to different functions "
+
+    """ INIT """    
     def __init__(self, matrix, top_buttons, side_buttons, config_button, parent):
-        #self and parent setup
+        log(True, __name__)
         self._parent = parent
-        log("MainSelectorComponent::__init__")
         assert isinstance(matrix, ButtonMatrixElement)
         assert ((matrix.width() == 8) and (matrix.height() == 8))
         assert isinstance(top_buttons, tuple)
@@ -60,6 +57,8 @@ class MainSelectorComponent(ModeSelectorComponent):
         self.button_unfold = None
         self.button_fold = None
         self.set_fold_buttons(self._nav_buttons[3], self._nav_buttons[2])
+        
+        log(False, __name__)
         
 
     """ DISCONNECT """
@@ -185,13 +184,11 @@ class MainSelectorComponent(ModeSelectorComponent):
                 self.setup_mixer((not as_active))
                 self.setup_step_sequencer((not as_active))
                 self.setup_session((not as_active), (as_enabled))
-                self.setup_user1(True, True, True)               
-                    
+                self.setup_user1(True, True, True)      
             elif (self._mode_index == 2):
                 self.setup_session((not as_active), (not as_enabled))
                 self.setup_mixer((not as_active))
                 self.setup_step_sequencer(as_active)
-                        
             elif (self._mode_index == 3):
                 self.setup_step_sequencer((not as_active))
                 self.setup_session((not as_active), as_enabled)
@@ -368,6 +365,3 @@ class MainSelectorComponent(ModeSelectorComponent):
                 clip_slot.set_recording_value(RED_FULL)
                 clip_slot.name = ((str(track_index) + "_Clip_Slot_") + str(scene_index))
                 self._all_buttons.append(self._matrix.get_button(track_index, scene_index))
-
-# local variables:
-# tab-width: 4

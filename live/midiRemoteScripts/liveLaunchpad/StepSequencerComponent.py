@@ -26,7 +26,6 @@ from _Framework.InputControlElement import *
 from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImport
 from consts import * #@UnusedWildImport
 from _liveUtils.Logger import log #@UnresolvedImport
-from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
 from _liveUtils.DeviceFinder import DeviceFinder #@UnresolvedImport
 
 #===============================================================================
@@ -56,8 +55,8 @@ class StepSequencerComponent(ControlSurfaceComponent):
     __doc__ = ' Generic Step Sequencer Component '
 
     def __init__(self, parent, matrix, side_buttons, nav_buttons):
+        log(True, __name__)
         self._parent = parent
-        log("StepSequencerComponent::__init__")
         ControlSurfaceComponent.__init__(self)
         assert isinstance(side_buttons, tuple)
         
@@ -116,6 +115,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
         #this are the parameters to be set
         self.parameters = [None, None, None, None]
         self.assign_parameters()
+        log(False, __name__)
         
 
     """ assign the parameters to be set """

@@ -1,6 +1,3 @@
-#! /usr/bin/env python
-# emacs-mode: -*- python-*-
-
 import Live #@UnresolvedImport
 from _Framework.ChannelStripComponent import ChannelStripComponent #@UnresolvedImport
 from ConfigurableButtonElement import ConfigurableButtonElement 
@@ -8,20 +5,22 @@ from ConfigurableButtonElement import ConfigurableButtonElement
 from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport @UnusedImport
 from _liveUtils.Logger import log #@UnresolvedImport @UnusedImport
 
+" Subclass of channel strip component offering defaultbuttons for the timeables "
 class DefChannelStripComponent(ChannelStripComponent):
-    " Subclass of channel strip component offering defaultbuttons for the timeables "
-
+    
+    """ INIT """
     def __init__(self):
-        #log("DefChannelStripComponent::__init__")
+        #log(True, __name__)
         ChannelStripComponent.__init__(self)
         self._default_volume_button = None
         self._default_panning_button = None
         self._default_send1_button = None
         self._default_send2_button = None
         self._invert_mute_feedback = True
+        #log(False, __name__)
 
 
-    """ releasing references and removing listeners """
+    """ RELEASING REFERENCES AND REMOVING LISTENERS """
     def disconnect(self):
         if (self._track != None):
             volume = self._track.mixer_device.volume
@@ -50,7 +49,7 @@ class DefChannelStripComponent(ChannelStripComponent):
         ChannelStripComponent.disconnect(self)
 
 
-    """ set the track """
+    """ SET THE TRACK """
     def set_track(self, track):
         #log("DefChannelStripComponent::set_track (name:" + str(track.name) + ")")
         #skip it not one of our tracks
@@ -75,7 +74,7 @@ class DefChannelStripComponent(ChannelStripComponent):
             self.update()
 
 
-    """ set default buttons """
+    """ SET DEFAULT BUTTONS """
     def set_default_buttons(self, volume, panning, send1, send2):
         assert ((volume == None) or isinstance(volume, ConfigurableButtonElement))
         assert ((panning == None) or isinstance(panning, ConfigurableButtonElement))
@@ -108,7 +107,7 @@ class DefChannelStripComponent(ChannelStripComponent):
         self.update()
 
 
-    """ set the send controls """
+    """ SET THE SEND CONTROLS """
     def set_send_controls(self, controls):
         assert ((controls == None) or isinstance(controls, tuple))
         if (controls != self._send_controls):
@@ -120,7 +119,7 @@ class DefChannelStripComponent(ChannelStripComponent):
             self.update()
 
 
-    """ update the shit"""
+    """ UPDATE THE SHIT """
     def update(self):   
         ChannelStripComponent.update(self)
         if self._allow_updates:
@@ -172,7 +171,7 @@ class DefChannelStripComponent(ChannelStripComponent):
                                 send_control.reset()
 
 
-    """ default volume value """
+    """ DEFAULT VOLUME VALUE """
     def _default_volume_value(self, value):
         assert (self._default_volume_button != None)
         assert (value in range(128))
@@ -183,7 +182,7 @@ class DefChannelStripComponent(ChannelStripComponent):
                     volume.value = volume.default_value
 
 
-    """ default panning volume """
+    """ DEFAULT PANNING VOLUME """
     def _default_panning_value(self, value):
         assert (self._default_panning_button != None)
         assert (value in range(128))
@@ -194,7 +193,7 @@ class DefChannelStripComponent(ChannelStripComponent):
                     panning.value = panning.default_value
 
 
-    """ default send1 value """
+    """ DEFAULT SEND1 VALUE """
     def _default_send1_value(self, value):
         assert (self._default_send1_button != None)
         assert (value in range(128))
@@ -205,7 +204,7 @@ class DefChannelStripComponent(ChannelStripComponent):
                     send1.value = send1.default_value
 
     
-    """ default send2 value """
+    """ DEFAULT SEND2 VALUE """
     def _default_send2_value(self, value):
         assert (self._default_send2_button != None)
         assert (value in range(128))
@@ -216,7 +215,7 @@ class DefChannelStripComponent(ChannelStripComponent):
                     send2.value = send2.default_value
 
 
-    """ mute callback """
+    """ MUTE CALLBACK """
     def _on_mute_changed(self):
         if (self.is_enabled() and (self._mute_button != None)):
             if (self._track != None):
@@ -228,7 +227,7 @@ class DefChannelStripComponent(ChannelStripComponent):
                 self._mute_button.send_value(0)
 
 
-    """ solo callback """
+    """ SOLO CALLBACK """
     def _on_solo_changed(self):
         if (self.is_enabled() and (self._solo_button != None)):
             if (self._track != None):
@@ -240,7 +239,7 @@ class DefChannelStripComponent(ChannelStripComponent):
                 self._solo_button.send_value(0)
 
 
-    """ arm callback """
+    """ ARM CALLBACK """
     def _on_arm_changed(self):
         if (self.is_enabled() and (self._arm_button != None)):
             if (self._track != None):
@@ -252,7 +251,7 @@ class DefChannelStripComponent(ChannelStripComponent):
                 self._arm_button.send_value(0)
 
 
-    """ volume callback """
+    """ VOLUME CALLBACK """
     def _on_volume_changed(self):
         assert (self._track != None)
         if (self.is_enabled() and (self._default_volume_button != None)):
@@ -263,7 +262,7 @@ class DefChannelStripComponent(ChannelStripComponent):
                 self._default_volume_button.turn_off()
 
 
-    """ pan callback """
+    """ PAN CALLBACK """
     def _on_panning_changed(self):
         assert (self._track != None)
         if (self.is_enabled() and (self._default_panning_button != None)):
@@ -274,7 +273,7 @@ class DefChannelStripComponent(ChannelStripComponent):
                 self._default_panning_button.turn_off()
 
 
-    """ send1 callback """
+    """ SEND1 CALLBACK """
     def _on_send1_changed(self):
         assert (self._track != None)
         sends = self._track.mixer_device.sends
@@ -287,7 +286,7 @@ class DefChannelStripComponent(ChannelStripComponent):
                 self._default_send1_button.turn_off()
 
 
-    """ send2 callback """
+    """ SEND2 CALLBACK """
     def _on_send2_changed(self):
         assert (self._track != None)
         sends = self._track.mixer_device.sends
@@ -299,6 +298,3 @@ class DefChannelStripComponent(ChannelStripComponent):
             else:
                 self._default_send2_button.turn_off()
 
-
-# local variables:
-# tab-width: 4

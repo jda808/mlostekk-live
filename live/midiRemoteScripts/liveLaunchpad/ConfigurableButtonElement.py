@@ -7,6 +7,7 @@ class ConfigurableButtonElement(ButtonElement):
     __module__ = __name__
 
     def __init__(self, is_momentary, msg_type, channel, identifier, dummy = False):
+        #log(True, __name__)
         ButtonElement.__init__(self, is_momentary, msg_type, channel, identifier) #@UndefinedVariable
         self._on_value = 127
         self._off_value = 4
@@ -15,6 +16,7 @@ class ConfigurableButtonElement(ButtonElement):
         self._force_next_value = False
         self._pending_listeners = []
         self._dummy = dummy
+        #log(False, __name__)
 
 
     """ SET ON OFF VALUES """

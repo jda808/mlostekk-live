@@ -20,9 +20,8 @@ class Launchpad(ControlSurface):
     
     " Script for Novation's Launchpad Controller "
     def __init__(self, c_instance):
-        #some launchpad init stuff
+        log(True, __name__)
         self._my_c_instance = c_instance
-        #log("Launchpad::__init__")
         ControlSurface.__init__(self, c_instance)
         self.set_suppress_rebuild_requests(True)
         self._suppress_send_midi = True
@@ -77,11 +76,9 @@ class Launchpad(ControlSurface):
         for control in self.controls:
             if isinstance(control, ConfigurableButtonElement):
                 control.add_value_listener(self._button_value)
-
         self._suppress_session_highlight = False
         self.set_suppress_rebuild_requests(False)
-
-        log("LaunchPad85 Loaded !")
+        log(False, __name__)
 
        
     """ disconnect """
@@ -140,7 +137,6 @@ class Launchpad(ControlSurface):
         sent_successfully = False
         if (not self._suppress_send_midi):
             sent_successfully = ControlSurface._send_midi(self, midi_bytes)
-            #log("successfully!?!?" + str(sent_successfully) + " und was so?" + str(midi_bytes))
         return sent_successfully
 
 
@@ -175,7 +171,6 @@ class Launchpad(ControlSurface):
                 for control in self.controls:
                     if isinstance(control, ConfigurableButtonElement):
                         control.set_force_next_value()
-
             self._selector.set_mode(0)
             self.set_enabled(enabled)
             self._suppress_send_midi = False
@@ -195,9 +190,6 @@ class Launchpad(ControlSurface):
     
     """ set the session highlight """
     def _set_session_highlight(self, track_offset, scene_offset, width, height, include_return_tracks):
-        log("Launchpad::_set_session_highlight (" + str(track_offset) + ", " + str(scene_offset) + ", " + str(width) + ", " + str(height) + ")")
         if (not self._suppress_session_highlight):
             ControlSurface._set_session_highlight(self, track_offset, scene_offset, width, height, include_return_tracks)
 
-# local variables:
-# tab-width: 4

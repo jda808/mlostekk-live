@@ -20,7 +20,6 @@ LiveControl Sequencer module by ST8 <http://monome.q3f.org>
 and the CS Step Sequencer Live API example by Cycling '74 <http://www.cycling74.com>
 """
 
-
 from _Framework.ControlSurfaceComponent import ControlSurfaceComponent #@UnresolvedImport
 from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
 from _Framework.InputControlElement import * 
@@ -28,7 +27,11 @@ from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImpor
 from consts import * #@UnusedWildImport
 from _liveUtils.Logger import log #@UnresolvedImport
 from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
+from _liveUtils.DeviceFinder import DeviceFinder #@UnresolvedImport
 
+#===============================================================================
+# colors
+#===============================================================================
 SEQ_MARKER_RAIL = RED_THIRD
 SEQ_MARKER_EVENT = RED_FULL
 SEQ_MARKER = RED_HALF
@@ -37,15 +40,17 @@ SEQ_MARKER_VISIBLE = True
 SEQ_MARKER_Y_OFFSET = 0
 
 MARKER_COLORS_BLINKING = [AMBER_BLINK, GREEN_BLINK, AMBER_BLINK, GREEN_FULL, AMBER_BLINK, GREEN_BLINK, AMBER_BLINK, GREEN_BLINK]
-MARKER_COLORS =          [AMBER_FULL, GREEN_FULL, AMBER_FULL, GREEN_FULL, AMBER_FULL, GREEN_FULL, AMBER_FULL, GREEN_FULL]
+MARKER_COLORS = [AMBER_FULL, GREEN_FULL, AMBER_FULL, GREEN_FULL, AMBER_FULL, GREEN_FULL, AMBER_FULL, GREEN_FULL]
 SIDEBAR_ON = [RED_BLINK, GREEN_BLINK, AMBER_BLINK, GREEN_BLINK, RED_BLINK, GREEN_BLINK, AMBER_BLINK, GREEN_BLINK]
 SIDEBAR_OFF = [RED_THIRD, GREEN_THIRD, AMBER_THIRD, GREEN_THIRD, RED_THIRD, GREEN_THIRD, AMBER_THIRD, GREEN_THIRD]
- 
-# quant map
-QUANTIZATION_MAP = [0.25, 0.5, 1]
-QUANTIZATION_COLOR_MAP = [GREEN_FULL, GREEN_HALF, GREEN_THIRD]
 
-       
+QUANTIZATION_COLOR_MAP = [GREEN_FULL, GREEN_HALF, GREEN_THIRD]
+ 
+#===============================================================================
+# quantization map
+#===============================================================================
+QUANTIZATION_MAP = [0.25, 0.5, 1]
+      
 class StepSequencerComponent(ControlSurfaceComponent):
     __module__ = __name__
     __doc__ = ' Generic Step Sequencer Component '
@@ -115,10 +120,10 @@ class StepSequencerComponent(ControlSurfaceComponent):
 
     """ assign the parameters to be set """
     def assign_parameters(self):
-        dev_index = TrackFinder.get_device_index()
+        dev_index = DeviceFinder.get_device_index()
         assert(dev_index >= 0)
         for index in range(len(self.parameters)):
-            param_index = TrackFinder.get_parameter_index(index)
+            param_index = DeviceFinder.get_parameter_index(index)
             assert(param_index >= 0)
             self.parameters[index] = self.song().master_track.devices[dev_index].parameters[param_index]
             #log("StepSequencerComponent::assign_parameters (" + str(self.song().master_track.devices[dev_index].name) + ", "  + str(index) + ", " + str(self.parameters[index].name + ")"))
@@ -164,9 +169,9 @@ class StepSequencerComponent(ControlSurfaceComponent):
     def handle_event(self):
         if self._grid_play_position_prev != self._grid_play_position:
             for y_index in range(self._height / 2):
-                last_event_y = self._grid_play_bank_prev*4 + y_index 
+                last_event_y = self._grid_play_bank_prev * 4 + y_index 
                 last_event = self._event_grid[self._grid_play_position_prev][last_event_y]
-                new_event_y = self._grid_play_bank*4 + y_index
+                new_event_y = self._grid_play_bank * 4 + y_index
                 new_event = self._event_grid[self._grid_play_position][new_event_y]
                 if new_event != last_event:
                     #log("handling events at gridIndex: " + str(self._grid_play_position) + "  bankIndex: " + str(self._grid_play_bank) + " param: " + str(y_index))
@@ -196,7 +201,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
             #display events
             for bank_index in range(2):
                 for y_index in range(4):
-                    y = bank_index*4 + y_index
+                    y = bank_index * 4 + y_index
                     y_color = MARKER_COLORS[y_index]
                     for x in range(8):
                         event = self._event_grid[x][y]                        
@@ -286,7 +291,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
             self._side_buttons[index].reset()
             #if self._side_buttons[index] != None:
             #    self._side_buttons[index].remove_value_listener(self.handle_sidebar_button)
-            self._side_buttons[index].add_value_listener(self.handle_sidebar_button, identify_sender=True)  
+            self._side_buttons[index].add_value_listener(self.handle_sidebar_button, identify_sender = True)  
 
     """ SIDEBAR HANDLER"""
     def handle_sidebar_button(self, value, sender):
@@ -298,12 +303,12 @@ class StepSequencerComponent(ControlSurfaceComponent):
                 
         #global disable via RED channel
         if senderIDX == 0:
-            for index in range(0,4):
+            for index in range(0, 4):
                 self._sync_stopper[index] = True
                 self._side_buttons[index].turn_on(False)
                 self._last_button = -1
         elif senderIDX == 4:
-            for index in range(4,8):
+            for index in range(4, 8):
                 self._sync_stopper[index] = True
                 self._side_buttons[index].turn_on(False)
                 self._last_button = -1
@@ -358,14 +363,14 @@ class StepSequencerComponent(ControlSurfaceComponent):
             self._quantization_buttonUp = buttonUp
             if (self._quantization_buttonUp != None):
                 assert isinstance(buttonUp, ButtonElement)
-                self._quantization_buttonUp.add_value_listener(self.quantization_button_value, identify_sender=True)
+                self._quantization_buttonUp.add_value_listener(self.quantization_button_value, identify_sender = True)
         if (self._quantization_buttonDown != buttonDown):
             if (self._quantization_buttonDown != None):
                 self._quantization_buttonDown.remove_value_listener(self.quantization_button_value)
             self._quantization_buttonDown = buttonDown
             if (self._quantization_buttonDown != None):
                 assert isinstance(buttonDown, ButtonElement)
-                self._quantization_buttonDown.add_value_listener(self.quantization_button_value, identify_sender=True)
+                self._quantization_buttonDown.add_value_listener(self.quantization_button_value, identify_sender = True)
 
     """ HANDLE QUANT PRESS """
     def quantization_button_value(self, value, sender):
@@ -379,7 +384,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
             modifier = -1            
         if self.is_enabled() and self._is_active:
             if ((value is not 0) or (not sender.is_momentary())):
-                self._quantization_index = min(max(self._quantization_index + modifier, 0), len(QUANTIZATION_MAP)-1)
+                self._quantization_index = min(max(self._quantization_index + modifier, 0), len(QUANTIZATION_MAP) - 1)
                 self._quantization = QUANTIZATION_MAP[self._quantization_index]
                 self.update_quantization_buttons()    
                 self.update()                
@@ -389,7 +394,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
     """Calculates the position"""
     def update_positions(self):
         beatTime = self.song().get_current_beats_song_time()
-        play_position = (beatTime.bars-1)*16 + (beatTime.beats-1)*4 + (beatTime.sub_division-1)
+        play_position = (beatTime.bars - 1) * 16 + (beatTime.beats - 1) * 4 + (beatTime.sub_division - 1)
         self._grid_play_bank = int(play_position * self._quantization / self._width) % 2 
         self._grid_play_position = int(play_position * self._quantization) % self._width 
         #log("play_position in beats: " + str(play_position) + "..... calculated bankIndex(" + str(self._grid_play_bank) + "), gridIndex(" + str(self._grid_play_position) + ")")
@@ -403,7 +408,7 @@ class StepSequencerComponent(ControlSurfaceComponent):
     """ ONE CYCLE DONE """
     def trigger_sync_stop(self, bank_index):
         for y_index in range(self._height / 2):
-            y = bank_index*4 + y_index
+            y = bank_index * 4 + y_index
             if self._sync_stopper[y] == True:
                 for x in range(self._width):
                     self._event_grid[x][y] = 0

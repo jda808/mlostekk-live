@@ -51,7 +51,7 @@ class MainSelectorComponent(ModeSelectorComponent):
         self._sub_modes.set_update_callback(self.update_control_channels)
         
         #setup additional stuff
-        self._stepseq = StepSequencerComponent(self, self._matrix,self._side_buttons,self._nav_buttons)
+        self._stepseq = StepSequencerComponent(self, self._matrix, self._side_buttons, self._nav_buttons)
         self.init_session()
         self._all_buttons = tuple(self._all_buttons)
         self.set_modes_buttons(top_buttons[4:])
@@ -273,7 +273,7 @@ class MainSelectorComponent(ModeSelectorComponent):
 
 
     """ SETUP USER 1 """
-    def setup_user1(self, release_matrix=True, release_side_buttons=True, release_nav_buttons=True):
+    def setup_user1(self, release_matrix = True, release_side_buttons = True, release_nav_buttons = True):
         #log("MainSelectorComponent::setup_user1")
         for scene_index in range(8):
             if(release_side_buttons):
@@ -296,7 +296,7 @@ class MainSelectorComponent(ModeSelectorComponent):
 
         if release_matrix:
             self._config_button.send_value(2)
-        self._config_button.send_value(32, force_send=True)
+        self._config_button.send_value(32, force_send = True)
 
 
     """ UPDATE THE FOLD BUTTONS """
@@ -323,13 +323,13 @@ class MainSelectorComponent(ModeSelectorComponent):
                 self.button_fold.remove_value_listener(self.handle_fold_buttons())
             self.button_fold = foldButton
             if (self.button_fold != None):
-                self.button_fold.add_value_listener(self.handle_fold_buttons, identify_sender=True)
+                self.button_fold.add_value_listener(self.handle_fold_buttons, identify_sender = True)
         if (self.button_unfold != unfoldButton):
             if (self.button_unfold != None):
                 self.button_unfold.remove_value_listener(self.handle_fold_buttons)
             self.button_unfold = unfoldButton
             if (self.button_unfold != None):
-                self.button_unfold.add_value_listener(self.handle_fold_buttons, identify_sender=True)
+                self.button_unfold.add_value_listener(self.handle_fold_buttons, identify_sender = True)
                 
             
     """ HANDLE UN/FOLD """

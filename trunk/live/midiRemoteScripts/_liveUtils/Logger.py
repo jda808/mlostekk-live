@@ -1,17 +1,21 @@
 import sys
-#import time
 
+#===============================================================================
+# socket import
+#===============================================================================
 try:
     import socket
 except:
     print "No Sockets"
     
+"""
+Simple logger.
+Tries to use a socket which connects to localhost port 4444 by default.
+If that fails then it logs to a file
+"""
 class Logger:
-    """
-    Simple logger.
-    Tries to use a socket which connects to localhost port 4444 by default.
-    If that fails then it logs to a file
-    """
+    
+    """ INIT """ 
     def __init__(self):
         try:
             self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -32,21 +36,29 @@ class Logger:
 
         self.buf = ""
 
+    
+    """ MAIN LOG """
     def log(self, msg):
         if self.connected:
             self.send(msg + '\n')
         else:
             print(msg)
         
+        
+    """ SEND MESSAGE """
     def send(self, msg):
         if self.connected:
             self.socket.send(msg)
     
+    
+    """ CLOSE THE LOGGER """
     def close(self):
         if self.connected:
             self.socket.send("Closing..")
             self.socket.close()
-            
+    
+    
+    """ WRITE TO STDOUT OR FILE """        
     def write(self, msg):
         self.stderr.write(msg)
         self.buf = self.buf + msg
@@ -55,8 +67,14 @@ class Logger:
             self.send("STDERR: " + lines[0] + "\n")
             self.buf = lines[1]
 
+#===============================================================================
+# global logger instance 
+#===============================================================================
 logger = Logger()
 
+#===============================================================================
+# global log function
+#===============================================================================
 def log(*args):
     text = ''
     for arg in args:

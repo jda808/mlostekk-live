@@ -95,12 +95,7 @@ class SubSelectorComponent(ModeSelectorComponent):
             for row in range(self._matrix.height()):
                 self._matrix.get_button(track, row).set_on_off_values(127, LED_OFF)
             strip = self._mixer.channel_strip(track)
-            strip.set_default_buttons(None, None, None, None)
-            strip.set_solo_button(None)
-            strip.set_arm_button(None)
-            strip.set_send_controls((None, None))
-            strip.set_pan_control(None)
-            strip.set_volume_control(None)
+            strip.set_solo_button(None)            
         self._session.set_stop_track_clip_buttons(None)
         self._mixer.set_global_buttons(None, None)
         self._session.set_stop_all_clips_button(None)

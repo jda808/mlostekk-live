@@ -25,8 +25,9 @@ import Live #@UnresolvedImport @UnusedImport
 #import RemixNet
 import OSC
 import LiveUtils
-from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
-from _liveUtils.Logger import log #@UnresolvedImport
+from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport @UnusedImport
+from _liveUtils.DeviceFinder import DeviceFinder #@UnresolvedImport @UnusedImport
+from _liveUtils.Logger import log #@UnresolvedImport @UnusedImport
 from LiveUtils import * #@UnusedWildImport
 
 #import sys
@@ -136,7 +137,7 @@ class LiveOSCCallbacks:
         self.callbackManager.add("/live/selection", self.selectionCB)
 
         """ my callbacks for massive """
-        #TrackFinder.find_massive_synths(getTracks())
+        #DeviceFinder.find_massive_synths(getTracks())
         #self.callbackManager.add("/MASSIVE/SETUP", self.massiveSetup)
         
         #append all callbacks
@@ -152,7 +153,7 @@ class LiveOSCCallbacks:
     """ handle incoming massive OSC stuff 
     def massiveBaseIncoming(self, msg, source):
         #log("massive base incoming:" + str(msg))
-        params = TrackFinder.get_massive_BASE_parameters()
+        params = DeviceFinder.get_massive_BASE_parameters()
         params[msg[0]].value = msg[2]"""
         
     """ handle incoming massive OSC stuff 
@@ -182,20 +183,20 @@ class LiveOSCCallbacks:
            
         #some assertions
         if msg[2] == str("MASSIVE_SYNTH"):
-            assert(trackIndex == TrackFinder.get_massive_SYNTH_index())
-            param = TrackFinder.get_massive_SYNTH_parameters()
+            assert(trackIndex == DeviceFinder.get_massive_SYNTH_index())
+            param = DeviceFinder.get_massive_SYNTH_parameters()
             param[stringX] = parameterX
             param[stringY] = parameterY
-            TrackFinder.set_massive_SYNTH_parameters(param)
-            #log("-- paramsSYNTH: " + str(TrackFinder.get_massive_SYNTH_parameters()))
+            DeviceFinder.set_massive_SYNTH_parameters(param)
+            #log("-- paramsSYNTH: " + str(DeviceFinder.get_massive_SYNTH_parameters()))
             
         elif msg[2] == str("MASSIVE_BASE"):
-            assert(trackIndex == TrackFinder.get_massive_BASE_index())
-            param = TrackFinder.get_massive_BASE_parameters()
+            assert(trackIndex == DeviceFinder.get_massive_BASE_index())
+            param = DeviceFinder.get_massive_BASE_parameters()
             param[stringX] = parameterX
             param[stringY] = parameterY
-            TrackFinder.set_massive_BASE_parameters(param)
-            #log("-- paramsBASE: " + str(TrackFinder.get_massive_BASE_parameters()))"""
+            DeviceFinder.set_massive_BASE_parameters(param)
+            #log("-- paramsBASE: " + str(DeviceFinder.get_massive_BASE_parameters()))"""
         
         
     def sigCB(self, msg, source):

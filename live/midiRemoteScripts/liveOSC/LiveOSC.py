@@ -34,8 +34,8 @@ import OSC
 import LiveUtils
 import sys
 from _liveUtils.Logger import log #@UnresolvedImport
-from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
-
+from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport @UnusedImport
+from _liveUtils.DeviceFinder import DeviceFinder #@UnresolvedImport @UnusedImport
 
 class LiveOSC:
     __module__ = __name__
@@ -944,12 +944,12 @@ class LiveOSC:
         elif type == 1:
             self.oscEndpoint.send('/live/return/device/param', (tid, did, pid, param.value, str(param.name)))
         #else:
-            #if tid == TrackFinder.get_massive_BASE_index():
-            #    for oscCommand, para in TrackFinder.get_massive_BASE_parameters().items():
+            #if tid == DeviceFinder.get_massive_BASE_index():
+            #    for oscCommand, para in DeviceFinder.get_massive_BASE_parameters().items():
             #        if para == param:
             #            self.oscEndpoint.send(oscCommand, param.value)
-            #elif tid == TrackFinder.get_massive_SYNTH_index():
-            #    for oscCommand, para in TrackFinder.get_massive_SYNTH_parameters().items():
+            #elif tid == DeviceFinder.get_massive_SYNTH_index():
+            #    for oscCommand, para in DeviceFinder.get_massive_SYNTH_parameters().items():
             #        if para == param:
             #            self.oscEndpoint.send(oscCommand, param.value)
             #else:

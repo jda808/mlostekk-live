@@ -1,12 +1,12 @@
 #import Live 
-from _Framework.ButtonElement import * 
+from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
 from _liveUtils.Logger import log #@UnresolvedImport @UnusedImport
 
-class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
+class ConfigurableButtonElement(ButtonElement): 
     ' Special button class that can be configured with custom on- and off-values '
     __module__ = __name__
 
-    def __init__(self, is_momentary, msg_type, channel, identifier, dummy=False):
+    def __init__(self, is_momentary, msg_type, channel, identifier, dummy = False):
         ButtonElement.__init__(self, is_momentary, msg_type, channel, identifier) #@UndefinedVariable
         self._on_value = 127
         self._off_value = 4
@@ -40,7 +40,7 @@ class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 
 
     """ TURN THE BUTTON ON """
-    def turn_on(self, sendAlways=True):
+    def turn_on(self, sendAlways = True):
         if sendAlways == True:
             self.send_value(self._on_value)
         else:
@@ -49,7 +49,7 @@ class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 
 
     """ TURN THE BUTTON OFF """
-    def turn_off(self, sendAlways=True):
+    def turn_off(self, sendAlways = True):
         if sendAlways:
             self.send_value(self._off_value)
         else:
@@ -63,7 +63,7 @@ class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 
 
     """ ADD A LISTENER """
-    def add_value_listener(self, callback, identify_sender=False):
+    def add_value_listener(self, callback, identify_sender = False):
         if self._dummy != True:
             if (not self._is_notifying):
                 ButtonElement.add_value_listener(self, callback, identify_sender) #@UndefinedVariable
@@ -90,7 +90,7 @@ class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 
 
     """ SEND THE VALUE """
-    def send_value(self, value, force=False):
+    def send_value(self, value, force = False):
         if self._dummy != True:
             #log("ButtonElement::send_value   identifier :" + str(self.name) + ",      value :" + str(value))   
             ButtonElement.send_value(self, value, (force or self._force_next_value)) #@UndefinedVariable

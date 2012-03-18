@@ -1,18 +1,17 @@
-#! /usr/bin/env python
-# emacs-mode: -*- python-*-
-
 from consts import * #@UnusedWildImport
 from _Framework.ButtonSliderElement import ButtonSliderElement #@UnresolvedImport
 from _Framework.InputControlElement import * 
 #from ConfigurableButtonElement import ConfigurableButtonElement 
+
 SLIDER_MODE_SINGLE = 0
 SLIDER_MODE_VOLUME = 1
 SLIDER_MODE_PAN = 2
 SLIDER_MODE_PARAMETER = 3
 
+" Class representing a set of buttons used as a slider "
 class PreciseButtonSliderElement(ButtonSliderElement):
-    " Class representing a set of buttons used as a slider "
-
+    
+    """ INIT """
     def __init__(self, buttons):
         ButtonSliderElement.__init__(self, buttons)
         num_buttons = len(buttons)
@@ -22,30 +21,36 @@ class PreciseButtonSliderElement(ButtonSliderElement):
         self._parent = None
         self._precision_mode = False
 
+
     """ SET PARENT """
     def set_parent(self, parent):
         self._parent = parent
+
 
     """ ENABLE DISABLE """
     def set_disabled(self, disabled):
         assert isinstance(disabled, type(False))
         self._disabled = disabled
 
+
     """ SET PRECISION MODE """
     def set_precision_mode(self, precision_mode):
         self._precision_mode = precision_mode
 
+
     """ SET MODE """
     def set_mode(self, mode):
-        assert (mode in (SLIDER_MODE_SINGLE,SLIDER_MODE_VOLUME, SLIDER_MODE_PAN,SLIDER_MODE_PARAMETER))
+        assert (mode in (SLIDER_MODE_SINGLE, SLIDER_MODE_VOLUME, SLIDER_MODE_PAN, SLIDER_MODE_PARAMETER))
         if (mode != self._mode):
             self._mode = mode
+
 
     """ SET VALUE MAP """
     def set_value_map(self, map):
         assert isinstance(map, (tuple, type(None)))
         assert (len(map) == len(self._buttons))
         self._value_map = map
+
 
     """ SEND VALUE """
     def send_value(self, value):
@@ -66,12 +71,14 @@ class PreciseButtonSliderElement(ButtonSliderElement):
                     assert False
                 self._last_sent_value = value
 
+
     """ CONNECT TO PARAMETER """
     def connect_to(self, parameter):
         ButtonSliderElement.connect_to(self, parameter)
         if (self._parameter_to_map_to != None):
             self._last_sent_value = -1
             self._on_parameter_changed()
+
 
     """ RELEASE PARAMETER """
     def release_parameter(self):
@@ -81,12 +88,14 @@ class PreciseButtonSliderElement(ButtonSliderElement):
             for button in self._buttons:
                 button.reset()
 
+
     """ RESET SLIDER """
     def reset(self):
         if ((not self._disabled) and (self._buttons != None)):
             for button in self._buttons:
                 if (button != None):
                     button.reset()
+
 
     """ SEND VOLUME """
     def _send_value_volume(self, value):
@@ -99,6 +108,7 @@ class PreciseButtonSliderElement(ButtonSliderElement):
                     break
         self._send_mask(tuple([ (index <= index_to_light) for index in range(len(self._buttons)) ]))
 
+
     """ SEND PARAMETER """
     def _send_value_parameter(self, value):
         index_to_light = -1
@@ -109,6 +119,7 @@ class PreciseButtonSliderElement(ButtonSliderElement):
                     index_to_light = index
                     break
         self._send_mask(tuple([ (index <= index_to_light) for index in range(len(self._buttons)) ]))
+
 
     """ SEND PAN """
     def _send_value_pan(self, value):
@@ -133,6 +144,7 @@ class PreciseButtonSliderElement(ButtonSliderElement):
                 button_bits[index] = (self._value_map[index] == normalised_value)
         self._send_mask(tuple(button_bits))
 
+
     """ SEND MASK """
     def _send_mask(self, mask):
         assert isinstance(mask, tuple)
@@ -142,6 +154,7 @@ class PreciseButtonSliderElement(ButtonSliderElement):
                 self._buttons[index].turn_on()
             else:
                 self._buttons[index].turn_off()
+
 
     """ SEND BUTTON VALUE """
     def _button_value(self, value, sender):
@@ -183,6 +196,7 @@ class PreciseButtonSliderElement(ButtonSliderElement):
                 else:
                     callback(midi_value) #@UndefinedVariable
 
+
     """ PARAMETER CHANGED CALLBACK """
     def _on_parameter_changed(self):
         assert (self._parameter_to_map_to != None)
@@ -205,7 +219,3 @@ class PreciseButtonSliderElement(ButtonSliderElement):
         else:
             midi_value = int(((127 * abs((param_value - self._parameter_to_map_to.min))) / param_range))
         self.send_value(midi_value)
-
-
-# local variables:
-# tab-width: 4

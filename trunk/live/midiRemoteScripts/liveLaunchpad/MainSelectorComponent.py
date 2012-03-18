@@ -2,9 +2,9 @@
 # emacs-mode: -*- python-*-
 
 from consts import * #@UnusedWildImport
-#from _Framework.ModeSelectorComponent import ModeSelectorComponent #@UnresolvedImport
-#from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
-#from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImport
+from _Framework.ModeSelectorComponent import ModeSelectorComponent #@UnresolvedImport
+from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
+from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImport
 #from _Framework.ButtonSliderElement import ButtonSliderElement 
 #from _Framework.ClipSlotComponent import ClipSlotComponent 
 #from _Framework.ChannelStripComponent import ChannelStripComponent 
@@ -14,9 +14,9 @@ from consts import * #@UnusedWildImport
 from SpecialSessionComponent import SpecialSessionComponent 
 from SubSelectorComponent import * #@UnusedWildImport
 from StepSequencerComponent import StepSequencerComponent
-#from _liveUtils.Logger import log #@UnresolvedImport
-#from SubSelectorComponent import SubSelectorComponent
-#from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
+from _liveUtils.Logger import log #@UnresolvedImport
+from SubSelectorComponent import SubSelectorComponent #@UnresolvedImport
+from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
 
 class MainSelectorComponent(ModeSelectorComponent):
     
@@ -98,7 +98,7 @@ class MainSelectorComponent(ModeSelectorComponent):
                 self._modes_buttons.append(button)
                 button.add_value_listener(self._mode_value, identify_sender)
 
-        self.set_mode(0)
+        self.set_mode(0) 
 
 
     """ GET NUMBER OF MODES """

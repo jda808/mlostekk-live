@@ -79,11 +79,12 @@ class Launchpad(ControlSurface):
         self._suppress_session_highlight = False
         self.set_suppress_rebuild_requests(False)
         log(False, __name__)
-
+        log("----------------------------------------------------------------------------")
+        log(" ")
        
     """ disconnect """
     def disconnect(self):
-        log("Launchpad::disconnect")
+        log(__name__, "disconnect")
         self._suppress_send_midi = True
         for control in self.controls:
             if isinstance(control, ConfigurableButtonElement):

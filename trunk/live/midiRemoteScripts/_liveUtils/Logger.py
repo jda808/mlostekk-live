@@ -33,38 +33,24 @@ class Logger:
             except:
                 print "Couldn't connect socket"
         self.buf = ""
-        self.inted_depth = 0
-        self.inted = str('')
-    
-    
-    """ INCREMENT INTEND DEPTH """
-    def inrementIntendDepth(self):
-        self.inted_depth += 1
-        self.updateTabInted()
-        
-        
-    """ DECREMENT INTEND DEPTH """
-    def decrementIntendDepth(self):
-        self.inted_depth += -1
-        self.updateTabInted()
-        
-        
-    """ UPDATE TAB INTED """
-    def updateTabInted(self):
-        self.inted = ''
-        for tab in range(self.inted_depth): #@UnusedVariable
-            self.inted = self.inted + str('  ')
-            
+        self.intend = 0
+        self.intend_map = {}      
+                 
             
     """ MAIN LOG """
     def log(self, msg):
-        msg = self.inted + msg
         if self.connected:
             self.send(msg + '\n')
         else:
             print(msg)
                     
-        
+                    
+    """ LOG INTENDED """
+    def logIntended(self, className, msg):
+        msg = self.intend_map[className] + className + "::" + msg
+        self.log(msg)    
+    
+    
     """ SEND MESSAGE """
     def send(self, msg):
         if self.connected:
@@ -86,7 +72,16 @@ class Logger:
         if len(lines) == 2:
             self.send("STDERR: " + lines[0] + "\n")
             self.buf = lines[1]
-
+            
+    """ ADD CLASS TO INTEND MAP """#
+    def addToIntendMap(self, className):
+        intendText = "" 
+        for intendIndex in range(self.intend): #@UnusedVariable
+            intendText = intendText + "   "
+        self.intend_map[className] = intendText
+        self.intend += 1
+        
+        
 #===============================================================================
 # global logger instance 
 #===============================================================================
@@ -98,20 +93,13 @@ logger = Logger()
 def logInit(initStart, moduleName):
     assert(isinstance(initStart, type(False)))
     assert(isinstance(moduleName, type(str(''))))
-    moduleName = split(moduleName, '.')[1]
     if initStart:
-        if logger.inted_depth == 0:
-            logger.log("---------------------------------------------------- INIT START")
         text = moduleName + " === INIT start"
-        logger.log(text)
-        logger.inrementIntendDepth()
+        logger.addToIntendMap(moduleName)
+        #logger.logIntended(moduleName, text)
     else:
-        text = moduleName + " === INIT end"
-        logger.decrementIntendDepth()
-        logger.log(text)
-        if logger.inted_depth == 0:
-            logger.log("---------------------------------------------------- INIT END")
-            logger.log(" ")            
+        text = moduleName + " === INIT end"        
+        #logger.logIntended(moduleName, text)            
      
 #===============================================================================
 # global log function
@@ -120,14 +108,23 @@ def logInit(initStart, moduleName):
 def log(*args):
     text = ''
     # check if init logging
-    if isinstance(args[0], type(False)):
-        logInit(args[0], args[1])
-        return
-    # parse args
-    for arg in args:
-        if text != '':
-            text = text + ' '
-        text = text + str(arg)
-    # log
-    if logger != None:
-        logger.log(text)
+    if len(args) >= 2:
+        if isinstance(args[0], type(False)):
+            logInit(args[0], split(args[1], '.')[1])
+            return
+        # check if existing class logging, then do with intend
+        elif logger.intend_map.has_key(split(args[0], '.')[1]):
+            for arg in args[1:]:
+                if text != '':
+                    text = text + ' '
+                text = text + str(arg)
+            logger.logIntended(split(args[0], '.')[1], text)
+    else:
+        # parse args
+        for arg in args:
+            if text != '':
+                text = text + ' '
+            text = text + str(arg)
+        # log
+        if logger != None:
+            logger.log(text)

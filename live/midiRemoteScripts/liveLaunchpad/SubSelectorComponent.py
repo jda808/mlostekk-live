@@ -12,9 +12,10 @@ PAN_VALUE_MAP = (-1.0, -0.63492099999999996, -0.31746000000000002, 0.0, 0.0, 0.3
 VOL_VALUE_MAP = (0.0, 0.14288200000000001, 0.30241400000000002, 0.40000000000000002, 0.55000000000000004, 0.69999999999999996, 0.84999999999999998, 1.0)
 SEND_VALUE_MAP = (0.0, 0.103536, 0.164219, 0.23843900000000001, 0.34366400000000003, 0.55000000000000004, 0.77494200000000002, 1.0)
 
+" CLASS THAT HANDLES DIFFERENT MIXER MODES "
 class SubSelectorComponent(ModeSelectorComponent):
-    " Class that handles different mixer modes "
-
+    
+    """ INIT """
     def __init__(self, matrix, side_buttons, session, parent):
         log(True, __name__)
         self._parent = parent
@@ -25,7 +26,8 @@ class SubSelectorComponent(ModeSelectorComponent):
         assert isinstance(session, SessionComponent)
         ModeSelectorComponent.__init__(self)
         self._session = session
-        self._numTracks = len(self._parent._parent._my_c_instance.song().visible_tracks)
+        #self._numTracks = len(self._parent._parent._my_c_instance.song().visible_tracks)
+        self._numTracks = len(self._parent._parent._my_c_instance.song().tracks)
         self._mixer = SpecialMixerComponent(self._parent, self._numTracks)
         self._matrix = matrix
         self._mixer.name = "Mixer"
@@ -41,7 +43,7 @@ class SubSelectorComponent(ModeSelectorComponent):
         log(False, __name__)
 
 
-    """ disconnect """
+    """ DISCONNECT """
     def disconnect(self):
         log(__name__, "disconnect")
         self._session = None
@@ -52,13 +54,14 @@ class SubSelectorComponent(ModeSelectorComponent):
         ModeSelectorComponent.disconnect(self)
 
 
-    """ set update callback """
+    """ SET UPDATE CALLBACK """
     def set_update_callback(self, callback):
+        log(__name__, "set_update_callback (" + str(callback) + ")")
         assert (dir(callback).count("im_func") is 1)
         self._update_callback = callback
 
 
-    """ set mode """
+    """ SET MODE """
     def set_mode(self, mode):
         log(__name__, "set_mode (mode:" + str(mode) + ")")
         assert isinstance(mode, int)
@@ -68,40 +71,42 @@ class SubSelectorComponent(ModeSelectorComponent):
             self.update()
 
     
-    """ get mode """
+    """ GET MODE """
     def mode(self):
+        log(__name__, "mode")
         result = 0
         if self.is_enabled():
             result = (self._mode_index + 1)
         return result
 
 
-    """ get number of modes """
+    """ GET NUMBER OF MODES """
     def number_of_modes(self):
         return 1
 
 
-    """ enabled callback """
+    """ ENABLED CALLBACK """
     def on_enabled_changed(self):
         enabled = self.is_enabled()
         self._mixer.set_enabled(enabled)
         self.set_mode(-1)
 
 
-    """ release controls """
+    """ RELEASE CONTROLS """
     def release_controls(self):
         log(__name__, "release controls")
         for track in range(self._matrix.width()):
             for row in range(self._matrix.height()):
                 self._matrix.get_button(track, row).set_on_off_values(127, LED_OFF)
-            strip = self._mixer.channel_strip(track)
-            strip.set_solo_button(None)            
+            strip = self._mixer.channel_strip(TrackFinder.getTrackIndexArray()[track])
+            strip.set_solo_button(None)   
+            strip.set_mute_button(None)         
         self._session.set_stop_track_clip_buttons(None)
         self._mixer.set_global_buttons(None, None)
         self._session.set_stop_all_clips_button(None)
 
 
-    """ update """
+    """ UPDATE """
     def update(self):
         log(__name__, "update")
         if self.is_enabled():
@@ -123,7 +128,7 @@ class SubSelectorComponent(ModeSelectorComponent):
             self.release_controls()
 
 
-    """ setup mixer overview """
+    """ SETUP MIXER OVERVIEW """
     def setup_mixer_overview(self):
         log(__name__, "setup_mixer_overview")
         mute_index = 7

@@ -189,7 +189,7 @@ class MainSelectorComponent(ModeSelectorComponent):
                 self.setup_step_sequencer(as_active)
             elif (self._mode_index == 3):
                 self.setup_step_sequencer((not as_active))
-                self.setup_session((not as_active), as_enabled, True)
+                self.setup_session((as_active), as_enabled, True)
                 self.setup_mixer(as_active)
             else:
                 assert False

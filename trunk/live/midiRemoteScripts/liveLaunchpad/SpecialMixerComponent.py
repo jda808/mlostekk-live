@@ -30,7 +30,7 @@ class SpecialMixerComponent(MixerComponent):
 
     """ SET GLOBAL BUTTONS """
     def set_global_buttons(self, unmute_all, unsolo_all):
-        log(__name__, "set_global_buttons")
+        #log(__name__, "set_global_buttons")
         assert isinstance(unsolo_all, (ButtonElement, type(None)))
         assert isinstance(unmute_all, (ButtonElement, type(None)))
         if (self._unsolo_all_button != None):
@@ -55,7 +55,7 @@ class SpecialMixerComponent(MixerComponent):
 
     """ UNSOLO ALL """
     def _unsolo_all_value(self, value):
-        log(__name__, "_unsolo_all_value")
+        #log(__name__, "_unsolo_all_value (" + str(value) + ")")
         assert self.is_enabled()
         assert (self._unsolo_all_button != None)
         assert (value in range(128))
@@ -63,11 +63,13 @@ class SpecialMixerComponent(MixerComponent):
             for track in (self.song().tracks + self.song().return_tracks):
                 if track.solo:
                     track.solo = False
+        else:
+            self._unsolo_all_button.turn_off()
 
 
     """ UNMUTE ALL """
     def _unmute_all_value(self, value):
-        log(__name__, "_unmute_all_value")
+        #log(__name__, "_unmute_all_value (" + str(value) + ")")
         assert self.is_enabled()
         assert (self._unmute_all_button != None)
         assert (value in range(128))
@@ -75,3 +77,5 @@ class SpecialMixerComponent(MixerComponent):
             for track in (self.song().tracks + self.song().return_tracks):
                 if track.mute:
                     track.mute = False
+        else:
+            self._unmute_all_button.turn_off()

@@ -94,12 +94,10 @@ def logInit(initStart, moduleName):
     assert(isinstance(initStart, type(False)))
     assert(isinstance(moduleName, type(str(''))))
     if initStart:
-        text = moduleName + " === INIT start"
         logger.addToIntendMap(moduleName)
-        #logger.logIntended(moduleName, text)
+        logger.logIntended(moduleName, moduleName + " === INIT start")
     else:
-        text = moduleName + " === INIT end"        
-        #logger.logIntended(moduleName, text)            
+        logger.logIntended(moduleName, moduleName + " === INIT end")            
      
 #===============================================================================
 # global log function

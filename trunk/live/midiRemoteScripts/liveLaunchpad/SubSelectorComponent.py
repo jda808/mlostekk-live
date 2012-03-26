@@ -34,7 +34,7 @@ class SubSelectorComponent(ModeSelectorComponent):
         self._mixer.master_strip().name = "Master_Channel_strip"
         self._mixer.selected_strip().name = "Selected_Channel_strip"
         for column in range(matrix.width()):
-            index = TrackFinder.getTrackIndexArray()[column]
+            index = TrackFinder.get_idx_in_visible()[column]
             self._mixer.channel_strip(index).name = ("Channel_Strip_" + str(index))
 
         self._side_buttons = side_buttons[5:]
@@ -98,11 +98,11 @@ class SubSelectorComponent(ModeSelectorComponent):
         for track in range(self._matrix.width()):
             for row in range(self._matrix.height()):
                 self._matrix.get_button(track, row).set_on_off_values(127, LED_OFF)
-            strip = self._mixer.channel_strip(TrackFinder.getTrackIndexArray()[track])
+            strip = self._mixer.channel_strip(TrackFinder.get_idx_in_visible()[track])
             strip.set_solo_button(None)   
             strip.set_mute_button(None)         
         self._session.set_stop_track_clip_buttons(None)
-        self._mixer.set_global_buttons(None, None)
+        self._mixer.set_global_buttons(None, None, None)
         self._session.set_stop_all_clips_button(None)
 
 
@@ -135,7 +135,7 @@ class SubSelectorComponent(ModeSelectorComponent):
         solo_index = 6
         stop_index = 5
         for track in range(self._matrix.width()):
-            strip = self._mixer.channel_strip(TrackFinder.getTrackIndexArray()[track])
+            strip = self._mixer.channel_strip(TrackFinder.get_idx_in_visible()[track])
             # mute
             self._matrix.get_button(track, mute_index).set_on_off_values(GREEN_FULL, GREEN_THIRD)
             strip.set_mute_button(self._matrix.get_button(track, mute_index))
@@ -158,13 +158,14 @@ class SubSelectorComponent(ModeSelectorComponent):
         stop_buttons = []
         matrixIndex = -1
         for track in range(self._numTracks):
-            if (TrackFinder.getTrackIndexArray().count(track) > 0):
+            if (TrackFinder.get_idx_in_visible().count(track) > 0):
                 matrixIndex += 1
                 self._matrix.get_button(matrixIndex, stop_index).set_on_off_values(AMBER_FULL, AMBER_THIRD)
                 stop_buttons.append(self._matrix.get_button(matrixIndex, stop_index))
             else:
                 stop_buttons.append(None)
+                #stop_buttons.append(self._matrix.get_button(matrixIndex, stop_index))
                 
         self._session.set_stop_track_clip_buttons(tuple(stop_buttons))
         self._session.set_stop_all_clips_button(self._side_buttons[0])
-        self._mixer.set_global_buttons(self._side_buttons[2], self._side_buttons[1])
+        self._mixer.set_global_buttons(self._side_buttons[2], self._side_buttons[1], self._side_buttons[0])

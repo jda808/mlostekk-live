@@ -1,24 +1,15 @@
 '''
-Created on 03.03.2012
-
-@author: corvex
+just setup the group_names array for prefered groups
 '''
 from _liveUtils.Logger import log #@UnresolvedImport @UnusedImport
 
-""" these parameters are for the global groups to find """
-#global group indices
-group_index_KICK = -1
-group_index_BASE = -1
-group_index_SNR = -1
-group_index_HATZ = -1
-group_index_FX = -1
-group_index_SYNTH = -1
-group_index_LEAD = -1
-group_index_TEX = -1
-#array for all group indices
-group_idx = []
-#array for all groups
-group_trax = []
+# all group names
+group_names = ["KICK", "BASE", "SNR", "HATZ", "FX", "SYNTH", "LEAD", "TEX"]
+
+# arrays for idx
+group_idx_visible = [-1, -1, -1, -1, -1, -1, -1, -1]
+group_idx_all = [-1, -1, -1, -1, -1, -1, -1, -1]
+group_tracks = [None, None, None, None, None, None, None, None]
 
 '''
 this class implements the parsing of tracks for the searched names
@@ -29,107 +20,99 @@ class TrackFinder():
         
     '''    reset 'em all    '''  
     @staticmethod
-    def reset_group_idx():
-        #log("TrackFinder::reset_group_idx")
-        global group_index_KICK
-        group_index_KICK = -1
-        global group_index_BASE
-        group_index_BASE = -1
-        global group_index_SNR
-        group_index_SNR = -1
-        global group_index_HATZ
-        group_index_HATZ = -1
-        global group_index_FX
-        group_index_FX = -1
-        global group_index_SYNTH
-        group_index_SYNTH = -1
-        global group_index_LEAD
-        group_index_LEAD = -1
-        global group_index_TEX
-        group_index_TEX = -1
-        global group_idx
-        group_idx = []
-        global group_trax
-        group_trax = []
-
-    '''    parse for idx in the song    '''
+    def reset():
+        #log("TrackFinder::reset")
+        global group_idx_visible
+        global group_idx_all
+        global group_tracks
+        group_idx_visible = [-1, -1, -1, -1, -1, -1, -1, -1]
+        group_idx_all = [-1, -1, -1, -1, -1, -1, -1, -1]
+        group_tracks = [None, None, None, None, None, None, None, None]
+        
+    ''' find the groups '''
     @staticmethod
-    def parseSongForTracks(song, useAllTracks = True):
-        #log("trackfinder::parseSongForTracks")
-        # reset 'em all
-        TrackFinder.reset_group_idx()
-        
-        #global defs
-        global group_index_KICK 
-        global group_index_BASE
-        global group_index_SNR
-        global group_index_HATZ
-        global group_index_FX
-        global group_index_SYNTH
-        global group_index_LEAD
-        global group_index_TEX
-        global group_idx
-        global group_trax
-        
-        #check which array to work with
-        arrayToWorkWith = []
-        if useAllTracks == False:
-            #log("trackfinder::usingJustVISIBLE")
-            arrayToWorkWith = song.visible_tracks
-        else:
-            #log("trackfinder::usingALL")
-            arrayToWorkWith = song.tracks        
-        
-        #find all global idx        
-        for index in range(len(arrayToWorkWith)):
-            if (arrayToWorkWith[index].name == str("KICK")):
-                group_index_KICK = index
-            elif (arrayToWorkWith[index].name == str("BASE")):
-                group_index_BASE = index
-            elif (arrayToWorkWith[index].name == str("SNR")):
-                group_index_SNR = index
-            elif (arrayToWorkWith[index].name == str("HATZ")):
-                group_index_HATZ = index
-            elif (arrayToWorkWith[index].name == str("FX")):
-                group_index_FX = index
-            elif (arrayToWorkWith[index].name == str("SYNTH")):
-                group_index_SYNTH = index
-            elif (arrayToWorkWith[index].name == str("LEAD")):
-                group_index_LEAD = index
-            elif (arrayToWorkWith[index].name == str("TEX")):
-                group_index_TEX = index
-        
-        #TOdO do some range checks here!!!!
-        
-        #log("NEW IDX:  " + str(group_index_KICK) + ", " + str(group_index_BASE) + ", " + str(group_index_SNR) + ", " + str(group_index_HATZ) + ", " + str(group_index_FX) + ", " + str(group_index_SYNTH) + ", " + str(group_index_LEAD) + ", " + str(group_index_TEX))
-        
-        # fill the idx array
-        group_idx.append(group_index_KICK)
-        group_idx.append(group_index_BASE)
-        group_idx.append(group_index_SNR)
-        group_idx.append(group_index_HATZ)
-        group_idx.append(group_index_FX)
-        group_idx.append(group_index_SYNTH)
-        group_idx.append(group_index_LEAD)
-        group_idx.append(group_index_TEX)
-        
-        # fill the track array
-        for index in range(len(group_idx)):
-            group_trax.append(arrayToWorkWith[group_idx[index]])
+    def reset_and_parse(song):
+        #log("TrackFinder::parse")
+        TrackFinder.reset()
+        global group_names
+        global group_idx_all
+        global group_idx_visible
+        global group_tracks
+        # find the groups    
+        for name_index in range(len(group_names)):
+            name = group_names[name_index]
+            # --- find in all tracks
+            for track_index in range(len(song.tracks)):        
+                if(song.tracks[track_index].name == name):
+                    group_idx_all[name_index] = track_index
+            # --- find in visible tracks
+            for track_index in range(len(song.visible_tracks)):
+                if(song.visible_tracks[track_index].name == name):
+                    group_idx_visible[name_index] = track_index
+            # --- now set the track array
+            group_tracks[name_index] = song.tracks[group_idx_all[name_index]]
+        log("following arrays found")
+        log(str(group_idx_all))
+        log(str(group_idx_visible))
+        log(str(group_tracks))
+        assert(group_idx_all.count(-1) == 0)
+        assert(group_idx_visible.count(-1) == 0)
+        assert(group_tracks.count(None) == 0)
+                
     
-    ''' get the index array''' 
+    ''' get the group index to which this track index belongs to ''' 
     @staticmethod
-    def getTrackIndexArray():
-        global group_idx
-        return group_idx
+    def get_affiliated_group_idx_in_all_tracks(track_index):
+        global group_idx_all
+        group_index = -1
+        for index in group_idx_all:
+            if index <= track_index:
+                group_index = index
+            else:
+                return group_index
+        return group_index
+        
+        
+    ''' get the group index to which this track (in just visible) index belongs to ''' 
+    @staticmethod
+    def get_affiliated_group_idx_in_visible_tracks(track_index):
+        global group_idx_visible
+        group_index = -1
+        for index in group_idx_visible:
+            if index <= track_index:
+                group_index = index
+            else:
+                return group_index
+        return group_index
+        
+        
+    ''' gets the group index (within the groups set by user, not the live set tracks index) '''
+    @staticmethod
+    def get_affiliated_group_idx(track_index):
+        global group_idx_all
+        index = TrackFinder.get_affiliated_group_idx_in_all_tracks(track_index)
+        index = group_idx_all.index(index)
+        assert(index >= 0)
+        return index
+    
+    
+    ''' get the index array for visible tracks '''
+    @staticmethod
+    def get_idx_in_visible():
+        global group_idx_visible
+        return group_idx_visible
+    
+    
+    ''' get the index array for all tracks '''
+    @staticmethod
+    def get_idx_in_all():
+        global group_idx_all
+        return group_idx_all
+     
     
     ''' get the tracks array '''
     @staticmethod
-    def getTrackArray():
-        global group_trax
-        return group_trax
+    def get_track_array():
+        global group_tracks
+        return group_tracks
 
-    ''' static mapping funcion '''
-    @staticmethod
-    def mapIncomingOSC():
-        pass

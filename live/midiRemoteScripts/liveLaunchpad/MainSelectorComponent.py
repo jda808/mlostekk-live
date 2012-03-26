@@ -241,7 +241,7 @@ class MainSelectorComponent(ModeSelectorComponent):
             else:
                 scene.set_launch_button(None)
             
-            idxArray = TrackFinder.getTrackIndexArray();
+            idxArray = TrackFinder.get_idx_in_visible();
             for track_index in range(8):
                 if as_active and (not for_mixer):
                     button = self._matrix.get_button(track_index, scene_index)
@@ -321,7 +321,7 @@ class MainSelectorComponent(ModeSelectorComponent):
             scene = self._session.scene(scene_index)
             scene.set_triggered_value(GREEN_BLINK)
             scene.name = ("Scene_" + str(scene_index))
-            idxArray = TrackFinder.getTrackIndexArray();
+            idxArray = TrackFinder.get_idx_in_visible();
             for track_index in range(self._matrix.width()):
                 clip_slot = scene.clip_slot(idxArray[track_index])
                 clip_slot.set_triggered_to_play_value(GREEN_BLINK)

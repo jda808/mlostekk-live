@@ -23,7 +23,7 @@ class DefChannelStripComponent(ChannelStripComponent):
     def set_track(self, track):
         #log("DefChannelStripComponent::set_track (name:" + str(track.name) + ")")
         #skip it not one of our tracks
-        if TrackFinder.getTrackArray().count(track) == 0:
+        if TrackFinder.get_track_array().count(track) == 0:
             return
         assert ((track == None) or isinstance(track, Live.Track.Track))
         if (track != self._track):

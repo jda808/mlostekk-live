@@ -1,7 +1,6 @@
 <JZML>
-<PROJECT version="3020" width="1024" height="724" osc_target="0" midi_target="0" kbmouse_target="-1"/>
-<WINDOW class="JAZZINTERFACE" text="1_OVERVIEW" x="0" y="0" width="1024" height="724" id="2" state="0" group="0" font="tahoma,11,0" >
-<WINDOW class="Container" text="IDX" x="0" y="27" width="640" height="200" id="6" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
+<WINDOW class="JAZZINTERFACE" text="1_OVERVIEW" x="0" y="0" width="1024" height="724" state="1" group="0" font="tahoma,11,0" >
+<WINDOW class="Container" text="IDX" x="234" y="23" width="640" height="200" id="6" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
 <WINDOW class="Container" text="TRACK" x="0" y="0" width="624" height="136" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
 <WINDOW class="Monitor" text="KICK" x="0" y="0" width="76" height="60" id="4" state="241" group="0" font="tahoma,12,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="7405568" label="1" precision="3" unit="" value="1">
 <VARIABLE name="value=index" send="0" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/KICK/value" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -133,7 +132,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 </WINDOW>
 <WINDOW class="Container" text="LEVEL_METERS" x="0" y="255" width="874" height="469" id="7" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
 <WINDOW class="MultiSlider" text="BASE" x="89" y="8" width="95" height="459" id="14" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" bipolar="0" capture="1" color="8343304" gradient="0" grid="0" grid_steps="2" horizontal="0" label="0" multicolor="0" nbr="2" physic="0">
-<PARAM name="x=" value="0.000000,0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/BASE/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<PARAM name="x=" value="0.808685,0.808743" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/BASE/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="tension=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/BASE/tension" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="friction=0.9" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/BASE/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="height=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/BASE/height" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -141,7 +140,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="originalColor=" value="8343304" send="1" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/BASE/originalColor" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="MultiSlider" text="KICK" x="-2" y="8" width="95" height="459" id="15" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" bipolar="0" capture="1" color="8330525" gradient="0" grid="0" grid_steps="2" horizontal="0" label="0" multicolor="0" nbr="2" physic="0">
-<PARAM name="x=" value="0.000000,0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/KICK/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<PARAM name="x=" value="0.656660,0.640701" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/KICK/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="tension=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/KICK/tension" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="friction=0.9" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/KICK/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="height=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/KICK/height" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -149,7 +148,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="originalColor=" value="8330525" send="1" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/KICK/originalColor" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="MultiSlider" text="LEAD" x="544" y="8" width="95" height="459" id="16" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" bipolar="0" capture="1" color="8323698" gradient="0" grid="0" grid_steps="2" horizontal="0" label="0" multicolor="0" nbr="2" physic="0">
-<PARAM name="x=" value="0.000000,0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/LEAD/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<PARAM name="x=" value="0.651212,0.666510" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/LEAD/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="tension=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/LEAD/tension" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="friction=0.9" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/LEAD/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="height=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/LEAD/height" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -157,14 +156,14 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="originalColor=" value="8323698" send="1" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/LEAD/originalColor" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="MultiSlider" text="MASTER" x="724" y="8" width="130" height="459" id="17" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" bipolar="0" capture="1" color="8355711" gradient="0" grid="0" grid_steps="5" horizontal="0" label="0" multicolor="0" nbr="2" physic="0">
-<PARAM name="x=" value="0.000000,0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/MASTER/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<PARAM name="x=" value="0.869686,0.876052" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/MASTER/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="tension=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/MASTER/tension" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="friction=0.9" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/MASTER/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="height=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/MASTER/height" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/MASTER/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="MultiSlider" text="TEX" x="635" y="8" width="95" height="459" id="18" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" bipolar="0" capture="1" color="5144444" gradient="0" grid="0" grid_steps="2" horizontal="0" label="0" multicolor="0" nbr="2" physic="0">
-<PARAM name="x=" value="0.000000,0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/TEX/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<PARAM name="x=" value="0.744513,0.746540" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/TEX/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="tension=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/TEX/tension" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="friction=0.9" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/TEX/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="height=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/TEX/height" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -172,7 +171,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="originalColor=" value="5144444" send="1" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/TEX/originalColor" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="MultiSlider" text="SYNTH" x="453" y="8" width="95" height="459" id="19" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" bipolar="0" capture="1" color="128" gradient="0" grid="0" grid_steps="2" horizontal="0" label="0" multicolor="0" nbr="2" physic="0">
-<PARAM name="x=" value="0.000000,0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SYNTH/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<PARAM name="x=" value="0.754243,0.746726" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SYNTH/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="tension=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SYNTH/tension" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="friction=0.9" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SYNTH/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="height=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SYNTH/height" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -180,7 +179,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="originalColor=" value="128" send="1" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SYNTH/originalColor" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="MultiSlider" text="FX" x="362" y="8" width="95" height="459" id="20" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" bipolar="0" capture="1" color="160895" gradient="0" grid="0" grid_steps="2" horizontal="0" label="0" multicolor="0" nbr="2" physic="0">
-<PARAM name="x=" value="0.000000,0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/FX/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<PARAM name="x=" value="0.673098,0.671887" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/FX/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="tension=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/FX/tension" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="friction=0.9" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/FX/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="height=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/FX/height" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -188,7 +187,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="originalColor=" value="160895" send="1" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/FX/originalColor" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="MultiSlider" text="HATZ" x="271" y="8" width="95" height="459" id="21" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" bipolar="0" capture="1" color="8421376" gradient="0" grid="0" grid_steps="2" horizontal="0" label="0" multicolor="0" nbr="2" physic="0">
-<PARAM name="x=" value="0.000000,0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/HATZ/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<PARAM name="x=" value="0.641823,0.641830" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/HATZ/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="tension=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/HATZ/tension" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="friction=0.9" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/HATZ/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="height=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/HATZ/height" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -196,7 +195,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="originalColor=" value="8421376" send="1" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/HATZ/originalColor" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="MultiSlider" text="SNR" x="180" y="8" width="95" height="459" id="22" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" bipolar="0" capture="1" color="32768" gradient="0" grid="0" grid_steps="2" horizontal="0" label="0" multicolor="0" nbr="2" physic="0">
-<PARAM name="x=" value="0.000000,0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SNR/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<PARAM name="x=" value="0.668580,0.661519" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SNR/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="tension=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SNR/tension" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="friction=0.9" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SNR/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="height=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SNR/height" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -204,7 +203,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="originalColor=" value="32768" send="1" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SNR/originalColor" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Switches" text="KICK_VOL" x="-1" y="443" width="90" height="24" id="24" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="8330525,8355711" column="1" label="0" multicolor="1" multilabel="0" paint="1" radio="0" row="1">
-<PARAM name="x=" value="1.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/KICK_VOL/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/KICK_VOL/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/KICK_VOL/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Switches" text="BASE_VOL" x="90" y="443" width="90" height="24" id="25" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="8343304,8355711" column="1" label="0" multicolor="1" multilabel="0" paint="1" radio="0" row="1">
@@ -239,7 +238,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/MASTER_VOL/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/MASTER_VOL/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
-<WINDOW class="Pads" text="MASTER_CLIP" x="727" y="-10" width="129" height="24" id="33" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
+<WINDOW class="Pads" text="MASTER_CLIP" x="727" y="-10" width="129" height="24" id="23" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
 <PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/MASTER_CLIP/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="attack=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/MASTER_CLIP/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="decay=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/MASTER_CLIP/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -248,7 +247,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="hold=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/MASTER_CLIP/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/MASTER_CLIP/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
-<WINDOW class="Pads" text="KICK_CLIP" x="1" y="-11" width="90" height="24" id="34" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
+<WINDOW class="Pads" text="KICK_CLIP" x="1" y="-11" width="90" height="24" id="33" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
 <PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/KICK_CLIP/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="attack=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/KICK_CLIP/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="decay=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/KICK_CLIP/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -257,7 +256,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="hold=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/KICK_CLIP/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/KICK_CLIP/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
-<WINDOW class="Pads" text="BASE_CLIP" x="92" y="-11" width="90" height="24" id="35" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
+<WINDOW class="Pads" text="BASE_CLIP" x="92" y="-11" width="90" height="24" id="34" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
 <PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/BASE_CLIP/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="attack=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/BASE_CLIP/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="decay=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/BASE_CLIP/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -266,7 +265,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="hold=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/BASE_CLIP/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/BASE_CLIP/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
-<WINDOW class="Pads" text="SNR_CLIP" x="183" y="-11" width="90" height="24" id="36" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
+<WINDOW class="Pads" text="SNR_CLIP" x="183" y="-11" width="90" height="24" id="35" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
 <PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SNR_CLIP/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="attack=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SNR_CLIP/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="decay=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SNR_CLIP/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -275,7 +274,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="hold=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SNR_CLIP/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SNR_CLIP/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
-<WINDOW class="Pads" text="HATZ_CLIP" x="274" y="-11" width="90" height="24" id="37" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
+<WINDOW class="Pads" text="HATZ_CLIP" x="274" y="-11" width="90" height="24" id="36" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
 <PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/HATZ_CLIP/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="attack=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/HATZ_CLIP/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="decay=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/HATZ_CLIP/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -284,7 +283,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="hold=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/HATZ_CLIP/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/HATZ_CLIP/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
-<WINDOW class="Pads" text="FX_CLIP" x="365" y="-11" width="90" height="24" id="38" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
+<WINDOW class="Pads" text="FX_CLIP" x="365" y="-11" width="90" height="24" id="37" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
 <PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/FX_CLIP/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="attack=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/FX_CLIP/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="decay=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/FX_CLIP/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -293,7 +292,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="hold=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/FX_CLIP/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/FX_CLIP/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
-<WINDOW class="Pads" text="SYNTH_CLIP" x="456" y="-11" width="90" height="24" id="39" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
+<WINDOW class="Pads" text="SYNTH_CLIP" x="456" y="-11" width="90" height="24" id="38" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
 <PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SYNTH_CLIP/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="attack=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SYNTH_CLIP/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="decay=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SYNTH_CLIP/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -302,7 +301,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="hold=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SYNTH_CLIP/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/SYNTH_CLIP/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
-<WINDOW class="Pads" text="LEAD_CLIP" x="547" y="-11" width="90" height="24" id="40" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
+<WINDOW class="Pads" text="LEAD_CLIP" x="547" y="-11" width="90" height="24" id="39" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
 <PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/LEAD_CLIP/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="attack=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/LEAD_CLIP/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="decay=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/LEAD_CLIP/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -311,7 +310,7 @@ setattribute(ERROR, 'color', {RGB(1,0,0), RGB(0,1,0)});" trigger_script="" trigg
 <VARIABLE name="hold=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/LEAD_CLIP/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/LEAD_CLIP/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
-<WINDOW class="Pads" text="TEX_CLIP" x="638" y="-11" width="90" height="24" id="41" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
+<WINDOW class="Pads" text="TEX_CLIP" x="638" y="-11" width="90" height="24" id="40" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="0" color="65793,8388608" column="1" label="0" multicolor="0" multilabel="0" row="1">
 <PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/TEX_CLIP/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="attack=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/TEX_CLIP/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="decay=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/LEVEL_METERS/TEX_CLIP/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -504,7 +503,7 @@ setattribute(object, 'color', muted == 1 ? RGB(muted, muted, muted) : object.ori
 <VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SCENE_INFO/SCENES_AFTER/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <SCRIPT name="reloadNames()" script="requestAllSceneNames();" trigger_script="x" trigger_type="0" trigger="2" osc_message="/SCENE_INFO/SCENES_AFTER/reloadNames" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
 </WINDOW>
-<WINDOW class="Pads" text="SCENE_NOW" x="0" y="121" width="134" height="58" id="3" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="8388608,8388608" column="1" label="0" multicolor="0" multilabel="1" row="1">
+<WINDOW class="Pads" text="SCENE_NOW" x="0" y="121" width="134" height="58" id="1" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="8388608,8388608" column="1" label="0" multicolor="0" multilabel="1" row="1">
 <PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/SCENE_INFO/SCENE_NOW/x" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="attack=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SCENE_INFO/SCENE_NOW/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="decay=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SCENE_INFO/SCENE_NOW/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -581,568 +580,6 @@ setattribute(SCENES_AFTER, 'labels', arrayAfter);" trigger_script="" trigger_typ
 <SCRIPT name="requestAllSceneNames()" script="// get the names
 oscout(0, '/live/name/scene', 'query');
 " trigger_script="" trigger_type="4" trigger="1" osc_message="/SCENE_INFO/requestAllSceneNames" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-</WINDOW>
-<WINDOW class="JAZZINTERFACE" text="2_MASSIVE" x="0" y="0" width="1024" height="724" id="1" state="1" group="0" font="tahoma,11,0" >
-<WINDOW class="Container" text="BASE" x="-10" y="-12" width="572" height="752" id="67" state="5" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="9440511" label="1" tabbar="1" meta="0">
-<WINDOW class="Container" text="XY_1" x="-6" y="-6" width="272" height="378" id="65" state="5" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="9440511" label="1" tabbar="1" meta="0">
-<WINDOW class="Multiball" text="CONTROLLER" x="-2" y="0" width="256" height="362" id="67" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="8388608" cursor="1" ephemere="0" grid="0" grid_steps="1,1" label="0" multicolor="1" multilabel="0" nbr="1" physic="1" polyphony="0" zoom="1.000000">
-<PARAM name="x=" value="0.002985" send="17" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/CONTROLLER/x" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,20,20" midi_scale="0,16383" osc_scale="0.000000,127.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="y=" value="0.000797" send="17" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/CONTROLLER/y" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,21,21" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="z=" value="0.000010" send="16" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/CONTROLLER/z" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attraction=0.4" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/CONTROLLER/attraction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="friction=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/CONTROLLER/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="speed=3" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/CONTROLLER/speed" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attack=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/CONTROLLER/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="decay=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/CONTROLLER/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="sustain=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/CONTROLLER/sustain" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="release=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/CONTROLLER/release" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="hold=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/CONTROLLER/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdX=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/CONTROLLER/holdX" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdY=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/CONTROLLER/holdY" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="initOnFirstTouch()" script="// check on first touch
-if(xIndex == -1 || yIndex == -1)
-{
-		requestParameter();
-}" trigger_script="x | y" trigger_type="0" trigger="1" osc_message="/BASE/XY_1/CONTROLLER/initOnFirstTouch" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_X" x="-2" y="0" width="258" height="20" id="39" state="245" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8388608" content="unassigned">
-<VARIABLE name="light=" value="0.000000" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/LABEL_X/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(xIndex < 0)
-{
-		setattribute(LABEL_X, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_X, 'content', xParameter);
-}" trigger_script="xIndex" trigger_type="0" trigger="1" osc_message="/BASE/XY_1/LABEL_X/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_Y" x="4" y="169" width="62" height="32" id="44" state="213" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8388608" content="unassigned">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/LABEL_Y/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(yIndex < 0)
-{
-		setattribute(LABEL_Y, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_Y, 'content', yParameter);
-}" trigger_script="yIndex" trigger_type="0" trigger="1" osc_message="/BASE/XY_1/LABEL_Y/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="NAME" x="87" y="138" width="86" height="92" id="41" state="245" group="0" font="tahoma,23,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="2097152" content="RYTHM">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/NAME/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<VARIABLE name="xParameter='RYTHM'" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/xParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yParameter='TEXTUR'" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/yParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="xIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/xIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_1/yIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<WINDOW class="Container" text="XY_2" x="248" y="-5" width="272" height="378" id="66" state="5" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="9440511" label="1" tabbar="1" meta="0">
-<WINDOW class="Multiball" text="CONTROLLER" x="0" y="0" width="256" height="362" id="67" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="8388608" cursor="1" ephemere="0" grid="0" grid_steps="1,1" label="0" multicolor="1" multilabel="0" nbr="1" physic="1" polyphony="0" zoom="1.000000">
-<PARAM name="x=" value="0.000771" send="17" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/CONTROLLER/x" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,19,19" midi_scale="0,16383" osc_scale="0.000000,127.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="y=" value="0.000847" send="17" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/CONTROLLER/y" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,18,18" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="z=" value="0.000010" send="16" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/CONTROLLER/z" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attraction=0.4" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/CONTROLLER/attraction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="friction=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/CONTROLLER/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="speed=3" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/CONTROLLER/speed" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attack=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/CONTROLLER/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="decay=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/CONTROLLER/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="sustain=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/CONTROLLER/sustain" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="release=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/CONTROLLER/release" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="hold=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/CONTROLLER/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdX=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/CONTROLLER/holdX" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdY=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/CONTROLLER/holdY" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="initOnFirstTouch()" script="// check on first touch
-if(xIndex == -1 || yIndex == -1)
-{
-		requestParameter();
-}" trigger_script="x | y" trigger_type="0" trigger="1" osc_message="/BASE/XY_2/CONTROLLER/initOnFirstTouch" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_X" x="2" y="0" width="252" height="20" id="68" state="245" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8388608" content="unassigned">
-<VARIABLE name="light=" value="0.000000" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/LABEL_X/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(xIndex < 0)
-{
-		setattribute(LABEL_X, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_X, 'content', xParameter);
-}" trigger_script="xIndex" trigger_type="0" trigger="1" osc_message="/BASE/XY_2/LABEL_X/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_Y" x="182" y="167" width="68" height="32" id="69" state="229" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8388608" content="unassigned">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/LABEL_Y/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(yIndex < 0)
-{
-		setattribute(LABEL_Y, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_Y, 'content', yParameter);
-}" trigger_script="yIndex" trigger_type="0" trigger="1" osc_message="/BASE/XY_2/LABEL_Y/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="NAME" x="84" y="139" width="86" height="92" id="70" state="245" group="0" font="tahoma,23,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="2097152" content="FX">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/NAME/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<VARIABLE name="xParameter='STYLE'" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/xParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yParameter='FX'" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/yParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="xIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/xIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_2/yIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<WINDOW class="Container" text="XY_4" x="248" y="360" width="272" height="378" id="67" state="5" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="9440511" label="1" tabbar="1" meta="0">
-<WINDOW class="Multiball" text="CONTROLLER" x="0" y="0" width="256" height="362" id="67" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="8388608" cursor="1" ephemere="0" grid="0" grid_steps="1,1" label="0" multicolor="1" multilabel="0" nbr="1" physic="1" polyphony="0" zoom="1.000000">
-<PARAM name="x=" value="0.003869" send="17" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/CONTROLLER/x" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,15,15" midi_scale="0,16383" osc_scale="0.000000,127.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="y=" value="0.000850" send="17" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/CONTROLLER/y" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,16,16" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="z=" value="0.000010" send="16" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/CONTROLLER/z" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attraction=0.4" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/CONTROLLER/attraction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="friction=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/CONTROLLER/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="speed=3" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/CONTROLLER/speed" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attack=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/CONTROLLER/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="decay=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/CONTROLLER/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="sustain=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/CONTROLLER/sustain" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="release=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/CONTROLLER/release" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="hold=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/CONTROLLER/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdX=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/CONTROLLER/holdX" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdY=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/CONTROLLER/holdY" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="initOnFirstTouch()" script="// check on first touch
-if(xIndex == -1 || yIndex == -1)
-{
-		requestParameter();
-}" trigger_script="x | y" trigger_type="0" trigger="1" osc_message="/BASE/XY_4/CONTROLLER/initOnFirstTouch" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_X" x="0" y="342" width="256" height="20" id="68" state="245" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8388608" content="unassigned">
-<VARIABLE name="light=" value="0.000000" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/LABEL_X/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(xIndex < 0)
-{
-		setattribute(LABEL_X, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_X, 'content', xParameter);
-}" trigger_script="xIndex" trigger_type="0" trigger="1" osc_message="/BASE/XY_4/LABEL_X/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_Y" x="188" y="170" width="62" height="32" id="69" state="229" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8388608" content="unassigned">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/LABEL_Y/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(yIndex < 0)
-{
-		setattribute(LABEL_Y, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_Y, 'content', yParameter);
-}" trigger_script="yIndex" trigger_type="0" trigger="1" osc_message="/BASE/XY_4/LABEL_Y/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="NAME" x="81" y="138" width="86" height="92" id="70" state="245" group="0" font="tahoma,23,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="2097152" content="OSC">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/NAME/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<VARIABLE name="xParameter='OSC_HI'" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/xParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yParameter='OSC_LOW'" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/yParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="xIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/xIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_4/yIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<WINDOW class="Container" text="XY_3" x="-8" y="360" width="272" height="378" id="68" state="5" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="9440511" label="1" tabbar="1" meta="0">
-<WINDOW class="Multiball" text="CONTROLLER" x="0" y="0" width="256" height="362" id="67" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="8388608" cursor="1" ephemere="0" grid="0" grid_steps="1,1" label="0" multicolor="1" multilabel="0" nbr="1" physic="1" polyphony="0" zoom="1.000000">
-<PARAM name="x=" value="0.190327" send="17" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/CONTROLLER/x" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,17,17" midi_scale="0,16383" osc_scale="0.000000,127.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="y=" value="0.000815" send="17" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/CONTROLLER/y" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,14,14" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="z=" value="0.000010" send="16" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/CONTROLLER/z" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attraction=0.4" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/CONTROLLER/attraction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="friction=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/CONTROLLER/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="speed=3" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/CONTROLLER/speed" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attack=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/CONTROLLER/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="decay=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/CONTROLLER/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="sustain=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/CONTROLLER/sustain" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="release=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/CONTROLLER/release" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="hold=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/CONTROLLER/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdX=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/CONTROLLER/holdX" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdY=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/CONTROLLER/holdY" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="initOnFirstTouch()" script="// check on first touch
-if(xIndex == -1 || yIndex == -1)
-{
-		requestParameter();
-}" trigger_script="x | y" trigger_type="0" trigger="1" osc_message="/BASE/XY_3/CONTROLLER/initOnFirstTouch" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_X" x="0" y="342" width="256" height="20" id="68" state="245" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8388608" content="unassigned">
-<VARIABLE name="light=" value="0.000000" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/LABEL_X/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(xIndex < 0)
-{
-		setattribute(LABEL_X, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_X, 'content', xParameter);
-}" trigger_script="xIndex" trigger_type="0" trigger="1" osc_message="/BASE/XY_3/LABEL_X/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_Y" x="5" y="170" width="62" height="32" id="69" state="213" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8388608" content="unassigned">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/LABEL_Y/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(yIndex < 0)
-{
-		setattribute(LABEL_Y, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_Y, 'content', yParameter);
-}" trigger_script="yIndex" trigger_type="0" trigger="1" osc_message="/BASE/XY_3/LABEL_Y/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="NAME" x="88" y="140" width="86" height="92" id="70" state="245" group="0" font="tahoma,23,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="2097152" content="FREQ">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/NAME/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<VARIABLE name="xParameter='FAT'" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/xParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yParameter='CUTOFF'" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/yParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="xIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/xIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/XY_3/yIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<VARIABLE name="trackName='MASSIVE_BASE'" send="1" osc_target="-1" osc_trigger="1" osc_message="/BASE/trackName" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="requestParameter()" script="// send parameter detail request, device has to be the first one in the track!!!
-decl index = IDX.TRACK.getIndexByName(trackName);
-
-// just do if found
-if(index >= 0)
-{
-		oscout(0, '/live/device', {index, 0});
-}" trigger_script="" trigger_type="5" trigger="1" osc_message="/BASE/requestParameter" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-<SCRIPT name="reset()" script="// do for all
-decl xyObject = getfirst(BASE);
-while(xyObject)
-{
-		// reset
-		setexpression(xyObject, 'xIndex', -1);
-		setexpression(xyObject, 'yIndex', -1);
-
-		// colors
-		setattribute(XY_1.CONTROLLER, 'colors', getattribute(XY_1.CONTROLLER, 'color'));
-		setattribute(XY_2.CONTROLLER, 'colors', getattribute(XY_2.CONTROLLER, 'color'));
-		setattribute(XY_4.CONTROLLER, 'colors', getattribute(XY_4.CONTROLLER, 'color'));
-		setattribute(XY_3.CONTROLLER, 'colors', getattribute(XY_3.CONTROLLER, 'color'));
-		
-		// next one
-		xyObject = getnext(xyObject);
-}" trigger_script="" trigger_type="4" trigger="1" osc_message="/BASE/reset" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-<SCRIPT name="parseParameter(OSC_ARGS)" script="// osc globals
-decl trackIndex = OSC_ARGS[0];
-decl deviceIndex = OSC_ARGS[1];
-
-// just do if this is our track
-if(trackIndex != IDX.TRACK.getIndexByName(trackName))
-{
-		return;
-}
-
-// first reset
-reset();
-
-// do for all incoming parameters
-decl index;
-for(index = 0; index < sizeof(OSC_ARGS); index++)
-{
-		// all osc args
-		decl parameterIdx = 	OSC_ARGS[index + 2];
-		decl parameterVal = 	OSC_ARGS[index + 3];
-		decl parameterName = 	OSC_ARGS[index + 4];
-
-		// do for all
-		decl xyObject = getfirst(BASE);
-		while(xyObject)
-		{
-				// check all (max 4) XY controllers
-				if(getexpression(xyObject, 'xParameter') == parameterName)
-				{
-						setexpression(xyObject, 'xIndex', parameterIdx);
-				}
-				else if(getexpression(xyObject, 'yParameter') == parameterName)
-				{
-						setexpression(xyObject, 'yIndex', parameterIdx);
-				}
-
-				// next one
-				xyObject = getnext(xyObject);
-		}		
-}" trigger_script="" trigger_type="2" trigger="1" osc_message="/live/device/allparam" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
-</WINDOW>
-<WINDOW class="Container" text="SYNTH" x="501" y="-12" width="572" height="752" id="68" state="5" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="9440511" label="1" tabbar="1" meta="0">
-<WINDOW class="Container" text="XY_1" x="0" y="-4" width="272" height="378" id="65" state="5" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="9440511" label="1" tabbar="1" meta="0">
-<WINDOW class="Multiball" text="CONTROLLER" x="-2" y="0" width="256" height="362" id="67" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="128" cursor="1" ephemere="0" grid="0" grid_steps="1,1" label="0" multicolor="1" multilabel="0" nbr="1" physic="1" polyphony="0" zoom="1.000000">
-<PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/CONTROLLER/x" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,51,51" midi_scale="0,16383" osc_scale="0.000000,127.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="y=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/CONTROLLER/y" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,50,50" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="z=" value="0.000010" send="16" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/CONTROLLER/z" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attraction=0.4" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/CONTROLLER/attraction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="friction=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/CONTROLLER/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="speed=3" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/CONTROLLER/speed" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attack=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/CONTROLLER/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="decay=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/CONTROLLER/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="sustain=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/CONTROLLER/sustain" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="release=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/CONTROLLER/release" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="hold=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/CONTROLLER/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdX=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/CONTROLLER/holdX" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdY=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/CONTROLLER/holdY" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="initOnFirstTouch()" script="// check on first touch
-if(xIndex == -1 || yIndex == -1)
-{
-		requestParameter();
-}" trigger_script="x | y" trigger_type="0" trigger="1" osc_message="/SYNTH/XY_1/CONTROLLER/initOnFirstTouch" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_X" x="-2" y="0" width="258" height="20" id="68" state="245" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="529791" content="unassigned">
-<VARIABLE name="light=" value="0.000000" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/LABEL_X/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(xIndex < 0)
-{
-		setattribute(LABEL_X, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_X, 'content', xParameter);
-}" trigger_script="xIndex" trigger_type="0" trigger="1" osc_message="/SYNTH/XY_1/LABEL_X/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_Y" x="4" y="165" width="62" height="32" id="69" state="213" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="529791" content="unassigned">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/LABEL_Y/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(yIndex < 0)
-{
-		setattribute(LABEL_Y, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_Y, 'content', yParameter);
-}" trigger_script="yIndex" trigger_type="0" trigger="1" osc_message="/SYNTH/XY_1/LABEL_Y/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="NAME" x="87" y="138" width="86" height="92" id="70" state="245" group="0" font="tahoma,23,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="54" content="FX1">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/NAME/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<VARIABLE name="xParameter='STYLE1'" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/xParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yParameter='FX1'" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/yParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="xIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/xIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_1/yIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<WINDOW class="Container" text="XY_2" x="252" y="-5" width="276" height="378" id="66" state="5" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="9440511" label="1" tabbar="1" meta="0">
-<WINDOW class="Multiball" text="CONTROLLER" x="0" y="0" width="256" height="362" id="67" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="128" cursor="1" ephemere="0" grid="0" grid_steps="1,1" label="0" multicolor="1" multilabel="0" nbr="1" physic="1" polyphony="0" zoom="1.000000">
-<PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/CONTROLLER/x" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,53,53" midi_scale="0,16383" osc_scale="0.000000,127.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="y=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/CONTROLLER/y" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,52,52" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="z=" value="0.000010" send="16" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/CONTROLLER/z" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attraction=0.4" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/CONTROLLER/attraction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="friction=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/CONTROLLER/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="speed=3" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/CONTROLLER/speed" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attack=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/CONTROLLER/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="decay=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/CONTROLLER/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="sustain=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/CONTROLLER/sustain" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="release=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/CONTROLLER/release" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="hold=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/CONTROLLER/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdX=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/CONTROLLER/holdX" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdY=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/CONTROLLER/holdY" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="initOnFirstTouch()" script="// check on first touch
-if(xIndex == -1 || yIndex == -1)
-{
-		requestParameter();
-}" trigger_script="x | y" trigger_type="0" trigger="1" osc_message="/SYNTH/XY_2/CONTROLLER/initOnFirstTouch" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_X" x="2" y="0" width="252" height="20" id="68" state="245" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="529791" content="unassigned">
-<VARIABLE name="light=" value="0.000000" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/LABEL_X/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(xIndex < 0)
-{
-		setattribute(LABEL_X, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_X, 'content', xParameter);
-}" trigger_script="xIndex" trigger_type="0" trigger="1" osc_message="/SYNTH/XY_2/LABEL_X/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_Y" x="182" y="167" width="68" height="32" id="69" state="229" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="529791" content="unassigned">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/LABEL_Y/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(yIndex < 0)
-{
-		setattribute(LABEL_Y, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_Y, 'content', yParameter);
-}" trigger_script="yIndex" trigger_type="0" trigger="1" osc_message="/SYNTH/XY_2/LABEL_Y/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="NAME" x="84" y="139" width="86" height="92" id="70" state="245" group="0" font="tahoma,23,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="54" content="FX2">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/NAME/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<VARIABLE name="xParameter='STYLE2'" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/xParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yParameter='FX2'" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/yParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="xIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/xIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_2/yIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<WINDOW class="Container" text="XY_4" x="252" y="360" width="272" height="378" id="67" state="5" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="9440511" label="1" tabbar="1" meta="0">
-<WINDOW class="Multiball" text="CONTROLLER" x="0" y="0" width="256" height="362" id="67" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="128" cursor="1" ephemere="0" grid="0" grid_steps="1,1" label="0" multicolor="1" multilabel="0" nbr="1" physic="1" polyphony="0" zoom="1.000000">
-<PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/CONTROLLER/x" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,48,48" midi_scale="0,16383" osc_scale="0.000000,127.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="y=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/CONTROLLER/y" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,49,49" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="z=" value="0.000010" send="16" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/CONTROLLER/z" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attraction=0.4" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/CONTROLLER/attraction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="friction=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/CONTROLLER/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="speed=3" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/CONTROLLER/speed" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attack=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/CONTROLLER/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="decay=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/CONTROLLER/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="sustain=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/CONTROLLER/sustain" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="release=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/CONTROLLER/release" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="hold=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/CONTROLLER/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdX=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/CONTROLLER/holdX" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdY=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/CONTROLLER/holdY" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="initOnFirstTouch()" script="// check on first touch
-if(xIndex == -1 || yIndex == -1)
-{
-		requestParameter();
-}" trigger_script="x | y" trigger_type="0" trigger="1" osc_message="/SYNTH/XY_4/CONTROLLER/initOnFirstTouch" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_X" x="0" y="342" width="256" height="20" id="68" state="245" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="529791" content="unassigned">
-<VARIABLE name="light=" value="0.000000" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/LABEL_X/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(xIndex < 0)
-{
-		setattribute(LABEL_X, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_X, 'content', xParameter);
-}" trigger_script="xIndex" trigger_type="0" trigger="1" osc_message="/SYNTH/XY_4/LABEL_X/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_Y" x="188" y="170" width="62" height="32" id="69" state="229" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="529791" content="unassigned">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/LABEL_Y/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(yIndex < 0)
-{
-		setattribute(LABEL_Y, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_Y, 'content', yParameter);
-}" trigger_script="yIndex" trigger_type="0" trigger="1" osc_message="/SYNTH/XY_4/LABEL_Y/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="NAME" x="78" y="138" width="93" height="92" id="70" state="245" group="0" font="tahoma,23,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="54" content="RYTHM">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/NAME/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<VARIABLE name="xParameter='GLIDE'" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/xParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yParameter='TEXTUR'" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/yParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="xIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/xIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_4/yIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<WINDOW class="Container" text="XY_3" x="-2" y="360" width="272" height="378" id="68" state="5" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="9440511" label="1" tabbar="1" meta="0">
-<WINDOW class="Multiball" text="CONTROLLER" x="0" y="0" width="256" height="362" id="67" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" capture="1" color="128" cursor="1" ephemere="0" grid="0" grid_steps="1,1" label="0" multicolor="1" multilabel="0" nbr="1" physic="1" polyphony="0" zoom="1.000000">
-<PARAM name="x=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/CONTROLLER/x" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,47,47" midi_scale="0,16383" osc_scale="0.000000,127.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="y=" value="0.000000" send="17" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/CONTROLLER/y" midi_target="-2" midi_trigger="1" midi_message="0xB1,0xB1,46,46" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<PARAM name="z=" value="0.000010" send="16" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/CONTROLLER/z" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" osc_scale="0.000000,1.000000" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attraction=0.4" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/CONTROLLER/attraction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="friction=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/CONTROLLER/friction" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="speed=3" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/CONTROLLER/speed" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="attack=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/CONTROLLER/attack" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="decay=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/CONTROLLER/decay" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="sustain=0.5" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/CONTROLLER/sustain" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="release=1" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/CONTROLLER/release" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="hold=0.2" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/CONTROLLER/hold" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdX=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/CONTROLLER/holdX" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="holdY=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/CONTROLLER/holdY" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="initOnFirstTouch()" script="// check on first touch
-if(xIndex == -1 || yIndex == -1)
-{
-		requestParameter();
-}" trigger_script="x | y" trigger_type="0" trigger="1" osc_message="/SYNTH/XY_3/CONTROLLER/initOnFirstTouch" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_X" x="0" y="342" width="256" height="20" id="68" state="245" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="529791" content="unassigned">
-<VARIABLE name="light=" value="0.000000" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/LABEL_X/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(xIndex < 0)
-{
-		setattribute(LABEL_X, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_X, 'content', xParameter);
-}" trigger_script="xIndex" trigger_type="0" trigger="1" osc_message="/SYNTH/XY_3/LABEL_X/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="LABEL_Y" x="5" y="170" width="62" height="32" id="69" state="213" group="0" font="tahoma,9,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="529791" content="unassigned">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/LABEL_Y/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="setText()" script="// set x axis label text
-if(yIndex < 0)
-{
-		setattribute(LABEL_Y, 'content', 'unassigned');
-}
-else
-{
-		setattribute(LABEL_Y, 'content', yParameter);
-}" trigger_script="yIndex" trigger_type="0" trigger="1" osc_message="/SYNTH/XY_3/LABEL_Y/setText" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-</WINDOW>
-<WINDOW class="Text" text="NAME" x="88" y="140" width="86" height="92" id="70" state="245" group="0" font="tahoma,23,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="54" content="FREQ">
-<VARIABLE name="light=0" send="0" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/NAME/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<VARIABLE name="xParameter='FAT'" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/xParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yParameter='CUTOFF'" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/yParameter" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="xIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/xIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
-<VARIABLE name="yIndex=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/XY_3/yIndex" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
-</WINDOW>
-<VARIABLE name="trackName='MASSIVE_SYNTH'" send="1" osc_target="-1" osc_trigger="1" osc_message="/SYNTH/trackName" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="-256,6306,-256" kbmouse_scale="0,1,0,1"/>
-<SCRIPT name="requestParameter()" script="// send parameter detail request, device has to be the first one in the track!!!
-decl index = IDX.TRACK.getIndexByName(trackName);
-
-// just do if found
-if(index >= 0)
-{
-		oscout(0, '/live/device', {index, 0});
-}" trigger_script="" trigger_type="5" trigger="1" osc_message="/SYNTH/requestParameter" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-<SCRIPT name="reset()" script="// do for all
-decl xyObject = getfirst(SYNTH);
-while(xyObject)
-{
-		// reset
-		setexpression(xyObject, 'xIndex', -1);
-		setexpression(xyObject, 'yIndex', -1);
-
-		// colors
-		setattribute(XY_1.CONTROLLER, 'colors', getattribute(XY_1.CONTROLLER, 'color'));
-		setattribute(XY_2.CONTROLLER, 'colors', getattribute(XY_2.CONTROLLER, 'color'));
-		setattribute(XY_4.CONTROLLER, 'colors', getattribute(XY_4.CONTROLLER, 'color'));
-		setattribute(XY_3.CONTROLLER, 'colors', getattribute(XY_3.CONTROLLER, 'color'));
-		
-		// next one
-		xyObject = getnext(xyObject);
-}" trigger_script="" trigger_type="4" trigger="1" osc_message="/SYNTH/reset" midi_message="0x90,0x90,0,0" midi_target="-1" flag="1"/>
-<SCRIPT name="parseParameter(OSC_ARGS)" script="// osc globals
-decl trackIndex = OSC_ARGS[0];
-decl deviceIndex = OSC_ARGS[1];
-
-// just do if this is our track
-if(trackIndex != IDX.TRACK.getIndexByName(trackName))
-{
-		return;
-}
-
-// first reset
-reset();
-
-// do for all incoming parameters
-decl index;
-for(index = 0; index < sizeof(OSC_ARGS); index++)
-{
-		// all osc args
-		decl parameterIdx = 	OSC_ARGS[index + 2];
-		decl parameterVal = 	OSC_ARGS[index + 3];
-		decl parameterName = 	OSC_ARGS[index + 4];
-
-		// do for all
-		decl xyObject = getfirst(SYNTH);
-		while(xyObject)
-		{
-				// check all (max 4) XY controllers
-				if(getexpression(xyObject, 'xParameter') == parameterName)
-				{
-						setexpression(xyObject, 'xIndex', parameterIdx);
-				}
-				else if(getexpression(xyObject, 'yParameter') == parameterName)
-				{
-						setexpression(xyObject, 'yIndex', parameterIdx);
-				}
-
-				// next one
-				xyObject = getnext(xyObject);
-		}		
-}" trigger_script="" trigger_type="2" trigger="1" osc_message="/live/device/allparam" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 </WINDOW>
 </WINDOW>
 </JZML>

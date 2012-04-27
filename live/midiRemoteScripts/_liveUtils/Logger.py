@@ -81,6 +81,9 @@ class Logger:
         self.intend_map[className] = intendText
         self.intend += 1
         
+    """ DECREMENT INTEND """
+    def decrementIntend(self):
+        self.intend -= 1
         
 #===============================================================================
 # global logger instance 
@@ -97,7 +100,8 @@ def logInit(initStart, moduleName):
         logger.addToIntendMap(moduleName)
         logger.logIntended(moduleName, moduleName + " === INIT start")
     else:
-        logger.logIntended(moduleName, moduleName + " === INIT end")            
+        logger.logIntended(moduleName, moduleName + " === INIT end")  
+        logger.decrementIntend()          
      
 #===============================================================================
 # global log function

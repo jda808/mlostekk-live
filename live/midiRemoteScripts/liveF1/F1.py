@@ -1,21 +1,33 @@
-#! /usr/bin/env python
-# emacs-mode: -*- python-*-
+import sys #@UnusedImport
+import time
 
-#import sys
 #import Live #@UnresolvedImport
 
 from _Framework.ControlSurface import ControlSurface #@UnresolvedImport
 from _Framework.InputControlElement import *
+from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
 from _liveUtils.Logger import log #@UnresolvedImport
 from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
-import _liveOsTools.colorsys #@UnresolvedImport
-from F1ColorButtonElement import F1ColorButtonElement
+from F1ButtonColumn import F1ButtonColumn #@UnresolvedImport
+from F1StepSequencerComponent import F1StepSequencerComponent
 
 HSV_CHANNELS = [0, 1, 2]
-CONTROL_CHANNEL = 13
+CONTROL_CHANNEL = 12
 
-CC_VALUES = [[2, 3, 4, 5], [12, 13, 14, 15], [22, 23, 24, 25], [32, 33, 34, 35], [42, 43, 44, 45], [52, 53, 54, 55], [62, 63, 64, 65], [72, 73, 74, 75]]
+CC_QUANT_VALUES = [80, 81, 82]
 
+CC_VALUES = [ [2,  3,  4,  5], 
+             [12, 13, 14, 15], 
+             [22, 23, 24, 25], 
+             [32, 33, 34, 35], 
+             [42, 43, 44, 45], 
+             [52, 53, 54, 55], 
+             [62, 63, 64, 65], 
+             [72, 73, 74, 75]]
+
+MOMENTARY_BUTTONS = True
+
+""" MAIN CLASS """
 class F1(ControlSurface):
 
     """ SCRIPT FOR NOVATION'S LAUNCHPAD CONTROLLER """
@@ -23,46 +35,47 @@ class F1(ControlSurface):
         log(True, __name__)
         # basic init
         ControlSurface.__init__(self, c_instance)
+        self.set_suppress_rebuild_requests(True)        
         self._suggested_input_port = "Traktor F1 - 1"
         self._suggested_output_port = "Traktor F1 - 1"
-        self.buttonDict = {}      
-        self.colorListener = {}  
+        self.last_time = 0
+        self.frame_duration = 0
+        self.buttonCols = [] 
         # track finder init
         TrackFinder.reset_and_parse(self.song())
-        # button init
+        # create step buttons and columns
         for trackIndex in range(8):    
             # create button with default color
             track = TrackFinder.get_track_array()[trackIndex]
-            trackColum = []
-            for buttonIndex in range(4):
-                cc_value = CC_VALUES[trackIndex][buttonIndex]
-                f1Button = F1ColorButtonElement(False, MIDI_CC_TYPE, cc_value, HSV_CHANNELS, CONTROL_CHANNEL, track.color, "Channel - 1st")
-                trackColum.append(f1Button)
-            self.buttonDict[trackIndex] = trackColum
-            # register color change handler with index            
-            colorListener = lambda trackIndex = trackIndex:self.track_color_listener(trackIndex)
-            track.add_color_listener(colorListener)
-            self.colorListener[trackIndex] = colorListener
-        
-            
+            column = F1ButtonColumn(MOMENTARY_BUTTONS, MIDI_CC_TYPE, CC_VALUES[trackIndex], HSV_CHANNELS, CONTROL_CHANNEL, track.color, track)
+            self.buttonCols.append(column)
+        # create quant buttons
+        self.quantButtons = []
+        for cc in CC_QUANT_VALUES:
+            qButton = ButtonElement(MOMENTARY_BUTTONS, MIDI_CC_TYPE, CONTROL_CHANNEL, cc)
+            self.quantButtons.append(qButton)
+        # create step sequencer part
+        self.sequencer = F1StepSequencerComponent(4, self.buttonCols, self.quantButtons)
+        # register timer
+        self._register_timer_callback(self.process)  
         # end init
+        self.set_suppress_rebuild_requests(False)        
         log(False, __name__)
         log("----------------------------------------------------------------------------")
         log(" ")
 
+    """ TIMER """
+    def process(self):
+        current_time = time.time()
+        self.frame_duration = int((current_time - self.last_time)*1000)
+        self.last_time = current_time
+        self.sequencer.process(self.frame_duration)
+        
     """ DISCONNECT """
     def disconnect(self):
         log(__name__, "disconnect")
-        for trackIndex in self.colorListener:
-            if TrackFinder.get_track_array()[trackIndex].color_has_listener(self.colorListener[trackIndex]) == 1:
-                    TrackFinder.get_track_array()[trackIndex].remove_color_listener(self.colorListener[trackIndex])
-        self.colorListener = {}  
-        self.buttonDict = {}     
+        self.buttonCols = None
+        self._unregister_timer_callback(self.process)
+        ControlSurface.disconnect(self)
+        log("====== DISCONNECTED =======")
         
-
-    """ COLOR LISTENER """
-    def track_color_listener(self, trackIndex):
-        log("track_color_listener called. index: " + str(trackIndex))
-        trackColor = TrackFinder.get_track_array()[trackIndex].color
-        for buttonIndex in range(4):
-            self.buttonDict[trackIndex][buttonIndex].set_main_color(trackColor)

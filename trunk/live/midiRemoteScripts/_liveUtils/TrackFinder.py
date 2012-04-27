@@ -51,10 +51,10 @@ class TrackFinder():
                     group_idx_visible[name_index] = track_index
             # --- now set the track array
             group_tracks[name_index] = song.tracks[group_idx_all[name_index]]
-        log("following arrays found")
-        log(str(group_idx_all))
-        log(str(group_idx_visible))
-        log(str(group_tracks))
+        #log("following arrays found")
+        #log(str(group_idx_all))
+        #log(str(group_idx_visible))
+        #log(str(group_tracks))
         assert(group_idx_all.count(-1) == 0)
         assert(group_idx_visible.count(-1) == 0)
         assert(group_tracks.count(None) == 0)

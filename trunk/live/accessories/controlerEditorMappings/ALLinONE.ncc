@@ -32656,33 +32656,33 @@
         <current_index>1</current_index>
         <page name="1 TO 4">
           <button id="Sync">
-            <disabled/>
-            <controller>12</controller>
+            <name>QUANT1</name>
+            <controller>80</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <last>127</last>
+            <behavior>trigger</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Quant">
-            <disabled/>
-            <controller>13</controller>
+            <name>QUANT2</name>
+            <controller>81</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <last>127</last>
+            <behavior>trigger</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Capture">
-            <disabled/>
-            <controller>14</controller>
+            <name>QUANT3</name>
+            <controller>82</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <last>127</last>
+            <behavior>trigger</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Reverse">
@@ -32786,7 +32786,7 @@
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>0</last>
+            <last>39</last>
             <range>360</range>
             <bipolar>off</bipolar>
           </knob>
@@ -32806,7 +32806,7 @@
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>0</last>
+            <last>64</last>
             <range>360</range>
             <bipolar>off</bipolar>
           </knob>
@@ -32876,8 +32876,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
-            <behavior>toogle</behavior>
+            <last>0</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadA2">
@@ -32885,8 +32885,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadA3">
@@ -32895,7 +32895,7 @@
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior>toogle</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadA4">
@@ -32903,8 +32903,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadB1">
@@ -32913,7 +32913,7 @@
             <off>0</off>
             <on>127</on>
             <last>127</last>
-            <behavior>toogle</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadB2">
@@ -32921,8 +32921,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadB3">
@@ -32930,8 +32930,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadB4">
@@ -32940,7 +32940,7 @@
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior>toogle</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadC1">
@@ -32949,7 +32949,7 @@
             <off>0</off>
             <on>127</on>
             <last>127</last>
-            <behavior>toogle</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadC2">
@@ -32957,8 +32957,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadC3">
@@ -32966,8 +32966,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadC4">
@@ -32975,8 +32975,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadD1">
@@ -32984,8 +32984,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadD2">
@@ -32994,7 +32994,7 @@
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior>toogle</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadD3">
@@ -33003,7 +33003,7 @@
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior>toogle</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadD4">
@@ -33011,8 +33011,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <led id="PadA1H">
@@ -33546,33 +33546,33 @@
         </page>
         <page name="5 TO 8">
           <button id="Sync">
-            <disabled/>
-            <controller>51</controller>
+            <name>QUANT1</name>
+            <controller>80</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <last>127</last>
+            <behavior>trigger</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Quant">
-            <disabled/>
-            <controller>52</controller>
+            <name>QUANT2</name>
+            <controller>81</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <last>127</last>
+            <behavior>trigger</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Capture">
-            <disabled/>
-            <controller>53</controller>
+            <name>QUANT3</name>
+            <controller>82</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <last>127</last>
+            <behavior>trigger</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Reverse">
@@ -33677,7 +33677,7 @@
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>0</last>
+            <last>39</last>
             <range>360</range>
             <bipolar>off</bipolar>
           </knob>
@@ -33697,7 +33697,7 @@
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>0</last>
+            <last>64</last>
             <range>360</range>
             <bipolar>off</bipolar>
           </knob>
@@ -33768,7 +33768,7 @@
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior>toogle</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadA2">
@@ -33776,8 +33776,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadA3">
@@ -33785,8 +33785,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadA4">
@@ -33794,8 +33794,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadB1">
@@ -33803,8 +33803,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadB2">
@@ -33812,8 +33812,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadB3">
@@ -33821,8 +33821,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadB4">
@@ -33830,8 +33830,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadC1">
@@ -33839,8 +33839,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadC2">
@@ -33849,7 +33849,7 @@
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior>toogle</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadC3">
@@ -33857,8 +33857,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadC4">
@@ -33866,8 +33866,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadD1">
@@ -33875,8 +33875,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadD2">
@@ -33885,7 +33885,7 @@
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior>toogle</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadD3">
@@ -33893,8 +33893,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadD4">
@@ -33902,8 +33902,8 @@
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>0</last>
-            <behavior>toogle</behavior>
+            <last>127</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <led id="PadA1H">

@@ -44,7 +44,7 @@ class F1ColorButtonElement(ButtonElement):
     """ UPDATE FRAME TIME BASED """
     def process(self, time_in_samples):  
         #log(__name__, "update")      
-        self.hsv_fader.process(time_in_samples)
+        #self.hsv_fader.process(time_in_samples)
         self.send_current_color()          
                   
     """ SEND COLOR """
@@ -55,6 +55,17 @@ class F1ColorButtonElement(ButtonElement):
         self.satButton.send_value(int(self.hsv_fader.current_color[INDEX_SAT] * MIDI_RANGE), True)
         self.valButton.send_value(int(self.hsv_fader.current_color[INDEX_VAL] * MIDI_RANGE), True)  
 
-    
+    """ SEND BASE COLOR """
+    def send_base_color(self):
+        self.hueButton.send_value(int(self.hsv_fader.get_base_color()[INDEX_HUE] * MIDI_RANGE), True)
+        self.satButton.send_value(int(self.hsv_fader.get_base_color()[INDEX_SAT] * MIDI_RANGE), True)
+        self.valButton.send_value(int(self.hsv_fader.get_base_color()[INDEX_VAL] * MIDI_RANGE), True)  
+
+    """ SET THE MAIN COLOR """
+    def set_base_color(self, liveRGBcolor):
+        rgbColor = _liveOsTools.colorsys.hex2rgb(liveRGBcolor)
+        hsvColor = _liveOsTools.colorsys.rgb_to_hsv(rgbColor[0] / 255.0, rgbColor[1] / 255.0, rgbColor[2] / 255.0)
+        self.hsv_fader.set_base_color(hsvColor[0], hsvColor[1], hsvColor[2])
+        self.send_base_color()
         
         

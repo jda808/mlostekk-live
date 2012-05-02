@@ -81,14 +81,14 @@ class F1ButtonColumn(ControlSurfaceComponent):
         
     """ COLOR LISTENER """
     def track_color_callback(self):
-        #log(__name__, "track_color_callback called for button row with cc values" + str(self.cc_values))
-        self.set_main_colors(self.track.color)
+        log(__name__, "track_color_callback for row: " + str(self.cc_values))
+        self.set_base_colors(self.track.color)
        
     """ MAIN COLOR SETTER """     
-    def set_main_colors(self, rgbColor):
+    def set_base_colors(self, rgbColor):
         #log(__name__, "set_main_colors: " + str(rgbColor))
         for button in self.buttons:
-            button.set_main_color(rgbColor)
+            button.set_base_color(rgbColor)
             
     """ SET THE HIGHLIGHETD STEP """
     def set_highlight_step(self, step):

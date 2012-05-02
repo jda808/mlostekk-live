@@ -16,14 +16,14 @@ CONTROL_CHANNEL = 12
 
 CC_QUANT_VALUES = [80, 81, 82]
 
-CC_VALUES = [ [2,  3,  4,  5], 
-             [12, 13, 14, 15], 
-             [22, 23, 24, 25], 
-             [32, 33, 34, 35], 
-             [42, 43, 44, 45], 
-             [52, 53, 54, 55], 
-             [62, 63, 64, 65], 
-             [72, 73, 74, 75]]
+CC_VALUES = [ [3,  4,  5,  6], 
+             [13, 14, 15, 16], 
+             [23, 24, 25, 26], 
+             [33, 34, 35, 36], 
+             [43, 44, 45, 46], 
+             [53, 54, 55, 56], 
+             [63, 64, 65, 66], 
+             [73, 74, 75, 76]]
 
 MOMENTARY_BUTTONS = True
 
@@ -57,7 +57,7 @@ class F1(ControlSurface):
         # create step sequencer part
         self.sequencer = F1StepSequencerComponent(4, self.buttonCols, self.quantButtons)
         # register timer
-        self._register_timer_callback(self.process)  
+        #self._register_timer_callback(self.process)  
         # end init
         self.set_suppress_rebuild_requests(False)        
         log(False, __name__)
@@ -67,15 +67,16 @@ class F1(ControlSurface):
     """ TIMER """
     def process(self):
         current_time = time.time()
-        self.frame_duration = int((current_time - self.last_time)*1000)
-        self.last_time = current_time
-        self.sequencer.process(self.frame_duration)
+        log("TIMER: time " + str(int(current_time*4)%4))
+        #self.frame_duration = int((current_time - self.last_time)*1000)
+        #self.last_time = current_time
+        #self.sequencer.process(self.frame_duration)
         
     """ DISCONNECT """
     def disconnect(self):
         log(__name__, "disconnect")
         self.buttonCols = None
-        self._unregister_timer_callback(self.process)
+        #self._unregister_timer_callback(self.process)
         ControlSurface.disconnect(self)
         log("====== DISCONNECTED =======")
         

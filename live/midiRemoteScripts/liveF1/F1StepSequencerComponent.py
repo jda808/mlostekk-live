@@ -1,14 +1,13 @@
+import sys #@UnusedImport
+import time
+
 from _Framework.ControlSurfaceComponent import ControlSurfaceComponent #@UnresolvedImport
 from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
 from _liveUtils.Logger import log #@UnresolvedImport
 from F1ButtonColumn import F1ButtonColumn #@UnresolvedImport
 #from _liveUtils.DeviceFinder import DeviceFinder #@UnresolvedImport
-import Live #@UnresolvedImport
 
-#===============================================================================
-# colors
-#===============================================================================
-
+TRIGGER_CLIPNAME = "1/4"
  
 #===============================================================================
 # quantization map
@@ -33,7 +32,15 @@ class F1StepSequencerComponent(ControlSurfaceComponent):
         self.quantization_index = 0
         self.quantization = QUANTIZATION_MAP[self.quantization_index]
         self.quantization_buttons = [None, None, None]
-        self.set_quantization_buttons(quant_buttons)        
+        self.set_quantization_buttons(quant_buttons) 
+        # trigger clip
+        self.trigger_clip = None      
+        """ HACK """
+        self.trigger_clip = self.song().visible_tracks[10].clip_slots[0].clip
+        #self.trigger_clip.add_playing_position_listener(self.clip_pos)
+        log("CLIP: " + str(self.trigger_clip.name))
+        """ HACK END """
+        #self.find_trigger_slot(TRIGGER_CLIPNAME)       
         log(False, __name__)
         
     """ DISCONNECT """
@@ -43,7 +50,13 @@ class F1StepSequencerComponent(ControlSurfaceComponent):
             self.song().remove_current_song_time_listener(self.update)
         self.set_quantization_buttons([None, None, None])
         self.quantization_buttons = None
-                    
+        if self.trigger_clip.playing_position_has_listener(self.clip_pos):
+            self.trigger_clip.remove_playing_position_listener(self.clip_pos)
+           
+    def clip_pos(self):
+        #log("clipPosChanged. position: " + str(self.trigger_clip.playing_position))
+        log("CLIP: time " + str(str(int(time.time()*4)%4)))  
+        
     """ SET THE BUTTON ROWS """ 
     def set_button_cols(self, buttonCols):
         assert (self.buttonCols == None)
@@ -58,10 +71,11 @@ class F1StepSequencerComponent(ControlSurfaceComponent):
         
     """ PROCESS """
     def process(self, frame_duration):
+        log(__name__, "process")
         self.update()
         self.update_positions()
-        for col in self.buttonCols:
-            col.process(frame_duration)
+        #for col in self.buttonCols:
+        #    col.process(frame_duration)
         
 # QUANTIZE
     """ UPDATE QUANT COLOR """
@@ -117,6 +131,6 @@ class F1StepSequencerComponent(ControlSurfaceComponent):
         new_step_position = int(play_position * self.quantization) % self.steps
         if self.step_position != new_step_position:
             self.on_step_position_changed(new_step_position)
-            #log(__name__, "play_position in beats: " + str(play_position) + "..... calculated :gridIndex(" + str(self.step_position) + ")")
+            log(__name__, "play_position in beats: " + str(play_position) + "..... calculated :gridIndex(" + str(self.step_position) + ")")
                         
                         

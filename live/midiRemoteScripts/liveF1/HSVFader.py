@@ -15,11 +15,19 @@ class HSVFader():
     def __init__(self, hue, sat, val):
         log(True, __name__) 
         self.current_color = [hue, sat, val]               
-        self.base_color = [hue, sat, val]
+        self.set_base_color(hue, sat, val)
         self.target_rel = []
         log(False, __name__)
     
-    """ UPDATE FRAME TIME BASED """
+    """ OVERWRITE BASE COLOR """
+    def set_base_color(self, hue, sat, val):
+        self.base_color = [hue, sat, val]
+        
+    """ GET BASE COLOR """
+    def get_base_color(self):
+        return self.base_color
+    
+    """ UPDATE FRAME TIME BASED 
     def process(self, time_in_samples):
         #log("process: current_color("+str(self.current_color)+"), base("+str(self.base_color)+"), target("+str(self.target_rel)+")")
         # reset if no one is left
@@ -47,9 +55,9 @@ class HSVFader():
             for fade in self.target_rel:
                 if(fade[INDEX_REMAINING] <= 0):
                     self.target_rel.remove(fade)            
-        #log("process. current_color(" + str(self.current_color)+")")
+        #log("process. current_color(" + str(self.current_color)+")")"""
     
-    """ ADD A TARGET, SET SOME OF HSV VALUES TO 0 TO KEEP UNCHANGED """
+    """ ADD A TARGET, SET SOME OF HSV VALUES TO 0 TO KEEP UNCHANGED """ 
     def add_fade(self, hue, sat, val, time):
         #last one is remaining time, first time is total time
         self.target_rel.append([hue, sat, val, time, time]) 

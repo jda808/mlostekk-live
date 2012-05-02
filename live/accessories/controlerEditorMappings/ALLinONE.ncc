@@ -18416,7 +18416,7 @@
     <wrapmode>0</wrapmode>
     <current_index>0</current_index>
     <display_state>
-      <display_mode>5</display_mode>
+      <display_mode>4</display_mode>
       <knob_mode>1</knob_mode>
     </display_state>
     <midi-map name="LIVE" port="internal" type="Maschine">
@@ -18459,7 +18459,7 @@
           <channel>0</channel>
           <off>0</off>
           <on>127</on>
-          <last>127</last>
+          <last>0</last>
           <behavior>toogle</behavior>
           <reaction>ondown</reaction>
         </button>
@@ -18501,7 +18501,7 @@
           <min>0</min>
           <max>127</max>
           <default>0</default>
-          <last>127</last>
+          <last>81</last>
           <range>360</range>
           <bipolar>off</bipolar>
         </knob>
@@ -18512,7 +18512,7 @@
           <min>0</min>
           <max>127</max>
           <default>0</default>
-          <last>0</last>
+          <last>116</last>
           <range>360</range>
           <bipolar>off</bipolar>
         </knob>
@@ -18768,7 +18768,7 @@
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>127</last>
+            <last>126</last>
             <range>360</range>
             <bipolar>off</bipolar>
           </knob>
@@ -18779,7 +18779,7 @@
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>127</last>
+            <last>81</last>
             <range>360</range>
             <bipolar>off</bipolar>
           </knob>
@@ -18845,7 +18845,7 @@
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>0</last>
+            <last>116</last>
             <range>360</range>
             <bipolar>off</bipolar>
           </knob>
@@ -18938,7 +18938,7 @@
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>127</last>
+            <last>0</last>
             <range>360</range>
             <bipolar>off</bipolar>
           </knob>
@@ -18949,7 +18949,7 @@
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>127</last>
+            <last>40</last>
             <range>360</range>
             <bipolar>off</bipolar>
           </knob>
@@ -18960,7 +18960,7 @@
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>127</last>
+            <last>2</last>
             <range>360</range>
             <bipolar>off</bipolar>
           </knob>
@@ -19025,7 +19025,7 @@
             <channel>1</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>45</last>
             <behavior>toogle</behavior>
             <reaction>ondown</reaction>
           </button>
@@ -19035,7 +19035,7 @@
             <channel>1</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>8</last>
             <behavior>toogle</behavior>
             <reaction>ondown</reaction>
           </button>
@@ -32649,40 +32649,37 @@
   <controller type="Traktor Kontrol F1">
     <wrapmode>0</wrapmode>
     <current_index>0</current_index>
-    <midi-map name="LIVE ACT" port="internal" type="TraktorKontrolF1">
+    <midi-map name="LIVESTEP" port="internal" type="TraktorKontrolF1">
       <shiftmode>1</shiftmode>
       <controls/>
       <pages>
-        <current_index>1</current_index>
-        <page name="1 TO 4">
+        <current_index>0</current_index>
+        <page name="1 -- 4">
           <button id="Sync">
-            <name>QUANT1</name>
             <controller>80</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
-            <behavior>trigger</behavior>
+            <last>0</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Quant">
-            <name>QUANT2</name>
             <controller>81</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
-            <behavior>trigger</behavior>
+            <last>0</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Capture">
-            <name>QUANT3</name>
             <controller>82</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
-            <behavior>trigger</behavior>
+            <last>0</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Reverse">
@@ -32692,7 +32689,7 @@
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Type">
@@ -32702,7 +32699,7 @@
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Size">
@@ -32712,7 +32709,7 @@
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Browse">
@@ -32722,43 +32719,43 @@
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Mute1">
-            <controller>6</controller>
+            <controller>7</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Mute2">
-            <controller>16</controller>
+            <controller>17</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Mute3">
-            <controller>26</controller>
+            <controller>27</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Mute4">
-            <controller>36</controller>
+            <controller>37</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <wheel id="DialTurn">
@@ -32781,57 +32778,57 @@
             <reaction>ondown</reaction>
           </button>
           <knob id="Filter1">
-            <controller>0</controller>
-            <channel>12</channel>
-            <min>0</min>
-            <max>127</max>
-            <default>0</default>
-            <last>39</last>
-            <range>360</range>
-            <bipolar>off</bipolar>
-          </knob>
-          <knob id="Filter2">
-            <controller>10</controller>
-            <channel>12</channel>
-            <min>0</min>
-            <max>127</max>
-            <default>0</default>
-            <last>0</last>
-            <range>360</range>
-            <bipolar>off</bipolar>
-          </knob>
-          <knob id="Filter3">
-            <controller>20</controller>
-            <channel>12</channel>
-            <min>0</min>
-            <max>127</max>
-            <default>0</default>
-            <last>64</last>
-            <range>360</range>
-            <bipolar>off</bipolar>
-          </knob>
-          <knob id="Filter4">
-            <controller>30</controller>
-            <channel>12</channel>
-            <min>0</min>
-            <max>127</max>
-            <default>0</default>
-            <last>0</last>
-            <range>360</range>
-            <bipolar>off</bipolar>
-          </knob>
-          <knob id="Volume1">
             <controller>1</controller>
             <channel>12</channel>
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>0</last>
+            <last>16</last>
+            <range>360</range>
+            <bipolar>off</bipolar>
+          </knob>
+          <knob id="Filter2">
+            <controller>11</controller>
+            <channel>12</channel>
+            <min>0</min>
+            <max>127</max>
+            <default>0</default>
+            <last>127</last>
+            <range>360</range>
+            <bipolar>off</bipolar>
+          </knob>
+          <knob id="Filter3">
+            <controller>21</controller>
+            <channel>12</channel>
+            <min>0</min>
+            <max>127</max>
+            <default>0</default>
+            <last>127</last>
+            <range>360</range>
+            <bipolar>off</bipolar>
+          </knob>
+          <knob id="Filter4">
+            <controller>31</controller>
+            <channel>12</channel>
+            <min>0</min>
+            <max>127</max>
+            <default>0</default>
+            <last>127</last>
+            <range>360</range>
+            <bipolar>off</bipolar>
+          </knob>
+          <knob id="Volume1">
+            <controller>2</controller>
+            <channel>12</channel>
+            <min>0</min>
+            <max>127</max>
+            <default>0</default>
+            <last>127</last>
             <range>360</range>
             <bipolar>off</bipolar>
           </knob>
           <knob id="Volume2">
-            <controller>11</controller>
+            <controller>12</controller>
             <channel>12</channel>
             <min>0</min>
             <max>127</max>
@@ -32841,7 +32838,7 @@
             <bipolar>off</bipolar>
           </knob>
           <knob id="Volume3">
-            <controller>21</controller>
+            <controller>22</controller>
             <channel>12</channel>
             <min>0</min>
             <max>127</max>
@@ -32851,7 +32848,7 @@
             <bipolar>off</bipolar>
           </knob>
           <knob id="Volume4">
-            <controller>31</controller>
+            <controller>32</controller>
             <channel>12</channel>
             <min>0</min>
             <max>127</max>
@@ -32862,7 +32859,7 @@
           </knob>
           <knob id="7Segment">
             <disabled/>
-            <controller>127</controller>
+            <controller>41</controller>
             <channel>12</channel>
             <min>0</min>
             <max>127</max>
@@ -32872,7 +32869,7 @@
             <bipolar>off</bipolar>
           </knob>
           <button id="PadA1">
-            <controller>2</controller>
+            <controller>3</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
@@ -32881,16 +32878,16 @@
             <reaction>ondown</reaction>
           </button>
           <button id="PadA2">
-            <controller>12</controller>
-            <channel>12</channel>
+            <controller>13</controller>
+            <channel>15</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="PadA3">
-            <controller>22</controller>
+            <controller>23</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
@@ -32899,42 +32896,6 @@
             <reaction>ondown</reaction>
           </button>
           <button id="PadA4">
-            <controller>32</controller>
-            <channel>12</channel>
-            <off>0</off>
-            <on>127</on>
-            <last>127</last>
-            <behavior>gate</behavior>
-            <reaction>ondown</reaction>
-          </button>
-          <button id="PadB1">
-            <controller>3</controller>
-            <channel>12</channel>
-            <off>0</off>
-            <on>127</on>
-            <last>127</last>
-            <behavior>gate</behavior>
-            <reaction>ondown</reaction>
-          </button>
-          <button id="PadB2">
-            <controller>13</controller>
-            <channel>12</channel>
-            <off>0</off>
-            <on>127</on>
-            <last>127</last>
-            <behavior>gate</behavior>
-            <reaction>ondown</reaction>
-          </button>
-          <button id="PadB3">
-            <controller>23</controller>
-            <channel>12</channel>
-            <off>0</off>
-            <on>127</on>
-            <last>127</last>
-            <behavior>gate</behavior>
-            <reaction>ondown</reaction>
-          </button>
-          <button id="PadB4">
             <controller>33</controller>
             <channel>12</channel>
             <off>0</off>
@@ -32943,52 +32904,52 @@
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadC1">
+          <button id="PadB1">
             <controller>4</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadC2">
+          <button id="PadB2">
             <controller>14</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadC3">
+          <button id="PadB3">
             <controller>24</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadC4">
+          <button id="PadB4">
             <controller>34</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadD1">
+          <button id="PadC1">
             <controller>5</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadD2">
+          <button id="PadC2">
             <controller>15</controller>
             <channel>12</channel>
             <off>0</off>
@@ -32997,7 +32958,7 @@
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadD3">
+          <button id="PadC3">
             <controller>25</controller>
             <channel>12</channel>
             <off>0</off>
@@ -33006,20 +32967,56 @@
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadD4">
+          <button id="PadC4">
             <controller>35</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
+            <behavior>gate</behavior>
+            <reaction>ondown</reaction>
+          </button>
+          <button id="PadD1">
+            <controller>6</controller>
+            <channel>12</channel>
+            <off>0</off>
+            <on>127</on>
+            <last>0</last>
+            <behavior>gate</behavior>
+            <reaction>ondown</reaction>
+          </button>
+          <button id="PadD2">
+            <controller>16</controller>
+            <channel>10</channel>
+            <off>0</off>
+            <on>127</on>
+            <last>0</last>
+            <behavior>gate</behavior>
+            <reaction>ondown</reaction>
+          </button>
+          <button id="PadD3">
+            <controller>26</controller>
+            <channel>12</channel>
+            <off>0</off>
+            <on>127</on>
+            <last>0</last>
+            <behavior>gate</behavior>
+            <reaction>ondown</reaction>
+          </button>
+          <button id="PadD4">
+            <controller>36</controller>
+            <channel>12</channel>
+            <off>0</off>
+            <on>127</on>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <led id="PadA1H">
             <display type="0">
-              <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
+              <unit color-mode="2" color-off="4286513152" color-on="4286513152" color-type="1"/>
             </display>
-            <controller>2</controller>
+            <controller>3</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -33030,7 +33027,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>2</controller>
+            <controller>3</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -33041,7 +33038,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>2</controller>
+            <controller>3</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33052,29 +33049,29 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>12</controller>
+            <controller>13</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>7</last>
+            <last>12</last>
           </led>
           <led id="PadA2S">
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>12</controller>
+            <controller>13</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>69</last>
+            <last>106</last>
           </led>
           <led id="PadA2B">
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>12</controller>
+            <controller>13</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33085,7 +33082,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>22</controller>
+            <controller>23</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -33096,7 +33093,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>22</controller>
+            <controller>23</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -33107,7 +33104,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>22</controller>
+            <controller>23</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33118,7 +33115,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>32</controller>
+            <controller>33</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -33129,7 +33126,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>32</controller>
+            <controller>33</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -33140,7 +33137,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>32</controller>
+            <controller>33</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33149,9 +33146,9 @@
           </led>
           <led id="PadB1H">
             <display type="0">
-              <unit color-mode="2" color-off="4278714880" color-on="4283334400" color-type="1"/>
+              <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>3</controller>
+            <controller>4</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -33162,7 +33159,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>3</controller>
+            <controller>4</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -33173,7 +33170,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>3</controller>
+            <controller>4</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33184,29 +33181,29 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>13</controller>
+            <controller>14</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>7</last>
+            <last>12</last>
           </led>
           <led id="PadB2S">
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>13</controller>
+            <controller>14</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>69</last>
+            <last>106</last>
           </led>
           <led id="PadB2B">
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>13</controller>
+            <controller>14</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33217,7 +33214,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>23</controller>
+            <controller>24</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -33228,7 +33225,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>23</controller>
+            <controller>24</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -33239,7 +33236,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>23</controller>
+            <controller>24</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33250,7 +33247,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>33</controller>
+            <controller>34</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -33261,7 +33258,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>33</controller>
+            <controller>34</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -33272,7 +33269,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>33</controller>
+            <controller>34</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33283,7 +33280,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>4</controller>
+            <controller>5</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -33294,7 +33291,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>4</controller>
+            <controller>5</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -33305,7 +33302,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>4</controller>
+            <controller>5</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33316,29 +33313,29 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>14</controller>
+            <controller>15</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>7</last>
+            <last>12</last>
           </led>
           <led id="PadC2S">
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>14</controller>
+            <controller>15</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>69</last>
+            <last>106</last>
           </led>
           <led id="PadC2B">
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>14</controller>
+            <controller>15</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33349,7 +33346,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>24</controller>
+            <controller>25</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -33360,7 +33357,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>24</controller>
+            <controller>25</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -33371,7 +33368,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>24</controller>
+            <controller>25</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33382,7 +33379,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>34</controller>
+            <controller>35</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -33393,7 +33390,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>34</controller>
+            <controller>35</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -33404,7 +33401,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>34</controller>
+            <controller>35</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33415,7 +33412,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>5</controller>
+            <controller>6</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -33426,7 +33423,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>5</controller>
+            <controller>6</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -33437,7 +33434,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>5</controller>
+            <controller>6</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33448,29 +33445,29 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>15</controller>
+            <controller>16</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>7</last>
+            <last>12</last>
           </led>
           <led id="PadD2S">
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>15</controller>
+            <controller>16</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>69</last>
+            <last>106</last>
           </led>
           <led id="PadD2B">
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>15</controller>
+            <controller>16</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33481,7 +33478,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>25</controller>
+            <controller>26</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -33492,7 +33489,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>25</controller>
+            <controller>26</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -33503,7 +33500,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>25</controller>
+            <controller>26</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33514,7 +33511,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>35</controller>
+            <controller>36</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -33525,7 +33522,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>35</controller>
+            <controller>36</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -33536,7 +33533,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>35</controller>
+            <controller>36</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33544,35 +33541,32 @@
             <last>127</last>
           </led>
         </page>
-        <page name="5 TO 8">
+        <page name="5 -- 8">
           <button id="Sync">
-            <name>QUANT1</name>
             <controller>80</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
-            <behavior>trigger</behavior>
+            <last>0</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Quant">
-            <name>QUANT2</name>
             <controller>81</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
-            <behavior>trigger</behavior>
+            <last>0</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Capture">
-            <name>QUANT3</name>
             <controller>82</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
-            <behavior>trigger</behavior>
+            <last>0</last>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Reverse">
@@ -33582,7 +33576,7 @@
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Type">
@@ -33592,7 +33586,7 @@
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Size">
@@ -33602,7 +33596,7 @@
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Browse">
@@ -33612,11 +33606,11 @@
             <off>0</off>
             <on>127</on>
             <last>0</last>
-            <behavior onIfDown="on">gate</behavior>
+            <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
           <button id="Mute1">
-            <controller>46</controller>
+            <controller>47</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
@@ -33625,7 +33619,7 @@
             <reaction>ondown</reaction>
           </button>
           <button id="Mute2">
-            <controller>56</controller>
+            <controller>57</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
@@ -33634,7 +33628,7 @@
             <reaction>ondown</reaction>
           </button>
           <button id="Mute3">
-            <controller>66</controller>
+            <controller>67</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
@@ -33643,7 +33637,7 @@
             <reaction>ondown</reaction>
           </button>
           <button id="Mute4">
-            <controller>76</controller>
+            <controller>77</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
@@ -33658,8 +33652,7 @@
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>97</last>
-            <wrap>on</wrap>
+            <last>0</last>
           </wheel>
           <button id="DialPush">
             <disabled/>
@@ -33672,57 +33665,57 @@
             <reaction>ondown</reaction>
           </button>
           <knob id="Filter1">
-            <controller>40</controller>
-            <channel>12</channel>
-            <min>0</min>
-            <max>127</max>
-            <default>0</default>
-            <last>39</last>
-            <range>360</range>
-            <bipolar>off</bipolar>
-          </knob>
-          <knob id="Filter2">
-            <controller>50</controller>
-            <channel>12</channel>
-            <min>0</min>
-            <max>127</max>
-            <default>0</default>
-            <last>0</last>
-            <range>360</range>
-            <bipolar>off</bipolar>
-          </knob>
-          <knob id="Filter3">
-            <controller>60</controller>
-            <channel>12</channel>
-            <min>0</min>
-            <max>127</max>
-            <default>0</default>
-            <last>64</last>
-            <range>360</range>
-            <bipolar>off</bipolar>
-          </knob>
-          <knob id="Filter4">
-            <controller>70</controller>
-            <channel>12</channel>
-            <min>0</min>
-            <max>127</max>
-            <default>0</default>
-            <last>0</last>
-            <range>360</range>
-            <bipolar>off</bipolar>
-          </knob>
-          <knob id="Volume1">
             <controller>41</controller>
             <channel>12</channel>
             <min>0</min>
             <max>127</max>
             <default>0</default>
-            <last>0</last>
+            <last>16</last>
+            <range>360</range>
+            <bipolar>off</bipolar>
+          </knob>
+          <knob id="Filter2">
+            <controller>51</controller>
+            <channel>12</channel>
+            <min>0</min>
+            <max>127</max>
+            <default>0</default>
+            <last>127</last>
+            <range>360</range>
+            <bipolar>off</bipolar>
+          </knob>
+          <knob id="Filter3">
+            <controller>61</controller>
+            <channel>12</channel>
+            <min>0</min>
+            <max>127</max>
+            <default>0</default>
+            <last>127</last>
+            <range>360</range>
+            <bipolar>off</bipolar>
+          </knob>
+          <knob id="Filter4">
+            <controller>71</controller>
+            <channel>12</channel>
+            <min>0</min>
+            <max>127</max>
+            <default>0</default>
+            <last>127</last>
+            <range>360</range>
+            <bipolar>off</bipolar>
+          </knob>
+          <knob id="Volume1">
+            <controller>42</controller>
+            <channel>12</channel>
+            <min>0</min>
+            <max>127</max>
+            <default>0</default>
+            <last>127</last>
             <range>360</range>
             <bipolar>off</bipolar>
           </knob>
           <knob id="Volume2">
-            <controller>51</controller>
+            <controller>52</controller>
             <channel>12</channel>
             <min>0</min>
             <max>127</max>
@@ -33732,7 +33725,7 @@
             <bipolar>off</bipolar>
           </knob>
           <knob id="Volume3">
-            <controller>61</controller>
+            <controller>62</controller>
             <channel>12</channel>
             <min>0</min>
             <max>127</max>
@@ -33742,7 +33735,7 @@
             <bipolar>off</bipolar>
           </knob>
           <knob id="Volume4">
-            <controller>71</controller>
+            <controller>72</controller>
             <channel>12</channel>
             <min>0</min>
             <max>127</max>
@@ -33763,7 +33756,7 @@
             <bipolar>off</bipolar>
           </knob>
           <button id="PadA1">
-            <controller>42</controller>
+            <controller>43</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
@@ -33772,78 +33765,42 @@
             <reaction>ondown</reaction>
           </button>
           <button id="PadA2">
-            <controller>52</controller>
-            <channel>12</channel>
-            <off>0</off>
-            <on>127</on>
-            <last>127</last>
-            <behavior>gate</behavior>
-            <reaction>ondown</reaction>
-          </button>
-          <button id="PadA3">
-            <controller>62</controller>
-            <channel>12</channel>
-            <off>0</off>
-            <on>127</on>
-            <last>127</last>
-            <behavior>gate</behavior>
-            <reaction>ondown</reaction>
-          </button>
-          <button id="PadA4">
-            <controller>72</controller>
-            <channel>12</channel>
-            <off>0</off>
-            <on>127</on>
-            <last>127</last>
-            <behavior>gate</behavior>
-            <reaction>ondown</reaction>
-          </button>
-          <button id="PadB1">
-            <controller>43</controller>
-            <channel>12</channel>
-            <off>0</off>
-            <on>127</on>
-            <last>127</last>
-            <behavior>gate</behavior>
-            <reaction>ondown</reaction>
-          </button>
-          <button id="PadB2">
             <controller>53</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadB3">
+          <button id="PadA3">
             <controller>63</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadB4">
+          <button id="PadA4">
             <controller>73</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadC1">
+          <button id="PadB1">
             <controller>44</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadC2">
+          <button id="PadB2">
             <controller>54</controller>
             <channel>12</channel>
             <off>0</off>
@@ -33852,34 +33809,34 @@
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadC3">
+          <button id="PadB3">
             <controller>64</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadC4">
+          <button id="PadB4">
             <controller>74</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadD1">
+          <button id="PadC1">
             <controller>45</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadD2">
+          <button id="PadC2">
             <controller>55</controller>
             <channel>12</channel>
             <off>0</off>
@@ -33888,21 +33845,57 @@
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadD3">
+          <button id="PadC3">
             <controller>65</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
-          <button id="PadD4">
+          <button id="PadC4">
             <controller>75</controller>
             <channel>12</channel>
             <off>0</off>
             <on>127</on>
-            <last>127</last>
+            <last>0</last>
+            <behavior>gate</behavior>
+            <reaction>ondown</reaction>
+          </button>
+          <button id="PadD1">
+            <controller>46</controller>
+            <channel>12</channel>
+            <off>0</off>
+            <on>127</on>
+            <last>0</last>
+            <behavior>gate</behavior>
+            <reaction>ondown</reaction>
+          </button>
+          <button id="PadD2">
+            <controller>56</controller>
+            <channel>10</channel>
+            <off>0</off>
+            <on>127</on>
+            <last>0</last>
+            <behavior>gate</behavior>
+            <reaction>ondown</reaction>
+          </button>
+          <button id="PadD3">
+            <controller>66</controller>
+            <channel>12</channel>
+            <off>0</off>
+            <on>127</on>
+            <last>0</last>
+            <behavior>gate</behavior>
+            <reaction>ondown</reaction>
+          </button>
+          <button id="PadD4">
+            <controller>76</controller>
+            <channel>12</channel>
+            <off>0</off>
+            <on>127</on>
+            <last>0</last>
             <behavior>gate</behavior>
             <reaction>ondown</reaction>
           </button>
@@ -33910,7 +33903,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>42</controller>
+            <controller>43</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -33921,7 +33914,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>42</controller>
+            <controller>43</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -33932,7 +33925,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>42</controller>
+            <controller>43</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33943,7 +33936,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>52</controller>
+            <controller>53</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -33954,7 +33947,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>52</controller>
+            <controller>53</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -33965,7 +33958,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>52</controller>
+            <controller>53</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -33976,7 +33969,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>62</controller>
+            <controller>63</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -33987,7 +33980,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>62</controller>
+            <controller>63</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -33998,7 +33991,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>62</controller>
+            <controller>63</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -34009,7 +34002,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>72</controller>
+            <controller>73</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -34020,7 +34013,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>72</controller>
+            <controller>73</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -34031,7 +34024,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>72</controller>
+            <controller>73</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -34042,7 +34035,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>43</controller>
+            <controller>44</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -34053,7 +34046,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>43</controller>
+            <controller>44</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -34064,7 +34057,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>43</controller>
+            <controller>44</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -34075,7 +34068,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>53</controller>
+            <controller>54</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -34086,7 +34079,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>53</controller>
+            <controller>54</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -34097,7 +34090,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>53</controller>
+            <controller>54</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -34108,7 +34101,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>63</controller>
+            <controller>64</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -34119,7 +34112,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>63</controller>
+            <controller>64</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -34130,7 +34123,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>63</controller>
+            <controller>64</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -34141,7 +34134,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>73</controller>
+            <controller>74</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -34152,7 +34145,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>73</controller>
+            <controller>74</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -34163,7 +34156,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>73</controller>
+            <controller>74</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -34174,7 +34167,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>44</controller>
+            <controller>45</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -34185,7 +34178,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>44</controller>
+            <controller>45</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -34196,7 +34189,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>44</controller>
+            <controller>45</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -34207,7 +34200,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>54</controller>
+            <controller>55</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -34218,7 +34211,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>54</controller>
+            <controller>55</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -34229,7 +34222,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>54</controller>
+            <controller>55</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -34240,7 +34233,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>64</controller>
+            <controller>65</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -34251,7 +34244,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>64</controller>
+            <controller>65</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -34262,7 +34255,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>64</controller>
+            <controller>65</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -34273,7 +34266,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>74</controller>
+            <controller>75</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -34284,7 +34277,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>74</controller>
+            <controller>75</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -34295,7 +34288,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>74</controller>
+            <controller>75</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -34306,7 +34299,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>45</controller>
+            <controller>46</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -34317,7 +34310,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>45</controller>
+            <controller>46</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -34328,7 +34321,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>45</controller>
+            <controller>46</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -34339,7 +34332,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>55</controller>
+            <controller>56</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -34350,7 +34343,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>55</controller>
+            <controller>56</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -34361,7 +34354,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>55</controller>
+            <controller>56</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -34372,7 +34365,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>65</controller>
+            <controller>66</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -34383,7 +34376,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>65</controller>
+            <controller>66</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -34394,7 +34387,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>65</controller>
+            <controller>66</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>
@@ -34405,7 +34398,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>75</controller>
+            <controller>76</controller>
             <channel>0</channel>
             <min>0</min>
             <max>127</max>
@@ -34416,7 +34409,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>75</controller>
+            <controller>76</controller>
             <channel>1</channel>
             <min>0</min>
             <max>127</max>
@@ -34427,7 +34420,7 @@
             <display type="0">
               <unit color-mode="2" color-off="4278714880" color-on="4286522112" color-type="1"/>
             </display>
-            <controller>75</controller>
+            <controller>76</controller>
             <channel>2</channel>
             <min>0</min>
             <max>127</max>

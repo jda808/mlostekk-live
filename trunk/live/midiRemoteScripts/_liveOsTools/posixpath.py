@@ -318,7 +318,7 @@ def expanduser(path):
     if i == 1:
         if 'HOME' not in os.environ:
             import pwd
-            userhome = pwd.getpwuid(os.getuid()).pw_dir
+            userhome = pwd.getpwuid(os.getuid()).pw_dir #@UndefinedVariable
         else:
             userhome = os.environ['HOME']
     else:
@@ -442,7 +442,7 @@ def _resolve_link(path):
             return None
         paths_seen.append(path)
         # Resolve where the link points to
-        resolved = os.readlink(path)
+        resolved = os.readlink(path) #@UndefinedVariable
         if not isabs(resolved):
             dir = dirname(path)
             path = normpath(join(dir, resolved))

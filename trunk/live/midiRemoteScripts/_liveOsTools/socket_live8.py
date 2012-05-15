@@ -142,7 +142,7 @@ _delegate_methods = ("recv", "recvfrom", "recv_into", "recvfrom_into",
 
 class _closedsocket(object):
     __slots__ = []
-    def _dummy(*args):
+    def _dummy(*args): #@NoSelf
         raise error(EBADF, 'Bad file descriptor')
     # All _delegate_methods must also be initialized here.
     send = recv = recv_into = sendto = recvfrom = recvfrom_into = _dummy

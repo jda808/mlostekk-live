@@ -36,9 +36,9 @@ class F1StepSequencerComponent(ControlSurfaceComponent):
         # trigger clip
         self.trigger_clip = None      
         """ HACK """
-        self.trigger_clip = self.song().visible_tracks[10].clip_slots[0].clip
+        #self.trigger_clip = self.song().visible_tracks[10].clip_slots[0].clip
         #self.trigger_clip.add_playing_position_listener(self.clip_pos)
-        log("CLIP: " + str(self.trigger_clip.name))
+        #log("CLIP: " + str(self.trigger_clip.name))
         """ HACK END """
         #self.find_trigger_slot(TRIGGER_CLIPNAME)       
         log(False, __name__)
@@ -50,8 +50,8 @@ class F1StepSequencerComponent(ControlSurfaceComponent):
             self.song().remove_current_song_time_listener(self.update)
         self.set_quantization_buttons([None, None, None])
         self.quantization_buttons = None
-        if self.trigger_clip.playing_position_has_listener(self.clip_pos):
-            self.trigger_clip.remove_playing_position_listener(self.clip_pos)
+        #if self.trigger_clip.playing_position_has_listener(self.clip_pos):
+        #    self.trigger_clip.remove_playing_position_listener(self.clip_pos)
            
     def clip_pos(self):
         #log("clipPosChanged. position: " + str(self.trigger_clip.playing_position))

@@ -65,6 +65,7 @@ class F1ColorButtonElement(ButtonElement):
     def set_base_color(self, liveRGBcolor):
         rgbColor = _liveOsTools.colorsys.hex2rgb(liveRGBcolor)
         hsvColor = _liveOsTools.colorsys.rgb_to_hsv(rgbColor[0] / 255.0, rgbColor[1] / 255.0, rgbColor[2] / 255.0)
+        log(__name__, "new base color: rgb=" + str(rgbColor) + ", hsv=" + str(hsvColor))
         self.hsv_fader.set_base_color(hsvColor[0], hsvColor[1], hsvColor[2])
         self.send_base_color()
         

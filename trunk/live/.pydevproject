@@ -12,5 +12,6 @@
 <path>/live/midiRemoteScripts/liveLaunchpad</path>
 <path>/live/midiRemoteScripts/liveOSC</path>
 <path>/live/midiRemoteScripts/liveAPI_makeDoc</path>
+<path>/live/accessories/logServer</path>
 </pydev_pathproperty>
 </pydev_project>

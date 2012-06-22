@@ -109,12 +109,12 @@ class StepSequencerComponent(ControlSurfaceComponent):
         self.set_button_matrix(self._matrix)  
         
         #song time listener
-        self.song().add_current_song_time_listener(self.current_song_time_changed)     
-        self._register_timer_callback(self.on_timer)
+        #self.song().add_current_song_time_listener(self.current_song_time_changed)     
+        #self._register_timer_callback(self.on_timer)
         
         #this are the parameters to be set
-        self.parameters = [None, None, None, None]
-        self.assign_parameters()
+        #self.parameters = [None, None, None, None]
+        #self.assign_parameters()
         log(False, __name__)
         
 
@@ -154,11 +154,13 @@ class StepSequencerComponent(ControlSurfaceComponent):
     """ main update """
     def update(self):
         if self._is_active:
-            self.update_positions()
-            self.sync_stopper()
-            self.update_sidebar()
-            self.update_matrix()
-            self.update_quantization_buttons()
+            #ControlSurfaceComponent.update(self)
+            log("update")
+            #self.update_positions()
+            #self.sync_stopper()
+            #self.update_sidebar()
+            #self.update_matrix()
+            #self.update_quantization_buttons()
 
     """ registred timer callback """
     def on_timer(self):

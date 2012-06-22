@@ -1,5 +1,5 @@
 import sys
-sys.path.append('C:/Python25/Lib')
+sys.path.append('S:/Python/Python25/Lib')
 import os
 
 from Launchpad import Launchpad 

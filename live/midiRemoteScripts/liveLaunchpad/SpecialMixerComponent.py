@@ -26,9 +26,9 @@ class SpecialMixerComponent(MixerComponent):
         if (self._unsolo_all_button != None):
             self._unsolo_all_button.remove_value_listener(self._unsolo_all_value)
             self._unsolo_all_button = None
-        if (self.stop_all != None):
-            self.stop_all.remove_value_listener(self._stop_all_value)
-            self.stop_all = None
+        if (self._stop_all_button != None):
+            self._stop_all_button.remove_value_listener(self._stop_all_value)
+            self._stop_all_button = None
         MixerComponent.disconnect(self)
 
 

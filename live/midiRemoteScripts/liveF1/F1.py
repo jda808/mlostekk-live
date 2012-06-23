@@ -32,37 +32,37 @@ class F1(ControlSurface):
 
     """ SCRIPT FOR NOVATION'S LAUNCHPAD CONTROLLER """
     def __init__(self, c_instance):
-        log(True, __name__)
+        #log(True, __name__)
         # basic init
         ControlSurface.__init__(self, c_instance)
         self.set_suppress_rebuild_requests(True)        
         self._suggested_input_port = "Traktor F1 - 1"
         self._suggested_output_port = "Traktor F1 - 1"
-        self.last_time = 0
-        self.frame_duration = 0
-        self.buttonCols = [] 
+        #self.last_time = 0
+        #self.frame_duration = 0
+        #self.buttonCols = [] 
         # track finder init
-        TrackFinder.reset_and_parse(self.song())
+        #TrackFinder.reset_and_parse(self.song())
         # create step buttons and columns
-        for trackIndex in range(8):    
+        #for trackIndex in range(8):    
             # create button with default color
-            track = TrackFinder.get_track_array()[trackIndex]
-            column = F1ButtonColumn(MOMENTARY_BUTTONS, MIDI_CC_TYPE, CC_VALUES[trackIndex], HSV_CHANNELS, CONTROL_CHANNEL, track.color, track)
-            self.buttonCols.append(column)
+            #track = TrackFinder.get_track_array()[trackIndex]
+            #column = F1ButtonColumn(MOMENTARY_BUTTONS, MIDI_CC_TYPE, CC_VALUES[trackIndex], HSV_CHANNELS, CONTROL_CHANNEL, track.color, track)
+            #self.buttonCols.append(column)
         # create quant buttons
-        self.quantButtons = []
-        for cc in CC_QUANT_VALUES:
-            qButton = ButtonElement(MOMENTARY_BUTTONS, MIDI_CC_TYPE, CONTROL_CHANNEL, cc)
-            self.quantButtons.append(qButton)
+        #self.quantButtons = []
+        #for cc in CC_QUANT_VALUES:
+            #qButton = ButtonElement(MOMENTARY_BUTTONS, MIDI_CC_TYPE, CONTROL_CHANNEL, cc)
+            #self.quantButtons.append(qButton)
         # create step sequencer part
-        self.sequencer = F1StepSequencerComponent(4, self.buttonCols, self.quantButtons)
+        #self.sequencer = F1StepSequencerComponent(4, self.buttonCols, self.quantButtons)
         # register timer
         #self._register_timer_callback(self.process)  
         # end init
-        self.set_suppress_rebuild_requests(False)        
-        log(False, __name__)
-        log("----------------------------------------------------------------------------")
-        log(" ")
+        #self.set_suppress_rebuild_requests(False)        
+        #log(False, __name__)
+        #log("----------------------------------------------------------------------------")
+        #log(" ")
 
     """ TIMER """
     def process(self):
@@ -74,9 +74,9 @@ class F1(ControlSurface):
         
     """ DISCONNECT """
     def disconnect(self):
-        log(__name__, "disconnect")
-        self.buttonCols = None
+        #log(__name__, "disconnect")
+        #self.buttonCols = None
         #self._unregister_timer_callback(self.process)
         ControlSurface.disconnect(self)
-        log("====== DISCONNECTED =======")
+        #log("====== DISCONNECTED =======")
         

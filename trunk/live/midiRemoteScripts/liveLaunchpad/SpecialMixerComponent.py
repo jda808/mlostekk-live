@@ -1,25 +1,25 @@
 from _Framework.MixerComponent import MixerComponent #@UnresolvedImport
 from DefChannelStripComponent import DefChannelStripComponent 
 from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
-from _liveUtils.Logger import log #@UnresolvedImport @UnusedImport
+#from _liveUtils.Logger import log #@UnresolvedImport @UnusedImport
 
 ' Class encompassing several defaultable channel strips to form a mixer '
 class SpecialMixerComponent(MixerComponent):
     __module__ = __name__
 
     def __init__(self, parent, num_tracks, num_returns=0, with_eqs=False, with_filters=False):
-        log(True, __name__)
+        #log(True, __name__)
         self._parent = parent
         MixerComponent.__init__(self, num_tracks, num_returns, with_eqs, with_filters)
         self._unsolo_all_button = None
         self._unmute_all_button = None
         self._stop_all_button = None
-        log(False, __name__)
+        #log(False, __name__)
         
         
     """ DISCONNECT """
     def disconnect(self):
-        log(__name__, "disconnect")
+        #log(__name__, "disconnect")
         if (self._unsolo_all_button != None):
             self._unsolo_all_button.remove_value_listener(self._unsolo_all_value)
             self._unsolo_all_button = None
@@ -49,11 +49,13 @@ class SpecialMixerComponent(MixerComponent):
         self._unmute_all_button = unmute_all
         if (self._unmute_all_button != None):
             self._unmute_all_button.add_value_listener(self._unmute_all_value)
-            self._unmute_all_button.turn_off()
+            self._unmute_all_button.turn_on()            
+        if (self._stop_all_button != None):
+            self._stop_all_button.remove_value_listener(self._stop_all_value)
         self._stop_all_button = stop_all
         if (self._stop_all_button != None):
             self._stop_all_button.add_value_listener(self._stop_all_value)
-            self._stop_all_button.turn_off()
+            self._stop_all_button.turn_on()
             
             
     """ CREATE STRIP """

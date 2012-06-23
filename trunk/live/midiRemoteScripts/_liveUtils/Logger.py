@@ -96,6 +96,7 @@ logger = Logger()
 def logInit(initStart, moduleName):
     assert(isinstance(initStart, type(False)))
     assert(isinstance(moduleName, type(str(''))))
+    return
     if initStart:
         logger.addToIntendMap(moduleName)
         logger.logIntended(moduleName, moduleName + " === INIT start")
@@ -108,7 +109,7 @@ def logInit(initStart, moduleName):
 # special handling if first flag is a bool, then its a init logging 
 #===============================================================================
 def log(*args):
-    text = ''
+    text = ''    
     # check if init logging
     if len(args) >= 2:
         if isinstance(args[0], type(False)):

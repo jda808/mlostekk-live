@@ -1,6 +1,6 @@
 #import Live 
 from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
-from _liveUtils.Logger import log #@UnresolvedImport @UnusedImport
+#from _liveUtils.Logger import log #@UnresolvedImport @UnusedImport
 
 class ConfigurableButtonElement(ButtonElement): 
     ' Special button class that can be configured with custom on- and off-values '
@@ -42,21 +42,21 @@ class ConfigurableButtonElement(ButtonElement):
 
 
     """ TURN THE BUTTON ON """
-    def turn_on(self, sendAlways = True):
-        if sendAlways == True:
+    def turn_on(self):
+        #CC if sendAlways == True:
+        #CC     self.send_value(self._on_value)
+        #CC else:
+        if self._last_sent_value != self._on_value:
             self.send_value(self._on_value)
-        else:
-            if self._last_sent_value != self._on_value:
-                self.send_value(self._on_value)
 
 
     """ TURN THE BUTTON OFF """
-    def turn_off(self, sendAlways = True):
-        if sendAlways:
+    def turn_off(self):
+        #CC if sendAlways:
+        #CC     self.send_value(self._off_value)
+        #CC else:
+        if self._last_sent_value != self._off_value:
             self.send_value(self._off_value)
-        else:
-            if self._last_sent_value != self._off_value:
-                self.send_value(self._off_value)
 
 
     """ RESET THE BUTTON """

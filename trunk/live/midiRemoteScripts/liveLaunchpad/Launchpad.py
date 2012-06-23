@@ -11,7 +11,7 @@ from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
 from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImport
 from ConfigurableButtonElement import ConfigurableButtonElement 
 from MainSelectorComponent import MainSelectorComponent 
-from _liveUtils.Logger import log #@UnresolvedImport
+#from _liveUtils.Logger import log #@UnresolvedImport
 
 SIDE_NOTES = (8, 24, 40, 56, 72, 88, 104, 120)
 DRUM_NOTES = (41, 42, 43, 44, 45, 46, 47, 57, 58, 59, 60, 61, 62, 63, 73, 74, 75, 76, 77, 78, 79, 89, 90, 91, 92, 93, 94, 95, 105, 106, 107)
@@ -20,7 +20,7 @@ class Launchpad(ControlSurface):
     
     " Script for Novation's Launchpad Controller "
     def __init__(self, c_instance):
-        log(True, __name__)
+        #log(True, __name__)
         self._my_c_instance = c_instance
         ControlSurface.__init__(self, c_instance)
         self.set_suppress_rebuild_requests(True)
@@ -78,13 +78,13 @@ class Launchpad(ControlSurface):
                 control.add_value_listener(self._button_value)
         self._suppress_session_highlight = False
         self.set_suppress_rebuild_requests(False)
-        log(False, __name__)
-        log("----------------------------------------------------------------------------")
-        log(" ")
+        #log(False, __name__)
+        #log("----------------------------------------------------------------------------")
+        #log(" ")
        
     """ disconnect """
     def disconnect(self):
-        log(__name__, "disconnect")
+        #log(__name__, "disconnect")
         self._suppress_send_midi = True
         for control in self.controls:
             if isinstance(control, ConfigurableButtonElement):

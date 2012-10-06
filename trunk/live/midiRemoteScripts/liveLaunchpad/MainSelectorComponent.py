@@ -6,7 +6,7 @@ from SpecialSessionComponent import SpecialSessionComponent
 from SubSelectorComponent import * #@UnusedWildImport
 #from _liveUtils.Logger import log #@UnresolvedImport @Reimport
 from SubSelectorComponent import SubSelectorComponent #@UnresolvedImport @Reimport
-from SubSelectorComponent import stop_index
+#from SubSelectorComponent import stop_index
 from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport @Reimport
 
 " Class that reassigns the button on the launchpad to different functions "

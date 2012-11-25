@@ -58,7 +58,7 @@ class Launchpad(ControlSurface):
 		side_buttons[5].name = "Trk_On_Button"
 		side_buttons[6].name = "Solo_Button"
 		side_buttons[7].name = "Arm_Button"
-		self._selector = MainSelectorComponent(matrix, tuple(top_buttons), tuple(side_buttons), self._config_button, self)
+		self._selector = MainSelectorComponent(matrix, tuple(top_buttons), tuple(side_buttons), self._config_button)
 		self._selector.name = "Main_Modes"
 		for control in self.controls:
 			if isinstance(control, ConfigurableButtonElement):

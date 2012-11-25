@@ -8,13 +8,13 @@ from _Framework.ChannelStripComponent import ChannelStripComponent #@UnresolvedI
 from _Framework.SceneComponent import SceneComponent #@UnresolvedImport @UnusedImport
 from _Framework.SessionZoomingComponent import SessionZoomingComponent #@UnresolvedImport @UnusedImport
 from SpecialSessionComponent import SpecialSessionComponent 
-from MixerSelectorComponent import * #@UnusedWildImport
+from SpecialMixerSelectorComponent import * #@UnusedWildImport
 
 class MainSelectorComponent(ModeSelectorComponent):
 	" CLASS THAT REASSIGNS THE BUTTON ON THE LAUNCHPAD TO DIFFERENT FUNCTIONS "
 
 	" INIT "
-	def __init__(self, matrix, top_buttons, side_buttons, config_button,parent):
+	def __init__(self, matrix, top_buttons, side_buttons, config_button):
 		assert isinstance(matrix, ButtonMatrixElement)
 		assert ((matrix.width() == 8) and (matrix.height() == 8))
 		assert isinstance(top_buttons, tuple)
@@ -23,7 +23,6 @@ class MainSelectorComponent(ModeSelectorComponent):
 		assert (len(side_buttons) == 8)
 		assert isinstance(config_button, ButtonElement)
 		ModeSelectorComponent.__init__(self)
-		self._parent = parent
 		self._session = SpecialSessionComponent(matrix.width(), matrix.height())
 		self._zooming = SessionZoomingComponent(self._session)
 		self._session.name = "Session_Control"
@@ -36,7 +35,7 @@ class MainSelectorComponent(ModeSelectorComponent):
 		self._all_buttons = []
 		for button in (self._side_buttons + self._nav_buttons):
 			self._all_buttons.append(button)
-		self._sub_modes = MixerSelectorComponent(matrix, side_buttons, self._session)
+		self._sub_modes = SpecialMixerSelectorComponent(matrix, side_buttons, self._session)
 		self._sub_modes.name = "Mixer_Modes"
 		self._sub_modes.set_update_callback(self._update_control_channels)
 		self._init_session()

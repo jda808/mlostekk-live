@@ -9,6 +9,7 @@ from _Framework.SceneComponent import SceneComponent #@UnresolvedImport @UnusedI
 from _Framework.SessionZoomingComponent import SessionZoomingComponent #@UnresolvedImport @UnusedImport
 from SpecialSessionComponent import SpecialSessionComponent 
 from SpecialMixerSelectorComponent import * #@UnusedWildImport
+from _liveUtils.Logger import log #@UnresolvedImport
 
 class MainSelectorComponent(ModeSelectorComponent):
 	" CLASS THAT REASSIGNS THE BUTTON ON THE LAUNCHPAD TO DIFFERENT FUNCTIONS "
@@ -40,10 +41,6 @@ class MainSelectorComponent(ModeSelectorComponent):
 		self._sub_modes.set_update_callback(self._update_control_channels)
 		self._init_session()
 		self._all_buttons = tuple(self._all_buttons)
-		self._previous_mode_index=-1
-		self._sub_mode_index=[0,0,0,0]
-		for index in range(4):
-			self._sub_mode_index[index]=0
 		self.set_modes_buttons(top_buttons[4:])
 
 	" DISCONNECT "
@@ -94,25 +91,9 @@ class MainSelectorComponent(ModeSelectorComponent):
 			self._mode_index = mode
 			self.update()
 
-
 	" UPDATE MODE BUTTONS "
 	def _update_mode_buttons(self):
-		if self._mode_index==self._previous_mode_index:
-			if self._mode_index==1:
-				#user mode 1 and device controller
-				self._sub_mode_index[self._mode_index] = (self._sub_mode_index[self._mode_index]+1)%2
-			elif self._mode_index==2:
-				#user mode 2  and step sequencer
-				self._sub_mode_index[self._mode_index] = (self._sub_mode_index[self._mode_index]+1)%3
-			else:
-				self._sub_mode_index[self._mode_index] = 0
 		for index in range(4):
-			if(self._sub_mode_index[index]==0):
-				self._modes_buttons[index].set_on_off_values(AMBER_FULL,AMBER_THIRD)
-			if(self._sub_mode_index[index]==1):
-				self._modes_buttons[index].set_on_off_values(GREEN_FULL,GREEN_THIRD)
-			if(self._sub_mode_index[index]==2):
-				self._modes_buttons[index].set_on_off_values(RED_FULL,RED_THIRD)
 			if (index == self._mode_index):	
 				self._modes_buttons[index].turn_on()
 			else:
@@ -124,17 +105,11 @@ class MainSelectorComponent(ModeSelectorComponent):
 		if self._mode_index==0:
 			return 0
 		elif self._mode_index==1:
-			if self._sub_mode_index[self._mode_index]==0:
-				new_channel=4#user 1
-			else : 
-				new_channel = 1#device ctrl
-		elif self._mode_index==2:
-			if self._sub_mode_index[self._mode_index]==0:	
-				new_channel=5#user 2
-			else: 
-				new_channel = 1 + self._sub_mode_index[self._mode_index]
-		elif self._mode_index==3:#mixer modes
-			new_channel = 6 + self._sub_modes.mode()
+			new_channel=4#user 1
+		elif self._mode_index==2:	
+			new_channel=5#user 2		
+		elif self._mode_index==3:
+			new_channel = 6 + self._sub_modes.mode() #mixer modes
 		return new_channel
 
 	" UPDATE THE SHIT "
@@ -163,24 +138,21 @@ class MainSelectorComponent(ModeSelectorComponent):
 				self._setup_mixer((not as_active))
 				self._setup_session(as_active, as_enabled)
 			elif (self._mode_index == 1):
-				#user mode + device controller
+				#user mode 1
 				self._setup_mixer((not as_active))
-				if (self._sub_mode_index[self._mode_index]==0):
-					self._setup_session((not as_active), (as_enabled))
-					self._setup_user1(True,True,True)
-				else:
-					self._setup_session((not as_active), (not as_enabled))					
-			elif (self._mode_index == 2):
 				self._setup_session((not as_active), (not as_enabled))
+				self._setup_user1(True,True,True)				
+			elif (self._mode_index == 2):
+				#user mode 2
 				self._setup_mixer((not as_active))
-				if (self._sub_mode_index[self._mode_index]==0):
-					self._setup_user2(release_buttons)						
+				self._setup_session((not as_active), (not as_enabled))				
+				self._setup_user2(release_buttons)						
 			elif (self._mode_index == 3):
+				#mixer
 				self._setup_session((not as_active), as_enabled)
 				self._setup_mixer(as_active)
 			else:
 				assert False				
-			self._previous_mode_index=self._mode_index
 			self._session.set_allow_update(True)
 			self._zooming.set_allow_update(True)
 			self._update_control_channels()
@@ -216,8 +188,7 @@ class MainSelectorComponent(ModeSelectorComponent):
 					button.set_on_off_values(127, LED_OFF)
 					scene.clip_slot(track_index).set_launch_button(button)
 				else:
-					scene.clip_slot(track_index).set_launch_button(None)
-		#zoom
+					scene.clip_slot(track_index).set_launch_button(None)		#zoom
 		if as_active:
 			self._zooming.set_zoom_button(self._modes_buttons[0])
 			self._zooming.set_button_matrix(self._matrix)
@@ -229,7 +200,6 @@ class MainSelectorComponent(ModeSelectorComponent):
 			self._zooming.set_button_matrix(None)
 			self._zooming.set_scene_bank_buttons(None)
 			self._zooming.set_nav_buttons(None, None, None, None)
-
 		#nav buttons
 		if as_enabled:
 			self._session.set_track_bank_buttons(self._nav_buttons[3], self._nav_buttons[2])
@@ -237,7 +207,6 @@ class MainSelectorComponent(ModeSelectorComponent):
 		else:
 			self._session.set_track_bank_buttons(None, None)
 			self._session.set_scene_bank_buttons(None, None)
-
 
 	" SETUP THE MIXER "
 	def _setup_mixer(self, as_active):

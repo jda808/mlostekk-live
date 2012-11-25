@@ -65,7 +65,6 @@ class Launchpad(ControlSurface):
 				control.add_value_listener(self._button_value)
 		self._suppress_session_highlight = False
 		self.set_suppress_rebuild_requests(False)
-		self.log_message("LaunchPad85 Loaded !")
 
 	" DISCONNECTOR "
 	def disconnect(self):

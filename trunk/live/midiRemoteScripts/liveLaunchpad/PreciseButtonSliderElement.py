@@ -1,7 +1,6 @@
 from consts import * #@UnusedWildImport
 from _Framework.ButtonSliderElement import ButtonSliderElement #@UnresolvedImport
 from _Framework.InputControlElement import * 
-#from ConfigurableButtonElement import ConfigurableButtonElement
 
 SLIDER_MODE_SINGLE = 0
 SLIDER_MODE_VOLUME = 1
@@ -20,10 +19,6 @@ class PreciseButtonSliderElement(ButtonSliderElement):
 		self._value_map = tuple([ float((index / num_buttons)) for index in range(num_buttons) ])
 		self._parent = None
 		self._precision_mode = False
-
-	" SET PARENT "
-	def set_parent(self,parent):
-		self._parent=parent
 
 	" SET DISABLED "
 	def set_disabled(self, disabled):
@@ -151,17 +146,9 @@ class PreciseButtonSliderElement(ButtonSliderElement):
 			index_of_sender = list(self._buttons).index(sender)
 			## handle precision mode
 			if(self._precision_mode):
-				#if self._parameter_to_map_to.max==126 and self._parameter_to_map_to.min==0:
-					#if 0 to 126 increment by one
-				#	inc = 1
-				#elif self._parameter_to_map_to.max==127 and self._parameter_to_map_to.min==0:
-					#if 0 to 126 increment by one
-				#	inc = 1
-				#else:
-					#double precision by default 
+				#double precision by default 
 				inc = float(self._parameter_to_map_to.max-self._parameter_to_map_to.min)/64 
 				inc = int(inc)
-				#self._parent._parent._parent.log_message(str(self._parameter_to_map_to.min))
 				if index_of_sender>=4:
 					if self._parameter_to_map_to.value+inc*(index_of_sender-3)<=self._parameter_to_map_to.max:
 						self._parameter_to_map_to.value = self._parameter_to_map_to.value+inc*(index_of_sender-3)

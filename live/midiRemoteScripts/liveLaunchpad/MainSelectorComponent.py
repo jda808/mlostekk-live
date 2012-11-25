@@ -9,7 +9,6 @@ from _Framework.SceneComponent import SceneComponent #@UnresolvedImport @UnusedI
 from _Framework.SessionZoomingComponent import SessionZoomingComponent #@UnresolvedImport @UnusedImport
 from SpecialSessionComponent import SpecialSessionComponent 
 from MixerSelectorComponent import * #@UnusedWildImport
-#from StepSequencerComponent import StepSequencerComponent
 
 class MainSelectorComponent(ModeSelectorComponent):
 	" CLASS THAT REASSIGNS THE BUTTON ON THE LAUNCHPAD TO DIFFERENT FUNCTIONS "
@@ -40,9 +39,6 @@ class MainSelectorComponent(ModeSelectorComponent):
 		self._sub_modes = MixerSelectorComponent(matrix, side_buttons, self._session)
 		self._sub_modes.name = "Mixer_Modes"
 		self._sub_modes.set_update_callback(self._update_control_channels)
-		self._stepseq = None#StepSequencerComponent(self, self._matrix,self._side_buttons,self._nav_buttons)
-		self._quick_mix = None#QuickMixerComponent(self._nav_buttons,self._side_buttons,self)
-		self._device_controller = None#DeviceControllerComponent(self._matrix, self._side_buttons, self._nav_buttons, self)
 		self._init_session()
 		self._all_buttons = tuple(self._all_buttons)
 		self._previous_mode_index=-1
@@ -140,20 +136,12 @@ class MainSelectorComponent(ModeSelectorComponent):
 				new_channel = 1 + self._sub_mode_index[self._mode_index]
 		elif self._mode_index==3:#mixer modes
 			new_channel = 6 + self._sub_modes.mode()
-		#if (new_channel > 0):
-		#	new_channel += 3
 		return new_channel
 
 	" UPDATE THE SHIT "
 	def update(self):
 		assert (self._modes_buttons != None)
-		if self.is_enabled():
-			#for index in range(len(self._modes_buttons)):
-			#	self._modes_buttons[index].set_force_next_value()
-			#	if (index == self._mode_index):
-			#		self._modes_buttons[index].turn_on()
-			#	else:
-			#		self._modes_buttons[index].turn_off()		
+		if self.is_enabled():		
 			self._update_mode_buttons()			
 			#update matrix and side buttons
 			for scene_index in range(8):
@@ -174,38 +162,21 @@ class MainSelectorComponent(ModeSelectorComponent):
 			if (self._mode_index == 0):
 				#session
 				self._setup_mixer((not as_active))
-				self._setup_device_controller((not as_active))
-				self._setup_step_sequencer((not as_active),0)
-				self._setup_device_controller((not as_active))
 				self._setup_session(as_active, as_enabled)
 			elif (self._mode_index == 1):
 				#user mode + device controller
 				self._setup_mixer((not as_active))
 				if (self._sub_mode_index[self._mode_index]==0):
-					self._setup_step_sequencer((not as_active),0)
-					self._setup_device_controller((not as_active))
 					self._setup_session((not as_active), (as_enabled))
 					self._setup_user1(True,True,True)
 				else:
-					self._setup_session((not as_active), (not as_enabled))
-					self._setup_step_sequencer((not as_active),0)
-					self._setup_device_controller((as_active))
-					
+					self._setup_session((not as_active), (not as_enabled))					
 			elif (self._mode_index == 2):
 				self._setup_session((not as_active), (not as_enabled))
 				self._setup_mixer((not as_active))
-				self._setup_device_controller((not as_active))
 				if (self._sub_mode_index[self._mode_index]==0):
-					self._setup_device_controller((not as_active))
-					self._setup_step_sequencer((not as_active),0)
-					self._setup_user2(release_buttons)
-				else:
-					self._setup_device_controller((not as_active))
-					self._setup_step_sequencer(as_active,self._sub_mode_index[self._mode_index])
-						
+					self._setup_user2(release_buttons)						
 			elif (self._mode_index == 3):
-				self._setup_step_sequencer((not as_active),0)
-				self._setup_device_controller((not as_active))
 				self._setup_session((not as_active), as_enabled)
 				self._setup_mixer(as_active)
 			else:
@@ -268,47 +239,6 @@ class MainSelectorComponent(ModeSelectorComponent):
 			self._session.set_track_bank_buttons(None, None)
 			self._session.set_scene_bank_buttons(None, None)
 
-	" SETUP THE QUICK MIX "
-	def _setup_quick_mix(self, as_active):
-		if self._quick_mix!=None:
-			if as_active:
-				for button in range(8):
-					self._side_buttons[button].set_enabled(True)
-				self._quick_mix._is_active = True
-				self._quick_mix.set_enabled(True)
-			else:
-				self._quick_mix._is_active = False
-				self._quick_mix.set_enabled(False)
-
-	" SETUP THE STEP SEQUENCER "
-	def _setup_step_sequencer(self, as_active, mode):
-		if(self._stepseq!=None):
-			if(self._stepseq._is_active!=as_active or self._stepseq._mode!=mode ):
-				if as_active: 
-					self._stepseq._mode=mode
-					self._stepseq._force_update = True
-					self._stepseq._is_active = True
-					self._stepseq.set_enabled(True)
-					self._stepseq._on_notes_changed()
-					self._config_button.send_value(32)
-				else:
-					self._stepseq._mode=1
-					self._stepseq._is_active = False
-					self._stepseq.set_enabled(False)
-
-	" SETUP THE DEVICE CONTROLER "
-	def _setup_device_controller(self, as_active):
-		if self._device_controller!=None:
-			if as_active:
-				#for button in range(8):
-				#	self._side_buttons[button].set_enabled(True)
-				self._device_controller._is_active = True
-				self._device_controller.set_enabled(True)
-				self._device_controller.update()
-				self._config_button.send_value(32)
-			else:
-				self._device_controller._is_active = False
-				self._device_controller.set_enabled(False)
 
 	" SETUP THE MIXER "
 	def _setup_mixer(self, as_active):

@@ -1,13 +1,8 @@
 from _Framework.ModeSelectorComponent import ModeSelectorComponent #@UnresolvedImport
 from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
 from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImport
-#from _Framework.ClipSlotComponent import ClipSlotComponent #@UnresolvedImport
-#from _Framework.ChannelStripComponent import ChannelStripComponent #@UnresolvedImport
-#from _Framework.SceneComponent import SceneComponent #@UnresolvedImport
 from _Framework.SessionComponent import SessionComponent #@UnresolvedImport
-#from _Framework.SessionZoomingComponent import SessionZoomingComponent #@UnresolvedImport
 from SpecialMixerComponent import SpecialMixerComponent 
-#from ConfigurableButtonElement import ConfigurableButtonElement 
 from PreciseButtonSliderElement import * #@UnusedWildImport
 
 LED_OFF = 4

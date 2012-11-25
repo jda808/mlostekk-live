@@ -7,11 +7,8 @@ from _Framework.ClipSlotComponent import ClipSlotComponent #@UnresolvedImport @U
 from _Framework.ChannelStripComponent import ChannelStripComponent #@UnresolvedImport @UnusedImport
 from _Framework.SceneComponent import SceneComponent #@UnresolvedImport @UnusedImport
 from _Framework.SessionZoomingComponent import SessionZoomingComponent #@UnresolvedImport @UnusedImport
-#from ConfigurableButtonElement import ConfigurableButtonElement 
-#from DeviceControllerComponent import DeviceControllerComponent
-#from QuickMixerComponent import QuickMixerComponent @UnusedImport
 from SpecialSessionComponent import SpecialSessionComponent 
-from SubSelectorComponent import * #@UnusedWildImport
+from MixerSelectorComponent import * #@UnusedWildImport
 #from StepSequencerComponent import StepSequencerComponent
 
 class MainSelectorComponent(ModeSelectorComponent):
@@ -40,7 +37,7 @@ class MainSelectorComponent(ModeSelectorComponent):
 		self._all_buttons = []
 		for button in (self._side_buttons + self._nav_buttons):
 			self._all_buttons.append(button)
-		self._sub_modes = SubSelectorComponent(matrix, side_buttons, self._session)
+		self._sub_modes = MixerSelectorComponent(matrix, side_buttons, self._session)
 		self._sub_modes.name = "Mixer_Modes"
 		self._sub_modes.set_update_callback(self._update_control_channels)
 		self._stepseq = None#StepSequencerComponent(self, self._matrix,self._side_buttons,self._nav_buttons)
@@ -105,7 +102,6 @@ class MainSelectorComponent(ModeSelectorComponent):
 
 	" UPDATE MODE BUTTONS "
 	def _update_mode_buttons(self):
-
 		if self._mode_index==self._previous_mode_index:
 			if self._mode_index==1:
 				#user mode 1 and device controller

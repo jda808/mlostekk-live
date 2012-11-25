@@ -1,6 +1,5 @@
-#===============================================================================
+
 # LaunchPad Colours
-#===============================================================================
 
 LED_OFF = 4
 
@@ -19,3 +18,8 @@ AMBER_HALF = ((RED_HALF + GREEN_HALF) - 4)
 AMBER_THIRD = ((RED_THIRD + GREEN_THIRD) - 4)
 AMBER_BLINK = ((AMBER_FULL - 4) + 8)
 
+def index_of(mylist, elt):
+	for i in range(0,len(mylist)):
+		if (mylist[i] == elt):
+			return i
+	return(-1)

@@ -1,0 +1,95 @@
+<JZML>
+<PROJECT version="3020" width="1024" height="724" osc_target="-1" midi_target="-1" kbmouse_target="-1"/>
+<WINDOW class="JAZZINTERFACE" text="OverView" x="0" y="0" width="1024" height="724" state="1" group="0" font="tahoma,11,0" >
+<WINDOW class="Container" text="IDX" x="157" y="90" width="640" height="134" id="6" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
+<WINDOW class="Container" text="TRACK" x="0" y="38" width="624" height="76" state="1" group="0" font="tahoma,10,0" send="129" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
+<WINDOW class="Monitor" text="KICK" x="0" y="0" width="76" height="60" id="4" state="243" group="0" font="tahoma,12,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="32512" label="1" precision="3" unit="" value="1">
+<VARIABLE name="value=index" send="0" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/KICK/value" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="name='KICK'" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/KICK/name" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="index=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/KICK/index" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+</WINDOW>
+<WINDOW class="Monitor" text="BASE" x="76" y="0" width="76" height="60" id="5" state="243" group="0" font="tahoma,12,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="32512" label="1" precision="3" unit="" value="1">
+<VARIABLE name="value=index" send="0" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/BASE/value" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="name='BASE'" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/BASE/name" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="index=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/BASE/index" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+</WINDOW>
+<WINDOW class="Monitor" text="SNR" x="152" y="0" width="76" height="60" id="6" state="243" group="0" font="tahoma,12,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="32512" label="1" precision="3" unit="" value="1">
+<VARIABLE name="value=index" send="0" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/SNR/value" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="name='SNR'" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/SNR/name" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="index=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/SNR/index" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+</WINDOW>
+<WINDOW class="Monitor" text="HATZ" x="228" y="0" width="76" height="60" id="7" state="243" group="0" font="tahoma,12,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="32512" label="1" precision="3" unit="" value="1">
+<VARIABLE name="value=index" send="0" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/HATZ/value" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="name='HATZ'" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/HATZ/name" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="index=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/HATZ/index" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+</WINDOW>
+<WINDOW class="Monitor" text="FX" x="304" y="0" width="76" height="60" id="8" state="243" group="0" font="tahoma,12,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="32512" label="1" precision="3" unit="" value="1">
+<VARIABLE name="value=index" send="0" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/FX/value" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="name='FX'" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/FX/name" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="index=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/FX/index" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+</WINDOW>
+<WINDOW class="Monitor" text="SYNTH" x="380" y="0" width="76" height="60" id="9" state="243" group="0" font="tahoma,12,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="32512" label="1" precision="3" unit="" value="1">
+<VARIABLE name="value=index" send="0" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/SYNTH/value" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="name='SYNTH'" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/SYNTH/name" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="index=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/SYNTH/index" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+</WINDOW>
+<WINDOW class="Monitor" text="LEAD" x="456" y="0" width="76" height="60" id="10" state="243" group="0" font="tahoma,12,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="32512" label="1" precision="3" unit="" value="1">
+<VARIABLE name="value=index" send="0" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/LEAD/value" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="name='LEAD'" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/LEAD/name" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="index=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/LEAD/index" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+</WINDOW>
+<WINDOW class="Monitor" text="TEX" x="532" y="0" width="76" height="60" id="11" state="243" group="0" font="tahoma,12,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="32512" label="1" precision="3" unit="" value="1">
+<VARIABLE name="value=index" send="0" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/TEX/value" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="name='TEX'" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/TEX/name" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="index=-1" send="1" osc_target="-1" osc_trigger="1" osc_message="/IDX/TRACK/TEX/index" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+</WINDOW>
+<SCRIPT name="update(OSC_ARGS)" script="// local vars
+decl trackName;
+decl trackObject;
+decl oscMsgIdx = 0;
+decl found = 0;
+
+// parse all objects
+trackObject = getfirst(TRACK);
+
+while(trackObject)
+{
+		// check all OSC names
+		for(oscMsgIdx = 0; oscMsgIdx < sizeof(OSC_ARGS); oscMsgIdx++)
+		{
+				// current channel name
+				trackName = OSC_ARGS[oscMsgIdx];
+				
+				// compare
+				if(trackName == getexpression(trackObject, 'name'))
+				{
+						// set the name and the text if debug is on
+						setexpression(trackObject, 'index', oscMsgIdx);
+						setattribute(trackObject, 'color', RGB(0,1,0));
+						found = 1;
+						break;
+				}
+		}
+
+
+		if(found == 0)
+		{
+				setexpression(trackObject, 'index', -1);	
+				setattribute(trackObject, 'color', RGB(1,0,0));
+		}
+
+		// reset flag
+		found = 0;
+
+		// check name
+		trackObject = getnext(trackObject);
+}
+
+" trigger_script="" trigger_type="2" trigger="1" osc_message="/live/name/trackblock" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+</WINDOW>
+<WINDOW class="Text" text="Text" x="0" y="0" width="624" height="38" id="1" state="245" group="0" font="tahoma,14,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" content="INDEX GATHERING / VIEW FOR DEBUG">
+<VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/IDX/Text/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+</WINDOW>
+</WINDOW>
+</WINDOW>
+</JZML>

@@ -28,7 +28,7 @@
 		<link>
 			<name>log/python</name>
 			<type>2</type>
-			<locationURI>USER_PATH/python/logs</locationURI>
+			<locationURI>USER_PATH</locationURI>
 		</link>
 	</linkedResources>
 	<filteredResources>
@@ -55,20 +55,15 @@
 				</arguments>
 			</matcher>
 		</filter>
-		<filter>
-			<id>1330441530265</id>
-			<name>userRemoteScripts</name>
-			<type>13</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-true-false-live*</arguments>
-			</matcher>
-		</filter>
 	</filteredResources>
 	<variableList>
 		<variable>
 			<name>LIVE_DIR</name>
 			<value>file:/C:/Users/mlostekk/AppData/Roaming/Ableton/Live%208.3.4</value>
+		</variable>
+		<variable>
+			<name>USER_PATH</name>
+			<value>file:/C:/Users/mlostekk/python</value>
 		</variable>
 	</variableList>
 </projectDescription>

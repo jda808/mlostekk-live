@@ -34,35 +34,30 @@ class Logger:
                 print "Couldn't connect socket"
         self.buf = ""
         self.intend = 0
-        self.intend_map = {}      
-                 
+        self.intend_map = {}                       
             
     """ MAIN LOG """
     def log(self, msg):
         if self.connected:
             self.send(msg + '\n')
         else:
-            print(msg)
-                    
+            print(msg)                    
                     
     """ LOG INTENDED """
     def logIntended(self, className, msg):
         msg = self.intend_map[className] + className + "::" + msg
-        self.log(msg)    
-    
+        self.log(msg)        
     
     """ SEND MESSAGE """
     def send(self, msg):
         if self.connected:
-            self.socket.send(msg)
-    
+            self.socket.send(msg)    
     
     """ CLOSE THE LOGGER """
     def close(self):
         if self.connected:
             self.socket.send("Closing..")
-            self.socket.close()
-    
+            self.socket.close()    
     
     """ WRITE TO STDOUT OR FILE """        
     def write(self, msg):
@@ -96,7 +91,6 @@ logger = Logger()
 def logInit(initStart, moduleName):
     assert(isinstance(initStart, type(False)))
     assert(isinstance(moduleName, type(str(''))))
-    return
     if initStart:
         logger.addToIntendMap(moduleName)
         logger.logIntended(moduleName, moduleName + " === INIT start")
@@ -111,10 +105,9 @@ def logInit(initStart, moduleName):
 def log(*args):
     text = ''    
     # check if init logging
-    if len(args) >= 2:
-        if isinstance(args[0], type(False)):
+    if len(args) >= 2:        
+        if isinstance(args[0], type(False)):            
             logInit(args[0], split(args[1], '.')[1])
-            return
         # check if existing class logging, then do with intend
         elif logger.intend_map.has_key(split(args[0], '.')[1]):
             for arg in args[1:]:

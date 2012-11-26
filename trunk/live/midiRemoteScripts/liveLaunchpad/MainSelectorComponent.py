@@ -118,10 +118,10 @@ class MainSelectorComponent(ModeSelectorComponent):
 		if self.is_enabled():		
 			self._update_mode_buttons()			
 			#update matrix and side buttons
-			for scene_index in range(8):
+			for scene_index in range(self._matrix.height()):
 				#update scene button
 				self._side_buttons[scene_index].set_enabled(True)
-				for track_index in range(8):
+				for track_index in range(self._matrix.width()):
 					#update matrix
 					self._matrix.get_button(track_index, scene_index).set_enabled(True)
 			for button in self._nav_buttons:
@@ -167,28 +167,31 @@ class MainSelectorComponent(ModeSelectorComponent):
 	" SETUP THE SESSION "
 	def _setup_session(self, as_active, as_enabled):
 		assert isinstance(as_active, type(False))
-		#nav button color
+		# --------------------------------------------------------------------- nav button color
 		for button in self._nav_buttons:
 			if as_enabled:
 				button.set_on_off_values(GREEN_FULL, GREEN_THIRD)
 			else:
 				button.set_on_off_values(127, LED_OFF)
-		#matrix
-		for scene_index in range(8):
+		# --------------------------------------------------------------------- matrix
+		for scene_index in range(self._matrix.height()):
 			scene = self._session.scene(scene_index)
+			# SCENE BUTTONS
 			if as_active:
 				scene_button = self._side_buttons[scene_index]
 				scene_button.set_on_off_values(127, LED_OFF)
 				scene.set_launch_button(scene_button)
 			else:
 				scene.set_launch_button(None)
-			for track_index in range(8):
+			# SLOT BUTTONS
+			for track_index in range(self._matrix.width()):
 				if as_active:
 					button = self._matrix.get_button(track_index, scene_index)
 					button.set_on_off_values(127, LED_OFF)
 					scene.clip_slot(track_index).set_launch_button(button)
 				else:
-					scene.clip_slot(track_index).set_launch_button(None)		#zoom
+					scene.clip_slot(track_index).set_launch_button(None)		
+		# --------------------------------------------------------------------- zoom
 		if as_active:
 			self._zooming.set_zoom_button(self._modes_buttons[0])
 			self._zooming.set_button_matrix(self._matrix)
@@ -200,7 +203,7 @@ class MainSelectorComponent(ModeSelectorComponent):
 			self._zooming.set_button_matrix(None)
 			self._zooming.set_scene_bank_buttons(None)
 			self._zooming.set_nav_buttons(None, None, None, None)
-		#nav buttons
+		# --------------------------------------------------------------------- nav buttons
 		if as_enabled:
 			self._session.set_track_bank_buttons(self._nav_buttons[3], self._nav_buttons[2])
 			self._session.set_scene_bank_buttons(self._nav_buttons[1], self._nav_buttons[0])
@@ -258,10 +261,12 @@ class MainSelectorComponent(ModeSelectorComponent):
 	" INIT THE SESSION "
 	def _init_session(self):
 		self._session.set_stop_track_clip_value(AMBER_BLINK)
+		# SCENES
 		for scene_index in range(self._matrix.height()):
 			scene = self._session.scene(scene_index)
 			scene.set_triggered_value(GREEN_BLINK)
 			scene.name = ("Scene_" + str(scene_index))
+			# SLOTS
 			for track_index in range(self._matrix.width()):
 				clip_slot = scene.clip_slot(track_index)
 				clip_slot.set_triggered_to_play_value(GREEN_BLINK)

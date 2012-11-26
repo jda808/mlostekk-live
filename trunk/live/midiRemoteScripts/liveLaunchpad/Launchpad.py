@@ -6,6 +6,8 @@ from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
 from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImport
 from ConfigurableButtonElement import ConfigurableButtonElement 
 from MainSelectorComponent import MainSelectorComponent 
+from _liveUtils.Logger import log #@UnresolvedImport @UnusedImport
+from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport @UnusedImport
 
 SIDE_NOTES = (8, 24, 40, 56, 72, 88, 104, 120)
 DRUM_NOTES = (41, 42, 43, 44, 45, 46, 47, 57, 58, 59, 60, 61, 62, 63, 73, 74, 75, 76, 77, 78, 79, 89, 90, 91, 92, 93, 94, 95, 105, 106, 107)
@@ -31,6 +33,29 @@ class Launchpad(ControlSurface):
 		self._challenge = (Live.Application.get_random_int(0, 400000000) & 2139062143)
 		matrix = ButtonMatrixElement()
 		matrix.name = "Button_Matrix"
+		
+		""" TRACKFINDER TEST 
+		track_index = 0
+		for track in self.song().tracks:
+			if track_index < 8:
+				button_row = []			
+				if track.is_foldable:
+					for column in range(8):	
+						log("right one: " + str(track_index))		
+						button = ConfigurableButtonElement(is_momentary, MIDI_NOTE_TYPE, 0, ((track_index * 16) + column)) #@UndefinedVariable
+						button.name = (((str(column) + "_Clip_") + str(track_index)) + "_Button")
+						button_row.append(button)
+					track_index = track_index + 1
+				else:
+					for column in range(8):
+						log("wrong one: " + str(track_index))
+						button = ConfigurableButtonElement(is_momentary, MIDI_NOTE_TYPE, 0, 99, True) #@UndefinedVariable
+						button.name = (str(column) + "_Clip_Button-DUMMY")
+						button_row.append(button)
+				matrix.add_row(tuple(button_row))
+		log("done")"""
+		
+		""" ORIGINAL CODE """
 		for row in range(8):
 			button_row = []
 			for column in range(8):
@@ -38,6 +63,7 @@ class Launchpad(ControlSurface):
 				button.name = (((str(column) + "_Clip_") + str(row)) + "_Button")
 				button_row.append(button)
 			matrix.add_row(tuple(button_row))
+			
 		self._config_button = ButtonElement(is_momentary, MIDI_CC_TYPE, 0, 0) #@UndefinedVariable
 		self._config_button.add_value_listener(self._config_value)
 		top_buttons = [ ConfigurableButtonElement(is_momentary, MIDI_CC_TYPE, 0, (104 + index)) for index in range(8) ] #@UndefinedVariable

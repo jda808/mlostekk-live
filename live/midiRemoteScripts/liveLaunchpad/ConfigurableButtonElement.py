@@ -14,7 +14,7 @@ class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 		self._is_notifying = False
 		self._force_next_value = False
 		self._pending_listeners = []
-
+		
 	" SET ON / OFF VALUES "
 	def set_on_off_values(self, on_value, off_value):
 		assert (on_value in range(128))
@@ -48,8 +48,7 @@ class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 		if (not self._is_notifying):
 			ButtonElement.add_value_listener(self, callback, identify_sender) #@UndefinedVariable
 		else:
-			self._pending_listeners.append((callback,
-			 identify_sender))
+			self._pending_listeners.append((callback,identify_sender))
 
 	" RECEIVE VALUE "
 	def receive_value(self, value):

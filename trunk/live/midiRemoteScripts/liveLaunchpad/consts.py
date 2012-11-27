@@ -1,5 +1,5 @@
-
-# LaunchPad Colours
+# LaunchPad globals
+GROUPS_CONSIDERED = 8
 
 LED_OFF = 4
 

@@ -4,20 +4,7 @@ from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImpor
 from _Framework.SessionComponent import SessionComponent #@UnresolvedImport
 from SpecialMixerComponent import SpecialMixerComponent 
 from PreciseButtonSliderElement import * #@UnusedWildImport
-
-LED_OFF = 4
-RED_FULL = 7
-RED_HALF = 6
-RED_THIRD = 5
-RED_BLINK = 11
-GREEN_FULL = 52
-GREEN_HALF = 36
-GREEN_THIRD = 20
-GREEN_BLINK = 56
-AMBER_FULL = ((RED_FULL + GREEN_FULL) - 4)
-AMBER_HALF = ((RED_HALF + GREEN_HALF) - 4)
-AMBER_THIRD = ((RED_THIRD + GREEN_THIRD) - 4)
-AMBER_BLINK = ((AMBER_FULL - 4) + 8)
+from consts import * #@UnusedWildImport
 
 PAN_VALUE_MAP = (-1.0, -0.63492099999999996, -0.31746000000000002, 0.0, 0.0, 0.31746000000000002, 0.63492099999999996, 1.0)
 VOL_VALUE_MAP = (0.0, 0.14288200000000001, 0.30241400000000002, 0.40000000000000002, 0.55000000000000004, 0.69999999999999996, 0.84999999999999998, 1.0)
@@ -35,16 +22,20 @@ class SpecialMixerSelectorComponent(ModeSelectorComponent):
 		assert isinstance(session, SessionComponent)
 		ModeSelectorComponent.__init__(self)
 		self._session = session
-		self._mixer = SpecialMixerComponent(matrix.width())
+		self._mixer = SpecialMixerComponent(len(self.song().tracks))
 		self._matrix = matrix
 		self._sliders = []
 		self._mixer.name = "Mixer"
 		self._mixer.master_strip().name = "Master_Channel_strip"
 		self._mixer.selected_strip().name = "Selected_Channel_strip"
-		for column in range(matrix.width()):
-			self._mixer.channel_strip(column).name = ("Channel_Strip_" + str(column))
-			self._sliders.append(PreciseButtonSliderElement(tuple([ matrix.get_button(column, (7 - row)) for row in range(8) ])))
-			self._sliders[-1].name = ("Button_Slider_" + str(column))
+		for column in range(len(self.song().tracks)):
+			button_index = 0
+			if self.song().tracks[column].is_foldable:
+				if button_index < GROUPS_CONSIDERED:
+					self._mixer.channel_strip(column).name = ("Channel_Strip_" + str(column))
+					self._sliders.append(PreciseButtonSliderElement(tuple([ matrix.get_button(button_index, (7 - row)) for row in range(8) ])))
+					self._sliders[-1].name = ("Button_Slider_" + str(button_index))
+					button_index = button_index + 1
 		self._side_buttons = side_buttons[4:]
 		self._update_callback = None
 		self._session.set_mixer(self._mixer)
@@ -112,9 +103,13 @@ class SpecialMixerSelectorComponent(ModeSelectorComponent):
 
 	" RELEASE ALL THE CONTROLS "	
 	def release_controls(self):
-		for track in range(self._matrix.width()):
-			for row in range(self._matrix.height()):
-				self._matrix.get_button(track, row).set_on_off_values(127, LED_OFF)
+		for track in range(len(self.song().tracks)):
+			button_index = 0
+			if self.song().tracks[track].is_foldable:
+				if button_index < GROUPS_CONSIDERED:
+					for row in range(self._matrix.height()):
+						self._matrix.get_button(button_index, row).set_on_off_values(127, LED_OFF)
+						button_index = button_index + 1
 			strip = self._mixer.channel_strip(track)
 			strip.set_default_buttons(None, None, None, None)
 			strip.set_solo_button(None)
@@ -167,27 +162,33 @@ class SpecialMixerSelectorComponent(ModeSelectorComponent):
 	def _setup_mixer_overview(self):
 		trkon_index = 5
 		stop_buttons = []
-		for track in range(self._matrix.width()):
-			strip = self._mixer.channel_strip(track)
-			strip.set_send_controls((None, None))
-			strip.set_pan_control(None)
-			strip.set_volume_control(None)
-			self._sliders[track].release_parameter()
-			for row in range(self._matrix.height()):
-				full_value = GREEN_THIRD
-				third_value = GREEN_FULL
-				if (row == trkon_index):
-					full_value = AMBER_FULL
-					third_value = AMBER_THIRD
-				elif (row > 3):
-					full_value = RED_FULL
-					third_value = RED_THIRD
-				self._matrix.get_button(track, row).set_on_off_values(full_value, third_value)
-			strip.set_default_buttons(self._matrix.get_button(track, 0), self._matrix.get_button(track, 1), self._matrix.get_button(track, 2), self._matrix.get_button(track, 3))
-			stop_buttons.append(self._matrix.get_button(track, 4))
-			strip.set_mute_button(self._matrix.get_button(track, 5))
-			strip.set_solo_button(self._matrix.get_button(track, 6))
-			strip.set_arm_button(self._matrix.get_button(track, 7))
+		button_index = 0
+		for track in range(len(self.song().tracks)):
+			if button_index < GROUPS_CONSIDERED:
+				if self.song().tracks[track].is_foldable:
+					strip = self._mixer.channel_strip(track)
+					strip.set_send_controls((None, None))
+					strip.set_pan_control(None)
+					strip.set_volume_control(None)
+					self._sliders[button_index].release_parameter()
+					for row in range(self._matrix.height()):
+						full_value = GREEN_THIRD
+						third_value = GREEN_FULL
+						if (row == trkon_index):
+							full_value = AMBER_FULL
+							third_value = AMBER_THIRD
+						elif (row > 3):
+							full_value = RED_FULL
+							third_value = RED_THIRD
+						self._matrix.get_button(button_index, row).set_on_off_values(full_value, third_value)
+					strip.set_default_buttons(self._matrix.get_button(button_index, 0), self._matrix.get_button(button_index, 1), self._matrix.get_button(button_index, 2), self._matrix.get_button(button_index, 3))
+					stop_buttons.append(self._matrix.get_button(button_index, 4))
+					strip.set_mute_button(self._matrix.get_button(button_index, 5))
+					strip.set_solo_button(self._matrix.get_button(button_index, 6))
+					strip.set_arm_button(self._matrix.get_button(button_index, 7))				
+					button_index = button_index + 1
+				else:
+					stop_buttons.append(None)
 		for button in self._side_buttons:
 			if (list(self._side_buttons).index(button) == (trkon_index - 4)):
 				button.set_on_off_values(AMBER_FULL, AMBER_THIRD)

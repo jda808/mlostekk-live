@@ -186,14 +186,15 @@ class MainSelectorComponent(ModeSelectorComponent):
 			# SLOT BUTTONS
 			button_index = 0
 			for track_index in range(len(self.song().tracks)):
-				if self.song().tracks[track_index].is_foldable:
-					if as_active:
-						button = self._matrix.get_button(button_index, scene_index)
-						button.set_on_off_values(127, LED_OFF)
-						scene.clip_slot(track_index).set_launch_button(button)
-					else:
-						scene.clip_slot(track_index).set_launch_button(None)
-					button_index = button_index + 1		
+				if button_index < GROUPS_CONSIDERED:
+					if self.song().tracks[track_index].is_foldable:
+						if as_active:
+							button = self._matrix.get_button(button_index, scene_index)
+							button.set_on_off_values(127, LED_OFF)
+							scene.clip_slot(track_index).set_launch_button(button)
+						else:
+							scene.clip_slot(track_index).set_launch_button(None)
+						button_index = button_index + 1		
 		# --------------------------------------------------------------------- zoom
 		if as_active:
 			self._zooming.set_zoom_button(self._modes_buttons[0])
@@ -272,16 +273,17 @@ class MainSelectorComponent(ModeSelectorComponent):
 			# SLOTS
 			button_index = 0
 			for track_index in range(len(self.song().tracks)):
-				if self.song().tracks[track_index].is_foldable:
-					clip_slot = scene.clip_slot(track_index)
-					clip_slot.set_triggered_to_play_value(GREEN_BLINK)
-					clip_slot.set_triggered_to_record_value(RED_BLINK)
-					clip_slot.set_stopped_value(AMBER_FULL)
-					clip_slot.set_started_value(GREEN_FULL)
-					clip_slot.set_recording_value(RED_FULL)
-					clip_slot.name = ((str(track_index) + "_Clip_Slot_") + str(scene_index))
-					self._all_buttons.append(self._matrix.get_button(button_index, scene_index))
-					button_index = button_index + 1
+				if button_index < GROUPS_CONSIDERED:
+					if self.song().tracks[track_index].is_foldable:
+						clip_slot = scene.clip_slot(track_index)
+						clip_slot.set_triggered_to_play_value(GREEN_BLINK)
+						clip_slot.set_triggered_to_record_value(RED_BLINK)
+						clip_slot.set_stopped_value(AMBER_FULL)
+						clip_slot.set_started_value(GREEN_FULL)
+						clip_slot.set_recording_value(RED_FULL)
+						clip_slot.name = ((str(track_index) + "_Clip_Slot_") + str(scene_index))
+						self._all_buttons.append(self._matrix.get_button(button_index, scene_index))
+						button_index = button_index + 1
 		self._zooming.set_stopped_value(RED_FULL)
 		self._zooming.set_selected_value(AMBER_FULL)
 		self._zooming.set_playing_value(GREEN_FULL)

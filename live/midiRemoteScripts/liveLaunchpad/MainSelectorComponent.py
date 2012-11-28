@@ -25,14 +25,11 @@ class MainSelectorComponent(ModeSelectorComponent):
 		assert isinstance(config_button, ButtonElement)
 		ModeSelectorComponent.__init__(self)
 		self._session = SpecialSessionComponent(len(self.song().tracks), matrix.height())
-		self._zooming = SessionZoomingComponent(self._session)
 		self._session.name = "Session_Control"
-		self._zooming.name = "Session_Overview"
 		self._matrix = matrix
 		self._side_buttons = side_buttons
 		self._nav_buttons = top_buttons[:4]
 		self._config_button = config_button
-		self._zooming.set_empty_value(LED_OFF)
 		self._all_buttons = []
 		for button in (self._side_buttons + self._nav_buttons):
 			self._all_buttons.append(button)
@@ -42,13 +39,20 @@ class MainSelectorComponent(ModeSelectorComponent):
 		self._init_session()
 		self._all_buttons = tuple(self._all_buttons)
 		self.set_modes_buttons(top_buttons[4:])
+		# mixer-session hack
+		self._buttons_for_mixer = []
+		for button in (self._side_buttons[5:]):
+			self._buttons_for_mixer.append(button)
+		for scene_index in range(self._matrix.height()):
+			for track_index in range(self._matrix.width()):
+				if scene_index > SESSION_HEIGHT_FOR_MIXER:
+					self._buttons_for_mixer.append(self._matrix.get_button(track_index, scene_index))
 
 	" DISCONNECT "
 	def disconnect(self):
 		for button in self._modes_buttons:
 			button.remove_value_listener(self._mode_value)
 		self._session = None
-		self._zooming = None
 		for button in self._all_buttons:
 			button.set_on_off_values(127, LED_OFF)
 		self._config_button.turn_off()
@@ -56,6 +60,7 @@ class MainSelectorComponent(ModeSelectorComponent):
 		self._side_buttons = None
 		self._nav_buttons = None
 		self._config_button = None
+		self._buttons_for_mixer = None
 		ModeSelectorComponent.disconnect(self)
 		
 	" GET SESSION COMPONENT "
@@ -129,44 +134,52 @@ class MainSelectorComponent(ModeSelectorComponent):
 			as_active = True
 			as_enabled = True
 			self._session.set_allow_update(False)
-			self._zooming.set_allow_update(False)
 			self._config_button.send_value(40)
 			self._config_button.send_value(1)			
 			release_buttons = (self._mode_index == 1)
+			
 			if (self._mode_index == 0):
 				#session
 				self._setup_mixer((not as_active))
-				self._setup_session(as_active, as_enabled)
+				self._setup_session(as_active, as_enabled, False)
 			elif (self._mode_index == 1):
 				#user mode 1
 				self._setup_mixer((not as_active))
-				self._setup_session((not as_active), (not as_enabled))
+				self._setup_session((not as_active), (not as_enabled), False)
 				self._setup_user1(True,True,True)				
 			elif (self._mode_index == 2):
 				#user mode 2
 				self._setup_mixer((not as_active))
-				self._setup_session((not as_active), (not as_enabled))				
+				self._setup_session((not as_active), (not as_enabled), False)				
 				self._setup_user2(release_buttons)						
 			elif (self._mode_index == 3):
 				#mixer
-				self._setup_session((not as_active), as_enabled)
+				self._setup_session((as_active), as_enabled, True)
 				self._setup_mixer(as_active)
 			else:
 				assert False				
 			self._session.set_allow_update(True)
-			self._zooming.set_allow_update(True)
 			self._update_control_channels()
 
 	" UPDATE THE CHANNELS OF THE BUTTONS IN THE USER MODES.. "
 	def _update_control_channels(self):
 		new_channel = self.channel_for_current_mode()
-		for button in self._all_buttons:
-			button.set_channel(new_channel)
-			button.set_force_next_value()
+		if self._mode_index == 3:
+			# skip the upper part of the matrix and buttons
+			for button in self._buttons_for_mixer:
+				button.set_channel(new_channel)
+				button.set_force_next_value()
+		else:
+			for button in self._all_buttons:
+				button.set_channel(new_channel)
+				button.set_force_next_value()
 
 	" SETUP THE SESSION "
-	def _setup_session(self, as_active, as_enabled):
+	def _setup_session(self, as_active, as_enabled, for_mixer):
+		#log("setup_session (active: " + str(as_active) + ", enabled: " + str(as_enabled) + ", forMixer: " + str(for_mixer) + ")")
 		assert isinstance(as_active, type(False))
+		assert isinstance(as_enabled, type(False))
+		assert isinstance(for_mixer, type(False))
 		# --------------------------------------------------------------------- nav button color
 		for button in self._nav_buttons:
 			if as_enabled:
@@ -175,44 +188,45 @@ class MainSelectorComponent(ModeSelectorComponent):
 				button.set_on_off_values(127, LED_OFF)
 		# --------------------------------------------------------------------- matrix
 		for scene_index in range(self._matrix.height()):
-			scene = self._session.scene(scene_index)
-			# SCENE BUTTONS
-			if as_active:
+			scene = self._session.scene(scene_index)			
+			if for_mixer:
+				if scene_index <= SESSION_HEIGHT_FOR_MIXER:
+					scene_button = self._side_buttons[scene_index]
+					scene_button.set_on_off_values(127, LED_OFF)
+					scene.set_launch_button(scene_button)
+				else:
+					scene.set_launch_button(None)
+			elif as_active and (not for_mixer):				
 				scene_button = self._side_buttons[scene_index]
 				scene_button.set_on_off_values(127, LED_OFF)
 				scene.set_launch_button(scene_button)
 			else:
-				scene.set_launch_button(None)
+				scene.set_launch_button(None)				
 			# SLOT BUTTONS
 			button_index = 0
 			for track_index in range(len(self.song().tracks)):
-				if button_index < GROUPS_CONSIDERED:
-					if self.song().tracks[track_index].is_foldable:
-						if as_active:
+				if self.song().tracks[track_index].is_foldable:
+					if button_index < GROUPS_CONSIDERED:				
+						if for_mixer:
+							if scene_index <= SESSION_HEIGHT_FOR_MIXER:
+								button = self._matrix.get_button(button_index, scene_index)
+								button.set_on_off_values(127, LED_OFF)
+								scene.clip_slot(track_index).set_launch_button(button)
+							else:
+								scene.clip_slot(track_index).set_launch_button(None)
+						elif as_active and (not for_mixer):
 							button = self._matrix.get_button(button_index, scene_index)
 							button.set_on_off_values(127, LED_OFF)
 							scene.clip_slot(track_index).set_launch_button(button)
 						else:
 							scene.clip_slot(track_index).set_launch_button(None)
-						button_index = button_index + 1		
-		# --------------------------------------------------------------------- zoom
-		if as_active:
-			self._zooming.set_zoom_button(self._modes_buttons[0])
-			self._zooming.set_button_matrix(self._matrix)
-			self._zooming.set_scene_bank_buttons(self._side_buttons)
-			self._zooming.set_nav_buttons(self._nav_buttons[0], self._nav_buttons[1], self._nav_buttons[2], self._nav_buttons[3])
-			self._zooming.update()
-		else:
-			self._zooming.set_zoom_button(None)
-			self._zooming.set_button_matrix(None)
-			self._zooming.set_scene_bank_buttons(None)
-			self._zooming.set_nav_buttons(None, None, None, None)
+						button_index = button_index + 1
+				else:
+					scene.clip_slot(track_index).set_launch_button(None)						
 		# --------------------------------------------------------------------- nav buttons
-		if as_enabled:
-			self._session.set_track_bank_buttons(self._nav_buttons[3], self._nav_buttons[2])
+		if as_enabled or for_mixer:
 			self._session.set_scene_bank_buttons(self._nav_buttons[1], self._nav_buttons[0])
 		else:
-			self._session.set_track_bank_buttons(None, None)
 			self._session.set_scene_bank_buttons(None, None)
 
 	" SETUP THE MIXER "
@@ -284,6 +298,3 @@ class MainSelectorComponent(ModeSelectorComponent):
 						clip_slot.name = ((str(track_index) + "_Clip_Slot_") + str(scene_index))
 						self._all_buttons.append(self._matrix.get_button(button_index, scene_index))
 						button_index = button_index + 1
-		self._zooming.set_stopped_value(RED_FULL)
-		self._zooming.set_selected_value(AMBER_FULL)
-		self._zooming.set_playing_value(GREEN_FULL)

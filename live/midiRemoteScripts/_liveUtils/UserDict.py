@@ -1,14 +1,14 @@
 """A more or less complete user-defined wrapper around dictionary objects."""
 
 class UserDict:
-    def __init__(self, dict=None, **kwargs):
+    def __init__(self, dict=None, **kwargs): #@ReservedAssignment
         self.data = {}
         if dict is not None:
             self.update(dict)
         if len(kwargs):
             self.update(kwargs)
     def __repr__(self): return repr(self.data)
-    def __cmp__(self, dict):
+    def __cmp__(self, dict): #@ReservedAssignment
         if isinstance(dict, UserDict):
             return cmp(self.data, dict.data)
         else:
@@ -42,7 +42,7 @@ class UserDict:
     def itervalues(self): return self.data.itervalues()
     def values(self): return self.data.values()
     def has_key(self, key): return self.data.has_key(key)
-    def update(self, dict=None, **kwargs):
+    def update(self, dict=None, **kwargs): #@ReservedAssignment
         if dict is None:
             pass
         elif isinstance(dict, UserDict):
@@ -93,7 +93,7 @@ class DictMixin:
             yield k
     def has_key(self, key):
         try:
-            value = self[key]
+            value = self[key] #@UnusedVariable
         except KeyError:
             return False
         return True

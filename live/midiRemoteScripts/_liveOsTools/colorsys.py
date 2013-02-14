@@ -31,7 +31,7 @@ ONE_SIXTH = 1.0/6.0
 TWO_THIRD = 2.0/3.0
 
 # transform ableton hex color to normal RGB values
-def hex2rgb(hex):
+def hex2rgb(hex): #@ReservedAssignment
     r = (hex & 0xff0000) >> 16;
     g = (hex & 0x00ff00) >> 8;
     b = hex & 0x0000ff ;

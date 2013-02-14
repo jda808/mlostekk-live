@@ -42,13 +42,13 @@ Many other constants may be defined; these may be used in calls to
 the setsockopt() and getsockopt() methods.
 """
 
-import _socket
-from _socket import *
+import _socket #@UnusedImport
+from _socket import * #@UnusedWildImport
 
 _have_ssl = False
 try:
     import _ssl
-    from _ssl import *
+    from _ssl import * #@UnusedWildImport
     _have_ssl = True
 except ImportError:
     pass
@@ -113,7 +113,7 @@ def getfqdn(name=''):
     if not name or name == '0.0.0.0':
         name = gethostname()
     try:
-        hostname, aliases, ipaddrs = gethostbyaddr(name)
+        hostname, aliases, ipaddrs = gethostbyaddr(name) #@UnusedVariable
     except error:
         pass
     else:
@@ -154,7 +154,7 @@ class _socketobject(object):
 
     __slots__ = ["_sock", "__weakref__"] + list(_delegate_methods)
 
-    def __init__(self, family=AF_INET, type=SOCK_STREAM, proto=0, _sock=None):
+    def __init__(self, family=AF_INET, type=SOCK_STREAM, proto=0, _sock=None): #@ReservedAssignment
         if _sock is None:
             _sock = _realsocket(family, type, proto)
         self._sock = _sock
@@ -256,7 +256,7 @@ class _fileobject(object):
 
     def flush(self):
         if self._wbuf:
-            buffer = "".join(self._wbuf)
+            buffer = "".join(self._wbuf) #@ReservedAssignment
             self._wbuf = []
             self._sock.sendall(buffer)
 
@@ -273,7 +273,7 @@ class _fileobject(object):
             self._get_wbuf_len() >= self._wbufsize):
             self.flush()
 
-    def writelines(self, list):
+    def writelines(self, list): #@ReservedAssignment
         # XXX We could do better here for very long lists
         # XXX Should really reject non-string non-buffers
         self._wbuf.extend(filter(None, map(str, list)))
@@ -435,7 +435,7 @@ class _fileobject(object):
 
     def readlines(self, sizehint=0):
         total = 0
-        list = []
+        list = [] #@ReservedAssignment
         while True:
             line = self.readline()
             if not line:

@@ -523,7 +523,7 @@ def replace(s, old, new, maxsplit=-1):
 # that match <ctype.h>'s definitions.
 
 try:
-    from strop import maketrans, lowercase, uppercase, whitespace
+    from strop import maketrans, lowercase, uppercase, whitespace #@UnusedImport
     letters = lowercase + uppercase
 except ImportError:
     pass                                          # Use the original versions

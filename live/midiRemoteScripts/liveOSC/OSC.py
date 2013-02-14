@@ -38,9 +38,9 @@ import math
 import string
 import time
 
-from _liveUtils.Logger import log #@UnresolvedImport
+#from _liveUtils.Logger import log 
 
-def hexDump(bytes):
+def hexDump(bytes): #@ReservedAssignment
     """Useful utility; prints the string in hexadecimal"""
     for i in range(len(bytes)):
         sys.stdout.write("%2x " % (ord(bytes[i])))
@@ -95,7 +95,7 @@ class OSCMessage:
 
 JAN_1970 = 2208988800L
 SECS_TO_PICOS = 4294967296L
-def abs_to_timestamp(abs):
+def abs_to_timestamp(abs): #@ReservedAssignment
     """ since 1970 => since 1900 64b OSC """
     sec_1970 = long(abs)
     sec_1900 = sec_1970 + JAN_1970
@@ -163,14 +163,14 @@ def readFloat(data):
     if(len(data) < 4):
         print "Error: too few bytes for float", data, len(data)
         rest = data
-        float = 0
+        float = 0 #@ReservedAssignment
     else:
-        float = struct.unpack(">f", data[0:4])[0]
+        float = struct.unpack(">f", data[0:4])[0] #@ReservedAssignment
         rest = data[4:]
 
     return (float, rest)
 
-def OSCBlob(next):
+def OSCBlob(next): #@ReservedAssignment
     """Convert a string into an OSC Blob,
     returning a (typetag, data) tuple."""
 
@@ -185,7 +185,7 @@ def OSCBlob(next):
     
     return (tag, binary)
 
-def OSCArgument(next):
+def OSCArgument(next): #@ReservedAssignment
     """Convert some Python types to their
     OSC binary representations, returning a
     (typetag, data) tuple."""

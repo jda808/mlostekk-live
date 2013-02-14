@@ -10,12 +10,8 @@
 
 <pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
 <path>/live/accessories/logServer</path>
-<path>/live/midiRemoteScripts/_liveOsTools</path>
-<path>/live/midiRemoteScripts/_liveUtils</path>
-<path>/live/midiRemoteScripts/liveLaunchpad</path>
-<path>/live/midiRemoteScripts/liveF1</path>
-<path>/live/midiRemoteScripts/liveOSC</path>
 <path>/live/midiRemoteScripts/_uncomypled</path>
+<path>/live/midiRemoteScripts</path>
 </pydev_pathproperty>
 <pydev_pathproperty name="org.python.pydev.PROJECT_EXTERNAL_SOURCE_PATH">
 <path>E:\eclipseWorkspace4.2\live\midiRemoteScripts\_uncomypled</path>

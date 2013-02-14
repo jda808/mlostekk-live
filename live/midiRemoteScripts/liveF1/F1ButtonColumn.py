@@ -8,7 +8,7 @@ class F1ButtonColumn(ControlSurfaceComponent):
     __module__ = __name__
     
     """ ONE ROW OF BUTTONS"""
-    def __init__(self, is_momentary, type, cc_values, hsv_channels, control_channel, fullColor, track):
+    def __init__(self, is_momentary, type, cc_values, hsv_channels, control_channel, fullColor, track): #@ReservedAssignment
         log(True, __name__)
         # basic init                
         ControlSurfaceComponent.__init__(self) 

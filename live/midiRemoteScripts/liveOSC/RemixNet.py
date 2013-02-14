@@ -75,10 +75,10 @@ else:
     if version > 7:
         # 10.5
         try:
-            file = open("/usr/lib/python2.5/string.pyc")
+            file = open("/usr/lib/python2.5/string.pyc") #@ReservedAssignment
         except IOError:
             sys.path.append("/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5")
-            import socket_live8 as socket  #@UnusedImport @Reimport
+            import socket_live8 as socket  #@Reimport @UnusedImport
         else:
             sys.path.append("/usr/lib/python2.5")
             import socket #@Reimport

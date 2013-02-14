@@ -1,5 +1,5 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_Framework\ChannelStripComponent.py
-import Live
+import Live #@UnresolvedImport
 from itertools import chain
 from ControlSurfaceComponent import ControlSurfaceComponent
 from ButtonElement import ButtonElement
@@ -16,7 +16,7 @@ class ChannelStripComponent(ControlSurfaceComponent):
         for strip in ChannelStripComponent._active_instances:
             if not isinstance(strip, ChannelStripComponent):
                 raise AssertionError
-                strip.arm_button_pressed() and result += 1
+#                strip.arm_button_pressed() and result += 1
 
         return result
 
@@ -27,7 +27,7 @@ class ChannelStripComponent(ControlSurfaceComponent):
         for strip in ChannelStripComponent._active_instances:
             if not isinstance(strip, ChannelStripComponent):
                 raise AssertionError
-                strip.solo_button_pressed() and result += 1
+#                strip.solo_button_pressed() and result += 1
 
         return result
 
@@ -189,7 +189,7 @@ class ChannelStripComponent(ControlSurfaceComponent):
         if not isinstance(control, (type(None), EncoderElement)):
             raise AssertionError
             if control != self._pan_control:
-                self._pan_control != None and self._pan_control.release_parameter()
+                self._pan_control != None and self._pan_control.release_parameter() #@NoEffect
             self._pan_control = control
             self.update()
 
@@ -197,7 +197,7 @@ class ChannelStripComponent(ControlSurfaceComponent):
         if not isinstance(control, (type(None), EncoderElement)):
             raise AssertionError
             if control != self._volume_control:
-                self._volume_control != None and self._volume_control.release_parameter()
+                self._volume_control != None and self._volume_control.release_parameter() #@NoEffect
             self._volume_control = control
             self.update()
 
@@ -209,7 +209,7 @@ class ChannelStripComponent(ControlSurfaceComponent):
                     self._select_button.remove_value_listener(self._select_value)
                     self._select_button.reset()
                 self._select_button = button
-                self._select_button != None and self._select_button.add_value_listener(self._select_value)
+                self._select_button != None and self._select_button.add_value_listener(self._select_value) #@NoEffect
             self.update()
 
     def set_mute_button(self, button):
@@ -220,7 +220,7 @@ class ChannelStripComponent(ControlSurfaceComponent):
                     self._mute_button.remove_value_listener(self._mute_value)
                     self._mute_button.reset()
                 self._mute_button = button
-                self._mute_button != None and self._mute_button.add_value_listener(self._mute_value)
+                self._mute_button != None and self._mute_button.add_value_listener(self._mute_value) #@NoEffect
             self.update()
 
     def set_solo_button(self, button):
@@ -232,7 +232,7 @@ class ChannelStripComponent(ControlSurfaceComponent):
                     self._solo_button.reset()
                 self._solo_pressed = False
                 self._solo_button = button
-                self._solo_button != None and self._solo_button.add_value_listener(self._solo_value)
+                self._solo_button != None and self._solo_button.add_value_listener(self._solo_value) #@NoEffect
             self.update()
 
     def set_arm_button(self, button):
@@ -241,11 +241,11 @@ class ChannelStripComponent(ControlSurfaceComponent):
             if not (button == None or isinstance(button, ButtonElement)):
                 raise AssertionError
                 if button != self._arm_button:
-                    self._arm_button != None and self._arm_button.remove_value_listener(self._arm_value)
+                    self._arm_button != None and self._arm_button.remove_value_listener(self._arm_value) #@NoEffect
                     self._arm_button.reset()
                 self._arm_pressed = False
                 self._arm_button = button
-                self._arm_button != None and self._arm_button.add_value_listener(self._arm_value)
+                self._arm_button != None and self._arm_button.add_value_listener(self._arm_value) #@NoEffect
             self.update()
 
     def set_shift_button(self, button):
@@ -254,10 +254,10 @@ class ChannelStripComponent(ControlSurfaceComponent):
             if not (button == None or isinstance(button, ButtonElement) and button.is_momentary()):
                 raise AssertionError
                 if button != self._shift_button:
-                    self._shift_button != None and self._shift_button.remove_value_listener(self._shift_value)
+                    self._shift_button != None and self._shift_button.remove_value_listener(self._shift_value) #@NoEffect
                     self._shift_button.reset()
                 self._shift_button = button
-                self._shift_button != None and self._shift_button.add_value_listener(self._shift_value)
+                self._shift_button != None and self._shift_button.add_value_listener(self._shift_value) #@NoEffect
             self.update()
 
     def set_crossfade_toggle(self, button):
@@ -266,10 +266,10 @@ class ChannelStripComponent(ControlSurfaceComponent):
             if not (button == None or isinstance(button, ButtonElement)):
                 raise AssertionError
                 if button != self._crossfade_toggle:
-                    self._crossfade_toggle != None and self._crossfade_toggle.remove_value_listener(self._crossfade_toggle_value)
+                    self._crossfade_toggle != None and self._crossfade_toggle.remove_value_listener(self._crossfade_toggle_value) #@NoEffect
                     self._crossfade_toggle.reset()
                 self._crossfade_toggle = button
-                self._crossfade_toggle != None and self._crossfade_toggle.add_value_listener(self._crossfade_toggle_value)
+                self._crossfade_toggle != None and self._crossfade_toggle.add_value_listener(self._crossfade_toggle_value) #@NoEffect
             self.update()
 
     def set_invert_mute_feedback(self, invert_feedback):

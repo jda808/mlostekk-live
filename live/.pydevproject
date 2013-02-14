@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?eclipse-pydev version="1.0"?><pydev_project>
-<pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">Default</pydev_property>
-<pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python 2.5</pydev_property>
+<pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">python2.7</pydev_property>
+<pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python 2.7</pydev_property>
 
 
 
@@ -12,11 +12,12 @@
 <path>/live/accessories/logServer</path>
 <path>/live/midiRemoteScripts/_liveOsTools</path>
 <path>/live/midiRemoteScripts/_liveUtils</path>
-<path>/live/midiRemoteScripts/_uncomypled/_Framework</path>
-<path>/live/midiRemoteScripts/_uncomypled/_Axiom</path>
-<path>/live/midiRemoteScripts/_uncomypled/_Generic</path>
-<path>/live/midiRemoteScripts/_uncomypled/_MxDCore</path>
-<path>/live/midiRemoteScripts/_uncomypled/_Tools</path>
-<path>/live/midiRemoteScripts/_uncomypled/_UserScript</path>
+<path>/live/midiRemoteScripts/liveLaunchpad</path>
+<path>/live/midiRemoteScripts/liveF1</path>
+<path>/live/midiRemoteScripts/liveOSC</path>
+<path>/live/midiRemoteScripts/_uncomypled</path>
+</pydev_pathproperty>
+<pydev_pathproperty name="org.python.pydev.PROJECT_EXTERNAL_SOURCE_PATH">
+<path>E:\eclipseWorkspace4.2\live\midiRemoteScripts\_uncomypled</path>
 </pydev_pathproperty>
 </pydev_project>

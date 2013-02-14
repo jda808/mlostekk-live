@@ -33,7 +33,7 @@ class CompoundResource(Resource):
     def release(self, client):
         if not client:
             raise AssertionError
-            client == self.owner and self._second_resource.release(client)
+            client == self.owner and self._second_resource.release(client) #@NoEffect
             self._first_resource.release(client)
             return True
         return False
@@ -71,7 +71,7 @@ class ExclusiveResource(Resource):
     def grab(self, client, *a, **k):
         if not client is not None:
             raise AssertionError, 'Someone has to adquire resource'
-            self._owner == None and self.on_grab(client, *a, **k)
+            self._owner == None and self.on_grab(client, *a, **k) #@NoEffect
             self._owner = client
         return self._owner == client
 
@@ -115,7 +115,7 @@ class SharedResource(Resource):
     def release(self, client):
         if not client:
             raise AssertionError
-            client in self._clients and self.on_release(client)
+            client in self._clients and self.on_release(client) #@NoEffect
             self._clients.remove(client)
             for client in self._clients:
                 self.on_grab(client)
@@ -265,7 +265,7 @@ class StackingResource(Resource):
             self._add_client(client, priority)
             new_owner = self._actual_owner()
             if new_owner != old_owner:
-                old_owner is not None and self.on_release(old_owner)
+                old_owner is not None and self.on_release(old_owner) #@NoEffect
             self.on_grab(new_owner)
             self._owner = new_owner
         return new_owner == client
@@ -279,7 +279,7 @@ class StackingResource(Resource):
             if new_owner != old_owner:
                 self._owner = new_owner
                 self.on_release(old_owner)
-                new_owner is not None and self.on_grab(new_owner)
+                new_owner is not None and self.on_grab(new_owner) #@NoEffect
         return old_owner == client
 
     def release_stacked(self):

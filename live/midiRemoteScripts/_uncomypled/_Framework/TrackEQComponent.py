@@ -1,5 +1,5 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_Framework\TrackEQComponent.py
-import Live
+import Live #@UnresolvedImport
 from ControlSurfaceComponent import ControlSurfaceComponent
 from EncoderElement import EncoderElement
 from _Generic.Devices import get_parameter_by_name
@@ -54,7 +54,7 @@ class TrackEQComponent(ControlSurfaceComponent):
                         control.release_parameter()
 
             self._track = track
-            self._track != None and self._track.add_devices_listener(self._on_devices_changed)
+            self._track != None and self._track.add_devices_listener(self._on_devices_changed) #@NoEffect
         self._on_devices_changed()
 
     def set_cut_buttons(self, buttons):

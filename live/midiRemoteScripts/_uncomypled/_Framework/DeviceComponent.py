@@ -1,5 +1,5 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_Framework\DeviceComponent.py
-import Live
+import Live #@UnresolvedImport
 from _Generic.Devices import device_parameters_to_map, number_of_parameter_banks, parameter_banks, parameter_bank_names, best_of_parameter_bank
 from ControlSurfaceComponent import ControlSurfaceComponent
 from ButtonElement import ButtonElement
@@ -83,7 +83,7 @@ class DeviceComponent(ControlSurfaceComponent):
                     self._device.add_name_listener(self._on_device_name_changed)
                     self._device.add_parameters_listener(self._on_parameters_changed)
                     parameter = self._on_off_parameter()
-                    parameter != None and parameter.add_value_listener(self._on_on_off_changed)
+                    parameter != None and parameter.add_value_listener(self._on_on_off_changed) #@NoEffect
             self._bank_index = self._device_bank_registry.get_device_bank(self._device)
             self._bank_name = '<No Bank>'
             self._on_device_name_changed()
@@ -108,9 +108,9 @@ class DeviceComponent(ControlSurfaceComponent):
                             self._bank_up_button.add_value_listener(self._bank_up_value)
                     if down_button != self._bank_down_button:
                         do_update = True
-                        self._bank_down_button != None and self._bank_down_button.remove_value_listener(self._bank_down_value)
+                        self._bank_down_button != None and self._bank_down_button.remove_value_listener(self._bank_down_value) #@NoEffect
                     self._bank_down_button = down_button
-                    self._bank_down_button != None and self._bank_down_button.add_value_listener(self._bank_down_value)
+                    self._bank_down_button != None and self._bank_down_button.add_value_listener(self._bank_down_value) #@NoEffect
             do_update and self.update()
 
     def set_bank_buttons(self, buttons):
@@ -146,7 +146,7 @@ class DeviceComponent(ControlSurfaceComponent):
                 self._lock_button.remove_value_listener(self._lock_value)
                 self._lock_button = None
             self._lock_button = button
-            self._lock_button != None and self._lock_button.add_value_listener(self._lock_value)
+            self._lock_button != None and self._lock_button.add_value_listener(self._lock_value) #@NoEffect
         self.update()
 
     def set_on_off_button(self, button):
@@ -156,7 +156,7 @@ class DeviceComponent(ControlSurfaceComponent):
                 self._on_off_button.remove_value_listener(self._on_off_value)
                 self._on_off_button = None
             self._on_off_button = button
-            self._on_off_button != None and self._on_off_button.add_value_listener(self._on_off_value)
+            self._on_off_button != None and self._on_off_button.add_value_listener(self._on_off_value) #@NoEffect
         self.update()
 
     def set_lock_callback(self, callback):

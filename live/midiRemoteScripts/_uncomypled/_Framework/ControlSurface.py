@@ -3,7 +3,7 @@ from __future__ import with_statement
 from functools import partial, wraps
 from itertools import chain
 from contextlib import contextmanager
-import Live
+import Live #@UnresolvedImport
 from Dependency import inject
 from Util import BooleanContext, first, find_if, const, in_range
 from Debug import debug_print
@@ -284,7 +284,7 @@ class ControlSurface(SlotManager):
         """
         if not not self._in_build_midi_map:
             raise AssertionError
-            self._suppress_requests_counter > 0 and self._rebuild_requests_during_suppression += 1
+            #self._suppress_requests_counter > 0 and self._rebuild_requests_during_suppression += 1
         else:
             self._c_instance.request_rebuild_midi_map()
 
@@ -365,9 +365,9 @@ class ControlSurface(SlotManager):
             self.log_message('Got unknown message: ' + str(midi_bytes))
 
     def handle_sysex(self, midi_bytes):
-        result = find_if(lambda (id, _): midi_bytes[:len(id)] == id, self._forwarding_long_identifier_registry.iteritems())
+        result = find_if(lambda (id, _): midi_bytes[:len(id)] == id, self._forwarding_long_identifier_registry.iteritems()) #@ReservedAssignment
         if result != None:
-            id, control = result
+            id, control = result #@ReservedAssignment
             control.receive_value(midi_bytes[len(id):-1])
         else:
             self.log_message('Got unknown sysex message: ', midi_bytes)
@@ -394,11 +394,11 @@ class ControlSurface(SlotManager):
     def _set_suppress_rebuild_requests(self, suppress_requests):
         if not not self._in_build_midi_map:
             raise AssertionError
-            suppress_requests and self._suppress_requests_counter += 1
+            #suppress_requests and self._suppress_requests_counter += 1
         elif not self._suppress_requests_counter > 0:
             raise AssertionError
             self._suppress_requests_counter -= 1
-            self._suppress_requests_counter == 0 and self._rebuild_requests_during_suppression > 0 and self.request_rebuild_midi_map()
+            self._suppress_requests_counter == 0 and self._rebuild_requests_during_suppression > 0 and self.request_rebuild_midi_map() #@NoEffect
             self._rebuild_requests_during_suppression = 0
 
     def set_pad_translations(self, pad_translations):
@@ -430,7 +430,7 @@ class ControlSurface(SlotManager):
             raise AssertionError
             if not callable(callback):
                 raise AssertionError
-                self._is_sending_scheduled_messages or delay_in_ticks -= 1
+                #self._is_sending_scheduled_messages or delay_in_ticks -= 1
             message_reference = [None]
 
             def message(delta):
@@ -615,14 +615,14 @@ class ControlSurface(SlotManager):
 
         return success
 
-    def _translate_message(self, type, from_identifier, from_channel, to_identifier, to_channel):
+    def _translate_message(self, type, from_identifier, from_channel, to_identifier, to_channel): #@ReservedAssignment
         if not type in (MIDI_CC_TYPE, MIDI_NOTE_TYPE):
             raise AssertionError
             raise from_identifier in range(128) or AssertionError
             raise from_channel in range(16) or AssertionError
             raise to_identifier in range(128) or AssertionError
             raise to_channel in range(16) or AssertionError
-            type == MIDI_CC_TYPE and self._c_instance.set_cc_translation(from_identifier, from_channel, to_identifier, to_channel)
+            type == MIDI_CC_TYPE and self._c_instance.set_cc_translation(from_identifier, from_channel, to_identifier, to_channel) #@NoEffect
         elif type == MIDI_NOTE_TYPE:
             self._c_instance.set_note_translation(from_identifier, from_channel, to_identifier, to_channel)
         else:

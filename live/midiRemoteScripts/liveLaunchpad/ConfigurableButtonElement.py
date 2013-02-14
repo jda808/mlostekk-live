@@ -1,5 +1,5 @@
 import Live #@UnresolvedImport @UnusedImport
-from _Framework.ButtonElement import * 
+from _Framework.ButtonElement import * #@UnusedWildImport
 
 class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 	' SPECIAL BUTTON CLASS THAT CAN BE CONFIGURED WITH CUSTOM ON- AND OFF-VALUES '
@@ -7,7 +7,7 @@ class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 
 	" INIT "
 	def __init__(self, is_momentary, msg_type, channel, identifier):
-		ButtonElement.__init__(self, is_momentary, msg_type, channel, identifier) #@UndefinedVariable
+		ButtonElement.__init__(self, is_momentary, msg_type, channel, identifier) 
 		self._on_value = 127
 		self._off_value = 4
 		self._is_enabled = True
@@ -46,14 +46,14 @@ class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 	" ADD LISTENER "
 	def add_value_listener(self, callback, identify_sender = False):
 		if (not self._is_notifying):
-			ButtonElement.add_value_listener(self, callback, identify_sender) #@UndefinedVariable
+			ButtonElement.add_value_listener(self, callback, identify_sender) 
 		else:
 			self._pending_listeners.append((callback,identify_sender))
 
 	" RECEIVE VALUE "
 	def receive_value(self, value):
 		self._is_notifying = True
-		ButtonElement.receive_value(self, value) #@UndefinedVariable
+		ButtonElement.receive_value(self, value) 
 		self._is_notifying = False
 		for listener in self._pending_listeners:
 			self.add_value_listener(listener[0], listener[1])
@@ -61,7 +61,7 @@ class ConfigurableButtonElement(ButtonElement): #@UndefinedVariable
 
 	" SEND VALUE"
 	def send_value(self, value, force = False):
-		ButtonElement.send_value(self, value, (force or self._force_next_value)) #@UndefinedVariable
+		ButtonElement.send_value(self, value, (force or self._force_next_value)) 
 		self._force_next_value = False
 
 	" INSTALL CONNECTION "

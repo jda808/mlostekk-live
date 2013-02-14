@@ -1,5 +1,5 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_Framework\ClipSlotComponent.py
-import Live
+import Live #@UnresolvedImport
 from ControlSurfaceComponent import ControlSurfaceComponent
 from Util import in_range
 from SubjectSlot import subject_slot

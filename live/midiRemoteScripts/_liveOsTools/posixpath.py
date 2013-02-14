@@ -444,7 +444,7 @@ def _resolve_link(path):
         # Resolve where the link points to
         resolved = os.readlink(path) #@UndefinedVariable
         if not isabs(resolved):
-            dir = dirname(path)
+            dir = dirname(path) #@ReservedAssignment
             path = normpath(join(dir, resolved))
         else:
             path = normpath(resolved)

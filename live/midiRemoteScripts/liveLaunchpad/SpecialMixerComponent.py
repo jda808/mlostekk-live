@@ -1,7 +1,7 @@
 import Live #@UnresolvedImport @UnusedImport
-from _Framework.MixerComponent import MixerComponent #@UnresolvedImport
+from _Framework.MixerComponent import MixerComponent 
 from DefChannelStripComponent import DefChannelStripComponent 
-from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
+from _Framework.ButtonElement import ButtonElement
 
 class SpecialMixerComponent(MixerComponent):
 	' CLASS ENCOMPASSING SEVERAL DEFAULTABLE CHANNEL STRIPS TO FORM A MIXER '

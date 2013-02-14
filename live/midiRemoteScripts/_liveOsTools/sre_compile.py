@@ -12,7 +12,7 @@
 
 import _sre, sys
 
-from sre_constants import *
+from sre_constants import * #@UnusedWildImport
 
 assert _sre.MAGIC == MAGIC, "SRE module mismatch"
 
@@ -24,7 +24,7 @@ else:
 def _identityfunction(x):
     return x
 
-def set(seq):
+def set(seq): #@ReservedAssignment
     s = {}
     for elem in seq:
         s[elem] = 1
@@ -498,7 +498,7 @@ def _code(p, flags):
 
     return code
 
-def compile(p, flags=0):
+def compile(p, flags=0): #@ReservedAssignment
     # internal: convert pattern list to internal format
 
     if isstring(p):

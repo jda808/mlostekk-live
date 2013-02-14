@@ -84,7 +84,7 @@ class StringHandler(object):
             if hasattr(self, handle_selector):
                 getattr(self, handle_selector)(char, index)
             else:
-                debug_print('Unknown state ' + str(self._state))
+                debug_print('Unknown state ' + str(self._state)) #@UndefinedVariable
                 raise False or AssertionError
 
         finalize_selector = '_finalize_' + str(self._state)

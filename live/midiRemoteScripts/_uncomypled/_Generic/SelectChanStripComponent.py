@@ -1,5 +1,5 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_Generic\SelectChanStripComponent.py
-import Live
+import Live #@UnusedImport @UnresolvedImport
 from _Framework.ChannelStripComponent import ChannelStripComponent
 
 class SelectChanStripComponent(ChannelStripComponent):

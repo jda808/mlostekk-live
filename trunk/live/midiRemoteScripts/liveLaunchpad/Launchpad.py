@@ -1,3 +1,4 @@
+from __future__ import with_statement
 import Live #@UnresolvedImport
 from consts import * #@UnusedWildImport
 from _Framework.ControlSurface import ControlSurface #@UnresolvedImport
@@ -6,8 +7,8 @@ from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
 from _Framework.ButtonMatrixElement import ButtonMatrixElement #@UnresolvedImport
 from ConfigurableButtonElement import ConfigurableButtonElement 
 from MainSelectorComponent import MainSelectorComponent 
-from _liveUtils.Logger import log #@UnresolvedImport @UnusedImport
-from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport @UnusedImport
+#from _liveUtils.Logger import log #@UnresolvedImport @UnusedImport
+#from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport @UnusedImport
 
 SIDE_NOTES = (8, 24, 40, 56, 72, 88, 104, 120)
 DRUM_NOTES = (41, 42, 43, 44, 45, 46, 47, 57, 58, 59, 60, 61, 62, 63, 73, 74, 75, 76, 77, 78, 79, 89, 90, 91, 92, 93, 94, 95, 105, 106, 107)
@@ -18,79 +19,81 @@ class Launchpad(ControlSurface):
 	" INITALIZE "
 	def __init__(self, c_instance):
 		ControlSurface.__init__(self, c_instance)
-		self.set_suppress_rebuild_requests(True)
-		self._suppress_send_midi = True
-		self._suppress_session_highlight = True
-		is_momentary = True
-		self._suggested_input_port = "Launchpad"
-		self._suggested_output_port = "Launchpad"
-		self._control_is_with_automap = False
-		self._user_byte_write_button = ButtonElement(is_momentary, MIDI_CC_TYPE, 0, 16) #@UndefinedVariable
-		self._user_byte_write_button.name = "User_Byte_Button"
-		self._user_byte_write_button.send_value(1)
-		self._user_byte_write_button.add_value_listener(self._user_byte_value)
-		self._wrote_user_byte = False
-		self._challenge = (Live.Application.get_random_int(0, 400000000) & 2139062143)
-		matrix = ButtonMatrixElement()
-		matrix.name = "Button_Matrix"
-		
-		""" TRACKFINDER TEST 
-		track_index = 0
-		for track in self.song().tracks:
-			if track_index < 8:
-				button_row = []			
-				if track.is_foldable:
-					for column in range(8):	
-						log("right one: " + str(track_index))		
-						button = ConfigurableButtonElement(is_momentary, MIDI_NOTE_TYPE, 0, ((track_index * 16) + column)) #@UndefinedVariable
-						button.name = (((str(column) + "_Clip_") + str(track_index)) + "_Button")
-						button_row.append(button)
-					track_index = track_index + 1
-				else:
-					for column in range(8):
-						log("wrong one: " + str(track_index))
-						button = ConfigurableButtonElement(is_momentary, MIDI_NOTE_TYPE, 0, 99, True) #@UndefinedVariable
-						button.name = (str(column) + "_Clip_Button-DUMMY")
-						button_row.append(button)
-				matrix.add_row(tuple(button_row))
-		log("done")"""
-		
-		""" ORIGINAL CODE """
-		for row in range(8):
-			button_row = []
-			for column in range(8):
-				button = ConfigurableButtonElement(is_momentary, MIDI_NOTE_TYPE, 0, ((row * 16) + column)) #@UndefinedVariable
-				button.name = (((str(column) + "_Clip_") + str(row)) + "_Button")
-				button_row.append(button)
-			matrix.add_row(tuple(button_row))
+		with self.component_guard():
+			#self.set_suppress_rebuild_requests(True)
+			self._suppress_send_midi = True
+			self._suppress_session_highlight = True
+			is_momentary = True
+			self._suggested_input_port = "Launchpad"
+			self._suggested_output_port = "Launchpad"
+			self._control_is_with_automap = False
+			self._user_byte_write_button = ButtonElement(is_momentary, MIDI_CC_TYPE, 0, 16) #@UndefinedVariable
+			self._user_byte_write_button.name = "User_Byte_Button"
+			self._user_byte_write_button.send_value(1)
+			self._user_byte_write_button.add_value_listener(self._user_byte_value)
+			self._wrote_user_byte = False
+			self._challenge = (Live.Application.get_random_int(0, 400000000) & 2139062143)
+			matrix = ButtonMatrixElement()
+			matrix.name = "Button_Matrix"
 			
-		self._config_button = ButtonElement(is_momentary, MIDI_CC_TYPE, 0, 0) #@UndefinedVariable
-		self._config_button.add_value_listener(self._config_value)
-		top_buttons = [ ConfigurableButtonElement(is_momentary, MIDI_CC_TYPE, 0, (104 + index)) for index in range(8) ] #@UndefinedVariable
-		side_buttons = [ ConfigurableButtonElement(is_momentary, MIDI_NOTE_TYPE, 0, SIDE_NOTES[index]) for index in range(8) ] #@UndefinedVariable
-		top_buttons[0].name = "Bank_Select_Up_Button"
-		top_buttons[1].name = "Bank_Select_Down_Button"
-		top_buttons[2].name = "Bank_Select_Left_Button"
-		top_buttons[3].name = "Bank_Select_Right_Button"
-		top_buttons[4].name = "Session_Button"
-		top_buttons[5].name = "User1_Button"
-		top_buttons[6].name = "User2_Button"
-		top_buttons[7].name = "Mixer_Button"
-		side_buttons[0].name = "Vol_Button"
-		side_buttons[1].name = "Pan_Button"
-		side_buttons[2].name = "SndA_Button"
-		side_buttons[3].name = "SndB_Button"
-		side_buttons[4].name = "Stop_Button"
-		side_buttons[5].name = "Trk_On_Button"
-		side_buttons[6].name = "Solo_Button"
-		side_buttons[7].name = "Arm_Button"
-		self._selector = MainSelectorComponent(matrix, tuple(top_buttons), tuple(side_buttons), self._config_button)
-		self._selector.name = "Main_Modes"
-		for control in self.controls:
-			if isinstance(control, ConfigurableButtonElement):
-				control.add_value_listener(self._button_value)
-		self._suppress_session_highlight = False
-		self.set_suppress_rebuild_requests(False)
+			""" TRACKFINDER TEST 
+			track_index = 0
+			for track in self.song().tracks:
+				if track_index < 8:
+					button_row = []			
+					if track.is_foldable:
+						for column in range(8):	
+							log("right one: " + str(track_index))		
+							button = ConfigurableButtonElement(is_momentary, MIDI_NOTE_TYPE, 0, ((track_index * 16) + column)) #@UndefinedVariable
+							button.name = (((str(column) + "_Clip_") + str(track_index)) + "_Button")
+							button_row.append(button)
+						track_index = track_index + 1
+					else:
+						for column in range(8):
+							log("wrong one: " + str(track_index))
+							button = ConfigurableButtonElement(is_momentary, MIDI_NOTE_TYPE, 0, 99, True) #@UndefinedVariable
+							button.name = (str(column) + "_Clip_Button-DUMMY")
+							button_row.append(button)
+					matrix.add_row(tuple(button_row))
+			log("done")"""
+			
+			""" ORIGINAL CODE """
+			for row in range(8):
+				button_row = []
+				for column in range(8):
+					button = ConfigurableButtonElement(is_momentary, MIDI_NOTE_TYPE, 0, ((row * 16) + column)) #@UndefinedVariable
+					button.name = (((str(column) + "_Clip_") + str(row)) + "_Button")
+					button_row.append(button)
+				matrix.add_row(tuple(button_row))
+				
+			self._config_button = ButtonElement(is_momentary, MIDI_CC_TYPE, 0, 0, optimized_send_midi=False)
+			self._config_button.add_value_listener(self._config_value)
+			top_buttons = [ ConfigurableButtonElement(is_momentary, MIDI_CC_TYPE, 0, (104 + index)) for index in range(8) ] #@UndefinedVariable
+			side_buttons = [ ConfigurableButtonElement(is_momentary, MIDI_NOTE_TYPE, 0, SIDE_NOTES[index]) for index in range(8) ] #@UndefinedVariable
+			top_buttons[0].name = "Bank_Select_Up_Button"
+			top_buttons[1].name = "Bank_Select_Down_Button"
+			top_buttons[2].name = "Bank_Select_Left_Button"
+			top_buttons[3].name = "Bank_Select_Right_Button"
+			top_buttons[4].name = "Session_Button"
+			top_buttons[5].name = "User1_Button"
+			top_buttons[6].name = "User2_Button"
+			top_buttons[7].name = "Mixer_Button"
+			side_buttons[0].name = "Vol_Button"
+			side_buttons[1].name = "Pan_Button"
+			side_buttons[2].name = "SndA_Button"
+			side_buttons[3].name = "SndB_Button"
+			side_buttons[4].name = "Stop_Button"
+			side_buttons[5].name = "Trk_On_Button"
+			side_buttons[6].name = "Solo_Button"
+			side_buttons[7].name = "Arm_Button"
+			self._selector = MainSelectorComponent(matrix, tuple(top_buttons), tuple(side_buttons), self._config_button)
+			self._selector.name = "Main_Modes"
+			for control in self.controls:
+				if isinstance(control, ConfigurableButtonElement):
+					control.add_value_listener(self._button_value)
+			self.set_highlighting_session_component(self._selector.session_component())
+			self._suppress_session_highlight = False
+			#self.set_suppress_rebuild_requests(False)
 
 	" DISCONNECTOR "
 	def disconnect(self):
@@ -137,10 +140,10 @@ class Launchpad(ControlSurface):
 				self._translate_message(MIDI_NOTE_TYPE, note, 0, note, new_channel) #@UndefinedVariable
 
 	" SEND THE MIDI STUFF "
-	def _send_midi(self, midi_bytes):
+	def _send_midi(self, midi_bytes, optimized = None):
 		sent_successfully = False
 		if (not self._suppress_send_midi):
-			sent_successfully = ControlSurface._send_midi(self, midi_bytes)
+			sent_successfully = ControlSurface._send_midi(self, midi_bytes, optimized=optimized)
 		return sent_successfully
 
 	" UPDATE THE HARDWARE "
@@ -157,18 +160,16 @@ class Launchpad(ControlSurface):
 	def _send_challenge(self):
 		for index in range(4):
 			challenge_byte = ((self._challenge >> (8 * index)) & 127)
-			self._send_midi((176,
-			 (17 + index),
-			 challenge_byte))
+			self._send_midi((176, (17 + index),	 challenge_byte))
 
 	" USER BYTE STUFF "
 	def _user_byte_value(self, value):
-		assert (value in range(128))
-		if (not self._wrote_user_byte):
-			enabled = (value == 1)
-			self._control_is_with_automap = (not enabled)
+		if not value in range(128):
+			raise AssertionError
+			enabled = self._wrote_user_byte or value == 1
+			self._control_is_with_automap = not enabled
 			self._suppress_send_midi = self._control_is_with_automap
-			if (not self._control_is_with_automap):
+			if not self._control_is_with_automap:
 				for control in self.controls:
 					if isinstance(control, ConfigurableButtonElement):
 						control.set_force_next_value()
@@ -179,9 +180,9 @@ class Launchpad(ControlSurface):
 			self._wrote_user_byte = False
 
 	" BUTTON VALUE "
-	def _button_value(self, value):
+	def _button_value(self, value):		
 		assert (value in range(128))
-
+		
 	" CONFIG VALUE "
 	def _config_value(self, value):
 		assert (value in range(128))

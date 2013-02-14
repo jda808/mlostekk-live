@@ -476,7 +476,7 @@ class LiveOSC:
     
     def rem_mixer_listeners(self):
         # Master Track
-        for type in ("volume", "panning", "crossfader"):
+        for type in ("volume", "panning", "crossfader"): #@ReservedAssignment
             for tr in self.masterlisten[type]:
                 if tr != None:
                     cb = self.masterlisten[type][tr]
@@ -487,7 +487,7 @@ class LiveOSC:
                         eval("tr.mixer_device." + type + ".remove_value_listener(cb)")
 
         # Normal Tracks
-        for type in ("arm", "solo", "mute"):
+        for type in ("arm", "solo", "mute"): #@ReservedAssignment
             for tr in self.mlisten[type]:
                 if tr != None:
                     cb = self.mlisten[type][tr]
@@ -503,7 +503,7 @@ class LiveOSC:
                         if test == 1:
                             eval("tr.remove_" + type + "_listener(cb)")
                 
-        for type in ("volume", "panning"):
+        for type in ("volume", "panning"): #@ReservedAssignment
             for tr in self.mlisten[type]:
                 if tr != None:
                     cb = self.mlisten[type][tr]
@@ -545,7 +545,7 @@ class LiveOSC:
                     tr.remove_output_meter_right_listener(cb)
                     
         # Return Tracks                
-        for type in ("solo", "mute"):
+        for type in ("solo", "mute"): #@ReservedAssignment
             for tr in self.rlisten[type]:
                 if tr != None:
                     cb = self.rlisten[type][tr]
@@ -555,7 +555,7 @@ class LiveOSC:
                     if test == 1:
                         eval("tr.remove_" + type + "_listener(cb)")
                 
-        for type in ("volume", "panning"):
+        for type in ("volume", "panning"): #@ReservedAssignment
             for tr in self.rlisten[type]:
                 if tr != None:
                     cb = self.rlisten[type][tr]
@@ -591,7 +591,7 @@ class LiveOSC:
         
         # Master Track
         tr = self.song().master_track
-        for type in ("volume", "panning", "crossfader"):
+        for type in ("volume", "panning", "crossfader"): #@ReservedAssignment
             self.add_master_listener(0, type, tr)
         
         self.add_meter_listener(0, tr, 2)
@@ -607,14 +607,14 @@ class LiveOSC:
             if tr.has_audio_output:
                 self.add_meter_listener(track, tr)
             
-            for type in ("arm", "solo", "mute"):
+            for type in ("arm", "solo", "mute"): #@ReservedAssignment
                 if type == "arm":
                     if tr.can_be_armed == 1:
                         self.add_mixert_listener(track, type, tr)
                 else:
                     self.add_mixert_listener(track, type, tr)
                 
-            for type in ("volume", "panning"):
+            for type in ("volume", "panning"): #@ReservedAssignment
                 self.add_mixerv_listener(track, type, tr)
                 
             for sid in range(len(tr.mixer_device.sends)):
@@ -628,10 +628,10 @@ class LiveOSC:
             self.add_trname_listener(track, tr, 1)
             self.add_meter_listener(track, tr, 1)
             
-            for type in ("solo", "mute"):
+            for type in ("solo", "mute"): #@ReservedAssignment
                 self.add_retmixert_listener(track, type, tr)
                 
-            for type in ("volume", "panning"):
+            for type in ("volume", "panning"): #@ReservedAssignment
                 self.add_retmixerv_listener(track, type, tr)
             
             for sid in range(len(tr.mixer_device.sends)):
@@ -649,14 +649,14 @@ class LiveOSC:
             self.mlisten["sends"][track][send] = cb
             send.add_value_listener(cb)
     
-    def add_mixert_listener(self, tid, type, track):
+    def add_mixert_listener(self, tid, type, track): #@ReservedAssignment
         if self.mlisten[type].has_key(track) != 1:
             cb = lambda :self.mixert_changestate(type, tid, track)
             
             self.mlisten[type][track] = cb
             eval("track.add_" + type + "_listener(cb)")
             
-    def add_mixerv_listener(self, tid, type, track):
+    def add_mixerv_listener(self, tid, type, track): #@ReservedAssignment
         if self.mlisten[type].has_key(track) != 1:
             cb = lambda :self.mixerv_changestate(type, tid, track)
             
@@ -664,7 +664,7 @@ class LiveOSC:
             eval("track.mixer_device." + type + ".add_value_listener(cb)")
 
     # Add master listeners
-    def add_master_listener(self, tid, type, track):
+    def add_master_listener(self, tid, type, track): #@ReservedAssignment
         if self.masterlisten[type].has_key(track) != 1:
             cb = lambda :self.mixerv_changestate(type, tid, track, 2)
             
@@ -683,14 +683,14 @@ class LiveOSC:
             self.rlisten["sends"][track][send] = cb
             send.add_value_listener(cb)
     
-    def add_retmixert_listener(self, tid, type, track):
+    def add_retmixert_listener(self, tid, type, track): #@ReservedAssignment
         if self.rlisten[type].has_key(track) != 1:
             cb = lambda :self.mixert_changestate(type, tid, track, 1)
             
             self.rlisten[type][track] = cb
             eval("track.add_" + type + "_listener(cb)")
             
-    def add_retmixerv_listener(self, tid, type, track):
+    def add_retmixerv_listener(self, tid, type, track): #@ReservedAssignment
         if self.rlisten[type].has_key(track) != 1:
             cb = lambda :self.mixerv_changestate(type, tid, track, 1)
             
@@ -806,7 +806,7 @@ class LiveOSC:
         
         
     # Mixer Callbacks
-    def mixerv_changestate(self, type, tid, track, r=0):
+    def mixerv_changestate(self, type, tid, track, r=0): #@ReservedAssignment
         val = eval("track.mixer_device." + type + ".value")
         types = { "panning": "pan", "volume": "volume", "crossfader": "crossfader" }
         
@@ -817,7 +817,7 @@ class LiveOSC:
         else:
             self.oscEndpoint.send('/live/' + types[type], (tid, float(val)))        
         
-    def mixert_changestate(self, type, tid, track, r=0):
+    def mixert_changestate(self, type, tid, track, r=0): #@ReservedAssignment
         val = eval("track." + type)
         
         if r == 1:
@@ -883,7 +883,7 @@ class LiveOSC:
         self.do_add_device_listeners(self.song().return_tracks, 1)
         self.do_add_device_listeners([self.song().master_track], 2)
             
-    def do_add_device_listeners(self, tracks, type):
+    def do_add_device_listeners(self, tracks, type): #@ReservedAssignment
         for i in range(len(tracks)):
             self.add_devicelistener(tracks[i], i, type)
         
@@ -931,14 +931,14 @@ class LiveOSC:
     def devpm_change(self):
         self.refresh_state()
         
-    def add_paramlistener(self, param, tid, did, pid, type):
+    def add_paramlistener(self, param, tid, did, pid, type): #@ReservedAssignment
         cb = lambda :self.param_changestate(param, tid, did, pid, type)
         
         if self.prlisten.has_key(param) != 1:
             param.add_value_listener(cb)
             self.prlisten[param] = cb
             
-    def param_changestate(self, param, tid, did, pid, type):
+    def param_changestate(self, param, tid, did, pid, type): #@ReservedAssignment
         if type == 2:
             self.oscEndpoint.send('/live/master/device/param', (did, pid, param.value, str(param.name)))
         elif type == 1:
@@ -955,14 +955,14 @@ class LiveOSC:
             #else:
             #    self.oscEndpoint.send('/live/device/param', (tid, did, pid, param.value, str(param.name)))
                 
-    def add_devicelistener(self, track, tid, type):
+    def add_devicelistener(self, track, tid, type): #@ReservedAssignment
         cb = lambda :self.device_changestate(track, tid, type)
         
         if self.dlisten.has_key(track) != 1:
             track.view.add_selected_device_listener(cb)
             self.dlisten[track] = cb
         
-    def device_changestate(self, track, tid, type):
+    def device_changestate(self, track, tid, type): #@ReservedAssignment
         did = self.tuple_idx(track.devices, track.view.selected_device)
         
         if type == 2:
@@ -972,7 +972,7 @@ class LiveOSC:
         else:
             self.oscEndpoint.send('/live/device/selected', (tid, did))        
         
-    def tuple_idx(self, tuple, obj):
+    def tuple_idx(self, tuple, obj): #@ReservedAssignment
         for i in xrange(0, len(tuple)):
             if (tuple[i] == obj):
                 return i 

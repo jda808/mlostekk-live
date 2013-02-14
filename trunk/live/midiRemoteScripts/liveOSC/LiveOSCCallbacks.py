@@ -25,9 +25,9 @@ import Live #@UnresolvedImport @UnusedImport
 #import RemixNet
 import OSC
 import LiveUtils
-from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport @UnusedImport
-from _liveUtils.DeviceFinder import DeviceFinder #@UnresolvedImport @UnusedImport
-from _liveUtils.Logger import log #@UnresolvedImport @UnusedImport
+#from _liveUtils.TrackFinder import TrackFinder 
+#from _liveUtils.DeviceFinder import DeviceFinder 
+#from _liveUtils.Logger import log 
 from LiveUtils import * #@UnusedWildImport
 
 #import sys
@@ -1252,7 +1252,7 @@ class LiveOSCCallbacks:
 
 
     def loopStateCB(self, msg, source):
-        type = msg[0] == '/live/clip/loopstate_id' and 1 or 0
+        type = msg[0] == '/live/clip/loopstate_id' and 1 or 0 #@ReservedAssignment
     
         trackNumber = msg[2]
         clipNumber = msg[3]
@@ -1268,7 +1268,7 @@ class LiveOSCCallbacks:
             LiveUtils.getClip(trackNumber, clipNumber).looping = loopState
 
     def loopStartCB(self, msg, source):
-        type = msg[0] == '/live/clip/loopstart_id' and 1 or 0
+        type = msg[0] == '/live/clip/loopstart_id' and 1 or 0 #@ReservedAssignment
         
         trackNumber = msg[2]
         clipNumber = msg[3]
@@ -1284,7 +1284,7 @@ class LiveOSCCallbacks:
             LiveUtils.getClip(trackNumber, clipNumber).loop_start = loopStart
             
     def loopEndCB(self, msg, source):
-        type = msg[0] == '/live/clip/loopend_id' and 1 or 0
+        type = msg[0] == '/live/clip/loopend_id' and 1 or 0 #@ReservedAssignment
     
         trackNumber = msg[2]
         clipNumber = msg[3]    

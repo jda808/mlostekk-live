@@ -175,7 +175,7 @@ if sys.hexversion >= 0x02020000:
         Empty matches are included in the result."""
         return _compile(pattern, flags).finditer(string)
 
-def compile(pattern, flags=0):
+def compile(pattern, flags=0): #@ReservedAssignment
     "Compile a regular expression pattern, returning a pattern object."
     return _compile(pattern, flags)
 
@@ -262,7 +262,7 @@ def _subx(pattern, template):
     if not template[0] and len(template[1]) == 1:
         # literal replacement
         return template[1][0]
-    def filter(match, template=template):
+    def filter(match, template=template): #@ReservedAssignment
         return sre_parse.expand_template(template, match)
     return filter
 
@@ -286,7 +286,7 @@ class Scanner:
         p = []
         s = sre_parse.Pattern()
         s.flags = flags
-        for phrase, action in lexicon:
+        for phrase, action in lexicon: #@UnusedVariable
             p.append(sre_parse.SubPattern(s, [
                 (SUBPATTERN, (len(p)+1, sre_parse.parse(phrase, flags))),
                 ]))

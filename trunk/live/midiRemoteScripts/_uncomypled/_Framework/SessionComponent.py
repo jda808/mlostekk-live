@@ -1,5 +1,5 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_Framework\SessionComponent.py
-import Live
+import Live #@UnresolvedImport
 from CompoundComponent import CompoundComponent
 from SceneComponent import SceneComponent
 from SubjectSlot import subject_slot
@@ -294,8 +294,8 @@ class SessionComponent(CompoundComponent):
 
     def _change_offsets(self, track_increment, scene_increment):
         if not track_increment != 0:
-            offsets_changed = scene_increment != 0
-            offsets_changed and self._track_offset += track_increment
+            offsets_changed = scene_increment != 0 #@UnusedVariable
+            #offsets_changed and self._track_offset += track_increment
             self._scene_offset += scene_increment
             raise self._track_offset >= 0 or AssertionError
             if not self._scene_offset >= 0:
@@ -305,7 +305,7 @@ class SessionComponent(CompoundComponent):
                 self._reassign_tracks()
                 self._reassign_scenes()
                 self.notify_offset()
-                self.width() > 0 and self.height() > 0 and self._do_show_highlight()
+                self.width() > 0 and self.height() > 0 and self._do_show_highlight() #@NoEffect
 
     def _reassign_scenes(self):
         scenes = self.song().scenes
@@ -388,7 +388,7 @@ class SessionComponent(CompoundComponent):
             if index < len(self._stop_track_clip_buttons):
                 button = self._stop_track_clip_buttons[index]
                 if button != None:
-                    track_index < len(tracks_to_use) and tracks_to_use[track_index].clip_slots and tracks_to_use[track_index].fired_slot_index == -2 and button.send_value(self._stop_track_clip_value)
+                    track_index < len(tracks_to_use) and tracks_to_use[track_index].clip_slots and tracks_to_use[track_index].fired_slot_index == -2 and button.send_value(self._stop_track_clip_value) #@NoEffect
                 else:
                     button.turn_off()
 

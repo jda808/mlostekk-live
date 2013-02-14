@@ -1,9 +1,9 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_Tools\sre_parse.py
 """Internal support module for sre"""
 import sys
-from sre_constants import *
+from sre_constants import * #@UnusedWildImport
 
-def set(seq):
+def set(seq): #@ReservedAssignment
     s = {}
     for elem in seq:
         s[elem] = 1
@@ -361,7 +361,7 @@ def _parse_sub(source, state, nested = 1):
         if len(item) != 1 or item[0][0] != LITERAL:
             break
     else:
-        set = []
+        set = [] #@ReservedAssignment
         setappend = set.append
         for item in items:
             setappend(item[0])
@@ -422,7 +422,7 @@ def _parse(source, state):
         if this and this[0] not in SPECIAL_CHARS:
             subpatternappend((LITERAL, ord(this)))
         elif this == '[':
-            set = []
+            set = [] #@ReservedAssignment
             setappend = set.append
             if sourcematch('^'):
                 setappend((NEGATE, None))
@@ -472,17 +472,17 @@ def _parse(source, state):
                 subpatternappend((IN, set))
         elif this and this[0] in REPEAT_CHARS:
             if this == '?':
-                min, max = (0, 1)
+                min, max = (0, 1) #@ReservedAssignment
             elif this == '*':
-                min, max = 0, MAXREPEAT
+                min, max = 0, MAXREPEAT #@ReservedAssignment
             elif this == '+':
-                min, max = 1, MAXREPEAT
+                min, max = 1, MAXREPEAT #@ReservedAssignment
             elif this == '{':
                 if source.next == '}':
                     subpatternappend((LITERAL, ord(this)))
                     continue
                 here = source.tell()
-                min, max = 0, MAXREPEAT
+                min, max = 0, MAXREPEAT #@ReservedAssignment
                 lo = hi = ''
                 while source.next in DIGITS:
                     lo = lo + source.get()
@@ -498,9 +498,9 @@ def _parse(source, state):
                     source.seek(here)
                     continue
                 if lo:
-                    min = int(lo)
+                    min = int(lo) #@ReservedAssignment
                 if hi:
-                    max = int(hi)
+                    max = int(hi) #@ReservedAssignment
                 if max < min:
                     raise error, 'bad repeat interval'
             else:
@@ -574,11 +574,11 @@ def _parse(source, state):
                     continue
                 elif source.next in ASSERTCHARS:
                     char = sourceget()
-                    dir = 1
+                    dir = 1 #@ReservedAssignment
                     if char == '<':
                         if source.next not in LOOKBEHINDASSERTCHARS:
                             raise error, 'syntax error'
-                        dir = -1
+                        dir = -1 #@ReservedAssignment
                         char = sourceget()
                     p = _parse_sub(source, state)
                     if not sourcematch(')'):
@@ -651,7 +651,7 @@ def _parse(source, state):
     return subpattern
 
 
-def parse(str, flags = 0, pattern = None):
+def parse(str, flags = 0, pattern = None): #@ReservedAssignment
     source = Tokenizer(str)
     if pattern is None:
         pattern = Pattern()

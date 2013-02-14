@@ -1,10 +1,10 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_Generic\GenericScript.py
 from __future__ import with_statement
-import Live
+import Live #@UnusedImport
 from _Framework.ControlSurface import ControlSurface
 from _Framework.DeviceComponent import DeviceComponent
 from _Framework.TransportComponent import TransportComponent
-from _Framework.InputControlElement import *
+from _Framework.InputControlElement import * #@UnusedWildImport
 from _Framework.ButtonElement import ButtonElement
 from _Framework.EncoderElement import EncoderElement
 from SpecialMixerComponent import SpecialMixerComponent

@@ -1,5 +1,5 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_Framework\ControlSurfaceComponent.py
-import Live
+import Live #@UnresolvedImport
 from Dependency import dependency, depends
 from SubjectSlot import SlotManager, Subject
 from Util import lazy_attribute

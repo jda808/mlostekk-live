@@ -1,6 +1,6 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_UserScript\__init__.py
 from _Generic.GenericScript import GenericScript
-import Live
+import Live #@UnresolvedImport
 from _Tools.ConfigParser import ConfigParser
 
 def interpret_map_mode(map_mode_name):
@@ -38,7 +38,7 @@ def create_instance(c_instance, user_path = ''):
     if not user_path == '':
         file_object = open(user_path)
         if file_object:
-            file_data = None
+            file_data = None #@UnusedVariable
             config_parser = ConfigParser()
             config_parser.readfp(file_object, user_path)
             device_controls = [(-1, -1),

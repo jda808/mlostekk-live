@@ -93,14 +93,14 @@ class MixerComponent(CompoundComponent):
     def set_prehear_volume_control(self, control):
         if not (control == None or isinstance(control, EncoderElement)):
             raise AssertionError
-            self._prehear_volume_control != None and self._prehear_volume_control.release_parameter()
+            self._prehear_volume_control != None and self._prehear_volume_control.release_parameter() #@NoEffect
         self._prehear_volume_control = control
         self.update()
 
     def set_crossfader_control(self, control):
         if not (control == None or isinstance(control, EncoderElement)):
             raise AssertionError
-            self._crossfader_control != None and self._crossfader_control.release_parameter()
+            self._crossfader_control != None and self._crossfader_control.release_parameter() #@NoEffect
         self._crossfader_control = control
         self.update()
 
@@ -122,7 +122,7 @@ class MixerComponent(CompoundComponent):
                     if self._bank_down_button != None:
                         self._bank_down_button.remove_value_listener(self._bank_down_value)
                     self._bank_down_button = down_button
-                    self._bank_down_button != None and self._bank_down_button.add_value_listener(self._bank_down_value)
+                    self._bank_down_button != None and self._bank_down_button.add_value_listener(self._bank_down_value) #@NoEffect
             do_update and self.on_track_list_changed()
 
     def set_select_buttons(self, next_button, prev_button):
@@ -143,14 +143,14 @@ class MixerComponent(CompoundComponent):
                     if self._prev_track_button != None:
                         self._prev_track_button.remove_value_listener(self._prev_track_value)
                     self._prev_track_button = prev_button
-                    self._prev_track_button != None and self._prev_track_button.add_value_listener(self._prev_track_value)
+                    self._prev_track_button != None and self._prev_track_button.add_value_listener(self._prev_track_value) #@NoEffect
             do_update and self.on_selected_track_changed()
 
     def set_track_offset(self, new_offset):
         if not isinstance(new_offset, int):
             raise AssertionError
             raise new_offset >= 0 or AssertionError
-            new_offset != self._track_offset and self._offset_can_start_after_tracks |= new_offset > len(self.tracks_to_use()) - 1
+            #new_offset != self._track_offset and self._offset_can_start_after_tracks |= new_offset > len(self.tracks_to_use()) - 1
             self._track_offset = new_offset
             self._reassign_tracks()
 
@@ -246,7 +246,7 @@ class MixerComponent(CompoundComponent):
                 raise AssertionError
                 if self.is_enabled():
                     new_offset = (value is not 0 or not self._bank_up_button.is_momentary()) and self._track_offset + len(self._channel_strips)
-                    len(self.tracks_to_use()) > new_offset and self.set_track_offset(new_offset)
+                    len(self.tracks_to_use()) > new_offset and self.set_track_offset(new_offset) #@NoEffect
 
     def _bank_down_value(self, value):
         if not isinstance(value, int):

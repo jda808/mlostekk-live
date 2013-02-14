@@ -1,7 +1,7 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_Tools\sre_compile.py
 """Internal support module for sre"""
 import _sre, sys
-from sre_constants import *
+from sre_constants import * #@UnusedWildImport
 if not _sre.MAGIC == MAGIC:
     raise AssertionError, 'SRE module mismatch'
     MAXCODE = _sre.CODESIZE == 2 and 65535
@@ -12,7 +12,7 @@ def _identityfunction(x):
     return x
 
 
-def set(seq):
+def set(seq): #@ReservedAssignment
     s = {}
     for elem in seq:
         s[elem] = 1
@@ -466,7 +466,7 @@ def _code(p, flags):
     return code
 
 
-def compile(p, flags = 0):
+def compile(p, flags = 0): #@ReservedAssignment
     if isstring(p):
         import sre_parse
         pattern = p

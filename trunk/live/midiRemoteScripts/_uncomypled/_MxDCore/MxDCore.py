@@ -1,5 +1,5 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_MxDCore\MxDCore.py
-import Live.Base
+import Live.Base #@UnresolvedImport
 from _Tools import types
 import sys
 import _Framework
@@ -148,11 +148,11 @@ class MxDCore(object):
     def _get_lom_id_by_lom_object(self, lom_object):
         if self._is_cplusplus_lom_object(lom_object):
             return self.manager.get_lom_id(lom_object)
-        for id, object in self.appointed_lom_ids.iteritems():
+        for id, object in self.appointed_lom_ids.iteritems(): #@ReservedAssignment
             if object == lom_object:
                 return id
 
-        id = -len(self.appointed_lom_ids)
+        id = -len(self.appointed_lom_ids) #@ReservedAssignment
         self.appointed_lom_ids[id] = lom_object
         return id
 
@@ -165,7 +165,7 @@ class MxDCore(object):
             for object_id, _ in device_context.iteritems():
                 if not isinstance(object_id, int):
                     continue
-                type = self._get_current_type(device_id, object_id)
+                type = self._get_current_type(device_id, object_id) #@ReservedAssignment
                 if type == 'obs':
                     if self._get_current_lom_id(device_id, object_id) == int(lom_id):
                         observers.append((device_id, object_id))
@@ -192,7 +192,7 @@ class MxDCore(object):
                 if not found_property:
                     for key in sorted(list(TUPLE_TYPES.keys())):
                         if hasattr(parent, key):
-                            property = getattr(parent, key)
+                            property = getattr(parent, key) #@ReservedAssignment
                             if current_object in property:
                                 index = list(property).index(current_object)
                                 path = unicode(key) + ' ' + unicode(index) + ' ' + path
@@ -225,7 +225,7 @@ class MxDCore(object):
             return s[1:].isdigit()
         return s.isdigit()
 
-    def _set_current_lom_id(self, device_id, object_id, lom_id, type):
+    def _set_current_lom_id(self, device_id, object_id, lom_id, type): #@ReservedAssignment
         """set the CURRENT_LOM_ID of obj/obs/rmt objects"""
         if not self.manager.set_current_lom_id(device_id, object_id, lom_id):
             self.device_contexts[device_id][object_id][ID_KEY] = lom_id
@@ -242,7 +242,7 @@ class MxDCore(object):
             return current_id
         return self.device_contexts[device_id][object_id][ID_KEY]
 
-    def _set_current_type(self, device_id, object_id, type):
+    def _set_current_type(self, device_id, object_id, type): #@ReservedAssignment
         """set the CURRENT_TYPE of obj/obs/rmt objects"""
         if type == 'obj':
             old_type = self.device_contexts[device_id][object_id][TYPE_KEY]
@@ -319,7 +319,7 @@ class MxDCore(object):
             raise AssertionError
             pure_path = parameters.strip().strip('"')
             path_components = pure_path.split(' ')
-            len(pure_path) > 0 and path_components[0] not in ROOT_PROPERTIES.keys() and self._raise(device_id, object_id, 'set path: invalid path')
+            len(pure_path) > 0 and path_components[0] not in ROOT_PROPERTIES.keys() and self._raise(device_id, object_id, 'set path: invalid path') #@NoEffect
         else:
             self.device_contexts[device_id][object_id][PATH_KEY] = []
             self.path_goto(device_id, object_id, parameters)
@@ -358,7 +358,7 @@ class MxDCore(object):
         current_object = self._object_from_path(device_id, object_id, current_path, must_exist=True)
         result = ''
         if len(current_path) == 0:
-            for property in ROOT_PROPERTIES.keys():
+            for property in ROOT_PROPERTIES.keys(): #@ReservedAssignment
                 result += property + ' '
 
         elif current_object != None:
@@ -366,7 +366,7 @@ class MxDCore(object):
             if self._is_iterable(current_object):
                 result = '%d list elements, no properties' % len(current_object)
             else:
-                for property in dir(current_object):
+                for property in dir(current_object): #@ReservedAssignment
                     if not unicode(property).startswith('_'):
                         if hasattr(current_object, property):
                             try:
@@ -390,7 +390,7 @@ class MxDCore(object):
         current_object = self._object_from_path(device_id, object_id, current_path, must_exist=True)
         result = ''
         if len(current_path) == 0:
-            for property in ROOT_PROPERTIES.keys():
+            for property in ROOT_PROPERTIES.keys(): #@ReservedAssignment
                 result += property + ' '
 
         elif current_object != None:
@@ -398,7 +398,7 @@ class MxDCore(object):
             if self._is_iterable(current_object):
                 result = '%d list elements, no children' % len(current_object)
             else:
-                for property in dir(current_object):
+                for property in dir(current_object): #@ReservedAssignment
                     if not unicode(property).startswith('_'):
                         if hasattr(current_object, property):
                             try:
@@ -421,13 +421,13 @@ class MxDCore(object):
             object_context = device_context[object_id]
             current_path = object_context[PATH_KEY]
             current_object = self._object_from_path(device_id, object_id, current_path, must_exist=True)
-            property = None
+            property = None #@ReservedAssignment
             if len(current_path) == 0:
                 if parameters in ROOT_PROPERTIES.keys():
-                    property = self._get_root_prop(device_id, parameters)
+                    property = self._get_root_prop(device_id, parameters) #@ReservedAssignment
             elif current_object != None:
                 if hasattr(current_object, parameters):
-                    property = getattr(current_object, parameters)
+                    property = getattr(current_object, parameters) #@ReservedAssignment
             if property != None:
                 count = -1
                 count = self._is_iterable(property) and len(property)
@@ -477,7 +477,7 @@ class MxDCore(object):
             prop_info = ''
             func_info = ''
             if not self._is_iterable(current_object):
-                for property in dir(current_object):
+                for property in dir(current_object): #@ReservedAssignment
                     try:
                         if not property.startswith('_'):
                             real_property = getattr(current_object, property)
@@ -525,7 +525,7 @@ class MxDCore(object):
             parsed_params = self._parse(device_id, object_id, parameters)
             property_name = parsed_params[0]
             property_values = parsed_params[1:]
-            property = getattr(current_object, property_name)
+            property = getattr(current_object, property_name) #@ReservedAssignment
             value = property_values[0]
             if property_name in PROPERTY_TYPES.keys():
                 if self._is_lom_object(value):
@@ -766,9 +766,9 @@ class MxDCore(object):
         return isinstance(lom_object, tuple(self.lom_classes) + (type(None),)) or isinstance(lom_object, self._cs_base_classes()) or isinstance(lom_object, Live.Base.Vector)
 
     def _cs_base_classes(self):
-        from _Framework.ControlSurface import ControlSurface
-        from _Framework.ControlSurfaceComponent import ControlSurfaceComponent
-        from _Framework.ControlElement import ControlElement
+        from _Framework.ControlSurface import ControlSurface #@Reimport
+        from _Framework.ControlSurfaceComponent import ControlSurfaceComponent #@Reimport
+        from _Framework.ControlElement import ControlElement #@Reimport
         return (ControlSurface, ControlSurfaceComponent, ControlElement)
 
     def _is_class(self, class_object):
@@ -1017,7 +1017,7 @@ class MxDCore(object):
             raise AssertionError
             current_object = self._get_current_lom_object(device_id, object_id)
             property_name = self._get_current_property(device_id, object_id)
-            property_name == u'id' and self._observer_id_callback(device_id, object_id)
+            property_name == u'id' and self._observer_id_callback(device_id, object_id) #@NoEffect
         else:
             if current_object != None and property_name != '':
                 object_context = self.device_contexts[device_id][object_id]
@@ -1068,7 +1068,7 @@ class MxDCore(object):
         elif not (current_object != None and property_name != '' and not isinstance(current_object, TupleWrapper)):
             raise AssertionError
             if hasattr(current_object, property_name):
-                property = getattr(current_object, property_name)
+                property = getattr(current_object, property_name) #@ReservedAssignment
                 if isinstance(property, (str, unicode)):
                     self.manager.send_message(device_id, object_id, 'obs_string_val', unicode(StringHandler.prepare_outgoing(property)))
                 elif isinstance(property, (int, type(False))):
@@ -1106,7 +1106,7 @@ class MxDCore(object):
             device_context = self.device_contexts[device_id]
             for object_id, _ in device_context.iteritems():
                 if isinstance(object_id, int):
-                    type = self._get_current_type(device_id, object_id)
+                    type = self._get_current_type(device_id, object_id) #@ReservedAssignment
                     if type in ('obs', 'obj', 'rmt'):
                         self._set_current_lom_id(device_id, object_id, 0, type)
 
@@ -1117,7 +1117,7 @@ class MxDCore(object):
         else:
             self.manager.unregister_remote_timeable(device_id, object_id, validate_change_allowed)
 
-    def _disambiguate_object(self, object):
+    def _disambiguate_object(self, object): #@ReservedAssignment
         result = object
         if object.__class__.__name__ in ('ListWrapper', 'TupleWrapper'):
             result = object.get_list()

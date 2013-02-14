@@ -52,4 +52,4 @@ class SwitchModeSelectorComponent(ModeSelectorComponent):
                 for component in active_components:
                     component.set_enabled(True)
 
-                len(self._modes_buttons) == len(self._components_per_mode) and self._modes_buttons[self._mode_index].turn_on()
+                len(self._modes_buttons) == len(self._components_per_mode) and self._modes_buttons[self._mode_index].turn_on() #@NoEffect

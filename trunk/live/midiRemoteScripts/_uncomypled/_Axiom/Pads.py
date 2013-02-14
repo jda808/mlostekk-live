@@ -1,6 +1,6 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_Axiom\Pads.py
-import Live
-from consts import *
+import Live #@UnresolvedImport
+from consts import * #@UnusedWildImport
 
 class Pads:
     """ Class representing the Pads section on the Axiom controllers """

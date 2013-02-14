@@ -460,7 +460,7 @@ class Pickler:
 
     def save_long(self, obj, pack=struct.pack):
         if self.proto >= 2:
-            bytes = encode_long(obj)
+            bytes = encode_long(obj) #@ReservedAssignment
             n = len(bytes)
             if n < 256:
                 self.write(LONG1 + chr(n) + bytes)
@@ -940,13 +940,13 @@ class Unpickler:
 
     def load_long1(self):
         n = ord(self.read(1))
-        bytes = self.read(n)
+        bytes = self.read(n) #@ReservedAssignment
         self.append(decode_long(bytes))
     dispatch[LONG1] = load_long1
 
     def load_long4(self):
         n = mloads('i' + self.read(4))
-        bytes = self.read(n)
+        bytes = self.read(n) #@ReservedAssignment
         self.append(decode_long(bytes))
     dispatch[LONG4] = load_long4
 

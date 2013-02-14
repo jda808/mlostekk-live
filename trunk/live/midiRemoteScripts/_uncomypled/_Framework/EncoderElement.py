@@ -1,5 +1,5 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_Framework\EncoderElement.py
-import Live
+import Live #@UnresolvedImport
 from SubjectSlot import SubjectEvent
 from InputControlElement import InputControlElement, MIDI_CC_TYPE, InputSignal
 

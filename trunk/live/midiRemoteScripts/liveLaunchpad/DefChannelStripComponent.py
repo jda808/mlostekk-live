@@ -1,5 +1,5 @@
 import Live #@UnresolvedImport
-from _Framework.ChannelStripComponent import ChannelStripComponent #@UnresolvedImport
+from _Framework.ChannelStripComponent import ChannelStripComponent 
 from ConfigurableButtonElement import ConfigurableButtonElement 
 
 class DefChannelStripComponent(ChannelStripComponent):

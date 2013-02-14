@@ -400,14 +400,14 @@ def invfade(f, *a, **k):
     return fade((lambda x: f(1.0 - x)), *a, **k)
 
 
-def linear(f, min, max, *a, **k):
+def linear(f, min, max, *a, **k): #@ReservedAssignment
     return fade((lambda x: f(Util.linear(min, max, x))), *a, **k)
 
 
 try:
     import math
 
-    def sinusoid(f, min = 0.0, max = 1.0, *a, **k):
+    def sinusoid(f, min = 0.0, max = 1.0, *a, **k): #@ReservedAssignment
         return fade((lambda x: f(min + (max - min) * math.sin(x * math.pi / 2.0))), *a, **k)
 
 

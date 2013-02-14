@@ -1,5 +1,5 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_Framework\TransportComponent.py
-import Live
+import Live #@UnresolvedImport
 from functools import partial
 from CompoundComponent import CompoundComponent
 from ToggleComponent import ToggleComponent

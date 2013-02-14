@@ -60,7 +60,7 @@ class CompoundElement(NotifyingControlElement, SlotManager):
                 element.resource.release(self)
             else:
                 self._on_nested_control_element_released(element)
-            self._listen_nested_requests > 0 and self._on_nested_control_element_value.remove_subject(element)
+            self._listen_nested_requests > 0 and self._on_nested_control_element_value.remove_subject(element) #@NoEffect
         del self._nested_control_elements[element]
         return element
 

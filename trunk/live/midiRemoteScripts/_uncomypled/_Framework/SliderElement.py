@@ -1,5 +1,5 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_Framework\SliderElement.py
-import Live
+import Live #@UnresolvedImport
 from EncoderElement import EncoderElement
 from InputControlElement import MIDI_NOTE_TYPE
 

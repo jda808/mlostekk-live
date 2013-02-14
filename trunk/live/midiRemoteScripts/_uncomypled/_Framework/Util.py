@@ -312,7 +312,7 @@ def remove_if(predicate, lst):
     return [ elem for elem in lst if not predicate(elem) ]
 
 
-def flatten(list):
+def flatten(list): #@ReservedAssignment
     """
     Flattens a list of lists into a new list. It does not do that
     recursively, only one level.
@@ -373,7 +373,7 @@ def product(iter_a, iter_b):
             yield (a, b)
 
 
-def next(iter):
+def next(iter): #@ReservedAssignment
     """
     Equivalent to iter.next()
     """
@@ -467,7 +467,7 @@ def infinite_context_manager(generator):
             self._delegate = make_context_manager()
             self._delegate.__enter__()
 
-        def __exit__(self, type, err, trace):
+        def __exit__(self, type, err, trace): #@ReservedAssignment
             self._delegate.__exit__(type, err, trace)
             del self._delegate
 

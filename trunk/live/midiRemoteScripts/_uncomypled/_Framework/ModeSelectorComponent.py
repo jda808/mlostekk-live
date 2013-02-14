@@ -52,7 +52,7 @@ class ModeSelectorComponent(ControlSurfaceComponent):
             if self._mode_toggle != None:
                 self._mode_toggle.remove_value_listener(self._toggle_value)
             self._mode_toggle = button
-            self._mode_toggle != None and self._mode_toggle.add_value_listener(self._toggle_value)
+            self._mode_toggle != None and self._mode_toggle.add_value_listener(self._toggle_value) #@NoEffect
         self.set_mode(0)
 
     def set_mode_buttons(self, buttons):

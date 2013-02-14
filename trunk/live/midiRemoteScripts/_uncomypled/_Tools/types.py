@@ -83,8 +83,8 @@ try:
 except ImportError:
     pass
 else:
-    GetSetDescriptorType = type(_types.Helper.getter)
-    MemberDescriptorType = type(_types.Helper.member)
+    GetSetDescriptorType = type(_types.Helper.getter) #@UndefinedVariable
+    MemberDescriptorType = type(_types.Helper.member) #@UndefinedVariable
     del _types
 
 del sys

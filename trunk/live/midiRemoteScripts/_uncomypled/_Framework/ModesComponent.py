@@ -196,7 +196,7 @@ class MultiEntryMode(Mode):
     def leave_mode(self):
         if not self._entry_count > 0:
             raise AssertionError
-            self._entry_count == 1 and self._mode.leave_mode()
+            self._entry_count == 1 and self._mode.leave_mode() #@NoEffect
         self._entry_count -= 1
 
     @property
@@ -518,7 +518,7 @@ class ModesComponent(CompoundComponent):
         if not (mode in self._mode_map or mode is None):
             raise AssertionError
             if self.is_enabled():
-                mode != None and self.push_mode(mode)
+                mode != None and self.push_mode(mode) #@NoEffect
                 self.pop_unselected_modes()
             else:
                 self._mode_stack.release_all()

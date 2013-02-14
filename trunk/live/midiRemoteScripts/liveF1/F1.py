@@ -8,7 +8,7 @@ from _Framework.InputControlElement import *
 from _Framework.ButtonElement import ButtonElement #@UnresolvedImport
 from _liveUtils.Logger import log #@UnresolvedImport
 from _liveUtils.TrackFinder import TrackFinder #@UnresolvedImport
-from F1ButtonColumn import F1ButtonColumn #@UnresolvedImport
+from F1ButtonColumn import F1ButtonColumn 
 from F1StepSequencerComponent import F1StepSequencerComponent
 
 HSV_CHANNELS = [0, 1, 2]

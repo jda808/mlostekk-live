@@ -55,7 +55,7 @@ class DisplayDataSource(object):
         if not not self._in_update:
             raise AssertionError
             self._in_update = True
-            self._update_callback != None and self._update_callback()
+            self._update_callback != None and self._update_callback() #@NoEffect
         self._in_update = False
 
     def display_string(self):

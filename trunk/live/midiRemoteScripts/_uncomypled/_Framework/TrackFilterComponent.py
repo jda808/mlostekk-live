@@ -1,5 +1,5 @@
 #Embedded file name: h:\Jenkins\live\Projects\AppLive\Resources\MIDI Remote Scripts\_Framework\TrackFilterComponent.py
-import Live
+import Live #@UnresolvedImport
 from ControlSurfaceComponent import ControlSurfaceComponent
 from EncoderElement import EncoderElement
 from _Generic.Devices import get_parameter_by_name
@@ -52,7 +52,7 @@ class TrackFilterComponent(ControlSurfaceComponent):
                     if self._reso_control != None:
                         self._reso_control.release_parameter()
             self._track = track
-            self._track != None and self._track.add_devices_listener(self._on_devices_changed)
+            self._track != None and self._track.add_devices_listener(self._on_devices_changed) #@NoEffect
         self._on_devices_changed()
 
     def set_filter_controls(self, freq, reso):
@@ -61,8 +61,8 @@ class TrackFilterComponent(ControlSurfaceComponent):
             if not isinstance(freq, EncoderElement):
                 raise AssertionError
                 if self._device != None:
-                    self._freq_control != None and self._freq_control.release_parameter()
-                self._reso_control != None and self._reso_control.release_parameter()
+                    self._freq_control != None and self._freq_control.release_parameter() #@NoEffect
+                self._reso_control != None and self._reso_control.release_parameter() #@NoEffect
         self._freq_control = freq
         self._reso_control = reso
         self.update()

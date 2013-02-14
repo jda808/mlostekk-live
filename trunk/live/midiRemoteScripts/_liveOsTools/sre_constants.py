@@ -144,7 +144,7 @@ CHCODES = [
     CATEGORY_UNI_NOT_LINEBREAK
 ]
 
-def makedict(list):
+def makedict(list): #@ReservedAssignment
     d = {}
     i = 0
     for item in list:

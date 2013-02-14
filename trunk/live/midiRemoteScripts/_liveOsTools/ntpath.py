@@ -252,7 +252,7 @@ def islink(path):
 def exists(path):
     """Test whether a path exists"""
     try:
-        st = os.stat(path)
+        st = os.stat(path) #@UnusedVariable
     except os.error:
         return False
     return True

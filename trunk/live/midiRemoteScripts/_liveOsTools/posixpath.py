@@ -168,7 +168,7 @@ def islink(path):
 def exists(path):
     """Test whether a path exists.  Returns False for broken symbolic links"""
     try:
-        st = os.stat(path)
+        st = os.stat(path) #@UnusedVariable
     except os.error:
         return False
     return True
@@ -179,7 +179,7 @@ def exists(path):
 def lexists(path):
     """Test whether a path exists.  Returns True for broken symbolic links"""
     try:
-        st = os.lstat(path)
+        st = os.lstat(path) #@UnusedVariable
     except os.error:
         return False
     return True
@@ -317,12 +317,12 @@ def expanduser(path):
         i = len(path)
     if i == 1:
         if 'HOME' not in os.environ:
-            import pwd
+            import pwd #@UnresolvedImport
             userhome = pwd.getpwuid(os.getuid()).pw_dir #@UndefinedVariable
         else:
             userhome = os.environ['HOME']
     else:
-        import pwd
+        import pwd #@UnresolvedImport @Reimport
         try:
             pwent = pwd.getpwnam(path[1:i])
         except KeyError:

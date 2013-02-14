@@ -27,7 +27,7 @@ The variable struct.error is an exception raised on errors.
 """
 __version__ = '0.1'
 
-from _struct import Struct, error
+from _struct import Struct, error #@UnusedImport
 
 _MAXCACHE = 100
 _cache = {}

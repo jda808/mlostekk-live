@@ -26,11 +26,11 @@ Misc variables:
 
 __version__ = "$Revision: 38432 $"       # Code version
 
-from types import *
+from types import * #@UnusedWildImport
 from copy_reg import dispatch_table
 from copy_reg import _extension_registry, _inverted_registry, _extension_cache
 import marshal
-import sys
+import sys #@Reimport
 import struct
 import re
 
@@ -170,7 +170,7 @@ del x
 
 class Pickler:
 
-    def __init__(self, file, protocol=None):
+    def __init__(self, file, protocol=None): #@ReservedAssignment
         """This takes a file-like object for writing a pickle data stream.
 
         The optional protocol argument tells the pickler to use the
@@ -296,16 +296,16 @@ class Pickler:
             return
 
         # Check copy_reg.dispatch_table
-        reduce = dispatch_table.get(t)
+        reduce = dispatch_table.get(t) #@ReservedAssignment
         if reduce:
             rv = reduce(obj)
         else:
             # Check for a __reduce_ex__ method, fall back to __reduce__
-            reduce = getattr(obj, "__reduce_ex__", None)
+            reduce = getattr(obj, "__reduce_ex__", None) #@ReservedAssignment
             if reduce:
                 rv = reduce(self.proto)
             else:
-                reduce = getattr(obj, "__reduce__", None)
+                reduce = getattr(obj, "__reduce__", None) #@ReservedAssignment
                 if reduce:
                     rv = reduce()
                 else:
@@ -504,7 +504,7 @@ class Pickler:
     if StringType == UnicodeType:
         # This is true for Jython
         def save_string(self, obj, pack=struct.pack):
-            unicode = obj.isunicode()
+            unicode = obj.isunicode() #@ReservedAssignment
 
             if self.bin:
                 if unicode:
@@ -619,7 +619,7 @@ class Pickler:
         r = xrange(self._BATCHSIZE)
         while items is not None:
             tmp = []
-            for i in r:
+            for i in r: #@UnusedVariable
                 try:
                     x = items.next()
                     tmp.append(x)
@@ -667,7 +667,7 @@ class Pickler:
         r = xrange(self._BATCHSIZE)
         while items is not None:
             tmp = []
-            for i in r:
+            for i in r: #@UnusedVariable
                 try:
                     tmp.append(items.next())
                 except StopIteration:
@@ -729,7 +729,7 @@ class Pickler:
 
     def save_global(self, obj, name=None, pack=struct.pack):
         write = self.write
-        memo = self.memo
+        memo = self.memo #@UnusedVariable
 
         if name is None:
             name = obj.__name__
@@ -826,7 +826,7 @@ def whichmodule(func, funcname):
 
 class Unpickler:
 
-    def __init__(self, file):
+    def __init__(self, file): #@ReservedAssignment
         """This takes a file-like object for reading a pickle data stream.
 
         The protocol version of the pickle is detected automatically, so no
@@ -972,7 +972,7 @@ class Unpickler:
     dispatch[STRING] = load_string
 
     def load_binstring(self):
-        len = mloads('i' + self.read(4))
+        len = mloads('i' + self.read(4)) #@ReservedAssignment
         self.append(self.read(len))
     dispatch[BINSTRING] = load_binstring
 
@@ -981,12 +981,12 @@ class Unpickler:
     dispatch[UNICODE] = load_unicode
 
     def load_binunicode(self):
-        len = mloads('i' + self.read(4))
+        len = mloads('i' + self.read(4)) #@ReservedAssignment
         self.append(unicode(self.read(len),'utf-8'))
     dispatch[BINUNICODE] = load_binunicode
 
     def load_short_binstring(self):
-        len = ord(self.read(1))
+        len = ord(self.read(1)) #@ReservedAssignment
         self.append(self.read(len))
     dispatch[SHORT_BINSTRING] = load_short_binstring
 
@@ -1178,14 +1178,14 @@ class Unpickler:
     def load_append(self):
         stack = self.stack
         value = stack.pop()
-        list = stack[-1]
+        list = stack[-1] #@ReservedAssignment
         list.append(value)
     dispatch[APPEND] = load_append
 
     def load_appends(self):
         stack = self.stack
         mark = self.marker()
-        list = stack[mark - 1]
+        list = stack[mark - 1] #@ReservedAssignment
         list.extend(stack[mark + 1:])
         del stack[mark:]
     dispatch[APPENDS] = load_appends
@@ -1194,14 +1194,14 @@ class Unpickler:
         stack = self.stack
         value = stack.pop()
         key = stack.pop()
-        dict = stack[-1]
+        dict = stack[-1] #@ReservedAssignment
         dict[key] = value
     dispatch[SETITEM] = load_setitem
 
     def load_setitems(self):
         stack = self.stack
         mark = self.marker()
-        dict = stack[mark - 1]
+        dict = stack[mark - 1] #@ReservedAssignment
         for i in range(mark + 1, len(stack), 2):
             dict[stack[i]] = stack[i + 1]
 
@@ -1358,19 +1358,19 @@ try:
 except ImportError:
     from StringIO import StringIO
 
-def dump(obj, file, protocol=None):
+def dump(obj, file, protocol=None): #@ReservedAssignment
     Pickler(file, protocol).dump(obj)
 
 def dumps(obj, protocol=None):
-    file = StringIO()
+    file = StringIO() #@ReservedAssignment
     Pickler(file, protocol).dump(obj)
     return file.getvalue()
 
-def load(file):
+def load(file): #@ReservedAssignment
     return Unpickler(file).load()
 
-def loads(str):
-    file = StringIO(str)
+def loads(str): #@ReservedAssignment
+    file = StringIO(str) #@ReservedAssignment
     return Unpickler(file).load()
 
 # Doctest

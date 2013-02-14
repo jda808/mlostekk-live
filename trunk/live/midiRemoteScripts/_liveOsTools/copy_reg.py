@@ -24,7 +24,7 @@ def pickle(ob_type, pickle_function, constructor_ob=None):
     if constructor_ob is not None:
         constructor(constructor_ob)
 
-def constructor(object):
+def constructor(object): #@ReservedAssignment
     if not callable(object):
         raise TypeError("constructors must be callable")
 
@@ -76,11 +76,11 @@ def _reduce_ex(self, proto):
             raise TypeError("a class that defines __slots__ without "
                             "defining __getstate__ cannot be pickled")
         try:
-            dict = self.__dict__
+            dict = self.__dict__ #@ReservedAssignment
         except AttributeError:
-            dict = None
+            dict = None #@ReservedAssignment
     else:
-        dict = getstate()
+        dict = getstate() #@ReservedAssignment
     if dict:
         return _reconstructor, args, dict
     else:

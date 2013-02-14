@@ -502,7 +502,7 @@ class RawConfigParser:
 
 class ConfigParser(RawConfigParser):
 
-    def get(self, section, option, raw=False, vars=None):
+    def get(self, section, option, raw=False, vars=None): #@ReservedAssignment
         """Get an option value for a given section.
 
         All % interpolations are expanded in the return values, based on the
@@ -534,7 +534,7 @@ class ConfigParser(RawConfigParser):
         else:
             return self._interpolate(section, option, value, d)
 
-    def items(self, section, raw=False, vars=None):
+    def items(self, section, raw=False, vars=None): #@ReservedAssignment
         """Return a list of tuples with (name, value) for each option
         in the section.
 
@@ -567,7 +567,7 @@ class ConfigParser(RawConfigParser):
                     for option in options]
 
 
-    def _interpolate(self, section, option, rawval, vars):
+    def _interpolate(self, section, option, rawval, vars): #@ReservedAssignment
         # do the string interpolation
         value = rawval
         depth = MAX_INTERPOLATION_DEPTH
@@ -599,7 +599,7 @@ class ConfigParser(RawConfigParser):
 
 class SafeConfigParser(ConfigParser):
 
-    def _interpolate(self, section, option, rawval, vars):
+    def _interpolate(self, section, option, rawval, vars): #@ReservedAssignment
         # do the string interpolation
         L = []
         self._interpolate_some(option, L, rawval, section, vars, 1)
@@ -608,7 +608,7 @@ class SafeConfigParser(ConfigParser):
     _interpvar_match = re.compile(r"%\(([^)]+)\)s").match
 
 
-    def _interpolate_some(self, option, accum, rest, section, map, depth):
+    def _interpolate_some(self, option, accum, rest, section, map, depth): #@ReservedAssignment
         if depth > MAX_INTERPOLATION_DEPTH:
             raise InterpolationDepthError(option, section, rest)
         while rest:

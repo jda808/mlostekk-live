@@ -14,9 +14,9 @@
 
 import sys
 
-from sre_constants import *
+from sre_constants import * #@UnusedWildImport
 
-def set(seq):
+def set(seq): #@ReservedAssignment
     s = {}
     for elem in seq:
         s[elem] = 1
@@ -353,7 +353,7 @@ def _parse_sub(source, state, nested=1):
     else:
         # we can store this as a character set instead of a
         # branch (the compiler may optimize this even more)
-        set = []
+        set = [] #@ReservedAssignment
         setappend = set.append
         for item in items:
             setappend(item[0])
@@ -420,7 +420,7 @@ def _parse(source, state):
 
         elif this == "[":
             # character set
-            set = []
+            set = [] #@ReservedAssignment
             setappend = set.append
 ##          if sourcematch(":"):
 ##              pass # handle character classes
@@ -478,18 +478,18 @@ def _parse(source, state):
         elif this and this[0] in REPEAT_CHARS:
             # repeat previous item
             if this == "?":
-                min, max = 0, 1
+                min, max = 0, 1 #@ReservedAssignment
             elif this == "*":
-                min, max = 0, MAXREPEAT
+                min, max = 0, MAXREPEAT #@ReservedAssignment
 
             elif this == "+":
-                min, max = 1, MAXREPEAT
+                min, max = 1, MAXREPEAT #@ReservedAssignment
             elif this == "{":
                 if source.next == "}":
                     subpatternappend((LITERAL, ord(this)))
                     continue
                 here = source.tell()
-                min, max = 0, MAXREPEAT
+                min, max = 0, MAXREPEAT #@ReservedAssignment
                 lo = hi = ""
                 while source.next in DIGITS:
                     lo = lo + source.get()
@@ -503,9 +503,9 @@ def _parse(source, state):
                     source.seek(here)
                     continue
                 if lo:
-                    min = int(lo)
+                    min = int(lo) #@ReservedAssignment
                 if hi:
-                    max = int(hi)
+                    max = int(hi) #@ReservedAssignment
                 if max < min:
                     raise error, "bad repeat interval"
             else:
@@ -586,11 +586,11 @@ def _parse(source, state):
                 elif source.next in ASSERTCHARS:
                     # lookahead assertions
                     char = sourceget()
-                    dir = 1
+                    dir = 1 #@ReservedAssignment
                     if char == "<":
                         if source.next not in LOOKBEHINDASSERTCHARS:
                             raise error, "syntax error"
-                        dir = -1 # lookbehind
+                        dir = -1 # lookbehind @ReservedAssignment
                         char = sourceget()
                     p = _parse_sub(source, state)
                     if not sourcematch(")"):
@@ -666,7 +666,7 @@ def _parse(source, state):
 
     return subpattern
 
-def parse(str, flags=0, pattern=None):
+def parse(str, flags=0, pattern=None): #@ReservedAssignment
     # parse 're' pattern into list of (opcode, argument) tuples
 
     source = Tokenizer(str)

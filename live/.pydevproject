@@ -10,6 +10,13 @@
 
 <pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
 <path>/live/accessories/logServer</path>
-<path>/live/midiRemoteScripts/liveLaunchpad</path>
+<path>/live/midiRemoteScripts/_liveOsTools</path>
+<path>/live/midiRemoteScripts/_liveUtils</path>
+<path>/live/midiRemoteScripts/_uncomypled/_Framework</path>
+<path>/live/midiRemoteScripts/_uncomypled/_Axiom</path>
+<path>/live/midiRemoteScripts/_uncomypled/_Generic</path>
+<path>/live/midiRemoteScripts/_uncomypled/_MxDCore</path>
+<path>/live/midiRemoteScripts/_uncomypled/_Tools</path>
+<path>/live/midiRemoteScripts/_uncomypled/_UserScript</path>
 </pydev_pathproperty>
 </pydev_project>

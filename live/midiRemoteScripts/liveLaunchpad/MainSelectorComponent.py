@@ -9,7 +9,7 @@ from _Framework.SceneComponent import SceneComponent #@UnresolvedImport @UnusedI
 from _Framework.SessionZoomingComponent import SessionZoomingComponent #@UnresolvedImport @UnusedImport
 from SpecialSessionComponent import SpecialSessionComponent 
 from SpecialMixerSelectorComponent import * #@UnusedWildImport
-from _liveUtils.Logger import log #@UnresolvedImport
+#from _liveUtils.Logger import log #@UnresolvedImport
 
 class MainSelectorComponent(ModeSelectorComponent):
 	" CLASS THAT REASSIGNS THE BUTTON ON THE LAUNCHPAD TO DIFFERENT FUNCTIONS "

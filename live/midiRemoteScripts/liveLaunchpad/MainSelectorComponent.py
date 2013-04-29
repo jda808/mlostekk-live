@@ -3,7 +3,7 @@ from _Framework.ModeSelectorComponent import ModeSelectorComponent #@UnusedImpor
 from _Framework.ButtonElement import ButtonElement 
 from SpecialSessionComponent import SpecialSessionComponent 
 from SpecialMixerSelectorComponent import * #@UnusedWildImport
-from _liveUtils.Logger import log #@UnresolvedImport
+#from _liveUtils.Logger import log #@UnresolvedImport
 
 class MainSelectorComponent(ModeSelectorComponent):
 	" CLASS THAT REASSIGNS THE BUTTON ON THE LAUNCHPAD TO DIFFERENT FUNCTIONS "
@@ -186,13 +186,13 @@ class MainSelectorComponent(ModeSelectorComponent):
 			if for_mixer:
 				if scene_index <= SESSION_HEIGHT_FOR_MIXER:
 					scene_button = self._side_buttons[scene_index]
-					scene_button.set_on_off_values(127, LED_OFF)
+					scene_button.set_on_off_values(127, GREEN_THIRD)
 					scene.set_launch_button(scene_button)
 				else:
 					scene.set_launch_button(None)
 			elif as_active and (not for_mixer):				
 				scene_button = self._side_buttons[scene_index]
-				scene_button.set_on_off_values(127, LED_OFF)
+				scene_button.set_on_off_values(127, GREEN_THIRD)
 				scene.set_launch_button(scene_button)
 			else:
 				scene.set_launch_button(None)				

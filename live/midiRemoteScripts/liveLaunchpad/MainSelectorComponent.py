@@ -3,7 +3,7 @@ from _Framework.ModeSelectorComponent import ModeSelectorComponent #@UnusedImpor
 from _Framework.ButtonElement import ButtonElement 
 from SpecialSessionComponent import SpecialSessionComponent 
 from SpecialMixerSelectorComponent import * #@UnusedWildImport
-#from _liveUtils.Logger import log #@UnresolvedImport
+from _liveUtils.Logger import log #@UnresolvedImport
 
 class MainSelectorComponent(ModeSelectorComponent):
 	" CLASS THAT REASSIGNS THE BUTTON ON THE LAUNCHPAD TO DIFFERENT FUNCTIONS "
@@ -18,7 +18,7 @@ class MainSelectorComponent(ModeSelectorComponent):
 		assert (len(side_buttons) == 8)
 		assert isinstance(config_button, ButtonElement)
 		ModeSelectorComponent.__init__(self)
-		self._session = SpecialSessionComponent(len(self.song().tracks), matrix.height())
+		self._session = SpecialSessionComponent(self, len(self.song().tracks), matrix.height(), side_buttons)
 		self._session.name = "Session_Control"
 		self._matrix = matrix
 		self._side_buttons = side_buttons
@@ -167,7 +167,7 @@ class MainSelectorComponent(ModeSelectorComponent):
 			for button in self._all_buttons:
 				button.set_channel(new_channel)
 				button.set_force_next_value()
-
+			
 	" SETUP THE SESSION "
 	def _setup_session(self, as_active, as_enabled, for_mixer):
 		#log("setup_session (active: " + str(as_active) + ", enabled: " + str(as_enabled) + ", forMixer: " + str(for_mixer) + ")")
@@ -182,7 +182,7 @@ class MainSelectorComponent(ModeSelectorComponent):
 				button.set_on_off_values(127, LED_OFF)
 		# --------------------------------------------------------------------- matrix
 		for scene_index in range(self._matrix.height()):
-			scene = self._session.scene(scene_index)			
+			scene = self._session.scene(scene_index)				
 			if for_mixer:
 				if scene_index <= SESSION_HEIGHT_FOR_MIXER:
 					scene_button = self._side_buttons[scene_index]
